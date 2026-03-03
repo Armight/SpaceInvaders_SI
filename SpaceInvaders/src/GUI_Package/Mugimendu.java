@@ -6,7 +6,13 @@ public abstract class Mugimendu {
 	private boolean erakutsi;
 	private static int pixelKop;
 	
-	protected Mugimendu(int pX, int pY, boolean pErakutsi) {}
+	protected Mugimendu(int pX, int pY, boolean pErakutsi) {
+		this.x= pX;
+		this.y=pY;
+		this.erakutsi=pErakutsi;
+		
+	}
+	
 		
 	
 }
