@@ -26,10 +26,15 @@ public class Controller implements KeyListener, ActionListener {
 	    public void keyPressed(KeyEvent e) {
 
 	        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-	            model.mugituJokalari(-1);
+	            model.mugituJokalariX(-1);
 
 	        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-	            model.mugituJokalari(1);
+	            model.mugituJokalariX(1);
+	        if(e.getKeyCode() == KeyEvent.VK_DOWN)
+	            model.mugituJokalariY(-1);
+	        if(e.getKeyCode() == KeyEvent.VK_UP)
+	            model.mugituJokalariY(1);
+	        
 
 	        if(e.getKeyCode() == KeyEvent.VK_SPACE)
 	            model.disparatu();
