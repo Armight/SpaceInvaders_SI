@@ -1,0 +1,21 @@
+Init eta end partidaKudeatzaile baten bitartez kudeatu.
+
+Init bitartez sortu espazioko matrizea eta abisatu bistari observer bitartez bistak espazioa sortzeko.
+
+Matrizea duen klasean tiro, etsai, itsasontzia dauka. Hori kudeatzeko, matriearen gelaxka bakoitza (KLASE BERRIA) observable bat da eta View-ren gelaxka bakoitza jlabel observer bat da. 
+Bata bestearekin lotuta dago. Biak lotzeko modua koordenatuen bitartez: vistan daudenean badakigu ereduaren zein gelaxkari egin erreferentzia eta view-ren jlabel-en aldaketak update batekin egin. 
+View-ren gelaxkari egin addObserver & lotu ereduko observerrari. Gelaxkak 4 egoera: hutsik, itsasontzi, etsai, tiro. Lau aukera posibleak aldatzen diren momentu guztietan eguneratu view atala ere bai.
+
+Egiteko modua: MODEL-en espazioan sortu espaziontzi klasea & sortu etsaien arraylista. 
+Mugitu behar denean espaziontzi/etsaia mugitu egindako klasea & mugitzean, 1. aldatu x,y koordenatuak & aldatu ondoren ereduaren gelaxken goera, aurrekoa hutsik and berria-ren egoera aldatu & 
+View-ren observer-arekin aldatu jlabel-aren kolorea
+1. etsai koordenatua aldatu
+2. aldatu matrizean daukan posizioa
+3. view-n aldatu observer bitartez.
+
+Ereduaren observer-en: changeNotify (metodoa???) observer & bidali String bat esanez adb espaziontzia naiz & observer-en jarri if espaziontzia naiz change color to green
+
+Aldatu pixelaren tamaina???
+
+Mugimendua: jokalariarena tekladoarekin. Etsaiarena random. Hori tenporizadoreekin egin daiteke. 200ms.
+End egiten denean, etsaia matrizetik irteten danean abisatu partidaKoordinatzaileari END egiteko & jokoa bukatu egin dela & tiroak egitean and etsaien matrizearen tamaina = 0 denean notifikatu partidaKudeatzaileari END egiteko.
