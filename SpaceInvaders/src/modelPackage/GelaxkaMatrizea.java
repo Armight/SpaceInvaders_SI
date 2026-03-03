@@ -18,7 +18,7 @@ public class GelaxkaMatrizea {
 	public void matrizeaBete() {
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				matrizea[i][j] = new Gelaxka(i, j, "hutsik");
+				matrizea[i][j] = new Gelaxka(i, j, "hutsik dago");
 			}
 		}
 	}
