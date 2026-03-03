@@ -1,9 +1,12 @@
-package Space_Invaders;
+package viewPackage;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import modelPackage.Mugimendu;
+
 import java.awt.GridLayout;
 import java.awt.Color;
 

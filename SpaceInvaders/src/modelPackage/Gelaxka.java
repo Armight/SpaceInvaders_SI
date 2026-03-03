@@ -1,4 +1,4 @@
-package GUI_Package;
+package modelPackage;
 
 public class Gelaxka {
 	private int posX;

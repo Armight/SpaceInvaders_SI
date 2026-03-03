@@ -1,4 +1,4 @@
-package GUI_Package;
+package modelPackage;
 
 public class EtsaiTxikia extends Etsai {
 	

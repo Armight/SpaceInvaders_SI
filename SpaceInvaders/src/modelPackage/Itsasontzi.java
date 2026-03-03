@@ -1,6 +1,4 @@
-package GUI_Package;
-
-
+package modelPackage;
 
 public abstract class Itsasontzi extends Mugimendu {
 	

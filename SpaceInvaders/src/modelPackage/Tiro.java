@@ -1,4 +1,4 @@
-package GUI_Package;
+package modelPackage;
 
 public abstract class Tiro extends Mugimendu {
 

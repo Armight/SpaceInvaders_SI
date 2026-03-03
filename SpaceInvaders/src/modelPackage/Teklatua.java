@@ -1,4 +1,4 @@
-package GUI_Package;
+package modelPackage;
 
 import java.awt.event.*;
 

@@ -1,6 +1,4 @@
-package GUI_Package;
-
-
+package modelPackage;
 
 public abstract class Etsai extends Itsasontzi {
 
