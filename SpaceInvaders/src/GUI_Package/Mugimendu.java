@@ -6,6 +6,8 @@ public abstract class Mugimendu {
 	private boolean erakutsi;
 	private static int pixelKop;
 	
-	protected Mugimendu() {}
+	protected Mugimendu(int pX, int pY, boolean) {
+		
+	}
 	
 }
