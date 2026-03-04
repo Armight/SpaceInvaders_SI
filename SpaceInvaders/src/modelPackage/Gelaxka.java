@@ -1,5 +1,6 @@
 package modelPackage;
 
+import viewPackage.Observer;
 
 public class Gelaxka implements Observable{
 	private int posX;

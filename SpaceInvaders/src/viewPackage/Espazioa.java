@@ -1,22 +1,19 @@
 package viewPackage;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import modelPackage.Mugimendu;
-
-import java.awt.GridLayout;
-import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class Espazioa extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
-	private static Espazioa nEspazioa;
-	private ArrayList<Mugimendu> mugimenduKol;
-	private JLabel[][] pixelak = new JLabel[60][100];
-	
+	private JPanel contentPane;
+	private JLabel label;
+
 	/**
 	 * Launch the application.
 	 */
@@ -24,7 +21,7 @@ public class Espazioa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Espazioa frame = Espazioa.getEspazioa();
+					Espazioa frame = new Espazioa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,37 +33,17 @@ public class Espazioa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private Espazioa() {
-		getContentPane().setBackground(Color.BLACK);
-		
-		// QUITAR los bordes y decoraciones de la ventana
-		setUndecorated(true);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizar ventana
-		
-		// Ahora sí, 100x60 píxeles exactos sin bordes
-		setBounds(100, 100, 100, 60);
-		
+	public Espazioa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// GridLayout sin espacios entre celdas
-		getContentPane().setLayout(new GridLayout(60, 100, 0, 0));
-		
-		// Crear 6000 labels (60 filas * 100 columnas)
-		for (int i = 0; i < 60; i++) {
-			for (int j = 0; j < 100; j++) {
-				JLabel lblNewLabel = new JLabel("");
-				lblNewLabel.setOpaque(true);       
-				lblNewLabel.setBackground(Color.BLACK);
-				getContentPane().add(lblNewLabel);
-				this.pixelak[i][j] = lblNewLabel;
-			}
-		}
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		this.label = new JLabel("Hola");
+		this.label.setOpaque(true);       
+		this.label.setBackground(Color.GREEN);
+		getContentPane().add(label);
+
 	}
-	
-	public static Espazioa getEspazioa() {  
-		if (nEspazioa == null) {            
-			nEspazioa = new Espazioa();     
-		}                                   
-		return nEspazioa;                   
-	} 
+
 }
