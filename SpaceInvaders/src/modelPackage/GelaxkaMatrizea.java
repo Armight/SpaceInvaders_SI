@@ -24,7 +24,7 @@ public class GelaxkaMatrizea {
 	}
 		
 			
-			//Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko
+//Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko
 	
 
 }
