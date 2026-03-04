@@ -26,5 +26,8 @@ public class GelaxkaMatrizea {
 			
 //Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko
 	
+	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
+		return this.matrizea[pX][pY];
+	}
 
 }

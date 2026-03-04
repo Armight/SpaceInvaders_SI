@@ -34,5 +34,9 @@ public class Gelaxka implements Observable{
 		this.observer.update(this.egoera);
 	}
 	
+	public void setEgoera(String pEgoera) {
+		this.egoera=pEgoera;
+	}
+	
 
 }
