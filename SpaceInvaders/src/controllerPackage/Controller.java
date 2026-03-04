@@ -27,7 +27,6 @@ public class Controller implements KeyListener, ActionListener {
 
 	        if(e.getKeyCode() == KeyEvent.VK_LEFT)
 	            model.mugituJokalariX(-1);
-
 	        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 	            model.mugituJokalariX(1);
 	        if(e.getKeyCode() == KeyEvent.VK_DOWN)

@@ -5,8 +5,8 @@ public abstract class Itsasontzi extends Mugimendu {
 	
 	private int bizitza;
 	
-	protected Itsasontzi() {
-		super();
+	protected Itsasontzi(int pX, int pY, boolean pErakutsi) {
+		super(pX,pY,pErakutsi);
 	}
 
 }
