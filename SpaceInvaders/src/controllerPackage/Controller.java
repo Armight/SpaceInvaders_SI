@@ -18,7 +18,7 @@ public class Controller implements KeyListener, ActionListener {
     private String itsasontziMota;
 
     private Controller() {
-        timer = new Timer(200, this);
+        timer = new Timer(200, this);//200ms-ro tick eta actionPerformed() metodora deitu, bertan update() deituko da.
         timer.start();
     }
 
