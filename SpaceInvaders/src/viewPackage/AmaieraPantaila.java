@@ -1,42 +1,77 @@
 package viewPackage;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import controllerPackage.Controller;
 
-public class AmaieraPantaila extends JFrame {
+public class AmaieraPantaila extends JFrame implements KeyListener {
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
+    private JLabel mezuaLabel;
+    private JLabel instrukzioakLabel;
+    private Controller controller;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    public AmaieraPantaila(String mezua) {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Space Invaders");
+        setUndecorated(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setResizable(false);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AmaieraPantaila frame = new AmaieraPantaila();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+        contentPane = new JPanel() {
+            private Image bgImage = new ImageIcon(getClass().getResource("/resources/fondoaAmaPant.jpg")).getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        contentPane.setBackground(Color.BLACK);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(new GridBagLayout());
+        setContentPane(contentPane);
 
-	/**
-	 * Create the frame.
-	 */
-	public AmaieraPantaila() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+        // Mensaje ganaste/perdiste
+        mezuaLabel = new JLabel(mezua);
+        mezuaLabel.setFont(new Font("Bahnschrift", Font.BOLD, 50));
+        mezuaLabel.setForeground(mezua.equals("IRABAZI DUZU!") ? Color.GREEN : Color.RED);
+        GridBagConstraints gbc1 = new GridBagConstraints();
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
+        gbc1.insets = new Insets(10, 10, 10, 10);
+        contentPane.add(mezuaLabel, gbc1);
 
-	}
+        // Instrucciones
+        instrukzioakLabel = new JLabel("* Press <ESC> to exit *");
+        instrukzioakLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        instrukzioakLabel.setForeground(Color.WHITE);
+        GridBagConstraints gbc2 = new GridBagConstraints();
+        gbc2.gridx = 0;
+        gbc2.gridy = 1;
+        gbc2.insets = new Insets(10, 10, 10, 10);
+        contentPane.add(instrukzioakLabel, gbc2);
 
+        addKeyListener(this);
+        setFocusable(true);
+        setVisible(true);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (controller != null) {
+            controller.amaieraPantailaKeyPressed(e);
+        }
+    }
+
+    @Override public void keyTyped(KeyEvent e) {}
+    @Override public void keyReleased(KeyEvent e) {}
+    
+    
 }
