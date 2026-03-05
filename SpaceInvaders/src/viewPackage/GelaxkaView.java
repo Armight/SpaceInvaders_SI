@@ -1,7 +1,7 @@
 package viewPackage;
 
 
-
+//Observer implementado
 import javax.swing.JPanel;
 import java.util.Observable;
 import java.util.Observer;
