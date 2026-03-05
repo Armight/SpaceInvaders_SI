@@ -13,7 +13,7 @@ public class HasieraPantaila extends JFrame implements KeyListener {
     private JLabel tituloLabel;
     private JLabel instrukzioakLabel;
     private JLabel hautatutaLabel;
-    private Controller controller;
+    private Controller controller;//???
 
     public HasieraPantaila() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
