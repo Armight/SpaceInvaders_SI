@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.Timer;
 import modelPackage.EspazioModel;
 import modelPackage.Jokalari;
-import modelPackage.TiroTxikia;
+
 import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;
 

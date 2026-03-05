@@ -1,14 +1,14 @@
 package modelPackage;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
 	
 	private ArrayList<Tiro> tiroak;
-	private ArrayList<Etsai> etsaiak;
+	private ArrayList<Etsai> etsaiak; //TODO: ETSAIEN METODOAK
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];

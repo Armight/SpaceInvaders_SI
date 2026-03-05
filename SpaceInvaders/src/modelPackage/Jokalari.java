@@ -8,6 +8,7 @@ public abstract class Jokalari extends Itsasontzi {
 		super(pX, pY, pErakutsi,pixelKop);
 		
 	}
+	
 	//POLIMORFISMO:
 	
 	public void shootPixel() {

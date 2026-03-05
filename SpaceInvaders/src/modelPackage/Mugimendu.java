@@ -3,7 +3,7 @@ package modelPackage;
 public abstract class Mugimendu {
 
 	private int x, y;
-	private boolean erakutsi;
+	private boolean erakutsi;//??
 	private  int pixelKop;
 	
 	protected Mugimendu(int pX, int pY, boolean pErakutsi, int pPixelKop) {
