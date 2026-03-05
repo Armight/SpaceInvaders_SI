@@ -11,7 +11,24 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	
 	
+	//4 PIXELEKO JOKALARIAREN METODOAK:
 	
+	protected void sortuJokalari4pixel(int pX, int pY) {//ontzia sortu koord hoietan
+		
+		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
+		
+			espazioa.getGelaxka(pX, pY).setEgoera("Jokalaria"); //ontziaren erdiko pixela
+			
+		
+			espazioa.getGelaxka(pX-1, pY).setEgoera("Jokalaria");//ontziaren ezkerreko pixela
+			
+		
+			espazioa.getGelaxka(pX+1, pY).setEgoera("Jokalaria");//ontziaren eskumako pixela
+			
+		
+			espazioa.getGelaxka(pX, pY+1).setEgoera("Jokalaria");//ontziaren goiko pixela
+			
+		}
 	
 	
 	protected void mugituX4Pixel(int i) {
