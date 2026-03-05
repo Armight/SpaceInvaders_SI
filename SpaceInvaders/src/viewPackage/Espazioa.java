@@ -1,19 +1,17 @@
-package viewPackage;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import java.awt.Color;
 
 public class Espazioa extends JFrame {
-
+	
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JLabel label;
-
+	private static Espazioa nEspazioa;
+	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
+	
 	/**
 	 * Launch the application.
 	 */
@@ -21,7 +19,7 @@ public class Espazioa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Espazioa frame = new Espazioa();
+					Espazioa frame = Espazioa.getEspazioa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,17 +31,38 @@ public class Espazioa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Espazioa() {
+	private Espazioa() {
+		getContentPane().setBackground(Color.BLACK);
+		
+		// QUITAR los bordes y decoraciones de la ventana
+		setUndecorated(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizar ventana
+		
+		// Ahora sí, 100x60 píxeles exactos sin bordes
+		setBounds(100, 100, 100, 60);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		this.label = new JLabel("Hola");
-		this.label.setOpaque(true);       
-		this.label.setBackground(Color.GREEN);
-		getContentPane().add(label);
-
+		
+		// GridLayout sin espacios entre celdas
+		getContentPane().setLayout(new GridLayout(60, 100, 0, 0));
+		
+		// Crear 6000 labels (60 filas * 100 columnas)
+		for (int i = 0; i < 60; i++) {
+			for (int j = 0; j < 100; j++) {
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setOpaque(true);       
+				lblNewLabel.setBackground(Color.WHITE);
+				getContentPane().add(lblNewLabel);
+				GelaxkaView gelaxka = new GelaxkaView(lblNewLabel);
+				this.pixelak[i][j] = gelaxka;
+			}
+		}
 	}
-
+	
+	public static Espazioa getEspazioa() {  
+		if (nEspazioa == null) {            
+			nEspazioa = new Espazioa();     
+		}                                   
+		return nEspazioa;                   
+	} 
 }
