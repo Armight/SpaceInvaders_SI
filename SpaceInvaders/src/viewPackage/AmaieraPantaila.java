@@ -34,7 +34,6 @@ public class AmaieraPantaila extends JFrame implements KeyListener {
         contentPane.setLayout(new GridBagLayout());
         setContentPane(contentPane);
 
-        // Mensaje ganaste/perdiste
         mezuaLabel = new JLabel(mezua);
         mezuaLabel.setFont(new Font("Bahnschrift", Font.BOLD, 50));
         mezuaLabel.setForeground(mezua.equals("IRABAZI DUZU!") ? Color.GREEN : Color.RED);
@@ -44,7 +43,6 @@ public class AmaieraPantaila extends JFrame implements KeyListener {
         gbc1.insets = new Insets(10, 10, 10, 10);
         contentPane.add(mezuaLabel, gbc1);
 
-        // Instrucciones
         instrukzioakLabel = new JLabel("* Press <ESC> to exit *");
         instrukzioakLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         instrukzioakLabel.setForeground(Color.WHITE);
