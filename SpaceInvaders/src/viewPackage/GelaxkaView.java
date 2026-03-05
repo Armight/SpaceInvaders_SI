@@ -26,16 +26,4 @@ public class GelaxkaView implements Observer{
 
 
 
-public class GelaxkaView extends JPanel implements Observer{
 
-	public GelaxkaView() {
-		
-	}
-
-	
-	public void update(Observable o, Object arg) {
-		
-		
-	}
-
-}
