@@ -1,16 +1,16 @@
 package modelPackage;
 
-public class GelaxkaMatrizea {
-	private static GelaxkaMatrizea nGM;
+public class EspazioModel {
+	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
 	
-	private GelaxkaMatrizea() {
+	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
 	}
 	
-	public static GelaxkaMatrizea getGelaxkaMatrizea() {
+	public static EspazioModel getGelaxkaMatrizea() {
 		if (nGM == null) {
-			nGM = new GelaxkaMatrizea();
+			nGM = new EspazioModel();
 		}
 		return nGM;
 	}

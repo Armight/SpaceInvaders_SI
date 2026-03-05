@@ -17,7 +17,7 @@ public class GelaxkaView implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// Lo que tenga que hacer ponerlo aqui
+		// Lo que cer ponerlo aqui
 		
 	}
 	

@@ -2,7 +2,7 @@ package controllerPackage;
 
 import java.awt.event.*;
 import javax.swing.Timer;
-import modelPackage.GelaxkaMatrizea;
+import modelPackage.EspazioModel;
 import modelPackage.Jokalari;
 import modelPackage.TiroTxikia;
 import viewPackage.HasieraPantaila;
@@ -83,7 +83,7 @@ public class Controller implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Sprint 1ean etsaien mugimendua hemen
-        GelaxkaMatrizea.getGelaxkaMatrizea();
+        EspazioModel.getGelaxkaMatrizea();
     }
 
     @Override public void keyReleased(KeyEvent e) {}

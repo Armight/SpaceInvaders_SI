@@ -41,7 +41,7 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	private void sortuJokalari4pixel(int pX, int pY) {//ontzia sortu koord hoietan
 		
-		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
+		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		
 			espazioa.getGelaxka(pX, pY).setEgoera("Jokalaria"); //ontziaren erdiko pixela
 			
@@ -58,7 +58,7 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	
 	private void mugituX4Pixel(int i) {
-		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
+		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		if((i<0 && this.getX()-1>0)||(i>0&&this.getX()+1<60)) {
 			
 				espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Hutsik");//eskumako pixela kendu 
@@ -73,7 +73,7 @@ public abstract class Jokalari extends Itsasontzi {
 			
 		}
 	private void mugituY4Pixel(int i) {
-		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
+		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		if((i<0 && this.getY()<100)||(i>0&&this.getY()+1<0)) {
 			espazioa.getGelaxka(this.getX(), this.getY()-i).setEgoera("Hutsik");//goiko pixela kendu
 			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");//ezkerreko pixela kendu

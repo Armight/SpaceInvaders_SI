@@ -1,6 +1,6 @@
 package kudeaketaPackage;
 
-import modelPackage.GelaxkaMatrizea;
+import modelPackage.EspazioModel;
 import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;
 import controllerPackage.Controller;
@@ -10,11 +10,11 @@ public class PartidaKudeatzailea {
     private HasieraPantaila hasieraPantaila;
     private AmaieraPantaila amaieraPantaila;
     private Controller controller;
-    private GelaxkaMatrizea matrizea;
+    private EspazioModel matrizea;
 
     public PartidaKudeatzailea() {
         // 1. Inicializar la matriz
-        matrizea = GelaxkaMatrizea.getGelaxkaMatrizea();
+        matrizea = EspazioModel.getGelaxkaMatrizea();
         matrizea.matrizeaBete();
 
         // 2. Crear el controller
