@@ -19,7 +19,7 @@ public class Controller implements KeyListener, ActionListener {
     public void setHasieraPantaila(HasieraPantaila hasieraPantaila) {
         this.hasieraPantaila = hasieraPantaila;
     }
-
+    //hasieran pantailanh aukeratzeko
     public void hasieraPantailaKeyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_G:

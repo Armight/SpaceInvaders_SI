@@ -73,7 +73,6 @@ public class HasieraPantaila extends JFrame implements KeyListener {
         this.controller = controller;
     }
 
-    // Actualiza el label cuando el model notifica la nave seleccionada
     public void erakutsiItsasontziHautatua(String mota) {
         hautatutaLabel.setText("Hautatua: " + mota + " itsasontzia");
         switch (mota) {
