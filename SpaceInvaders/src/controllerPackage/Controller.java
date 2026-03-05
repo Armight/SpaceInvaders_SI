@@ -6,6 +6,7 @@ import modelPackage.EspazioModel;
 import modelPackage.Jokalari;
 import modelPackage.TiroTxikia;
 import viewPackage.HasieraPantaila;
+import viewPackage.AmaieraPantaila;
 
 public class Controller implements KeyListener, ActionListener {
 
@@ -50,6 +51,18 @@ public class Controller implements KeyListener, ActionListener {
         }
     }
 
+    //AMAIERA PANTAILA
+    private AmaieraPantaila amaieraPantaila;
+
+    public void setAmaieraPantaila(AmaieraPantaila amaieraPantaila) {
+        this.amaieraPantaila = amaieraPantaila;
+    }
+
+    public void amaieraPantailaKeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }
     public String getItsasontziMota() {
         return itsasontziMota;
     }
