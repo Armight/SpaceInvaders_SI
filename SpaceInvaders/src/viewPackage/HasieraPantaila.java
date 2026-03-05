@@ -36,7 +36,7 @@ public class HasieraPantaila extends JFrame implements KeyListener {
         // Titulo
         tituloLabel = new JLabel("SPACE INVADERS");
         tituloLabel.setFont(new Font("Bahnschrift", Font.BOLD, 40));
-        tituloLabel.setForeground(Color.PINK);
+        tituloLabel.setForeground(Color.GREEN);
         GridBagConstraints gbc1 = new GridBagConstraints();
         gbc1.gridx = 0;
         gbc1.gridy = 0;
