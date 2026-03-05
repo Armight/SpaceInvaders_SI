@@ -4,7 +4,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 												//tiro bakarra du: pixel bateko tiroa.
 	
 	private Tiro tiroPixel;
-
+	//eraikitzaile ondo ipini
 	public JokalariMorea(int pX, int pY, boolean pErakutsi, int pixelKop) {
 		super(pX, pY, pErakutsi, pixelKop);
 		
