@@ -5,7 +5,10 @@ import javax.swing.Timer;
 import modelPackage.EspazioModel;
 
 import modelPackage.GelaxkaMatrizea;
+
 import modelPackage.Jokalari;
+import modelPackage.Tiro;
+
 import viewPackage.HasieraPantaila;
 
 
@@ -16,6 +19,7 @@ public class Controller implements KeyListener, ActionListener {
 	private static Controller nireController=null;
 	private HasieraPantaila hasieraPantaila;
 	private Jokalari jokalari;
+	private Tiro tiro;
 
     
 
@@ -85,7 +89,7 @@ public class Controller implements KeyListener, ActionListener {
         if(e.getKeyCode() == KeyEvent.VK_UP)
         	this.jokalari.mugituJokalariaY(1);
         if(e.getKeyCode() == KeyEvent.VK_SPACE)
-            model.disparatu();
+            this.tiro.disparatu();
     }
 
     @Override
