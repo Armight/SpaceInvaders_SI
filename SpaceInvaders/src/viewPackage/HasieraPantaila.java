@@ -18,6 +18,8 @@ public class HasieraPantaila extends JFrame implements KeyListener {
     public HasieraPantaila() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Space Invaders");
+        setUndecorated(true);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setBounds(100, 100, 620, 420);
         setResizable(false);
 
@@ -91,4 +93,6 @@ public class HasieraPantaila extends JFrame implements KeyListener {
 
     @Override public void keyTyped(KeyEvent e) {}
     @Override public void keyReleased(KeyEvent e) {}
+    
+    
 }
