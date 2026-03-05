@@ -12,6 +12,7 @@ public class Espazioa extends JFrame {
 	private static Espazioa nEspazioa;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
 	//HOLA
+	//Hola
 	/**
 	 * Launch the application.
 	 */
