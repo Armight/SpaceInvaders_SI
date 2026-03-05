@@ -21,12 +21,6 @@ public abstract class Jokalari extends Itsasontzi {
 		}
 	}
 	
-	protected void mugimenduaGaratuEzkerrera() {
-		if (super.getPixelKop()==4) {
-			this.mugituEzkerrera4Pixel();
-		}
-		
-	}
 	
 	
 	protected void mugituX4Pixel(int i) {
@@ -44,6 +38,7 @@ public abstract class Jokalari extends Itsasontzi {
 			
 			
 		}
+	
 		
 
 

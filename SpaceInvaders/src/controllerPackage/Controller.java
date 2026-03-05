@@ -4,14 +4,17 @@ import java.awt.event.*;
 import javax.swing.Timer;
 
 import modelPackage.EspazioModel;
+import modelPackage.GelaxkaMatrizea;
 
 
 public class Controller implements KeyListener, ActionListener {
-	 private EspazioModel model;
+	 	
 	    private Timer timer;
+	    private static Controller nireController=null;
+	    
 
-	    public Controller(EspazioModel model) {
-	        this.model = model;
+	    private Controller() {
+	        
 	        
 	        //timer begiratu
 	        //200milisegundoro, action perdormed() deitu.
@@ -20,10 +23,17 @@ public class Controller implements KeyListener, ActionListener {
 	        timer.start();
 	    }
 	    
+	    public static Controller getController() {
+	    	if (nireController.equals(null)) {
+	    		Controller nireController= new Controller();
+	    	}
+	    }
+	    
 	    //teklak egiten dutena
 	    //ez daude teklek egiten dutena inplementatuta oraindik
 	    @Override
 	    public void keyPressed(KeyEvent e) {
+	    	GelaxkaMatrizea model=GelaxkaMatrizea.getGelaxkaMatrizea();
 
 	        if(e.getKeyCode() == KeyEvent.VK_LEFT)
 	            model.mugituJokalariX(-1);
