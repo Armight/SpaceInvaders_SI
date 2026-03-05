@@ -12,7 +12,7 @@ public abstract class Mugimendu {
 		this.erakutsi=pErakutsi;
 		this.pixelKop=pPixelKop;
 	}
-	protected int getPixelKop() {
+	public int getPixelKop() {
 		return this.pixelKop;
 	}
 	protected int getX() {

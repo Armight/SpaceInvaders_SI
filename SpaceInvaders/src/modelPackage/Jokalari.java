@@ -11,9 +11,35 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	
 	
+	//JOKALARI METODO OROKORRAK:
+	public void sortuJokalaria(int pX, int pY) {
+		if (super.getPixelKop()==4) {
+			this.sortuJokalari4pixel(pX, pY);
+		}
+	}
+	
+	public void mugituJokalariaX(int i) {
+		if (super.getPixelKop()==4) {
+			this.mugituX4Pixel(i);
+			
+		}
+	}
+	
+	public void mugituJokalariaY(int i) {
+		if (super.getPixelKop()==4) {
+			this.mugituY4Pixel(i);
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
 	//4 PIXELEKO JOKALARIAREN METODOAK:
 	
-	protected void sortuJokalari4pixel(int pX, int pY) {//ontzia sortu koord hoietan
+	private void sortuJokalari4pixel(int pX, int pY) {//ontzia sortu koord hoietan
 		
 		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
 		
@@ -31,7 +57,7 @@ public abstract class Jokalari extends Itsasontzi {
 		}
 	
 	
-	protected void mugituX4Pixel(int i) {
+	private void mugituX4Pixel(int i) {
 		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
 		if((i<0 && this.getX()-1>0)||(i>0&&this.getX()+1<60)) {
 			
@@ -46,9 +72,9 @@ public abstract class Jokalari extends Itsasontzi {
 			
 			
 		}
-	protected void mugituY4Pixel(int i) {
+	private void mugituY4Pixel(int i) {
 		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
-		if((i<0 && this.getY()<100)||(i>0&&this.getX()+1<0)) {
+		if((i<0 && this.getY()<100)||(i>0&&this.getY()+1<0)) {
 			espazioa.getGelaxka(this.getX(), this.getY()-i).setEgoera("Hutsik");//goiko pixela kendu
 			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");//ezkerreko pixela kendu
 			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");//eskumako pixela kendu

@@ -5,8 +5,7 @@ import javax.swing.Timer;
 import modelPackage.EspazioModel;
 
 import modelPackage.GelaxkaMatrizea;
-
-
+import modelPackage.Jokalari;
 import viewPackage.HasieraPantaila;
 
 
@@ -16,6 +15,8 @@ public class Controller implements KeyListener, ActionListener {
 	private Timer timer;
 	private static Controller nireController=null;
 	private HasieraPantaila hasieraPantaila;
+	private Jokalari jokalari;
+
     
 
 	    private Controller() {
@@ -41,10 +42,11 @@ public class Controller implements KeyListener, ActionListener {
 	    	
 
 
-
+//HASIERA PANTAILA:
     public void setHasieraPantaila(HasieraPantaila hasieraPantaila) {
         this.hasieraPantaila = hasieraPantaila;
     }
+    
     //hasieran pantailanh aukeratzeko
     public void hasieraPantailaKeyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -62,19 +64,26 @@ public class Controller implements KeyListener, ActionListener {
                 break;
         }
     }
-  //teklak egiten dutena
-    //ez daude teklek egiten dutena inplementatuta oraindik
+    
+    
+  //JOKALARIA:
+    
+    public void jokalariaSortu(int pX, int pY) {
+    	this.jokalari.sortuJokalaria(pX, pY);
+    }
+
+ 
     @Override
     public void keyPressed(KeyEvent e) {
     	GelaxkaMatrizea model=GelaxkaMatrizea.getGelaxkaMatrizea();
         if(e.getKeyCode() == KeyEvent.VK_LEFT)
-            model.mugituJokalariX(-1);
+            this.jokalari.mugituJokalariaX(-1);
         if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-            model.mugituJokalariX(1);
+            this.jokalari.mugituJokalariaX(1);
         if(e.getKeyCode() == KeyEvent.VK_DOWN)
-            model.mugituJokalariY(1);
+            this.jokalari.mugituJokalariaY(-1);
         if(e.getKeyCode() == KeyEvent.VK_UP)
-            model.mugituJokalariY(-1);
+        	this.jokalari.mugituJokalariaY(1);
         if(e.getKeyCode() == KeyEvent.VK_SPACE)
             model.disparatu();
     }
