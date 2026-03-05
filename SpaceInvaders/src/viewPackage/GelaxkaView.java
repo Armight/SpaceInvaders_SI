@@ -16,7 +16,8 @@ public class GelaxkaView extends JPanel implements Observer{
 	public GelaxkaView() {
 		this.jLabel = new JLabel();
 		this.jLabel.setOpaque(true);       
-		this.jLabel.setBackground(Color.GREEN); //Provisional
+		this.jLabel.setBackground(Color.GREEN); //Provisional //HOLA
+		
 	}
 
 	@Override

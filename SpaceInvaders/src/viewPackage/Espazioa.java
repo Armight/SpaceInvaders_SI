@@ -11,7 +11,7 @@ public class Espazioa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static Espazioa nEspazioa;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
-	
+	//HOLA
 	/**
 	 * Launch the application.
 	 */
