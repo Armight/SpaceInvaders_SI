@@ -4,15 +4,17 @@ public abstract class Mugimendu {
 
 	private int x, y;
 	private boolean erakutsi;
-	//private static int pixelKop;
+	private  int pixelKop;
 	
-	protected Mugimendu(int pX, int pY, boolean pErakutsi) {
+	protected Mugimendu(int pX, int pY, boolean pErakutsi, int pPixelKop) {
 		this.x= pX;
 		this.y=pY;
 		this.erakutsi=pErakutsi;
-		
+		this.pixelKop=pPixelKop;
 	}
-	
+	protected int getPixelKop() {
+		return this.pixelKop;
+	}
 	protected int getX() {
 		return this.x;
 	}
@@ -23,13 +25,23 @@ public abstract class Mugimendu {
 		 this.x=pX;
 		 this.y=pY;
 	 }
+	 
+	 
 	 protected void setIkusmena(boolean pErakutsi) {
 		 this.erakutsi=pErakutsi;
 	 }
 	
-	public void mugimenduaGaratu() {
+	 
+	 
+	 
+	 
+	 
+	 protected void mugimenduaGaratu() {
 		
-	}	
+	}
+	 
+	 
+	 
 	
 }
 
