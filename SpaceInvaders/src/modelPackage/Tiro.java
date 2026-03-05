@@ -2,8 +2,8 @@ package modelPackage;
 
 public abstract class Tiro extends Mugimendu {
     
-	protected Tiro(int pX, int pY, boolean pErakutsi) {
-		super(pX, pY, pErakutsi); //poner true porque siempre se crea visible no?
+	protected Tiro(int pX, int pY) {
+		super(pX, pY, true); //poner true porque siempre se crea visible
 	}
 	    
     public void mugitu() {
