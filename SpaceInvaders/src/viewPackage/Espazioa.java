@@ -49,12 +49,13 @@ public class Espazioa extends JFrame {
 		// Crear 6000 labels (60 filas * 100 columnas)
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				JLabel lblNewLabel = new JLabel("");
-				lblNewLabel.setOpaque(true);       
-				lblNewLabel.setBackground(Color.WHITE);
-				getContentPane().add(lblNewLabel);
-				GelaxkaView gelaxka = new GelaxkaView(lblNewLabel);
+				//JLabel lblNewLabel = new JLabel("");
+				//lblNewLabel.setOpaque(true);       
+				//lblNewLabel.setBackground(Color.WHITE);
+				//getContentPane().add(lblNewLabel);
+				GelaxkaView gelaxka = new GelaxkaView();
 				this.pixelak[i][j] = gelaxka;
+				getContentPane().add(gelaxka.getLabel());
 			}
 		}
 	}
