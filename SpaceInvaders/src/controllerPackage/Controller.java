@@ -35,7 +35,7 @@ public class Controller implements KeyListener, ActionListener {
 	    
 	    public static Controller getController() {
 	    	if (nireController.equals(null)) {
-	    		Controller nireController= new Controller();
+	    		nireController= new Controller();
 	    	}
 	    	return nireController;
 	    }
