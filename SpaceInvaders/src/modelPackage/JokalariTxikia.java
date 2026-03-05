@@ -31,19 +31,6 @@ public class JokalariTxikia extends Jokalari {//4 pixeleko ontzia
 	
 	
 	
-	protected void mugituEzkerrera4Pixel() {
-		GelaxkaMatrizea espazioa=GelaxkaMatrizea.getGelaxkaMatrizea();
-		if(this.getX()-1>0) {
-			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");//eskumako pixela kendu 
-			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Hutsik");//goiko pixela kendu 
-			
-			this.setPosizio(getX()+1, getY());//posizio berria atzitu jokalariari
-			
-			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Jokalaria");//ezkerreko pixela jarri
-			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Jokalaria");//goiko pixela jarri
-		
-			
-			}
-		}
+	
 	}
 
