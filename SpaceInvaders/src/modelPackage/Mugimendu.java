@@ -36,9 +36,7 @@ public abstract class Mugimendu {
 	 
 	 
 	 
-	 protected void mugimenduaGaratu() {
-		
-	}
+	 
 	 
 	 
 	 

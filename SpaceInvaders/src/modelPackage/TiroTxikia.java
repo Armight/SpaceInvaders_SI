@@ -17,11 +17,9 @@ public class TiroTxikia extends Tiro {
 
         
         if (super.getY() < 0) {//espaziotik irteten bada, ezabatu
-        	espazio.removeTiro(this);//TODO, INPLEMENTATU BEHAR DA
+        	espazio.removeTiro(this); 
            
         }
-
-        
         espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Tiro");//ez bada espaziotik irten, gelaxka berriaren egoera aldatu
         }
     }

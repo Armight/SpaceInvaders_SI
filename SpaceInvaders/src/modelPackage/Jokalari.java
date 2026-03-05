@@ -11,8 +11,8 @@ public abstract class Jokalari extends Itsasontzi {
 	//POLIMORFISMO:
 	
 	public void shootPixel() {
-		TiroTxikia tiro=new TiroTxikia(getX(), getY() + 1);
-		tiro.mugitu();
+		TiroTxikia tiro=new TiroTxikia(getX(), getY() -2);
+		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
 	
 	public void shootGezi() {}

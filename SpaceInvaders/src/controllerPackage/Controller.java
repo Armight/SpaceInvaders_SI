@@ -13,7 +13,7 @@ public class Controller implements KeyListener, ActionListener {
     private static Controller nireController = null;
     private HasieraPantaila hasieraPantaila;
     private Jokalari jokalari;
-    private TiroTxikia tiro;
+    
     private String itsasontziMota;
 
     private Controller() {
@@ -59,9 +59,7 @@ public class Controller implements KeyListener, ActionListener {
         this.jokalari = jokalari;
     }
 
-    public void setTiro(Tiro tiro) {
-        this.tiro = tiro;
-    }
+    
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -76,18 +74,19 @@ public class Controller implements KeyListener, ActionListener {
                 jokalari.mugituJokalariaY(1);
         }
         // Sprint 1ean tiro txikia bakarrik
-        if(e.getKeyCode() == KeyEvent.VK_SPACE && tiro != null)//SPACE= pixel bateko tiroa
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)//SPACE= pixel bateko tiroa
         {
-        	
         	jokalari.shootPixel(); 
         }
-        
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Sprint 1ean etsaien mugimendua hemen
-        EspazioModel.getGelaxkaMatrizea();
+        // Sprint 1ean etsaien mugimendua hemen //???
+    	
+       EspazioModel.getGelaxkaMatrizea().update();
+       
     }
 
     @Override public void keyReleased(KeyEvent e) {}

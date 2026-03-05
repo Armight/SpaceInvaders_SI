@@ -1,8 +1,14 @@
 package modelPackage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
+	
+	private ArrayList<Tiro> tiroak;
+	private ArrayList<Etsai> etsaiak;
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -30,8 +36,31 @@ public class EspazioModel {
 		return this.matrizea[pX][pY];
 	}
 	
+	
+	
+	//TIROEN ARRAYAREN METODOAK:
+	
+	public void removeTiro(Tiro pTiro) {
+		this.tiroak.remove(pTiro);
+	}
+	
+	public void addTiro(Tiro pTiro) {
+		this.tiroak.add(pTiro);
+	}
+	
+	
+	
+	
+	
 	public void update() {
 		
+		//tiroen update:
+		ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
+		for (Tiro t : tiroakCopia) {
+		    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+		}
+		
+	    
 	}
 
 }
