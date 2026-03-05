@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import controllerPackage.Controller;
 
 public class HasieraPantaila extends JFrame implements KeyListener {
     private static final long serialVersionUID = 1L;
@@ -12,7 +13,7 @@ public class HasieraPantaila extends JFrame implements KeyListener {
     private JLabel tituloLabel;
     private JLabel instrukzioakLabel;
     private JLabel hautatutaLabel;
-    private String hautatutakoItasontzia = "";
+    private Controller controller;//???
 
     public HasieraPantaila() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,7 +22,7 @@ public class HasieraPantaila extends JFrame implements KeyListener {
         setResizable(false);
 
         contentPane = new JPanel() {
-        	private Image bgImage = new ImageIcon(getClass().getResource("/resources/fondoaHasPant.jpg")).getImage();            
+            private Image bgImage = new ImageIcon(getClass().getResource("/resources/fondoaHasPant.jpg")).getImage();
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -68,48 +69,26 @@ public class HasieraPantaila extends JFrame implements KeyListener {
         setVisible(true);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_G:
-                hautatutakoItasontzia = "Green";
-                hautatutaLabel.setText("Hautatua: Green itsasontzia");
-                hautatutaLabel.setForeground(Color.GREEN);
-                jokoanHasi();
-                break;
-            case KeyEvent.VK_B:
-                hautatutakoItasontzia = "Blue";
-                hautatutaLabel.setText("Hautatua: Blue itsasontzia");
-                hautatutaLabel.setForeground(Color.BLUE);
-                jokoanHasi();
-                break;
-            case KeyEvent.VK_R:
-                hautatutakoItasontzia = "Red";
-                hautatutaLabel.setText("Hautatua: Red itsasontzia");
-                hautatutaLabel.setForeground(Color.RED);
-                jokoanHasi();
-                break;
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    public void erakutsiItsasontziHautatua(String mota) {
+        hautatutaLabel.setText("Hautatua: " + mota + " itsasontzia");
+        switch (mota) {
+            case "Green": hautatutaLabel.setForeground(Color.GREEN); break;
+            case "Blue":  hautatutaLabel.setForeground(Color.BLUE);  break;
+            case "Red":   hautatutaLabel.setForeground(Color.RED);   break;
         }
     }
 
-    private void jokoanHasi() {
-        // Sprint 2an osatu - Espazioa pantaila ireki
-        System.out.println("Jokoa hasten da: " + hautatutakoItasontzia);
-        // new Espazioa(hautatutakoItasontzia);
-        // this.dispose();
-    }
-
-    public String getHautatutakoItasontzia() {
-        return hautatutakoItasontzia;
-    }
-
     @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new HasieraPantaila());
+    public void keyPressed(KeyEvent e) {
+        if (controller != null) {
+            controller.hasieraPantailaKeyPressed(e);
+        }
     }
+
+    @Override public void keyTyped(KeyEvent e) {}
+    @Override public void keyReleased(KeyEvent e) {}
 }
