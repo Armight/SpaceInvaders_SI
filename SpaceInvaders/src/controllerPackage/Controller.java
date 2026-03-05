@@ -76,8 +76,11 @@ public class Controller implements KeyListener, ActionListener {
                 jokalari.mugituJokalariaY(1);
         }
         // Sprint 1ean tiro txikia bakarrik
-        if(e.getKeyCode() == KeyEvent.VK_SPACE && tiro != null)
-            tiro.mugitu();
+        if(e.getKeyCode() == KeyEvent.VK_SPACE && tiro != null)//SPACE= pixel bateko tiroa
+        {
+        	jokalari.shootPixel();
+        }
+        
     }
 
     @Override

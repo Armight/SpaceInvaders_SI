@@ -8,7 +8,15 @@ public abstract class Jokalari extends Itsasontzi {
 		super(pX, pY, pErakutsi);
 		
 	}
+	//POLIMORFISMO:
 	
+	public void shootPixel() {
+		TiroTxikia tiro=new TiroTxikia(getX(), getY() + 1);
+		tiro.mugitu();
+	}
+	
+	public void shootGezi() {}
+	public void shootErronbo() {}
 	
 	
 	//JOKALARI METODO OROKORRAK:
@@ -31,6 +39,9 @@ public abstract class Jokalari extends Itsasontzi {
 			
 		}
 	}
+	
+	
+	
 	
 	
 	

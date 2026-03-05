@@ -7,5 +7,7 @@ public class EtsaiTxikia extends Etsai {
 	public EtsaiTxikia() {
 		super();
 	}
+	
+	
 
 }

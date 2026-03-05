@@ -29,5 +29,9 @@ public class EspazioModel {
 	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
 		return this.matrizea[pX][pY];
 	}
+	
+	public void update() {
+		
+	}
 
 }
