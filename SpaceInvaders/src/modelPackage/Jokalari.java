@@ -5,7 +5,7 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	
 	protected Jokalari(int pX, int pY, boolean pErakutsi,int pixelKop) {
-		super(pX, pY, pErakutsi);
+		super(pX, pY, pErakutsi,pixelKop);
 		
 	}
 	
