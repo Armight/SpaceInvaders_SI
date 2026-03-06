@@ -1,6 +1,8 @@
 package modelPackage;
 
 public class TiroTxikia extends Tiro {
+	
+	private static int dmg=1;
 
     public TiroTxikia(int pX, int pY) {
         super(pX, pY, 1);
@@ -19,6 +21,8 @@ public class TiroTxikia extends Tiro {
         	super.removeTiro();
            
         }
-        espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Tiro");//ez bada espaziotik irten, gelaxka berriaren egoera aldatu
+        else {
+        	espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Tiro");//ez bada espaziotik irten, gelaxka berriaren egoera aldatu
+        	}
         }
     }

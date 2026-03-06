@@ -48,10 +48,19 @@ public class EspazioModel {
 		this.tiroak.add(pTiro);
 	}
 	
+	//ETSAIEN ARRAYAREN METODOAK:
+	
+	public void removeEtsai(Etsai pEtsai) {
+		this.etsaiak.remove(pEtsai);
+	}
+	
+	public void addEtsai(Etsai pEtsai) {
+		this.etsaiak.add(pEtsai);
+	}
 	
 	
 	
-	
+	//UPDATE:
 	public void update() {
 		
 		//tiroen update:
