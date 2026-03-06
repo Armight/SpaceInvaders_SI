@@ -85,7 +85,7 @@ public abstract class Jokalari extends Itsasontzi {
 			
 			
 		}
-	private void mugituY4Pixel(int i) {
+	private void mugituY4Pixel(int i) {//TODO METODO HAU KONPROBATU ONDO DAGOEN
 		//i=-1 denean, beherantz mugitu
 		//i=1 denean, gorantz mugitu
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
@@ -97,8 +97,8 @@ public abstract class Jokalari extends Itsasontzi {
 			super.setPosizio(getX(), getY()-i);//posizio berria sartu jokalariari
 			
 			espazioa.getGelaxka(this.getX(), this.getY()).setEgoera("Jokalaria");//erdiko pixela jarri (oin gauden tokian)
-			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Jokalaria");//eskumako pixela jarri
-			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Jokalaria");//ezkerreko pixela jarri
+			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Jokalaria");
+			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Jokalaria");
 			
 		}
 		

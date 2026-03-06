@@ -19,17 +19,26 @@ public class EtsaiTxikia extends Etsai {
     	espazio.getGelaxka(getX()-i, getY()).setEgoera("Hutsik");
     	espazio.getGelaxka(getX(), getY()+1).setEgoera("Hutsik");
     	
-    	espazio.getGelaxka(getX()+i, getY());//etsaiaren posizio berria
+    	this.setPosizio(getX()+i, getY());//posizio berria atzitu
     	
     	espazio.getGelaxka(getX()+i, getY()).setEgoera("Etsaia");
     	espazio.getGelaxka(getX(), getY()+1).setEgoera("Etsaia");
     	
-    
-    	
     }
     
-    public void mugituY(int i) {
+    public void mugituY() {
+    	//etsaia ezin da gorantz mugitu
+    	EspazioModel espazio = EspazioModel.getGelaxkaMatrizea();
     	
+    	espazio.getGelaxka(getX(), getY()).setEgoera("Hutsik");//erdikoa kendu
+    	espazio.getGelaxka(getX()-1, getY()).setEgoera("Hutsik");//ezkerrekoa kendu
+    	espazio.getGelaxka(getX()+1, getY()).setEgoera("Hutsik");//eskumakoa kendu
+    	
+    	this.setPosizio(getX(), getY()+1);//posizio berria
+    	
+    	espazio.getGelaxka(getX()-1, getY()).setEgoera("Etsaia");
+    	espazio.getGelaxka(getX()+1, getY()).setEgoera("Etsaia");
+    	espazio.getGelaxka(getX(), getY()+1).setEgoera("Etsaia");
     }
     
     
