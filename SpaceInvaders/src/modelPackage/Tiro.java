@@ -8,6 +8,10 @@ public abstract class Tiro extends Mugimendu {
     
     //Polimorfismo:
     public void mugitu() {}
+    
+    public void removeTiro() {
+    	EspazioModel.getGelaxkaMatrizea().removeTiro(this);
+    }
 
     
 }
