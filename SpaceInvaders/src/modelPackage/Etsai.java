@@ -25,7 +25,21 @@ public abstract class Etsai extends Itsasontzi {
     	
     }
     
+    public void mugituX(int i) {}
+    public void mugituY() {}
     
+    public void mugituRandom() {
+        int r = (int)(Math.random() * 3); // 0, 1 edo 2
+
+        if (r == 0) {
+            mugituX(-1); // ezkerrera
+        } else if (r == 1) {
+            mugituX(1);  // eskumara
+        } else {
+            mugituY();  // behera
+        }
+    }
+
     
     
     

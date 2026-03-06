@@ -10,6 +10,7 @@ public class EtsaiTxikia extends Etsai {
         
     }
     
+    @Override
     public void mugituX(int i) {//i=-1 denean, ezkerrerantz mugitu
     							//i=1 denean, eskumarantz mugitu
     	EspazioModel espazio = EspazioModel.getGelaxkaMatrizea();
@@ -24,6 +25,7 @@ public class EtsaiTxikia extends Etsai {
     	
     }
     
+    @Override
     public void mugituY() {
     	//etsaia ezin da gorantz mugitu
     	EspazioModel espazio = EspazioModel.getGelaxkaMatrizea();

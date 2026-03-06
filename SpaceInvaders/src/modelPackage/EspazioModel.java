@@ -58,6 +58,13 @@ public class EspazioModel {
 		this.tiroak.add(pTiro);
 	}
 	
+	private void mugituTiroak() {
+		ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
+		for (Tiro t : tiroakCopia) {
+		    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+		}
+	}
+	
 	//ETSAIEN ARRAYAREN METODOAK:
 	
 	public void removeEtsai(Etsai pEtsai) {
@@ -68,16 +75,22 @@ public class EspazioModel {
 		this.etsaiak.add(pEtsai);
 	}
 	
+	private void mugituEtsaiak() {
+		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);
+		for(Etsai e : etsaiakKopia) {
+			e.mugituRandom();
+		}
+	}
+	
+	
 	
 	
 	//UPDATE:
 	public void update() {
 		
-		//tiroen update:
-		ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
-		for (Tiro t : tiroakCopia) {
-		    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
-		}
+		this.mugituTiroak();
+		this.mugituEtsaiak();
+		
 		
 	    
 	}
