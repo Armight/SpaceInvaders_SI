@@ -12,9 +12,18 @@ public abstract class Etsai extends Itsasontzi {
     
     
     public void hil() {
-    	
+    	if (this.bizitza<=0) {
+    		this.removeEtsai();
+    	}
     }
     
+    private void removeEtsai() {
+    	EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
+    }
+    
+    public void bizitzaKendu() {
+    	
+    }
     
     
     

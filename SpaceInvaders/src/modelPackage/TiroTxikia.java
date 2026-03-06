@@ -8,6 +8,14 @@ public class TiroTxikia extends Tiro {
         super(pX, pY, 1);
     }
     
+    
+    
+    public int getDMG() {
+    	return TiroTxikia.dmg;
+    }
+    
+    
+    
     public void mugitu() {
     	
     	EspazioModel espazio= EspazioModel.getGelaxkaMatrizea();

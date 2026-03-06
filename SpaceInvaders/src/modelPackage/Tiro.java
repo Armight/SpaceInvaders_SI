@@ -12,6 +12,10 @@ public abstract class Tiro extends Mugimendu {
     public void removeTiro() {
     	EspazioModel.getGelaxkaMatrizea().removeTiro(this);
     }
+    
+    public void bizitzaKendu() {
+    	
+    }
 
     
 }
