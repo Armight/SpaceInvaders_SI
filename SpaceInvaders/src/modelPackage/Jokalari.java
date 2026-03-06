@@ -69,27 +69,30 @@ public abstract class Jokalari extends Itsasontzi {
 		}
 	
 	
-	private void mugituX4Pixel(int i) {//i=-1 denean, ezkerrerantz mugitu
-										//i=1 denean, eskumarantz mugitu
+	private void mugituX4Pixel(int i) {
+		//i=-1 denean, ezkerrerantz mugitu
+		//i=1 denean, eskumarantz mugitu
+		
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
-		if((i<0 && this.getX()-1>0)||(i>0&&this.getX()+1<60)) {//KONPROBAKETAK ONDO JARRI
+		
+		
 			
-				espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Hutsik"); 
-				espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik"); 
+			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Hutsik"); 
+			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik"); 
 			
-				this.setPosizio(getX()+i, getY());//posizio berria atzitu jokalariari
+			this.setPosizio(getX()+i, getY());//posizio berria atzitu jokalariari
 			
-				espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Jokalaria");
-				espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Jokalaria");
+			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Jokalaria");
+			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Jokalaria");
 			}
 			
 			
-		}
+		
 	private void mugituY4Pixel(int i) {//TODO METODO HAU KONPROBATU ONDO DAGOEN
 		//i=-1 denean, beherantz mugitu
 		//i=1 denean, gorantz mugitu
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
-		if((i<0 && this.getY()<100)||(i>0&&this.getY()+1<0)) {//KONPROBAKETAK ONDO JARRI
+		
 			espazioa.getGelaxka(this.getX(), this.getY()+i).setEgoera("Hutsik");
 			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");
 			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");
@@ -113,5 +116,5 @@ public abstract class Jokalari extends Itsasontzi {
 
 
 
-}
+
 	

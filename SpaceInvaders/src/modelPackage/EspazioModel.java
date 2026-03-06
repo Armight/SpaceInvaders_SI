@@ -36,6 +36,16 @@ public class EspazioModel {
 		return this.matrizea[pX][pY];
 	}
 	
+	//MATRIZEAREN METODOAK
+	
+	public int getZabalera() {//x
+		return this.matrizea.length;
+	}
+	
+	public int getAltuera() {//y
+		return this.matrizea[0].length;
+	}
+	
 	
 	
 	//TIROEN ARRAYAREN METODOAK:
