@@ -13,6 +13,7 @@ public class GelaxkaView implements Observer{
 	
 	public GelaxkaView(JLabel pJLabel) {
 		JLabel = pJLabel;
+		
 	}
 
 	@Override

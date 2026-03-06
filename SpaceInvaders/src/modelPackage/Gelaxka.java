@@ -2,11 +2,15 @@ package modelPackage;
 
 import viewPackage.Observer;
 
-public class Gelaxka implements Observable{
+public class Gelaxka extends Observable{
 	private int posX;
 	private int posY;
 	private String egoera;
 	private Observer observer;
+	
+	private Gelaxka() {
+		
+	}
 	
 	public Gelaxka(int pX, int pY, String pEgoera) {
 		this.posX = pX;
