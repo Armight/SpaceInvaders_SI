@@ -12,6 +12,14 @@ public class EspazioModel {
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
+		//inizializatzeko zuzenean
+	    for (int i = 0; i < 60; i++) {
+	        for (int j = 0; j < 100; j++) {
+	            matrizea[i][j] = new Gelaxka(i, j, "hutsik dago");
+	        }
+	    }
+	    tiroak = new ArrayList<Tiro>();
+	    etsaiak = new ArrayList<Etsai>();
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {
@@ -20,14 +28,7 @@ public class EspazioModel {
 		}
 		return nGM;
 	}
-	
-	public void matrizeaBete() {
-		for (int i = 0; i < 60; i++) {
-			for (int j = 0; j < 100; j++) {
-				matrizea[i][j] = new Gelaxka(i, j, "hutsik dago");
-			}
-		}
-	}
+
 		
 			
 //Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko

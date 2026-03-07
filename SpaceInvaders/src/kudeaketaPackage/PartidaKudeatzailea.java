@@ -1,37 +1,29 @@
 package kudeaketaPackage;
 
-import modelPackage.EspazioModel;
 import viewPackage.HasieraPantaila;
-import viewPackage.AmaieraPantaila;
+import viewPackage.Espazioa;
 import controllerPackage.Controller;
 
 public class PartidaKudeatzailea {
 
     private HasieraPantaila hasieraPantaila;
-    private AmaieraPantaila amaieraPantaila;
+    private Espazioa espazioa;
     private Controller controller;
-    private EspazioModel matrizea;
 
     public PartidaKudeatzailea() {
-        // 1. Inicializar la matriz
-        matrizea = EspazioModel.getGelaxkaMatrizea();
-        matrizea.matrizeaBete();
-
-        // 2. Crear el controller
+        // 1. CONTROLLERA EGIN
+        // Controller barne EspazioModel sortzen da
         controller = Controller.getController();
 
-        // 3. Crear y conectar la pantalla de inicio
+        // 2. ESPAZIOA SORTU
+        espazioa = Espazioa.getEspazioa();
+        espazioa.konektatu();
+        espazioa.setController(controller);
+        controller.setEspazioa(espazioa);
+
+        // 3. HASIERA PANTAILA
         hasieraPantaila = new HasieraPantaila();
         hasieraPantaila.setController(controller);
         controller.setHasieraPantaila(hasieraPantaila);
-    }
-
-    public void amaieraErakutsi(String mezua) {
-        // Cuando el juego termina, mostrar pantalla de fin
-        if (hasieraPantaila != null) {
-            hasieraPantaila.dispose();
-        }
-        amaieraPantaila = new AmaieraPantaila();
-        amaieraPantaila.setVisible(true);
     }
 }
