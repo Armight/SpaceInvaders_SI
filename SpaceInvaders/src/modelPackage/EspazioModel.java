@@ -46,6 +46,17 @@ public class EspazioModel {
 		return this.matrizea[0].length;
 	}
 	
+	public boolean espaziotikKanpo(int pX, int pY) {
+		 boolean kanpoan=false;
+		 if(pX<0 || pX> this.getZabalera()) {
+			 kanpoan=true;
+		 }
+		 if(pY<0 || pY>this.getAltuera()) {
+			 kanpoan=true;
+		 }
+		 return kanpoan;
+	 }
+	
 	
 	
 	//TIROEN ARRAYAREN METODOAK:
@@ -76,9 +87,9 @@ public class EspazioModel {
 	}
 	
 	private void mugituEtsaiak() {
-		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);
+		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
-			e.mugituRandom();
+			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
 		}
 	}
 	

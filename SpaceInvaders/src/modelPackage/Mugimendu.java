@@ -31,16 +31,7 @@ public abstract class Mugimendu {
 		 this.erakutsi=pErakutsi;
 	 }
 	
-	 public boolean espaziotikKanpo(int pX, int pY) {
-		 boolean kanpoan=false;
-		 if(pX<0 || pX> EspazioModel.getGelaxkaMatrizea().getZabalera()) {
-			 kanpoan=true;
-		 }
-		 if(pY<0 || pY>EspazioModel.getGelaxkaMatrizea().getAltuera()) {
-			 kanpoan=true;
-		 }
-		 return kanpoan;
-	 }
+	 
 	 
 	 
 	 
