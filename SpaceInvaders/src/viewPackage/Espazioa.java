@@ -16,11 +16,10 @@ public class Espazioa extends JFrame implements KeyListener{
 	private static Espazioa nEspazioa;
 	private Controller controller;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
-	//HOLA
-	//Hola
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -69,9 +68,9 @@ public class Espazioa extends JFrame implements KeyListener{
 	}
 	public void konektatu() {
 	    EspazioModel matrizea = EspazioModel.getGelaxkaMatrizea();
-	    for (int i = 0; i < 60; i++) {
-	        for (int j = 0; j < 100; j++) {
-	            matrizea.getGelaxka(i, j).addObserver(this.pixelak[i][j]);
+	    for (int i = 0; i < matrizea.getAltuera(); i++) {
+	        for (int j = 0; j < matrizea.getZabalera(); j++) {
+	            matrizea.getGelaxka(j, i).addObserver(this.pixelak[i][j]);
 	        }
 	    }
 	}

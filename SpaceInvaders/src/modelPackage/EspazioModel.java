@@ -15,12 +15,12 @@ public class EspazioModel {
 		//inizializatzeko zuzenean
 	    for (int i = 0; i < 60; i++) {
 	        for (int j = 0; j < 100; j++) {
-	            matrizea[i][j] = new Gelaxka(i, j, "hutsik dago");
+	            matrizea[i][j] = new Gelaxka(i, j, "hutsik");
 	        }
 	    }
 	    tiroak = new ArrayList<Tiro>();
 	    etsaiak = new ArrayList<Etsai>();
-	}
+	   	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {
 		if (nGM == null) {
@@ -34,16 +34,16 @@ public class EspazioModel {
 //Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko
 	
 	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
-		return this.matrizea[pX][pY];
+		return this.matrizea[pY][pX];
 	}
 	
 	//MATRIZEAREN METODOAK
 	
-	public int getZabalera() {//x
+	public int getAltuera() {//y
 		return this.matrizea.length;
 	}
 	
-	public int getAltuera() {//y
+	public int getZabalera() {//x
 		return this.matrizea[0].length;
 	}
 	

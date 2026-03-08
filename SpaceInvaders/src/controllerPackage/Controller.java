@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.Timer;
 import modelPackage.EspazioModel;
 import modelPackage.Jokalari;
-
+import modelPackage.JokalariMorea;
 import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;
 import viewPackage.Espazioa;
@@ -89,6 +89,14 @@ public class Controller implements KeyListener, ActionListener {
     //JOKOA HASTEKO METODOA HASIERA PANTAILATIK ESPAZIORA
     private void jokoanHasi() {
         hasieraPantaila.dispose();
+        
+        //Jokalaria pantailaratu
+        int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera()/2;
+        int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2;
+        jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
+        		
+        espazioa.konektatu();
+        jokalari.sortuJokalaria(pXErdia, pYBehean);
         espazioa.setVisible(true);
         espazioa.requestFocus();
     }
@@ -108,14 +116,14 @@ public class Controller implements KeyListener, ActionListener {
             jokoaAmaitu("IRABAZI DUZU!");
         }
         if (jokalari != null) {
-            if(e.getKeyCode() == KeyEvent.VK_LEFT)
-                jokalari.mugituJokalariaX(-1);
-            if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-                jokalari.mugituJokalariaX(1);
-            if(e.getKeyCode() == KeyEvent.VK_DOWN)
-                jokalari.mugituJokalariaY(-1);
             if(e.getKeyCode() == KeyEvent.VK_UP)
+                jokalari.mugituJokalariaY(-1);
+            if(e.getKeyCode() == KeyEvent.VK_DOWN)
                 jokalari.mugituJokalariaY(1);
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+                jokalari.mugituJokalariaX(-1);
+            if(e.getKeyCode() == KeyEvent.VK_LEFT)
+                jokalari.mugituJokalariaX(1);
         }
         // Sprint 1ean tiro txikia bakarrik
         if(e.getKeyCode() == KeyEvent.VK_SPACE)//SPACE= pixel bateko tiroa

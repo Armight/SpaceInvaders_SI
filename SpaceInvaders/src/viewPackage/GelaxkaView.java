@@ -16,15 +16,14 @@ public class GelaxkaView extends JPanel implements Observer{
 	public GelaxkaView() {
 		this.jLabel = new JLabel();
 		this.jLabel.setOpaque(true);       
-		this.jLabel.setBackground(Color.GREEN); //Provisional //HOLA
-		//Hola
+		this.jLabel.setBackground(Color.BLACK); //
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg.equals("Etsai")) {
 			this.jLabel.setBackground(Color.red);
-		} else if (arg.equals("Jokalari")) {
+		} else if (arg.equals("Jokalaria")) {
 			this.jLabel.setBackground(new Color(160,32,240));
 		} else if (arg.equals("Hutsik")) {
 			this.jLabel.setBackground(Color.black);

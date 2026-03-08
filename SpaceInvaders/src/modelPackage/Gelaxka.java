@@ -20,5 +20,9 @@ public class Gelaxka extends Observable{
 		this.notifyObservers(egoera);
 	}
 	
+	public String getEgoera() {
+		return egoera;
+	}
+	
 
 }

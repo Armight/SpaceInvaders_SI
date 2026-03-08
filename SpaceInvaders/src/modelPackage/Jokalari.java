@@ -42,6 +42,7 @@ public abstract class Jokalari extends Itsasontzi {
 	}
 	
 	
+
 	
 	
 	
@@ -50,7 +51,6 @@ public abstract class Jokalari extends Itsasontzi {
 	
 	
 	//4 PIXELEKO JOKALARIAREN METODOAK:
-	
 	private void sortuJokalari4pixel(int pX, int pY) {//ontzia sortu koord hoietan
 		
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
@@ -64,40 +64,46 @@ public abstract class Jokalari extends Itsasontzi {
 			espazioa.getGelaxka(pX+1, pY).setEgoera("Jokalaria");//ontziaren eskumako pixela
 			
 		
-			espazioa.getGelaxka(pX, pY+1).setEgoera("Jokalaria");//ontziaren goiko pixela
+			espazioa.getGelaxka(pX, pY-1).setEgoera("Jokalaria");//ontziaren goiko pixela
 			
 		}
 	
-	
 	private void mugituX4Pixel(int i) {
-		//i=-1 denean, ezkerrerantz mugitu
-		//i=1 denean, eskumarantz mugitu
+		//i=-1 denean, eskumarantz mugitu
+		//i=1 denean, ezkerrerantz mugitu
 		
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
-		
-		
-			
-			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Hutsik"); 
+		boolean goikoEgoera = espazioa.getGelaxka(this.getX(), this.getY()-1).getEgoera().equals("Jokalaria");
+		if (goikoEgoera){
+			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Hutsik"); 
 			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik"); 
 			
-			this.setPosizio(getX()+i, getY());//posizio berria atzitu jokalariari
+			this.setPosizio(getX()-i, getY());//posizio berria atzitu jokalariari
 			
-			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Jokalaria");
+			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Jokalaria");
 			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Jokalaria");
-			}
 			
+		} else {
+			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Hutsik"); 
+			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Hutsik"); 
 			
-		
+			this.setPosizio(getX()-i, getY());//posizio berria atzitu jokalariari
+			
+			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Jokalaria");
+			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Jokalaria");
+		}
+	}
+	
 	private void mugituY4Pixel(int i) {//TODO METODO HAU KONPROBATU ONDO DAGOEN
-		//i=-1 denean, beherantz mugitu
-		//i=1 denean, gorantz mugitu
+		//i=-1 denean, gorantz mugitu
+		//i=1 denean, beherantz mugitu
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		
-			espazioa.getGelaxka(this.getX(), this.getY()+i).setEgoera("Hutsik");
+			espazioa.getGelaxka(this.getX(), this.getY()-i).setEgoera("Hutsik");
 			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");
 			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");
 			
-			super.setPosizio(getX(), getY()-i);//posizio berria sartu jokalariari
+			super.setPosizio(getX(), getY()+i);//posizio berria sartu jokalariari
 			
 			espazioa.getGelaxka(this.getX(), this.getY()).setEgoera("Jokalaria");//erdiko pixela jarri (oin gauden tokian)
 			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Jokalaria");
