@@ -25,7 +25,7 @@ public class TiroTxikia extends Tiro {
         super.setPosizio(getX(), super.getY()-1); // pixel bat igo
 
         
-        if (super.espaziotikKanpo(getX(), getY())) {//espaziotik irteten bada, ezabatu
+        if (super.espaziotikKanpo(getY())) {//espaziotik irteten bada, ezabatu
         	super.removeTiro();
            
         }
