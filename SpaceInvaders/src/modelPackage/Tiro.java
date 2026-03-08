@@ -13,6 +13,12 @@ public abstract class Tiro extends Mugimendu {
     	EspazioModel.getGelaxkaMatrizea().removeTiro(this);
     }
     
+    public boolean espaziotikKanpo(int pX, int pY) {
+    	if (pY < 2) {
+    		return true;
+    	} else return false;
+    }
+    
     public void bizitzaKendu() {
     	
     }

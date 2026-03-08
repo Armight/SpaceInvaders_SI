@@ -9,6 +9,7 @@ public class EspazioModel {
 	
 	private ArrayList<Tiro> tiroak;
 	private ArrayList<Etsai> etsaiak; //TODO: ETSAIEN METODOAK
+	private Jokalari jokalari;
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -27,6 +28,10 @@ public class EspazioModel {
 			nGM = new EspazioModel();
 		}
 		return nGM;
+	}
+	
+	public void setJokalari(Jokalari pJokalari) {
+		this.jokalari = pJokalari;
 	}
 
 		

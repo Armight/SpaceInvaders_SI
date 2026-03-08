@@ -90,13 +90,18 @@ public class Controller implements KeyListener, ActionListener {
     private void jokoanHasi() {
         hasieraPantaila.dispose();
         
-        //Jokalaria pantailaratu
+        //Jokalariaren posizioa zehaztu
         int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera()/2;
         int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2;
+        //jokalaria sortu
         jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
-        		
+        //Model(observable) eta View(observer) matrizeak konektatu
         espazioa.konektatu();
+        //Jokalaria pantailaratu
         jokalari.sortuJokalaria(pXErdia, pYBehean);
+        //Model-en jokalaria erregistratu
+        EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
+        //Espazioa matrizea pantailaratu
         espazioa.setVisible(true);
         espazioa.requestFocus();
     }
