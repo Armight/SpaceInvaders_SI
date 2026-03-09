@@ -3,6 +3,8 @@ package modelPackage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import kudeaketaPackage.PartidaKudeatzailea;
+
 
 public class EspazioModel {
 	private static EspazioModel nGM;
@@ -109,8 +111,14 @@ public class EspazioModel {
 				this.removeEtsai(et);
 				aurkituta = true;
 			}
-			
 		}
+		PartidaKudeatzailea kudeatzaile = PartidaKudeatzailea.getPartidaKudeatzailea();
+		kudeatzaile.partidaAmaitu(this.etsaiKopKonprobatu());
+	}
+	
+	
+	private boolean etsaiKopKonprobatu() {
+		return this.etsaiak.isEmpty();
 	}
 	
 	//UPDATE:
