@@ -1,6 +1,7 @@
 package modelPackage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class EspazioModel {
@@ -33,16 +34,12 @@ public class EspazioModel {
 	public void setJokalari(Jokalari pJokalari) {
 		this.jokalari = pJokalari;
 	}
-
-		
-			
-//Setchange && notify (== metodoak) observer, bistan ezin daitezke objetuak interkambiatu bien artean, bakarrik emari deitu and egoera ikusi EDO String-ak bidali, View-k ez ditu objeturik erabiliko
 	
 	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
 		return this.matrizea[pY][pX];
 	}
 	
-	//MATRIZEAREN METODOAK
+	//MATRIZEAREN METODOAK:
 	
 	public int getAltuera() {//y
 		return this.matrizea.length;
@@ -62,8 +59,6 @@ public class EspazioModel {
 		 }
 		 return kanpoan;
 	 }
-	
-	
 	
 	//TIROEN ARRAYAREN METODOAK:
 	
@@ -86,6 +81,7 @@ public class EspazioModel {
 	
 	public void removeEtsai(Etsai pEtsai) {
 		this.etsaiak.remove(pEtsai);
+		pEtsai.bizitzaKendu();
 	}
 	
 	public void addEtsai(Etsai pEtsai) {
@@ -99,8 +95,23 @@ public class EspazioModel {
 		}
 	}
 	
+	private Iterator<Etsai> getEtsaiIterator(){
+		return etsaiak.iterator();
+	}
 	
-	
+	public void kolisioakKonprobatu(int pX, int pY) {
+		Iterator<Etsai> itr = this.getEtsaiIterator();
+		boolean aurkituta = false;
+		
+		while (itr.hasNext() && !aurkituta) {
+			Etsai et = itr.next();
+			if (et.kolisioakKonprobatu(pX, pY)) {
+				this.removeEtsai(et);
+				aurkituta = true;
+			}
+			
+		}
+	}
 	
 	//UPDATE:
 	public void update() {

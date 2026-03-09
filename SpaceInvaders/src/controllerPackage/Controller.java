@@ -3,6 +3,8 @@ package controllerPackage;
 import java.awt.event.*;
 import javax.swing.Timer;
 import modelPackage.EspazioModel;
+import modelPackage.Etsai;
+import modelPackage.EtsaiTxikia;
 import modelPackage.Jokalari;
 import modelPackage.JokalariMorea;
 import viewPackage.HasieraPantaila;
@@ -101,6 +103,14 @@ public class Controller implements KeyListener, ActionListener {
         jokalari.sortuJokalaria(pXErdia, pYBehean);
         //Model-en jokalaria erregistratu
         EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
+        
+        //**/*/*//*****ETSAI PROBA, GERO EZABATU
+        Etsai etsai = new EtsaiTxikia(pXErdia, 5);
+        etsai.sortuEtsaia(pXErdia, 5);
+        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
+        
+        
+        
         //Espazioa matrizea pantailaratu
         espazioa.setVisible(true);
         espazioa.requestFocus();

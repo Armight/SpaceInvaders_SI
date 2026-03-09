@@ -73,25 +73,22 @@ public abstract class Jokalari extends Itsasontzi {
 		//i=1 denean, ezkerrerantz mugitu
 		
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
-		boolean goikoEgoera = espazioa.getGelaxka(this.getX(), this.getY()-1).getEgoera().equals("Jokalaria");
-		if (goikoEgoera){
-			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Hutsik"); 
-			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik"); 
+		
+		//Limite horizontalak zehaztu
+		int zabalera = espazioa.getZabalera();
+		
+		//Eskumarantz mugitu nahi bada eta eskumako pixelaren hurrengoa limitea bada
+		if (i == -1 && getX() + 1 >= zabalera - 1) return;
+		//Ezkerrerantz mugitu nahi bada eta ezkerreko pixelaren hurrengoa limitea bada
+		if (i == 1 && getX() - 1 <= 0) return;
+		
+		espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Hutsik"); 
+		espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik"); 
 			
-			this.setPosizio(getX()-i, getY());//posizio berria atzitu jokalariari
+		this.setPosizio(getX()-i, getY());//posizio berria atzitu jokalariari
 			
-			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Jokalaria");
-			espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Jokalaria");
-			
-		} else {
-			espazioa.getGelaxka(this.getX()+i, this.getY()).setEgoera("Hutsik"); 
-			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Hutsik"); 
-			
-			this.setPosizio(getX()-i, getY());//posizio berria atzitu jokalariari
-			
-			espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Jokalaria");
-			espazioa.getGelaxka(this.getX(), this.getY()+1).setEgoera("Jokalaria");
-		}
+		espazioa.getGelaxka(this.getX()-i, this.getY()).setEgoera("Jokalaria");
+		espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Jokalaria");
 	}
 	
 	private void mugituY4Pixel(int i) {//TODO METODO HAU KONPROBATU ONDO DAGOEN
@@ -99,22 +96,24 @@ public abstract class Jokalari extends Itsasontzi {
 		//i=1 denean, beherantz mugitu
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		
-			espazioa.getGelaxka(this.getX(), this.getY()-i).setEgoera("Hutsik");
-			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");
-			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");
+		//Limite bertikalak zehaztu
+		int altuera = espazioa.getAltuera();
+		
+		//Gorantz egin nahi duzu baina hurrengo pixela (x, 0) posizioan badago
+		if (i == -1 && getY() - 2 <= 0) return;
+		//Beherantz egin nahi duzu baina hurrengo pixela (x, altuera max) posizioan dago
+		if (i == 1 && getY() + 1 >= altuera - 1) return;
+
+		espazioa.getGelaxka(this.getX(), this.getY()).setEgoera("Hutsik");
+		espazioa.getGelaxka(this.getX(), this.getY()-1).setEgoera("Hutsik");
+		espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Hutsik");
+		espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Hutsik");
+		
+		super.setPosizio(getX(), getY()+i);//posizio berria sartu jokalariari
 			
-			super.setPosizio(getX(), getY()+i);//posizio berria sartu jokalariari
-			
-			espazioa.getGelaxka(this.getX(), this.getY()).setEgoera("Jokalaria");//erdiko pixela jarri (oin gauden tokian)
-			espazioa.getGelaxka(this.getX()+1, this.getY()).setEgoera("Jokalaria");
-			espazioa.getGelaxka(this.getX()-1, this.getY()).setEgoera("Jokalaria");
-			
-		}
-		
-		
-		
-		
+		sortuJokalari4pixel(getX(), getY());	
 	}
+}
 		
 
 

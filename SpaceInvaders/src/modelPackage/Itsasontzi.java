@@ -7,6 +7,7 @@ public abstract class Itsasontzi extends Mugimendu {
 		super(pX, pY, pErakutsi, pPixelKop);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	
 

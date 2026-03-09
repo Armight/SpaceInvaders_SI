@@ -30,6 +30,8 @@ public abstract class Mugimendu {
 	 protected void setIkusmena(boolean pErakutsi) {
 		 this.erakutsi=pErakutsi;
 	 }
+	 
+	
 	
 	 
 	 

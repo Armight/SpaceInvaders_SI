@@ -14,7 +14,7 @@ public abstract class Tiro extends Mugimendu {
     }
     
     public boolean espaziotikKanpo(int pY) {
-    	if (pY < 2) {
+    	if (pY < 2) { //Bakarrik gorantz jaurtitzean jarritako muga
     		return true;
     	} else return false;
     }
@@ -22,6 +22,9 @@ public abstract class Tiro extends Mugimendu {
     public void bizitzaKendu() {
     	
     }
+    
+    public boolean kolisioakKonprobatu() {
+		return false; }
 
     
 }
