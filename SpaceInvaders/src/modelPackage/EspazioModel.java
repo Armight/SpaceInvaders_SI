@@ -112,12 +112,10 @@ public class EspazioModel {
 				aurkituta = true;
 			}
 		}
-		PartidaKudeatzailea kudeatzaile = PartidaKudeatzailea.getPartidaKudeatzailea();
-		kudeatzaile.partidaAmaitu(this.etsaiKopKonprobatu());
 	}
 	
 	
-	private boolean etsaiKopKonprobatu() {
+	public boolean etsairikEz() {
 		return this.etsaiak.isEmpty();
 	}
 	

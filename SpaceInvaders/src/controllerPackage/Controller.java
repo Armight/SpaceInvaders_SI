@@ -2,6 +2,8 @@ package controllerPackage;
 
 import java.awt.event.*;
 import javax.swing.Timer;
+
+import kudeaketaPackage.PartidaKudeatzailea;
 import modelPackage.EspazioModel;
 import modelPackage.Etsai;
 import modelPackage.EtsaiTxikia;
@@ -73,12 +75,14 @@ public class Controller implements KeyListener, ActionListener {
     public void setAmaieraPantaila(AmaieraPantaila amaieraPantaila) {
         this.amaieraPantaila = amaieraPantaila;
     }
-
+    
+    //!!!!HAU GERO KENDU, BAKARRIK PROBETARAKO
     public void amaieraPantailaKeyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
     }
+    //!!!!!
     public String getItsasontziMota() {
         return itsasontziMota;
     }
@@ -104,11 +108,11 @@ public class Controller implements KeyListener, ActionListener {
         //Model-en jokalaria erregistratu
         EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
         
-        //**/*/*//*****ETSAI PROBA, GERO EZABATU
+        //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
         Etsai etsai = new EtsaiTxikia(pXErdia, 5);
         etsai.sortuEtsaia(pXErdia, 5);
         EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
-        
+        //!!!!
         
         
         //Espazioa matrizea pantailaratu
@@ -151,9 +155,8 @@ public class Controller implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Sprint 1ean etsaien mugimendua hemen //???
-    	
-       EspazioModel.getGelaxkaMatrizea().update();
-       
+    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	espazioa.update();
     }
 
     @Override public void keyReleased(KeyEvent e) {}
