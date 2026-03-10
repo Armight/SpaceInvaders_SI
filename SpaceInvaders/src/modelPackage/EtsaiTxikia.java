@@ -24,23 +24,23 @@ public class EtsaiTxikia extends Etsai {
 		if (i == 1 && getX() + 1 >= zabalera - 1) return;
 		if (i == -1 && getX() - 1 <= 0) return;    	
     	
-        this.ezabatuEtsai4Pixel();
+        this.ezabatuEtsai();
         
         //Posizioa eguneratu
         setPosizio(getX()+i, getY());
         
-        sortuEtsai4Pixel(getX(), getY());
+        sortuEtsai(getX(), getY());
     }
     
     @Override
     public void mugituY() {
 
-       this.ezabatuEtsai4Pixel();
+       this.ezabatuEtsaia();
 
         //Posizioa eguneratu
         setPosizio(getX(), getY()+1);
 
-        sortuEtsai4Pixel(getX(), getY());
+        sortuEtsai(getX(), getY());
     }   
     
     @Override
@@ -59,7 +59,22 @@ public class EtsaiTxikia extends Etsai {
  	}
     	return baiDa;
 }
-    
+    public void sortuEtsai(int pX, int pY) {
+    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	
+    	espazioa.getGelaxka(pX, pY).setEgoera("Etsai"); //erdiko pixela
+		espazioa.getGelaxka(pX-1, pY).setEgoera("Etsai");//ezkerreko pixela
+		espazioa.getGelaxka(pX+1, pY).setEgoera("Etsai");//eskumako pixela
+		espazioa.getGelaxka(pX, pY+1).setEgoera("Etsai");//beheko pixela
+    }
+    public void ezabatuEtsaia() {
+        EspazioModel espazio = EspazioModel.getGelaxkaMatrizea();
+
+		espazio.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+        espazio.getGelaxka(getX()-1, getY()).setEgoera("Hutsik");
+        espazio.getGelaxka(getX()+1, getY()).setEgoera("Hutsik");
+        espazio.getGelaxka(getX(), getY()+1).setEgoera("Hutsik");
+}
   
     
     

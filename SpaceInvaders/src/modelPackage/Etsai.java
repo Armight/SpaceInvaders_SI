@@ -42,13 +42,13 @@ public abstract class Etsai extends Itsasontzi {
     
     public void sortuEtsaia(int pX, int pY) {
     	if (super.getPixelKop() == 4) {
-    		this.sortuEtsai4Pixel(pX, pY);
+    		this.sortuEtsai(pX, pY);
     	}
     }
     
     public void ezabatuEtsai() {
     	if (super.getPixelKop() == 4) {
-    		this.ezabatuEtsai4Pixel();
+    		this.ezabatuEtsaia();
     	}
     }
     
@@ -62,24 +62,14 @@ public abstract class Etsai extends Itsasontzi {
     }
     
     //4 PIXELEKO ETSAIAREN METODOAK:
-    protected void sortuEtsai4Pixel(int pX, int pY) {
-    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    protected void sortuEtsai(int pX, int pY) {
     	
-    	espazioa.getGelaxka(pX, pY).setEgoera("Etsai"); //erdiko pixela
-		espazioa.getGelaxka(pX-1, pY).setEgoera("Etsai");//ezkerreko pixela
-		espazioa.getGelaxka(pX+1, pY).setEgoera("Etsai");//eskumako pixela
-		espazioa.getGelaxka(pX, pY+1).setEgoera("Etsai");//beheko pixela
     }
     
 
     
-    protected void ezabatuEtsai4Pixel() {
-            EspazioModel espazio = EspazioModel.getGelaxkaMatrizea();
-
-    		espazio.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-            espazio.getGelaxka(getX()-1, getY()).setEgoera("Hutsik");
-            espazio.getGelaxka(getX()+1, getY()).setEgoera("Hutsik");
-            espazio.getGelaxka(getX(), getY()+1).setEgoera("Hutsik");
+    protected void ezabatuEtsaia() {
+           
     }
 }
 
