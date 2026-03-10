@@ -1,0 +1,49 @@
+package kudeaketaPackage;
+
+import viewPackage.HasieraPantaila;
+import viewPackage.AmaieraPantaila;
+import viewPackage.Espazioa;
+import controllerPackage.Controller;
+
+public class PartidaKudeatzailea {
+
+	private static PartidaKudeatzailea nPK;
+    private HasieraPantaila hasieraPantaila;
+    private AmaieraPantaila amaieraPantaila;
+    private Espazioa espazioa;
+    private Controller controller;
+
+    private PartidaKudeatzailea() {
+        // 1. CONTROLLERA EGIN
+        // Controller barne EspazioModel sortzen da
+        controller = Controller.getController();
+
+        // 2. ESPAZIOA SORTU
+        espazioa = Espazioa.getEspazioa();
+        espazioa.konektatu();
+        espazioa.setController(controller);
+        controller.setEspazioa(espazioa);
+
+        // 3. HASIERA PANTAILA
+        hasieraPantaila = new HasieraPantaila();
+        hasieraPantaila.setController(controller);
+        controller.setHasieraPantaila(hasieraPantaila);        
+    }
+    
+    
+    public static PartidaKudeatzailea getPartidaKudeatzailea() {
+    	if (nPK == null) {
+    		nPK = new PartidaKudeatzailea();
+    	} 
+    	return nPK;
+    }
+    
+    //4. AMAIERA PANTAILA
+    public void partidaAmaitu(boolean pEtsairikEz) {
+    	if (pEtsairikEz) {
+    		amaieraPantaila = new AmaieraPantaila("IRABAZI DUZU!");
+    		amaieraPantaila.setController(controller);
+    		controller.setAmaieraPantaila(amaieraPantaila);
+    	}
+    }
+}

@@ -2,100 +2,161 @@ package controllerPackage;
 
 import java.awt.event.*;
 import javax.swing.Timer;
+
+import kudeaketaPackage.PartidaKudeatzailea;
 import modelPackage.EspazioModel;
-
-import modelPackage.GelaxkaMatrizea;
-
+import modelPackage.Etsai;
+import modelPackage.EtsaiTxikia;
 import modelPackage.Jokalari;
-import modelPackage.Tiro;
-
+import modelPackage.JokalariMorea;
 import viewPackage.HasieraPantaila;
-
+import viewPackage.AmaieraPantaila;
+import viewPackage.Espazioa;
 
 public class Controller implements KeyListener, ActionListener {
 
-	 	
-	private Timer timer;
-	private static Controller nireController=null;
-	private HasieraPantaila hasieraPantaila;
-	private Jokalari jokalari;
-	private Tiro tiro;
-
+    private Timer timer;
+    private static Controller nireController = null;
+    private HasieraPantaila hasieraPantaila;
+    private Espazioa espazioa;
+    private Jokalari jokalari;
     
+    private String itsasontziMota;
 
-	    private Controller() {
-	        
-	        
-	        //timer begiratu
-	        //200milisegundoro, action perdormed() deitu.
-	        //this= objektu hau, controllera
-	        timer = new Timer(200, this);
-	        timer.start();
-	    }
-	    
-	    public static Controller getController() {
-	    	if (nireController.equals(null)) {
-	    		Controller nireController= new Controller();
-	    	}
-	    	return nireController;
-	    }
-	    
-	    
-	   
-	    
-	    	
+    private Controller() {
+    	EspazioModel.getGelaxkaMatrizea();
+    	
+        timer = new Timer(200, this);//200ms-ro tick eta actionPerformed() metodora deitu, bertan update() deituko da.
+        timer.start();
+    }
 
+    public static Controller getController() {
+        if (nireController == null) {
+            nireController = new Controller();
+        }
+        return nireController;
+    }
 
-//HASIERA PANTAILA:
+    // HASIERA PANTAILA:
     public void setHasieraPantaila(HasieraPantaila hasieraPantaila) {
         this.hasieraPantaila = hasieraPantaila;
     }
-    
-    //hasieran pantailanh aukeratzeko
+
     public void hasieraPantailaKeyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_G:
-                model.setItsasontziMota("Green");
-                hasieraPantaila.erakutsiItsasontziHautatua("Green");
-                break;
-            case KeyEvent.VK_B:
-                model.setItsasontziMota("Blue");
-                hasieraPantaila.erakutsiItsasontziHautatua("Blue");
-                break;
-            case KeyEvent.VK_R:
-                model.setItsasontziMota("Red");
-                hasieraPantaila.erakutsiItsasontziHautatua("Red");
-                break;
+	        case KeyEvent.VK_G:
+	            itsasontziMota = "Green";
+	            hasieraPantaila.erakutsiItsasontziHautatua("Green");
+	            break;
+	        case KeyEvent.VK_B:
+	            itsasontziMota = "Blue";
+	            hasieraPantaila.erakutsiItsasontziHautatua("Blue");
+	            break;
+	        case KeyEvent.VK_R:
+	            itsasontziMota = "Red";
+	            hasieraPantaila.erakutsiItsasontziHautatua("Red");
+	            break;
+	        case KeyEvent.VK_1:
+	            if (itsasontziMota != null) {  // solo si ha elegido nave
+	                jokoanHasi();
+	            }
+	            break;
+        }
+    }
+    //ESPAZIOA PANTAILA
+    public void setEspazioa(viewPackage.Espazioa espazioa) {
+        this.espazioa = espazioa;
+    }
+    
+    
+    //AMAIERA PANTAILA
+    private AmaieraPantaila amaieraPantaila;
+
+    public void setAmaieraPantaila(AmaieraPantaila amaieraPantaila) {
+        this.amaieraPantaila = amaieraPantaila;
+    }
+    
+    //!!!!HAU GERO KENDU, BAKARRIK PROBETARAKO
+    public void amaieraPantailaKeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
+    }
+    //!!!!!
+    public String getItsasontziMota() {
+        return itsasontziMota;
+    }
+
+    // JOKALARIA:
+    public void setJokalari(Jokalari jokalari) {
+        this.jokalari = jokalari;
+    }
+
+    //JOKOA HASTEKO METODOA HASIERA PANTAILATIK ESPAZIORA
+    private void jokoanHasi() {
+        hasieraPantaila.dispose();
+        
+        //Jokalariaren posizioa zehaztu
+        int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera()/2;
+        int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2;
+        //jokalaria sortu
+        jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
+        //Model(observable) eta View(observer) matrizeak konektatu
+        espazioa.konektatu();
+        //Jokalaria pantailaratu
+        jokalari.sortuJokalaria(pXErdia, pYBehean);
+        //Model-en jokalaria erregistratu
+        EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
+        
+        //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
+        Etsai etsai = new EtsaiTxikia(pXErdia, 5);
+        etsai.sortuEtsaia(pXErdia, 5);
+        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
+        //!!!!
+        
+        
+        //Espazioa matrizea pantailaratu
+        espazioa.setVisible(true);
+        espazioa.requestFocus();
+    }
+
+    //AMAIERA PANTAILARA JOATEKO
+    public void jokoaAmaitu(String mezua) {
+        espazioa.dispose();
+        amaieraPantaila = new AmaieraPantaila(mezua);
+        amaieraPantaila.setController(this);
+    }
+    
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+    	//KONTUZZ HAU DA EA PANTAILAZ ALDATZEN DEN! KENDUKO DUGU GERO, TENPORALA DA.
+    	if (e.getKeyCode() == KeyEvent.VK_F) {
+            jokoaAmaitu("IRABAZI DUZU!");
+        }
+        if (jokalari != null) {
+            if(e.getKeyCode() == KeyEvent.VK_UP)
+                jokalari.mugituJokalariaY(-1);
+            if(e.getKeyCode() == KeyEvent.VK_DOWN)
+                jokalari.mugituJokalariaY(1);
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+                jokalari.mugituJokalariaX(-1);
+            if(e.getKeyCode() == KeyEvent.VK_LEFT)
+                jokalari.mugituJokalariaX(1);
+        }
+        // Sprint 1ean tiro txikia bakarrik
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)//SPACE= pixel bateko tiroa
+        {
+        	jokalari.shootPixel(); 
         }
     }
     
-    
-  //JOKALARIA:
-    
-    public void jokalariaSortu(int pX, int pY) {
-    	this.jokalari.sortuJokalaria(pX, pY);
-    }
-
- 
-    @Override
-    public void keyPressed(KeyEvent e) {
-    	GelaxkaMatrizea model=GelaxkaMatrizea.getGelaxkaMatrizea();
-        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-            this.jokalari.mugituJokalariaX(-1);
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-            this.jokalari.mugituJokalariaX(1);
-        if(e.getKeyCode() == KeyEvent.VK_DOWN)
-            this.jokalari.mugituJokalariaY(-1);
-        if(e.getKeyCode() == KeyEvent.VK_UP)
-        	this.jokalari.mugituJokalariaY(1);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
-            this.tiro.disparatu();
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	GelaxkaMatrizea model=GelaxkaMatrizea.getGelaxkaMatrizea();
-        model.update();
+        // Sprint 1ean etsaien mugimendua hemen //???
+    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	espazioa.update();
     }
 
     @Override public void keyReleased(KeyEvent e) {}

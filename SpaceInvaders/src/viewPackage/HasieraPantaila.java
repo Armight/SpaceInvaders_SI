@@ -76,7 +76,7 @@ public class HasieraPantaila extends JFrame implements KeyListener {
     }
 
     public void erakutsiItsasontziHautatua(String mota) {
-        hautatutaLabel.setText("Hautatua: " + mota + " itsasontzia");
+    	hautatutaLabel.setText("Hautatua: " + mota + " - Press <1> to play!");
         switch (mota) {
             case "Green": hautatutaLabel.setForeground(Color.GREEN); break;
             case "Blue":  hautatutaLabel.setForeground(Color.BLUE);  break;

@@ -3,7 +3,7 @@ package modelPackage;
 public abstract class Mugimendu {
 
 	private int x, y;
-	private boolean erakutsi;
+	private boolean erakutsi;//??
 	private  int pixelKop;
 	
 	protected Mugimendu(int pX, int pY, boolean pErakutsi, int pPixelKop) {
@@ -30,15 +30,15 @@ public abstract class Mugimendu {
 	 protected void setIkusmena(boolean pErakutsi) {
 		 this.erakutsi=pErakutsi;
 	 }
+	 
+	
 	
 	 
 	 
 	 
 	 
 	 
-	 protected void mugimenduaGaratu() {
-		
-	}
+	 
 	 
 	 
 	 
