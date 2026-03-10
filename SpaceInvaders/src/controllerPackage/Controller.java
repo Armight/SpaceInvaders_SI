@@ -1,6 +1,6 @@
 package controllerPackage;
 
-//Prueba
+
 import java.awt.event.*;
 import javax.swing.Timer;
 

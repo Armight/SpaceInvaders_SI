@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 //Prueba
-//Komentario prueba
+//Komentario
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
