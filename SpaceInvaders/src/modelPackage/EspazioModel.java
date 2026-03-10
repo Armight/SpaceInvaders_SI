@@ -114,6 +114,15 @@ public class EspazioModel {
 		}
 	}
 	
+//	*public boolean kolisioaJokalariEtsai() {
+		//if (jokalari == null || etsaiak.isEmpty()) {
+			//return false;
+		//}
+		//if (jokalari instanceof JokalariMorea) { // lau pixeleko jokalaria
+			//JokalariMorea player = (JokalariMorea) jokalari;
+			//if ()
+		//^}
+//	}
 	
 	public boolean etsairikEz() {
 		return this.etsaiak.isEmpty();
