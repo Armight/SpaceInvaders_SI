@@ -1,18 +1,17 @@
 package viewPackage;
 
 import javax.swing.*;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import controllerPackage.Controller;
 
 public class AmaieraPantaila extends JFrame implements KeyListener {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JLabel mezuaLabel;
     private JLabel instrukzioakLabel;
-    private Controller controller;
 
     public AmaieraPantaila(String mezua) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,15 +56,10 @@ public class AmaieraPantaila extends JFrame implements KeyListener {
         setVisible(true);
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
+
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (controller != null) {
-            controller.amaieraPantailaKeyPressed(e);
-        }
     }
 
     @Override public void keyTyped(KeyEvent e) {}

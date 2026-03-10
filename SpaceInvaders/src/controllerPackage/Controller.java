@@ -3,17 +3,13 @@ package controllerPackage;
 import java.awt.event.*;
 import javax.swing.Timer;
 
-import kudeaketaPackage.PartidaKudeatzailea;
 import modelPackage.EspazioModel;
 import modelPackage.Etsai;
 import modelPackage.EtsaiTxikia;
 import modelPackage.Jokalari;
 import modelPackage.JokalariMorea;
-import viewPackage.HasieraPantaila;
-import viewPackage.AmaieraPantaila;
-import viewPackage.Espazioa;
 
-public class Controller implements KeyListener, ActionListener {
+public class Controller {
 
     private Timer timer;
     private static Controller nireController = null;
@@ -38,9 +34,6 @@ public class Controller implements KeyListener, ActionListener {
     }
 
     // HASIERA PANTAILA:
-    public void setHasieraPantaila(HasieraPantaila hasieraPantaila) {
-        this.hasieraPantaila = hasieraPantaila;
-    }
 
     public void hasieraPantailaKeyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {

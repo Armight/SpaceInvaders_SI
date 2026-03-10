@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import kudeaketaPackage.PartidaKudeatzailea;
 
 //Komentario prueba
 public class EspazioModel {

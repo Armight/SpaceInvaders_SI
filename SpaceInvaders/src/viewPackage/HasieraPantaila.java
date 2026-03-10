@@ -5,9 +5,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import controllerPackage.Controller;
+import java.util.Observable;
+import java.util.Observer;
 
-public class HasieraPantaila extends JFrame implements KeyListener {
+import controllerPackage.Controller;
+import modelPackage.PartidaKudeatzailea;
+
+public class HasieraPantaila extends JFrame implements KeyListener, Observer{
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JLabel tituloLabel;
@@ -69,6 +73,8 @@ public class HasieraPantaila extends JFrame implements KeyListener {
         addKeyListener(this);
         setFocusable(true);
         setVisible(true);
+        
+        PartidaKudeatzailea.getPartidaKudeatzailea().addObserver(this);
     }
 
     public void setController(Controller controller) {
@@ -86,13 +92,30 @@ public class HasieraPantaila extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (controller != null) {
-            controller.hasieraPantailaKeyPressed(e);
-        }
+    	switch (e.getKeyCode()) {
+        case KeyEvent.VK_G:
+            this.erakutsiItsasontziHautatua("Green");
+            break;
+        case KeyEvent.VK_B:
+            this.erakutsiItsasontziHautatua("Blue");
+            break;
+        case KeyEvent.VK_R:
+            this.erakutsiItsasontziHautatua("Red");
+            break;
+        case KeyEvent.VK_1:
+            
+            break;
+    }
     }
 
     @Override public void keyTyped(KeyEvent e) {}
     @Override public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
     
     
 }
