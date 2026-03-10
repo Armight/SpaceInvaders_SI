@@ -27,7 +27,7 @@ public abstract class Etsai extends Itsasontzi {
     //MUGIMENDU SEUDORANDOM-A SORTU
     
     public void mugituRandom() {
-        int r = (int)(Math.random() * 5); // 0, 1 edo 2
+        int r = (int)(Math.random() * 3); // 0, 1 edo 2
 
         if (r == 0) {
             mugituX(-1); // ezkerrera
@@ -52,11 +52,13 @@ public abstract class Etsai extends Itsasontzi {
     	}
     }
     
-    public void bizitzaKendu() {
+    public int bizitzaKendu() {
     	bizitza = bizitza - 1;
-    	if (this.bizitza <= 0) {
+    	if (this.bizitza == 0) {
     		this.ezabatuEtsai();
-    	}
+    		return 0;
+    	} else return -1;
+    	
     }
     
     //4 PIXELEKO ETSAIAREN METODOAK:

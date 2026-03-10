@@ -108,6 +108,9 @@ public class Controller implements KeyListener, ActionListener {
         //Model-en jokalaria erregistratu
         EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
         
+        //EspazioModel.getGelaxkaMatrizea().sortuEtsaiZerrenda();
+        
+        
         //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
         Etsai etsai = new EtsaiTxikia(pXErdia, 5);
         etsai.sortuEtsaia(pXErdia, 5);
