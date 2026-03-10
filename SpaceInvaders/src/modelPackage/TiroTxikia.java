@@ -1,10 +1,5 @@
 package modelPackage;
-<<<<<<< HEAD
 
-//Komentario prueba
-=======
-//proba push
->>>>>>> branch 'main' of https://github.com/Armight/SpaceInvaders_SI.git
 public class TiroTxikia extends Tiro {
 	
 	private static int dmg=1;

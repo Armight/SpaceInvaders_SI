@@ -103,10 +103,12 @@ public class HasieraPantaila extends JFrame implements KeyListener, Observer{
             this.erakutsiItsasontziHautatua("Red");
             break;
         case KeyEvent.VK_1:
-            
+            //    jokoanHasi();
+            }
             break;
+    
     }
-    }
+    
 
     @Override public void keyTyped(KeyEvent e) {}
     @Override public void keyReleased(KeyEvent e) {}

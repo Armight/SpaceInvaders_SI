@@ -1,10 +1,5 @@
 package modelPackage;
-<<<<<<< HEAD
 
-//Komentario prueba
-=======
-//proba push
->>>>>>> branch 'main' of https://github.com/Armight/SpaceInvaders_SI.git
 public abstract class Tiro extends Mugimendu {
 	protected boolean kolisionatu = false;
 

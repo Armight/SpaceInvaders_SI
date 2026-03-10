@@ -41,7 +41,6 @@ public class EtsaiTxikia extends Etsai {
         //Posizioa eguneratu
         setPosizio(getX(), getY()+1);
 
-
         sortuEtsai(getX(), getY());
     }   
     

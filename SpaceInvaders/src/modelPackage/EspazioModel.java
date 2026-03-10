@@ -1,17 +1,11 @@
 package modelPackage;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Iterator;
 
-<<<<<<< HEAD
-//Prueba
-//Komentario
-=======
-import kudeaketaPackage.PartidaKudeatzailea;
-//proba push
 
->>>>>>> branch 'main' of https://github.com/Armight/SpaceInvaders_SI.git
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
