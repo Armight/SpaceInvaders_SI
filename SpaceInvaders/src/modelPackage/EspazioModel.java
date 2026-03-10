@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-
+//Prueba
 //Komentario prueba
 public class EspazioModel {
 	private static EspazioModel nGM;

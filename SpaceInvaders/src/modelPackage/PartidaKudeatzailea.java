@@ -1,5 +1,5 @@
 package modelPackage;
-
+//Prueba
 import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;
 import viewPackage.Espazioa;
