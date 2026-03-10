@@ -52,11 +52,13 @@ public abstract class Etsai extends Itsasontzi {
     	}
     }
     
-    public void bizitzaKendu() {
+    public int bizitzaKendu() {
     	bizitza = bizitza - 1;
-    	if (this.bizitza <= 0) {
+    	if (this.bizitza == 0) {
     		this.ezabatuEtsai();
-    	}
+    		return 0;
+    	} else return -1;
+    	
     }
     
     //4 PIXELEKO ETSAIAREN METODOAK:

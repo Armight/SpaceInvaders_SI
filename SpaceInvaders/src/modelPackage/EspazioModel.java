@@ -103,6 +103,7 @@ public class EspazioModel {
 		
 	}
 	
+															//BEHARREZKOA???
 	public void removeEtsai(Etsai pEtsai) {
 		this.etsaiak.remove(pEtsai);
 		pEtsai.bizitzaKendu();
@@ -125,13 +126,15 @@ public class EspazioModel {
 	
 	public void kolisioakKonprobatu(int pX, int pY) {
 		Iterator<Etsai> itr = this.getEtsaiIterator();
-		boolean aurkituta = false;
 		
-		while (itr.hasNext() && !aurkituta) {
+		while (itr.hasNext()) {
 			Etsai et = itr.next();
 			if (et.kolisioakKonprobatu(pX, pY)) {
-				this.removeEtsai(et);
-				aurkituta = true;
+				int hil = et.bizitzaKendu();
+				if (hil == 0) {
+					itr.remove();
+				}
+			break;
 			}
 		}
 	}
