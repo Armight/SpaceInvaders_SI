@@ -48,21 +48,17 @@ public class EtsaiTxikia extends Etsai {
     	//EtsaiTxikiak okupatzen dituen pixel guztiak deklaratu
     	int [][] pixelPos = {{0,0}, {-1,0}, {+1,0}, {0,+1}};
     	boolean baiDa = false;
-    	
-    	while(!baiDa) {
-    		//Pixel horren eta Tiroaren posizioa berdina den ala ez konprobatu
-    		for (int i = 0; i < pixelPos.length; i++) {
-        		int x = getX() + pixelPos[i][0];
-        		int y = getY() + pixelPos[i][1];
+    	//Pixel horren eta Tiroaren posizioa berdina den ala ez konprobatu
+    	for (int i = 0; i < pixelPos.length; i++) {
+        	int x = getX() + pixelPos[i][0];
+        	int y = getY() + pixelPos[i][1];
         		
-        		if (x==pX && y==pY) {
-        			baiDa = true;
-        		}
+        	if (x==pX && y==pY) {
+        		baiDa = true;
         	}
-    	}
-    	
+ 	}
     	return baiDa;
-    }
+}
     
   
     

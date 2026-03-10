@@ -124,20 +124,42 @@ public class EspazioModel {
 		return etsaiak.iterator();
 	}
 	
-	public void kolisioakKonprobatu(int pX, int pY) {
-		Iterator<Etsai> itr = this.getEtsaiIterator();
+	private Iterator<Tiro> getTiroIterator(){
+		return tiroak.iterator();
+	}
+	
+	public void kolisioakKonprobatu( ) {
+		Iterator<Tiro> itrT = this.getTiroIterator();
+		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
+		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
+		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
 		
-		while (itr.hasNext()) {
-			Etsai et = itr.next();
-			if (et.kolisioakKonprobatu(pX, pY)) {
-				int hil = et.bizitzaKendu();
-				if (hil == 0) {
-					itr.remove();
-				}
-			break;
+		//TIROAK KONPROBATU
+		while (itrT.hasNext()) {
+			Tiro t = itrT.next();
+			if (t.getKolisionatu()) {
+				//indizea gorde geroago ezabatzeko
+				ezabatuTiroak.add(t);
+				itrT.remove();
 			}
 		}
+		//ETSAIAK KONPROBATU
+		if (!ezabatuTiroak.isEmpty()) {
+			for (Etsai e : etsaiakKopia) {
+				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
+				for (Tiro t : ezabatuTiroak) {
+					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {
+						int hilDa = e.bizitzaKendu();
+						if (hilDa == 0) {
+							ezabatuEtsai.add(e);
+						}
+					}
+				}
+			}
+		}
+		etsaiak.removeAll(ezabatuEtsai);
 	}
+	
 	
 	
 	public boolean etsairikEz() {
@@ -146,8 +168,8 @@ public class EspazioModel {
 	
 	//UPDATE:
 	public void update() {
-		
 		this.mugituTiroak();
+		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
 	}
 

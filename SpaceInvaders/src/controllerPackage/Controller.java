@@ -110,12 +110,12 @@ public class Controller implements KeyListener, ActionListener {
         
         EspazioModel.getGelaxkaMatrizea().sortuEtsaiZerrenda();
         
-        //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
         /*
+        //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
         Etsai etsai = new EtsaiTxikia(pXErdia, 5);
         etsai.sortuEtsaia(pXErdia, 5);
-        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);*/
-        //!!!!
+        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
+        //!!!!*/
         
         
         //Espazioa matrizea pantailaratu
