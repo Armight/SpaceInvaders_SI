@@ -1,6 +1,7 @@
 package modelPackage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import kudeaketaPackage.PartidaKudeatzailea;
@@ -80,6 +81,27 @@ public class EspazioModel {
 	}
 	
 	//ETSAIEN ARRAYAREN METODOAK:
+	public void sortuEtsaiZerrenda() {
+		//8 etsaiek har dezaketen posizioen ArrayList-a sortu
+		//(10,5), (20, 5) ... (80,5)
+		ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
+		int pX= 0;
+		for (int i = 0; i < 8; i++) {
+			pX = pX + 10;
+			etsaiPosizioak.add(new int [] {pX, 5});
+		}
+		//Posizio guztiak nahastu
+		Collections.shuffle(etsaiPosizioak);
+		//4...8 etasien arteko zenbaki random bat sortu
+		int etsaiKop = 4 + (int)(Math.random() * 5);
+		for (int i = 0; i < etsaiKop; i++) {
+			int[] pos = etsaiPosizioak.remove(0);
+			Etsai et = new EtsaiTxikia(pos[0], pos[1]);
+			et.sortuEtsaia(pos[0], pos[1]);
+			this.etsaiak.add(et);
+		}
+		
+	}
 	
 	public void removeEtsai(Etsai pEtsai) {
 		this.etsaiak.remove(pEtsai);
@@ -123,10 +145,7 @@ public class EspazioModel {
 	public void update() {
 		
 		this.mugituTiroak();
-		this.mugituEtsaiak();
-		
-		
-	    
+		this.mugituEtsaiak();   
 	}
 
 }

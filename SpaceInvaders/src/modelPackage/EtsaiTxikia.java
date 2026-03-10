@@ -21,8 +21,8 @@ public class EtsaiTxikia extends Etsai {
     	
     	//Limite horizontalak zehaztu
     	int zabalera = espazio.getZabalera();
-    	if (getX() + i < 0 || getX() + i >= zabalera) return;
-    	
+		if (i == 1 && getX() + 1 >= zabalera - 1) return;
+		if (i == -1 && getX() - 1 <= 0) return;    	
     	
         this.ezabatuEtsai4Pixel();
         
