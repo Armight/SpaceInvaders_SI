@@ -1,4 +1,5 @@
 package modelPackage;
+//Aldaketa
 
 import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;

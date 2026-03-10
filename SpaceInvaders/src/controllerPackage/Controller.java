@@ -10,7 +10,12 @@ import modelPackage.EtsaiTxikia;
 import modelPackage.Jokalari;
 import modelPackage.JokalariMorea;
 
+<<<<<<< HEAD
 public class Controller {
+=======
+//proba push
+public class Controller implements KeyListener, ActionListener {
+>>>>>>> branch 'main' of https://github.com/Armight/SpaceInvaders_SI.git
 
     private Timer timer;
     private static Controller nireController = null;
@@ -106,11 +111,12 @@ public class Controller {
         
         /*
         //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
-        Etsai etsai = new EtsaiTxikia(pXErdia, 5);
-        etsai.sortuEtsaia(pXErdia, 5);
-        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
+        //Etsai etsai = new EtsaiTxikia(pXErdia, 5);
+        //etsai.sortuEtsaia(pXErdia, 5);
+        //EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
         //!!!!
         */
+        
         
         //Espazioa matrizea pantailaratu
         espazioa.setVisible(true);
