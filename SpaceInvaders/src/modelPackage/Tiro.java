@@ -1,5 +1,5 @@
 package modelPackage;
-
+//proba push
 public abstract class Tiro extends Mugimendu {
 	protected boolean kolisionatu = false;
 

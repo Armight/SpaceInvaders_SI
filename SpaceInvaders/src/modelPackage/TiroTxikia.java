@@ -1,5 +1,5 @@
 package modelPackage;
-
+//proba push
 public class TiroTxikia extends Tiro {
 	
 	private static int dmg=1;

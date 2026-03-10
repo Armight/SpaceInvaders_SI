@@ -2,7 +2,7 @@ package modelPackage;
 
 public abstract class Etsai extends Itsasontzi {
 	//eraikitzaile ondo ipini
-	
+	//proba push
 	private int bizitza;
 	
     protected Etsai(int pX, int pY, boolean pErakutsi, int pPixelKop, int pBizitza) {

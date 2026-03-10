@@ -1,5 +1,5 @@
 package modelPackage;
-
+//proba push
 public class EtsaiTxikia extends Etsai {
     private static int pixelKop = 4;//etsai txikia 4 pixeleko etsaia da
     

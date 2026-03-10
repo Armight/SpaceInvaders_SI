@@ -13,6 +13,7 @@ import viewPackage.HasieraPantaila;
 import viewPackage.AmaieraPantaila;
 import viewPackage.Espazioa;
 
+//proba push
 public class Controller implements KeyListener, ActionListener {
 
     private Timer timer;
@@ -108,14 +109,15 @@ public class Controller implements KeyListener, ActionListener {
         //Model-en jokalaria erregistratu
         EspazioModel.getGelaxkaMatrizea().setJokalari(jokalari);
         
-        //EspazioModel.getGelaxkaMatrizea().sortuEtsaiZerrenda();
+        EspazioModel.getGelaxkaMatrizea().sortuEtsaiZerrenda();
         
         
         //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
-        Etsai etsai = new EtsaiTxikia(pXErdia, 5);
-        etsai.sortuEtsaia(pXErdia, 5);
-        EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
+        //Etsai etsai = new EtsaiTxikia(pXErdia, 5);
+        //etsai.sortuEtsaia(pXErdia, 5);
+        //EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
         //!!!!
+        
         
         
         //Espazioa matrizea pantailaratu

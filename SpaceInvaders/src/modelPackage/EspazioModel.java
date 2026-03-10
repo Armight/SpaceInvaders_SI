@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import kudeaketaPackage.PartidaKudeatzailea;
-
+//proba push
 
 public class EspazioModel {
 	private static EspazioModel nGM;
