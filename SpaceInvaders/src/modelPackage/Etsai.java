@@ -1,5 +1,6 @@
 package modelPackage;
 
+//Komentario prueba
 public abstract class Etsai extends Itsasontzi {
 	//eraikitzaile ondo ipini
 	

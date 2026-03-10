@@ -1,5 +1,6 @@
 package modelPackage;
 
+//Komentario prueba
 public abstract class Tiro extends Mugimendu {
 	protected boolean kolisionatu = false;
 

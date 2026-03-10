@@ -1,5 +1,6 @@
 package modelPackage;
 
+//Komentario prueba
 public class TiroTxikia extends Tiro {
 	
 	private static int dmg=1;

@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 import kudeaketaPackage.PartidaKudeatzailea;
 
-
+//Komentario prueba
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;

@@ -32,6 +32,7 @@ public class EtsaiTxikia extends Etsai {
         sortuEtsai4Pixel(getX(), getY());
     }
     
+    
     @Override
     public void mugituY() {
 
@@ -41,7 +42,7 @@ public class EtsaiTxikia extends Etsai {
         setPosizio(getX(), getY()+1);
 
         sortuEtsai4Pixel(getX(), getY());
-    }   
+    } 
     
     @Override
     public boolean kolisioakKonprobatu(int pX, int pY) {
