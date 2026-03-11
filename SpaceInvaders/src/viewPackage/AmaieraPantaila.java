@@ -53,27 +53,18 @@ public class AmaieraPantaila extends JFrame implements Observer {
         gbc2.insets = new Insets(10, 10, 10, 10);
         contentPane.add(instrukzioakLabel, gbc2);
 
-        addKeyListener(this);
         setFocusable(true);
         setVisible(true);
     }
-
-
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    @Override public void keyTyped(KeyEvent e) {}
-    @Override public void keyReleased(KeyEvent e) {}
-
-
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
     
     
 }
