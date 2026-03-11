@@ -23,10 +23,10 @@ public abstract class Jokalari extends Itsasontzi {
 	//JOKALARI METODO OROKORRAK:
 	
 	public void sortuJokalaria(int pX, int pY) {
-		
-		this.setPosizio(pX, pY);
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(pX, pY).setEgoera("Jokalari");
-		
+		if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(pX, pY)) {
+			this.setPosizio(pX, pY);
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(pX, pY).setEgoera("Jokalari");
+		}
 	}
 	
 	public void mugituJokalariaX(int i) {
