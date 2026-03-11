@@ -16,9 +16,17 @@ public abstract class Etsai extends Itsasontzi {
     
     //MUGITZEKO:
     
+    public void mugituAurretikKonprobatuX(int newX) {
+    	
+    }
+    
+    
     public void mugituX(int i) {
     	//i=-1 ezkerrera mugitu
     	//i=1 eskumara mugitu
+    	int newX=this.getX()+i;
+    	
+    	
     	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY())) {
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX()+i, getY());
@@ -27,8 +35,17 @@ public abstract class Etsai extends Itsasontzi {
     }
     
     
+    
+    
     public void mugituY() {//etsaia bakarrik beherantz doa
-    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
+    	
+    	boolean kanpo= EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1);
+    	boolean kolisioEtsai= false; //TODO
+    	
+    	
+    	
+    	
+    	if(!kanpo) {
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX(), getY()+1);
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
@@ -38,6 +55,8 @@ public abstract class Etsai extends Itsasontzi {
     public boolean kolisioakKonprobatu(int pX, int pY) { 
     	return false;
     }
+    
+    
     
     //MUGIMENDU SEUDORANDOM-A SORTU
     
@@ -63,7 +82,7 @@ public abstract class Etsai extends Itsasontzi {
     }
     
     public void ezabatuEtsai() {
-    	this.ezabatuEtsai();
+    	
     }
     
     public int bizitzaKendu() {
@@ -77,7 +96,7 @@ public abstract class Etsai extends Itsasontzi {
     
     public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
     	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea();
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
     	}
     }
   
