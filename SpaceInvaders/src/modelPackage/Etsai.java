@@ -18,6 +18,7 @@ public abstract class Etsai extends Itsasontzi {
     
     public void mugituX(int i) {
     	int newX=this.getX()+i;
+    	
     	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY());
     	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
     	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
@@ -34,9 +35,6 @@ public abstract class Etsai extends Itsasontzi {
     public void mugimenduaGaratuX(int i) {
     	//i=-1 ezkerrera mugitu
     	//i=1 eskumara mugitu
-    	
-    	
-    	
     	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX()+i, getY());
@@ -103,7 +101,7 @@ public abstract class Etsai extends Itsasontzi {
     
 
     
-    protected void ezabatuEtsaia() {
+    protected void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
     	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
         EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
            
