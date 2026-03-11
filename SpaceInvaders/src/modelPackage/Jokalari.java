@@ -74,6 +74,8 @@ public abstract class Jokalari extends Itsasontzi {
 		
 		EspazioModel espazioa=EspazioModel.getGelaxkaMatrizea();
 		
+		
+		
 		//Limite horizontalak zehaztu
 		int zabalera = espazioa.getZabalera();
 		
