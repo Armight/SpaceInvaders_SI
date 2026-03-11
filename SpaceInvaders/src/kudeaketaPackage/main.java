@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 import modelPackage.PartidaKudeatzailea;
 import viewPackage.Espazioa;
+import viewPackage.HasieraPantaila;
 
 public class main {
     public static void main(String[] args) {
+    	HasieraPantaila hasierapnataila = new HasieraPantaila();
     	Espazioa espazioView = Espazioa.getEspazioa();
-       EventQueue.invokeLater(() -> PartidaKudeatzailea.getPartidaKudeatzailea());
+    	EventQueue.invokeLater(() -> PartidaKudeatzailea.getPartidaKudeatzailea());
     }
 }

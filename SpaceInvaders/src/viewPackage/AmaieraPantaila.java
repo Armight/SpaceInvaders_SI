@@ -6,8 +6,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class AmaieraPantaila extends JFrame implements KeyListener {
+public class AmaieraPantaila extends JFrame implements Observer {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JLabel mezuaLabel;
@@ -64,6 +66,14 @@ public class AmaieraPantaila extends JFrame implements KeyListener {
 
     @Override public void keyTyped(KeyEvent e) {}
     @Override public void keyReleased(KeyEvent e) {}
+
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
     
     
 }

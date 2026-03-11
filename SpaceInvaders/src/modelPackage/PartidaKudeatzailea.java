@@ -1,16 +1,42 @@
 package modelPackage;
-//Aldaketa
 
-import viewPackage.HasieraPantaila;
-import viewPackage.AmaieraPantaila;
-import viewPackage.Espazioa;
-
+import java.awt.Color;
 import java.util.Observable;
 
 import controllerPackage.Controller;
 
-public class PartidaKudeatzailea extends Observable {
 
+public class PartidaKudeatzailea extends Observable {
+	private static PartidaKudeatzailea nPK;
+	private Color itsasontziKolorea;
+	
+	private PartidaKudeatzailea() {
+		Controller controller = Controller.getController();
+	}
+	
+	public static PartidaKudeatzailea getPartidaKudeatzailea() {
+		if (nPK == null) {
+			nPK = new PartidaKudeatzailea();
+		}
+		return nPK;
+	}
+	
+	public void setItsasontziKolorea(Color pKolorea ) {
+		this.itsasontziKolorea = pKolorea;
+		setChanged();
+		notifyObservers(pKolorea);
+	}
+	
+	public Color getKolorea() {
+		return this.itsasontziKolorea;
+	}
+	
+}
+
+	
+	
+	
+/*
 	private static PartidaKudeatzailea nPK;
     private HasieraPantaila hasieraPantaila;
     private AmaieraPantaila amaieraPantaila;
@@ -50,4 +76,4 @@ public class PartidaKudeatzailea extends Observable {
     		controller.setAmaieraPantaila(amaieraPantaila);
     	}
     }
-}
+}*/

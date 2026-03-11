@@ -1,19 +1,52 @@
 package controllerPackage;
-//Branch berria
 
+import java.awt.Color;
 import java.awt.event.*;
-import javax.swing.Timer;
+import modelPackage.PartidaKudeatzailea;
 
-import modelPackage.EspazioModel;
-import modelPackage.Etsai;
-import modelPackage.EtsaiTxikia;
-import modelPackage.Jokalari;
-import modelPackage.JokalariMorea;
+public class Controller implements KeyListener {
+	private static Controller nC;
+	
+	private Controller() { }
+	
+	public static Controller getController() {
+		if (nC == null) {
+			nC = new Controller();
+		} return nC;
+	}
 
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
 
-public class Controller {
+	@Override
+	public void keyPressed(KeyEvent e) {
+		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
+		switch (e.getKeyCode()) {
+        case KeyEvent.VK_G:
+            kudeatzailea.setItsasontziKolorea(Color.GREEN);
+            break;
+        case KeyEvent.VK_B:
+            kudeatzailea.setItsasontziKolorea(Color.BLUE);
+            break;
+        case KeyEvent.VK_R:
+            kudeatzailea.setItsasontziKolorea(Color.RED);
+            break;
+        case KeyEvent.VK_1:
+            //    jokoanHasi();
+        	break;
+            }		
+	}
 
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
 
+/*
     private Timer timer;
     private static Controller nireController = null;
     private HasieraPantaila hasieraPantaila;
@@ -106,13 +139,13 @@ public class Controller {
         
         EspazioModel.getGelaxkaMatrizea().sortuEtsaiZerrenda();
         
-        /*
+        
         //!!!!HAU BAKARRIK PROBETARAKO, GERO KENDU
         //Etsai etsai = new EtsaiTxikia(pXErdia, 5);
         //etsai.sortuEtsaia(pXErdia, 5);
         //EspazioModel.getGelaxkaMatrizea().addEtsai(etsai);
         //!!!!
-        */
+        
         
         
         
@@ -163,4 +196,4 @@ public class Controller {
 
     @Override public void keyReleased(KeyEvent e) {}
     @Override public void keyTyped(KeyEvent e) {}
-}
+}*/

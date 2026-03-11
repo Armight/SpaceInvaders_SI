@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 //Commit prueba
-public class Espazioa extends JFrame implements KeyListener{
+public class Espazioa extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private static Espazioa nEspazioa;
