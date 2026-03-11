@@ -105,12 +105,12 @@ public class HasieraPantaila extends JFrame implements Observer{
    			if (arg instanceof Color) {
    				this.erakutsiItsasontziHautatua((Color)arg);
    				
-   				//HasieraPantaila kendu
+   			//HasieraPantaila kendu
    			} else if (arg instanceof Boolean) {
    				Boolean b = (Boolean) arg;
    				boolean pantailaratu = b.booleanValue();
    				if (!pantailaratu) {
-   					this.setVisible(pantailaratu);
+   					this.dispose();
    				}
    			}
    		}

@@ -14,13 +14,13 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 //Commit prueba
-public class Espazioa extends JFrame implements Observer {
+public class EspazioaView extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
 	
-	public Espazioa() {
+	public EspazioaView() {
 		getContentPane().setBackground(Color.BLACK);
 		
 		//Leihoaren ertzak eta dekorazioak kendu

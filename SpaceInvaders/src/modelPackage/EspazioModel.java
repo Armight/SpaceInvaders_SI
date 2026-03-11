@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Observable;
 
 
 public class EspazioModel {
@@ -24,7 +25,7 @@ public class EspazioModel {
 	    }
 	    tiroak = new ArrayList<Tiro>();
 	    etsaiak = new ArrayList<Etsai>();
-	   	}
+	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {
 		if (nGM == null) {
@@ -33,6 +34,37 @@ public class EspazioModel {
 		return nGM;
 	}
 	
+	//MATRIZEAREN METODOAK
+	public int getAltuera() {  
+		return this.matrizea.length;  //y
+	}
+	
+	public int getZabalera() {
+		return this.matrizea[0].length;  //x
+	}
+	
+	public Gelaxka getGelaxka(int pX, int pY) {  //posizio horren gelaxka lortu
+		return this.matrizea[pY][pX];
+	}
+	
+	public void jokoanHasi() {
+		//Jokalariaren koordenatuak lortu
+		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
+		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //5
+		
+	    //jokalaria instantziatu
+	    jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
+	    
+	    //Jokalaria sortu
+	    jokalari.sortuJokalaria(pXErdia, pYBehean);
+	}
+	
+
+}
+	
+	
+	
+	/*
 	public void setJokalari(Jokalari pJokalari) {
 		this.jokalari = pJokalari;
 	}
@@ -179,6 +211,6 @@ public class EspazioModel {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
-	}
+	}*/
 
-}
+

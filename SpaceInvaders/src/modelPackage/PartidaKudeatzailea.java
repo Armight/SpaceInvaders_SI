@@ -34,8 +34,11 @@ public class PartidaKudeatzailea extends Observable {
 	public void jokoanHasi() {
 		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
 		this.hasieraItzali();
+		
+		//EspazioView erakutsi eta EspazioView eta EspazioModel konektatu
 		this.espazioViewErakutsi();
 		
+		espazioModel.jokoanHasi();
 	}
 	
 	private void hasieraItzali() {

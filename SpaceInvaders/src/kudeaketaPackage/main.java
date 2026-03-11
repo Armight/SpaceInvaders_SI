@@ -5,13 +5,13 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import modelPackage.PartidaKudeatzailea;
-import viewPackage.Espazioa;
+import viewPackage.EspazioaView;
 import viewPackage.HasieraPantaila;
 
 public class main {
     public static void main(String[] args) {
     	HasieraPantaila hasierapnataila = new HasieraPantaila();
-    	Espazioa espazioView = new Espazioa();
+    	EspazioaView espazioView = new EspazioaView();
     	EventQueue.invokeLater(() -> PartidaKudeatzailea.getPartidaKudeatzailea());
     }
 }
