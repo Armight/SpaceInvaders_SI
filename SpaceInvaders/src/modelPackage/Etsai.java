@@ -16,22 +16,32 @@ public abstract class Etsai extends Itsasontzi {
     
     //MUGITZEKO:
     
-    public void mugituAurretikKonprobatuX(int newX) {
-    	
+    public void mugituX(int i) {
+    	int newX=this.getX()+i;
+    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY());
+    	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
+    	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
+    	else if (egoera.equalsIgnoreCase("Jokalaria")) {
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
+    	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
+    	else if(egoera.equalsIgnoreCase("Tiro")) {
+    		this.bizitzaKendu();
+    	}
+    	else if(!kanpo) {this.mugimenduaGaratuX(i);}
     }
     
     
-    public void mugituX(int i) {
+    public void mugimenduaGaratuX(int i) {
     	//i=-1 ezkerrera mugitu
     	//i=1 eskumara mugitu
-    	int newX=this.getX()+i;
     	
     	
-    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY())) {
+    	
+    	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX()+i, getY());
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	}
+    	
     }
     
     
@@ -39,22 +49,13 @@ public abstract class Etsai extends Itsasontzi {
     
     public void mugituY() {//etsaia bakarrik beherantz doa
     	
-    	boolean kanpo= EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1);
-    	boolean kolisioEtsai= false; //TODO
-    	
-    	
-    	
-    	
-    	if(!kanpo) {
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX(), getY()+1);
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	}
+    	
     }
     
-    public boolean kolisioakKonprobatu(int pX, int pY) { 
-    	return false;
-    }
+    
     
     
     
@@ -81,16 +82,14 @@ public abstract class Etsai extends Itsasontzi {
     	}
     }
     
-    public void ezabatuEtsai() {
-    	
-    }
     
-    public int bizitzaKendu() {
+    
+    public void bizitzaKendu() {
     	bizitza = bizitza - 1;
     	if (this.bizitza == 0) {
-    		this.ezabatuEtsai();
-    		return 0;
-    	} else return -1;
+    		this.ezabatuEtsaia();
+    		
+    	} 
     	
     }
     
