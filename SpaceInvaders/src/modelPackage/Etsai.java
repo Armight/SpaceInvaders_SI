@@ -14,12 +14,26 @@ public abstract class Etsai extends Itsasontzi {
     
 
     
-    //POLIMORFISMO:
+    //MUGITZEKO:
     
-    public void mugituX(int i) {}
+    public void mugituX(int i) {
+    	//i=-1 ezkerrera mugitu
+    	//i=1 eskumara mugitu
+    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY())) {
+    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+    		this.setPosizio(getX()+i, getY());
+    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	}
+    }
     
     
-    public void mugituY() {}
+    public void mugituY() {//etsaia bakarrik beherantz doa
+    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
+    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+    		this.setPosizio(getX(), getY()+1);
+    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	}
+    }
     
     public boolean kolisioakKonprobatu(int pX, int pY) { 
     	return false;
@@ -41,16 +55,15 @@ public abstract class Etsai extends Itsasontzi {
    
     //ETSAIAREN SORRERA/EZABAKETA METODOAK:
     
-    public void sortuEtsaia(int pX, int pY) {
-    	if (super.getPixelKop() == 4) {
-    		this.sortuEtsai(pX, pY);
+    public void sortuEtsaia(int pX, int pY) {//Estaia matrizean sortzeko eta gehitzeko
+    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(pX, pY)) {
+    		EspazioModel.getGelaxkaMatrizea().getGelaxka(pX, pY).setEgoera("Etsaia");
+    		EspazioModel.getGelaxkaMatrizea().addEtsai(this);
     	}
     }
     
     public void ezabatuEtsai() {
-    	if (super.getPixelKop() == 4) {
-    		this.ezabatuEtsaia();
-    	}
+    	this.ezabatuEtsai();
     }
     
     public int bizitzaKendu() {
@@ -62,14 +75,19 @@ public abstract class Etsai extends Itsasontzi {
     	
     }
     
-    //4 PIXELEKO ETSAIAREN METODOAK:
-    protected void sortuEtsai(int pX, int pY) {
-    	
+    public boolean beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
+    	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
+    		PartidaKudeatzailea.getPartidaKudeatzailea().partidaAmaitu(false);
+    	}
     }
+  
+    
     
 
     
     protected void ezabatuEtsaia() {
+    	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+        EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
            
     }
 }
