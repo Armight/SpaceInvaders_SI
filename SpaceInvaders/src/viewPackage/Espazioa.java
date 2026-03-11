@@ -1,8 +1,12 @@
 package viewPackage;
 import java.awt.EventQueue;
 import modelPackage.EspazioModel;
+import modelPackage.PartidaKudeatzailea;
 import controllerPackage.Controller;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -10,63 +14,48 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 //Commit prueba
-public class Espazioa extends JFrame {
+public class Espazioa extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;
-	private static Espazioa nEspazioa;
 	private Controller controller;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
-	/**
-	 * Launch the application.
-	 */
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Espazioa frame = Espazioa.getEspazioa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	private Espazioa() {
-		addKeyListener(this);
-		setFocusable(true);
+	public Espazioa() {
 		getContentPane().setBackground(Color.BLACK);
 		
-		// QUITAR los bordes y decoraciones de la ventana
+		//Leihoaren ertzak eta dekorazioak kendu
 		setUndecorated(true);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizar ventana
+		setExtendedState(JFrame.MAXIMIZED_BOTH); //Leihoa maximizatu
 		
-		// Ahora sí, 100x60 píxeles exactos sin bordes
+		//100x60 pixeleko dimentsioak ezarri
 		setBounds(100, 100, 100, 60);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// GridLayout sin espacios entre celdas
+		//Gelaxken artean tarterik gabeko GridLayout
 		getContentPane().setLayout(new GridLayout(60, 100, 0, 0));
 		
-		// Crear 6000 labels (60 filas * 100 columnas)
+		//6000 label sortu (60 zutabe x 100 ilara)
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				//JLabel lblNewLabel = new JLabel("");
-				//lblNewLabel.setOpaque(true);       
-				//lblNewLabel.setBackground(Color.WHITE);
-				//getContentPane().add(lblNewLabel);
 				GelaxkaView gelaxka = new GelaxkaView();
 				this.pixelak[i][j] = gelaxka;
 				getContentPane().add(gelaxka.getLabel());
 			}
 		}
+		
+		//Observer gehitu
+		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
+		kudeatzailea.addObserver(this);
+		
+		//Listener gehitu
+		Controller controller = Controller.getController();
+		this.addKeyListener(controller);
+		
+		setFocusable(true);
+        this.setVisible(false);
 	}
-	public void konektatu() {
+	
+	private void konektatu() {
 	    EspazioModel matrizea = EspazioModel.getGelaxkaMatrizea();
 	    for (int i = 0; i < matrizea.getAltuera(); i++) {
 	        for (int j = 0; j < matrizea.getZabalera(); j++) {
@@ -75,23 +64,20 @@ public class Espazioa extends JFrame {
 	    }
 	}
 	
-	public void setController(Controller controller) {
-	    this.controller = controller;
-	}
-	public static Espazioa getEspazioa() {  
-		if (nEspazioa == null) {            
-			nEspazioa = new Espazioa();     
-		}                                   
-		return nEspazioa;                   
-	} 
-	
 	@Override
-    public void keyPressed(KeyEvent e) {
-        if (controller != null) {
-            controller.keyPressed(e);
-        }
-    }
-
-    @Override public void keyTyped(KeyEvent e) {}
-    @Override public void keyReleased(KeyEvent e) {}
+	public void update(Observable o, Object arg) {
+		if (arg != null) {
+			
+			//EspazioView eta EspazioModel konektatu eta EspazioView ikusgarri egin
+			if (arg instanceof Boolean) {
+				Boolean b = (Boolean) arg;
+				boolean pantailaratu = b.booleanValue();
+				if (pantailaratu) {
+					this.konektatu();
+			        this.requestFocusInWindow();
+					this.setVisible(pantailaratu);
+				}
+			}
+		}
+	}
 }

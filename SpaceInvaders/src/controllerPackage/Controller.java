@@ -33,7 +33,7 @@ public class Controller implements KeyListener {
             kudeatzailea.setItsasontziKolorea(Color.RED);
             break;
         case KeyEvent.VK_1:
-            //    jokoanHasi();
+            kudeatzailea.jokoanHasi();
         	break;
             }		
 	}

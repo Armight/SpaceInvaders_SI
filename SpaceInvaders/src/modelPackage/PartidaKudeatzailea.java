@@ -31,6 +31,23 @@ public class PartidaKudeatzailea extends Observable {
 		return this.itsasontziKolorea;
 	}
 	
+	public void jokoanHasi() {
+		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
+		this.hasieraItzali();
+		this.espazioViewErakutsi();
+		
+	}
+	
+	private void hasieraItzali() {
+		setChanged();
+		notifyObservers(false);
+	}
+	
+	private void espazioViewErakutsi() {
+		setChanged();
+		notifyObservers(true);
+	}
+	
 }
 
 	

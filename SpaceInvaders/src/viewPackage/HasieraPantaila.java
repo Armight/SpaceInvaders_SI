@@ -37,7 +37,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         contentPane.setLayout(new GridBagLayout());
         setContentPane(contentPane);
 
-        // Titulo
+        // Titulua
         tituloLabel = new JLabel("SPACE INVADERS");
         tituloLabel.setFont(new Font("Bahnschrift", Font.BOLD, 40));
         tituloLabel.setForeground(Color.GREEN);
@@ -47,7 +47,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         gbc1.insets = new Insets(10, 10, 10, 10);
         contentPane.add(tituloLabel, gbc1);
 
-        // Instrucciones seleccion nave
+        //Ontziaren aukeraketa instrukzioak
         instrukzioakLabel = new JLabel("* Press <G> Green  <B> Blue  <R> Red to play *");
         instrukzioakLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         instrukzioakLabel.setForeground(Color.WHITE);
@@ -57,7 +57,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         gbc2.insets = new Insets(10, 10, 10, 10);
         contentPane.add(instrukzioakLabel, gbc2);
 
-        // Nave seleccionada
+        //Ontzi aukeratua
         hautatutaLabel = new JLabel("Hautatu itsasontzia...");
         hautatutaLabel.setFont(new Font("Arial", Font.ITALIC, 14));
         hautatutaLabel.setForeground(Color.ORANGE);
@@ -67,9 +67,11 @@ public class HasieraPantaila extends JFrame implements Observer{
         gbc3.insets = new Insets(10, 10, 10, 10);
         contentPane.add(hautatutaLabel, gbc3);
         
+        //Observer gehitu
         PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
         kudeatzailea.addObserver(this);
         
+        //Listener gehitu
         Controller controller = Controller.getController();
         this.addKeyListener(controller);
         
@@ -77,13 +79,6 @@ public class HasieraPantaila extends JFrame implements Observer{
         this.requestFocusInWindow();
         this.setVisible(true);
     }
-
-    @Override
-	public void update(Observable o, Object arg) {
-		if (arg != null && arg instanceof Color) {
-			this.erakutsiItsasontziHautatua((Color)arg);
-		}
-	}
     
     private void erakutsiItsasontziHautatua(Color pKolorea) {
     	String mota = this.kolorearenIzena(pKolorea);
@@ -101,8 +96,23 @@ public class HasieraPantaila extends JFrame implements Observer{
     	if (pKolorea.equals(Color.RED)) return "Red";
     	return "Ezezaguna";
     }
-
-	
     
-    
+    @Override
+   	public void update(Observable o, Object arg) {
+   		if (arg != null) {
+   			
+   			//Itsasontziaren kolorea
+   			if (arg instanceof Color) {
+   				this.erakutsiItsasontziHautatua((Color)arg);
+   				
+   				//HasieraPantaila kendu
+   			} else if (arg instanceof Boolean) {
+   				Boolean b = (Boolean) arg;
+   				boolean pantailaratu = b.booleanValue();
+   				if (!pantailaratu) {
+   					this.setVisible(pantailaratu);
+   				}
+   			}
+   		}
+   	}
 }

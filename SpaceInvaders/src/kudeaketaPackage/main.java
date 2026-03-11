@@ -11,7 +11,7 @@ import viewPackage.HasieraPantaila;
 public class main {
     public static void main(String[] args) {
     	HasieraPantaila hasierapnataila = new HasieraPantaila();
-    	Espazioa espazioView = Espazioa.getEspazioa();
+    	Espazioa espazioView = new Espazioa();
     	EventQueue.invokeLater(() -> PartidaKudeatzailea.getPartidaKudeatzailea());
     }
 }
