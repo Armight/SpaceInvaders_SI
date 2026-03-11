@@ -32,10 +32,11 @@ public abstract class Jokalari extends Itsasontzi {
 	public void mugituJokalariaX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
-		this.setPosizio(getX()+i, getY());//posizio berria atzitu
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
-		
+		if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY())) {
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
+			this.setPosizio(getX()+i, getY());//posizio berria atzitu
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
+		}
 			
 		
 	}
@@ -44,11 +45,12 @@ public abstract class Jokalari extends Itsasontzi {
 		
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
-		this.setPosizio(getX(), getY()-i);//posizio berria atzitu
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
+		if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()-i)) {
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
+			this.setPosizio(getX(), getY()-i);//posizio berria atzitu
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
 				
-		}
+		}}
 	}
 	
 	
