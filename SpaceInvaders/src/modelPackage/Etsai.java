@@ -75,9 +75,9 @@ public abstract class Etsai extends Itsasontzi {
     	
     }
     
-    public boolean beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
+    public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
     	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().partidaAmaitu(false);
+    		PartidaKudeatzailea.getPartidaKudeatzailea();
     	}
     }
   

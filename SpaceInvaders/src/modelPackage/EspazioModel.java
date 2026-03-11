@@ -27,7 +27,7 @@ public class EspazioModel {
 	    etsaiak = new ArrayList<Etsai>();
 	}
 	
-	public static EspazioModel getGelaxkaMatrizea() {
+	public static EspazioModel getGelaxkaMatrizea() {//EMA
 		if (nGM == null) {
 			nGM = new EspazioModel();
 		}
@@ -47,6 +47,18 @@ public class EspazioModel {
 		return this.matrizea[pY][pX];
 	}
 	
+	public boolean espaziotikKanpo(int pX, int pY) {
+		 boolean kanpoan=false;
+		 if(pX<0 || pX> this.getZabalera()) {
+			 kanpoan=true;
+		 }
+		 if(pY<0 || pY>this.getAltuera()) {
+			 kanpoan=true;
+		 }
+		 return kanpoan;
+	 }
+	
+	//JOKOA HASTEKO
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
 		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
@@ -60,8 +72,46 @@ public class EspazioModel {
 	}
 	
 
-}
+//TIROEN METODOAK:
 	
+	public void removeTiro(Tiro pTiro) {
+			this.tiroak.remove(pTiro);
+		}
+		
+	public void addTiro(Tiro pTiro) {
+			this.tiroak.add(pTiro);
+		}
+		
+	private void mugituTiroak() {
+			ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
+			for (Tiro t : tiroakCopia) {
+			    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+			}
+		}
+
+
+//ETSAIEN METODOAK:
+
+	public void removeEtsai(Etsai pEtsai) {
+		this.etsaiak.remove(pEtsai);
+	}
+	
+	public void addEtsai(Etsai pEtsai) {
+		this.etsaiak.add(pEtsai);
+	}
+	
+	private void mugituEtsaiak() {
+		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
+		for(Etsai e : etsaiakKopia) {
+			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
+		}
+	}
+	
+	
+
+
+
+}
 	
 	
 	/*
@@ -83,16 +133,7 @@ public class EspazioModel {
 		return this.matrizea[0].length;
 	}
 	
-	public boolean espaziotikKanpo(int pX, int pY) {
-		 boolean kanpoan=false;
-		 if(pX<0 || pX> this.getZabalera()) {
-			 kanpoan=true;
-		 }
-		 if(pY<0 || pY>this.getAltuera()) {
-			 kanpoan=true;
-		 }
-		 return kanpoan;
-	 }
+	
 	
 	//TIROEN ARRAYAREN METODOAK:
 	
