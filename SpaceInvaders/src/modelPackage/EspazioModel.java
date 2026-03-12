@@ -179,27 +179,24 @@ public class EspazioModel {
 		//TIROAK KONPROBATU
 		while (itrT.hasNext()) {
 			Tiro t = itrT.next();
-			System.out.println(t.getKolisionatu());
-			
 			if (t.getKolisionatu()) {
-				System.out.println("Kolisioa gertatu");
-				//tiroa gorde geroago ezabatzeko
+				//tiroa gorde gerorako
 				ezabatuTiroak.add(t);
-				System.out.println("Tiroa gehituta");
 				itrT.remove();
-				System.out.println("Tiroa ezabatuta");
 			}
 		}
-		
 		//ETSAIAK KONPROBATU
 		if (!ezabatuTiroak.isEmpty()) {
 			for (Etsai e : etsaiakKopia) {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
 				for (Tiro t : ezabatuTiroak) {
-					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {						
-						if (e.bizitzaEguneratu()) {							
+					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {
+						e.bizitzaKendu();
+						ezabatuEtsai.add(e);
+						/*boolean hilDa = e.bizitzaEguneratu();
+						if (hilDa) {
 							ezabatuEtsai.add(e);
-						}
+						}*/
 					}
 				}
 			}
@@ -211,9 +208,9 @@ public class EspazioModel {
 	
 	//UPDATE:
 	public void jokoaEguneratu() {
-		this.mugituEtsaiak();   
 		this.mugituTiroak();
-		this.kolisioakKonprobatu( );
+		//this.kolisioakKonprobatu( );
+		this.mugituEtsaiak();   
 		this.checkJokoa();
 	}
 }

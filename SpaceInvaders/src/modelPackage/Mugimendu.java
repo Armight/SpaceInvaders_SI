@@ -4,6 +4,7 @@ public abstract class Mugimendu {
 
 	private int x, y;
 	private  int pixelKop;
+	protected boolean kolisionatu;
 	
 	protected Mugimendu(int pX, int pY, int pPixelKop) {
 		this.x= pX;

@@ -16,26 +16,26 @@ public class TiroTxikia extends Tiro {
     
     
     public void mugitu() {
+    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
     	
-    	EspazioModel espazio= EspazioModel.getGelaxkaMatrizea();
-
-
-        
-        //Oraingo pixela etsai bat da, beraz "hutsik" egoeran jarri eta kolisio bat gertatu dela notifikatu
-        if (espazio.getGelaxka(getX(), getY()-1).getEgoera().equals("Etsai")) {
-        	super.kolisionatu = true; 
-    		espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Hutsik");//ez bada espaziotik irten, gelaxka berriaren egoera aldatu
-        	
-        } else {
-        	espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Hutsik");//oraingo pixel kendu
-        	super.setPosizio(getX(), super.getY()-1); // pixel bat igo
-        	if (super.espaziotikKanpo(getY())) {//espaziotik irteten bada, ezabatu
-        		super.removeTiro();         
-        	}
-        
-        	else {
-        		espazio.getGelaxka(super.getX(), super.getY()).setEgoera("Tiro");//ez bada espaziotik irten, gelaxka berriaren egoera aldatu
-        	}
-        }
+    	int yBerria = getY() - 1;
+    	super.setPosizio(getX(), yBerria);
+    	String egoera = espazioa.getGelaxka(getX(), getY()).getEgoera();
+    	if (egoera.equals("Etsaia")) {
+    		kolisionatu = true;
+    		System.out.println("tiro kolisioa");
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
+    		return;
+    	} 
+    	if (super.espaziotikKanpo(getY())) {
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
+    		super.removeTiro();
+    		return;
+    	}
+    	espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
+    	
+    	
     }
-}
+     
+    }

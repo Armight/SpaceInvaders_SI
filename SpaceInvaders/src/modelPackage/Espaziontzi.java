@@ -1,6 +1,6 @@
 package modelPackage;
 public abstract class Espaziontzi extends Mugimendu {
-	
+	//Izen aldaketa
 	protected int bizitza;
 	
 	protected Espaziontzi(int pX, int pY, int pPixelKop) {
@@ -11,11 +11,11 @@ public abstract class Espaziontzi extends Mugimendu {
 		return bizitza;
 	}
 	
-	protected boolean bizitzaKendu() {
+	protected void bizitzaKendu() {
 		bizitza = bizitza - 1;
 		if (bizitza == 0) {
-			return true;
-		} else return false;
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		}
 	}
 }
 

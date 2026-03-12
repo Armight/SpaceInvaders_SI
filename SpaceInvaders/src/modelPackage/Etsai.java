@@ -1,7 +1,7 @@
 package modelPackage;
 
 public abstract class Etsai extends Espaziontzi {
-	
+		
     protected Etsai(int pX, int pY, int pPixelKop) {
         super(pX, pY, pPixelKop);
     }
@@ -17,11 +17,11 @@ public abstract class Etsai extends Espaziontzi {
         int r = (int)(Math.random() * 3); // 0, 1 edo 2
 
         if (r == 0) {
-           //mugituEtsaiX(-1); // ezkerrera
+           mugituEtsaiX(-1); // ezkerrera
         } else if (r == 1) {
-           //mugituEtsaiX(1);  // eskumara
+           mugituEtsaiX(1);  // eskumara
         } else {
-           //mugituEtsaiY();  // behera
+           mugituEtsaiY();  // behera
         }
     }
     
@@ -30,48 +30,11 @@ public abstract class Etsai extends Espaziontzi {
     		return true;
     	} else return false;
     }
-    
-    
-    
-    
-    
-    
-    //MUGITZEKO:
-    /*
-    public void mugituX(int i) {
-    	int newX=this.getX()+i;
-    	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
-    	
-    	if(egoera.equalsIgnoreCase("Etsaia")) return; //beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
-    	else if (egoera.equalsIgnoreCase("Jokalaria")) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
-    	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
-    	else if(egoera.equalsIgnoreCase("Tiro")) {
-    		this.bizitzaKendu();
-    	}
-    	else if(!kanpo) {this.mugituEtsaiX(i);}
-    }*/
-    
-    
-    
-    
-    
-    //MUGIMENDU SEUDORANDOM-A SORTU
-    
-   
-   
-    //ETSAIAREN SORRERA/EZABAKETA METODOAK:
-    
-    
-    
-    
-    /////////ALDATRUUTHRHGEFSD´LFEROTGJFVMKDFKGTJBIKF
-    public boolean bizitzaEguneratu() {
-    	boolean hilDa = super.bizitzaKendu();
-    	if (hilDa) {
-            EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-        }
-    	return hilDa;
+  
+    @Override
+    public void bizitzaKendu() {
+    	super.bizitzaKendu();
+    	EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
     }
     
     /*
@@ -82,9 +45,9 @@ public abstract class Etsai extends Espaziontzi {
     }*/
   
     
-    protected void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
+    public void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
     	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-        EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
+        //EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
            
     }
     

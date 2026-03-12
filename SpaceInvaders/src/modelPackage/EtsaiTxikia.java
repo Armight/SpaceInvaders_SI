@@ -19,28 +19,37 @@ public class EtsaiTxikia extends Etsai {
     	//i=-1 denean, ezkerrerantz mugitu
     	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
     	int xBerria = this.getX() + i;
+    	String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
+
     	if (espazioa.espaziotikKanpo(xBerria, getY())) {
     		return;
     	}
-
-    	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-    	this.setPosizio(getX()+i, getY());
-    	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	if (egoera.equalsIgnoreCase("Etsaia")) return;
+    	else {
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+        	this.setPosizio(xBerria, getY());
+        	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	}
+    	
+    	
     }
     
     @Override
     public void mugituEtsaiY() {//etsaia bakarrik beherantz doa
     	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
     	int yBerria = this.getY() + 1;
+    	String egoera = espazioa.getGelaxka(getX(), yBerria).getEgoera();
+
     	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
     		espazioa.setJokoaAmaitu();
     		return;
     	}
-    	
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-    	this.setPosizio(getX(), getY()+1);
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	
+    	if (egoera.equalsIgnoreCase("Etsaia")) return;
+    	else {
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+        	this.setPosizio(getX(), yBerria);
+        	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	}
     }
        
 }
