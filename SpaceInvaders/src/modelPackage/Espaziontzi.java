@@ -1,5 +1,4 @@
 package modelPackage;
-
 public abstract class Espaziontzi extends Mugimendu {
 	
 	protected int bizitza;
