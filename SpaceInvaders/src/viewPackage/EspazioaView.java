@@ -13,7 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-//Commit prueba
+//Commit prueba2
 public class EspazioaView extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;

@@ -51,6 +51,10 @@ public class PartidaKudeatzailea extends Observable {
 		notifyObservers(true);
 	}
 	
+	public void jokoaBukatu() {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
+		
+	}
+	
 }
 
 	

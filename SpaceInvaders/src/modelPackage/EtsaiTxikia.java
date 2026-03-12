@@ -9,10 +9,5 @@ public class EtsaiTxikia extends Etsai {
         
     }
     
-    
-    
-    
-    
-    
-    
+       
 }

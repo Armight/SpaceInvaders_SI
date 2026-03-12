@@ -11,32 +11,40 @@ public abstract class Etsai extends Itsasontzi {
         this.bizitza=pBizitza;
     }
     
-    
-
-    
     //MUGITZEKO:
     
     public void mugituX(int i) {
+    	int newX=this.getX()+i;
+    	
+    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY());
+    	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
+    	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
+    	else if (egoera.equalsIgnoreCase("Jokalaria")) {
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
+    	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
+    	else if(egoera.equalsIgnoreCase("Tiro")) {
+    		this.bizitzaKendu();
+    	}
+    	else if(!kanpo) {this.mugimenduaGaratuX(i);}
+    }
+    
+    
+    public void mugimenduaGaratuX(int i) {
     	//i=-1 ezkerrera mugitu
     	//i=1 eskumara mugitu
-    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY())) {
+    	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX()+i, getY());
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	}
+    	
     }
     
-    
     public void mugituY() {//etsaia bakarrik beherantz doa
-    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
+    	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX(), getY()+1);
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	}
-    }
-    
-    public boolean kolisioakKonprobatu(int pX, int pY) { 
-    	return false;
+    	
     }
     
     //MUGIMENDU SEUDORANDOM-A SORTU
@@ -62,36 +70,38 @@ public abstract class Etsai extends Itsasontzi {
     	}
     }
     
-    public void ezabatuEtsai() {
-    	this.ezabatuEtsai();
-    }
+    
     
     public int bizitzaKendu() {
     	bizitza = bizitza - 1;
-    	if (this.bizitza == 0) {
-    		this.ezabatuEtsai();
-    		return 0;
-    	} else return -1;
+    	if (bizitza <= 0) {
+            
+            EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+        }
+    	return bizitza;
     	
     }
     
-    public boolean beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
+    public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
     	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().partidaAmaitu(false);
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
     	}
     }
   
     
-    
-
-    
-    protected void ezabatuEtsaia() {
+    protected void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
     	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
         EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
            
     }
+    
+    protected boolean kolisioakKonprobatu (int pX, int pY) {
+    	if (getX() == pX && getY() == pY) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    	
+    }
 }
 
-    
-    
-    

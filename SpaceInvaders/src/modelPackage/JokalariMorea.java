@@ -16,8 +16,5 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 		
 	}
 	
-	
-	
-	
 }
 

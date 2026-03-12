@@ -26,7 +26,7 @@ public class EspazioModel {
 	    etsaiak = new ArrayList<Etsai>();
 	}
 	
-	public static EspazioModel getGelaxkaMatrizea() {
+	public static EspazioModel getGelaxkaMatrizea() {//EMA
 		if (nGM == null) {
 			nGM = new EspazioModel();
 		}
@@ -46,42 +46,6 @@ public class EspazioModel {
 		return this.matrizea[pY][pX];
 	}
 	
-	public void jokoanHasi() {
-		//Jokalariaren koordenatuak lortu
-		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
-		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //5
-		
-	    //jokalaria instantziatu
-	    jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
-	    
-	    //Jokalaria sortu
-	    jokalari.sortuJokalaria(pXErdia, pYBehean);
-	}
-	
-
-}
-	
-	
-	
-	/*
-	public void setJokalari(Jokalari pJokalari) {
-		this.jokalari = pJokalari;
-	}
-	
-	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
-		return this.matrizea[pY][pX];
-	}
-	
-	//MATRIZEAREN METODOAK:
-	
-	public int getAltuera() {//y
-		return this.matrizea.length;
-	}
-	
-	public int getZabalera() {//x
-		return this.matrizea[0].length;
-	}
-	
 	public boolean espaziotikKanpo(int pX, int pY) {
 		 boolean kanpoan=false;
 		 if(pX<0 || pX> this.getZabalera()) {
@@ -93,22 +57,69 @@ public class EspazioModel {
 		 return kanpoan;
 	 }
 	
-	//TIROEN ARRAYAREN METODOAK:
+	//JOKOA HASTEKO
+	public void jokoanHasi() {
+		//Jokalariaren koordenatuak lortu
+		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
+		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //5
+		
+	    //jokalaria instantziatu
+	    jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
+	    
+	    //Jokalaria sortu
+	    jokalari.sortuJokalaria(pXErdia, pYBehean);
+	    this.sortuEtsaiZerrenda();
+	}
+	
+
+//TIROEN METODOAK:
 	
 	public void removeTiro(Tiro pTiro) {
-		this.tiroak.remove(pTiro);
-	}
-	
+			this.tiroak.remove(pTiro);
+		}
+		
 	public void addTiro(Tiro pTiro) {
-		this.tiroak.add(pTiro);
+			this.tiroak.add(pTiro);
+		}
+		
+	private void mugituTiroak() {
+			ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
+			for (Tiro t : tiroakCopia) {
+			    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+			}
+		}
+
+
+//ETSAIEN METODOAK:
+
+	public void removeEtsai(Etsai pEtsai) {
+		this.etsaiak.remove(pEtsai);
 	}
 	
-	private void mugituTiroak() {
-		ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
-		for (Tiro t : tiroakCopia) {
-		    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+	public void addEtsai(Etsai pEtsai) {
+		this.etsaiak.add(pEtsai);
+	}
+	
+	private void mugituEtsaiak() {
+		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
+		for(Etsai e : etsaiakKopia) {
+			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
 		}
 	}
+	
+	
+	public void setJokalari(Jokalari pJokalari) {
+		this.jokalari = pJokalari;
+	}
+	
+
+	
+	//JOKALARIAREN METODODAK:
+	public Jokalari getJokalari() {
+		return jokalari;
+	}
+	
+	
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 	public void sortuEtsaiZerrenda() {
@@ -133,22 +144,9 @@ public class EspazioModel {
 		
 	}
 	
-															//BEHARREZKOA???
-	public void removeEtsai(Etsai pEtsai) {
-		this.etsaiak.remove(pEtsai);
-		pEtsai.bizitzaKendu();
-	}
+														
+	//BEHARREZKOA???
 	
-	public void addEtsai(Etsai pEtsai) {
-		this.etsaiak.add(pEtsai);
-	}
-	
-	private void mugituEtsaiak() {
-		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
-		for(Etsai e : etsaiakKopia) {
-			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
-		}
-	}
 	
 	private Iterator<Etsai> getEtsaiIterator(){
 		return etsaiak.iterator();
@@ -190,17 +188,6 @@ public class EspazioModel {
 		etsaiak.removeAll(ezabatuEtsai);
 	}
 	
-//	*public boolean kolisioaJokalariEtsai() {
-		//if (jokalari == null || etsaiak.isEmpty()) {
-			//return false;
-		//}
-		//if (jokalari instanceof JokalariMorea) { // lau pixeleko jokalaria
-			//JokalariMorea player = (JokalariMorea) jokalari;
-			//if ()
-		//^}
-//	}
-	
-	
 	public boolean etsairikEz() {
 		return this.etsaiak.isEmpty();
 	}
@@ -210,6 +197,6 @@ public class EspazioModel {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
-	}*/
-
+	}
+}
 
