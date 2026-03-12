@@ -9,10 +9,11 @@ import java.util.Iterator;
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
-	
 	private ArrayList<Tiro> tiroak;
-	private ArrayList<Etsai> etsaiak; //TODO: ETSAIEN METODOAK
+	private ArrayList<Etsai> etsaiak; 
 	private Jokalari jokalari;
+	private boolean jokoaMartxan = false;
+	private boolean jokoaAmaitu = false;
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -46,13 +47,33 @@ public class EspazioModel {
 		return this.matrizea[pY][pX];
 	}
 	
+	//JOKOAREN KUDEAKETA
+	public void setJokoaAmaitu() {
+		jokoaAmaitu = true;
+	}
+	
+	public boolean getJokoaAmaitu() {
+		return this.jokoaAmaitu;
+	}
+	
+	private void checkJokoa() {
+		PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+	}
+	
+	public boolean etsairikEz() {
+		if (jokoaMartxan) {
+			return etsaiak.isEmpty();
+		} else return false;
+	}
+	
 	public boolean espaziotikKanpo(int pX, int pY) {
-		 boolean kanpoan=false;
-		 if(pX<0 || pX> this.getZabalera()) {
-			 kanpoan=true;
+		 boolean kanpoan = false;
+		 
+		 if (pX < 0 || pX >= this.getZabalera()) {
+			 kanpoan = true;
 		 }
-		 if(pY<0 || pY>this.getAltuera()) {
-			 kanpoan=true;
+		 if (pY < 0 || pY >= this.getAltuera()) {
+			 kanpoan = true;
 		 }
 		 return kanpoan;
 	 }
@@ -60,15 +81,16 @@ public class EspazioModel {
 	//JOKOA HASTEKO
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
+		this.jokoaMartxan = true;
 		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
-		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 10; //40
+		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //48
 		
 	    //jokalaria instantziatu
-	    jokalari = new JokalariMorea(pXErdia, pYBehean, true);
+	    jokalari = new JokalariMorea(pXErdia, pYBehean);
 	    
 	    //Jokalaria eta etsaiak sortu
-	    jokalari.sortuJokalaria(pXErdia, pYBehean);
-	    //this.sortuEtsaiZerrenda();
+	    jokalari.sortuJokalaria();
+	    this.sortuEtsaiZerrenda();
 	}
 	
 
@@ -123,14 +145,6 @@ public class EspazioModel {
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 	public void sortuEtsaiZerrenda() {
-		int pX = 50;
-		int pY = 5;
-		Etsai et = new EtsaiTxikia(50,5);
-		et.sortuEtsaia(pX, pY);
-		this.etsaiak.add(et);
-		
-		
-		/*
 		//8 etsaiek har dezaketen posizioen ArrayList-a sortu
 		//(10,5), (20, 5) ... (80,5)
 		ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
@@ -146,20 +160,12 @@ public class EspazioModel {
 		for (int i = 0; i < etsaiKop; i++) {
 			int[] pos = etsaiPosizioak.remove(0);
 			Etsai et = new EtsaiTxikia(pos[0], pos[1]);
-			et.sortuEtsaia(pos[0], pos[1]);
+			et.sortuEtsaia();
 			this.etsaiak.add(et);
-		}*/
+		}
 		
 	}
-	
-														
-	//BEHARREZKOA???
-	
-	
-	private Iterator<Etsai> getEtsaiIterator(){
-		return etsaiak.iterator();
-	}
-	
+		
 	private Iterator<Tiro> getTiroIterator(){
 		return tiroak.iterator();
 	}
@@ -173,20 +179,25 @@ public class EspazioModel {
 		//TIROAK KONPROBATU
 		while (itrT.hasNext()) {
 			Tiro t = itrT.next();
+			System.out.println(t.getKolisionatu());
+			
 			if (t.getKolisionatu()) {
-				//indizea gorde geroago ezabatzeko
+				System.out.println("Kolisioa gertatu");
+				//tiroa gorde geroago ezabatzeko
 				ezabatuTiroak.add(t);
+				System.out.println("Tiroa gehituta");
 				itrT.remove();
+				System.out.println("Tiroa ezabatuta");
 			}
 		}
+		
 		//ETSAIAK KONPROBATU
 		if (!ezabatuTiroak.isEmpty()) {
 			for (Etsai e : etsaiakKopia) {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
 				for (Tiro t : ezabatuTiroak) {
-					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {
-						int hilDa = e.bizitzaKendu();
-						if (hilDa == 0) {
+					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {						
+						if (e.bizitzaEguneratu()) {							
 							ezabatuEtsai.add(e);
 						}
 					}
@@ -196,20 +207,14 @@ public class EspazioModel {
 		etsaiak.removeAll(ezabatuEtsai);
 	}
 	
-	public void etsairikEz() {
-		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
-		
-		if (this.etsaiak != null && this.etsaiak.isEmpty()) {
-			kudeatzailea.jokoaBukatu(true);	//true itzuliko da jokoa irabazi egin denean
-		}
-	}
+	
 	
 	//UPDATE:
 	public void jokoaEguneratu() {
+		this.mugituEtsaiak();   
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
-		//this.etsairikEz();
-		this.mugituEtsaiak();   
+		this.checkJokoa();
 	}
 }
 

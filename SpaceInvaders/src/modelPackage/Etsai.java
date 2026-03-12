@@ -1,93 +1,85 @@
 package modelPackage;
 
-//Komentario prueba
-public abstract class Etsai extends Itsasontzi {
-	//eraikitzaile ondo ipini
-	//proba push
-	private int bizitza;
+public abstract class Etsai extends Espaziontzi {
 	
-    protected Etsai(int pX, int pY, boolean pErakutsi, int pPixelKop, int pBizitza) {
-        super(pX, pY, pErakutsi, pPixelKop);
-        this.bizitza=pBizitza;
+    protected Etsai(int pX, int pY, int pPixelKop) {
+        super(pX, pY, pPixelKop);
     }
     
-    //MUGITZEKO:
+    //ETSAI METODO OROKORRAK:
+    public abstract void sortuEtsaia();
     
+    public abstract void mugituEtsaiX(int i);
+    
+    public abstract void mugituEtsaiY();
+    
+    public void mugituRandom() {
+        int r = (int)(Math.random() * 3); // 0, 1 edo 2
+
+        if (r == 0) {
+           //mugituEtsaiX(-1); // ezkerrera
+        } else if (r == 1) {
+           //mugituEtsaiX(1);  // eskumara
+        } else {
+           //mugituEtsaiY();  // behera
+        }
+    }
+    
+    public boolean kolisioakKonprobatu (int pX, int pY) {
+    	if (getX() == pX && getY() == pY) {
+    		return true;
+    	} else return false;
+    }
+    
+    
+    
+    
+    
+    
+    //MUGITZEKO:
+    /*
     public void mugituX(int i) {
     	int newX=this.getX()+i;
-    	
-    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(newX, getY());
-    	if (kanpo) return; //Kanpora irtengo bada ez egin ezer
     	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
-    	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
+    	
+    	if(egoera.equalsIgnoreCase("Etsaia")) return; //beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
     	else if (egoera.equalsIgnoreCase("Jokalaria")) {
     		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
     	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
     	else if(egoera.equalsIgnoreCase("Tiro")) {
     		this.bizitzaKendu();
     	}
-    	else if(!kanpo) {this.mugimenduaGaratuX(i);}
-    }
+    	else if(!kanpo) {this.mugituEtsaiX(i);}
+    }*/
     
     
-    public void mugimenduaGaratuX(int i) {
-    	//i=-1 ezkerrera mugitu
-    	//i=1 eskumara mugitu
-    	
-    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-    		this.setPosizio(getX()+i, getY());
-    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	
-    }
     
-    public void mugituY() {//etsaia bakarrik beherantz doa
-    	
-    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-    		this.setPosizio(getX(), getY()+1);
-    		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	
-    }
+    
     
     //MUGIMENDU SEUDORANDOM-A SORTU
     
-    public void mugituRandom() {
-        int r = (int)(Math.random() * 3); // 0, 1 edo 2
-
-        if (r == 0) {
-           mugituX(-1); // ezkerrera
-        } else if (r == 1) {
-           mugituX(1);  // eskumara
-        } else {
-           mugituY();  // behera
-        }
-    }
+   
    
     //ETSAIAREN SORRERA/EZABAKETA METODOAK:
     
-    public void sortuEtsaia(int pX, int pY) {//Estaia matrizean sortzeko eta gehitzeko
-    	if(!EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(pX, pY)) {
-    		EspazioModel.getGelaxkaMatrizea().getGelaxka(pX, pY).setEgoera("Etsaia");
-    		EspazioModel.getGelaxkaMatrizea().addEtsai(this);
-    	}
-    }
     
     
     
-    public int bizitzaKendu() {
-    	bizitza = bizitza - 1;
-    	if (bizitza <= 0) {
-            
+    /////////ALDATRUUTHRHGEFSD´LFEROTGJFVMKDFKGTJBIKF
+    public boolean bizitzaEguneratu() {
+    	boolean hilDa = super.bizitzaKendu();
+    	if (hilDa) {
             EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
         }
-    	return bizitza;
-    	
+    	return hilDa;
     }
     
+    /*
     public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
     	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
     		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
     	}
-    }
+    }*/
   
     
     protected void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
@@ -96,13 +88,6 @@ public abstract class Etsai extends Itsasontzi {
            
     }
     
-    protected boolean kolisioakKonprobatu (int pX, int pY) {
-    	if (getX() == pX && getY() == pY) {
-    		return true;
-    	}else {
-    		return false;
-    	}
-    	
-    }
+
 }
 

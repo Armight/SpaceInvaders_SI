@@ -57,18 +57,27 @@ public class PartidaKudeatzailea extends Observable {
 	}
 	
 	
-	private void amaieraPantailaErakutsi(boolean pIrabazia) {
+	private void amaieraPantailaErakutsi(boolean pIrabazi) {
 		String mezua;
-		if (pIrabazia) mezua = "irabazia";
+		if (pIrabazi) mezua = "irabazia";
 		else mezua = "galdua";
 	
 		setChanged();
 		notifyObservers(mezua);
 	}
 	
-	public void jokoaBukatu(boolean pIrabazia) {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
+	public void checkJokoa() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		if (espazioa.getJokoaAmaitu()) {	//Etsai bat Y limitera ailegatu da edo jokalari bat etsai batekin talka egin du
+			this.jokoaBukatu(false);
+		} else if (espazioa.etsairikEz()) {
+			this.jokoaBukatu(true);
+		}
+	}
+	
+	private void jokoaBukatu(boolean pIrabazi) {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
 		this.espazioViewItzali( );
-		this.amaieraPantailaErakutsi(pIrabazia);
+		this.amaieraPantailaErakutsi(pIrabazi);
 	}
 	
 }

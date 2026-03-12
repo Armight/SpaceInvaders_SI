@@ -2,30 +2,26 @@ package modelPackage;
 
 public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoetan ya Gorria, Berdea, Urdina kodetu
 												//tiro bakarra du: pixel bateko tiroa.
-	
-
-	private static String kolorea="Morea";
-	private static int pixelKop = 1;
-	
-
-
-	
-	//eraikitzaile ondo ipini
-	public JokalariMorea(int pX, int pY, boolean pErakutsi) {
-		super(pX, pY, pErakutsi, pixelKop);
+		
+	public JokalariMorea(int pX, int pY) {
+		//JokalariMorearen pixelKop = 1, bizitza = 1, kolorea = Morea
+		super(pX, pY, 1, 1, "Morea");
 	}
 	
 	@Override
-	public void sortuJokalaria(int pX, int pY) {
-		super.sortuJokalaria(pX, pY);
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(pX, pY).setEgoera("Jokalari");
+	public void sortuJokalaria() {
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");
 	}
 	
 	@Override
 	public void mugituJokalariaX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
-		if(!this.xLimiteak(i)) return;
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	int xBerria = this.getX() + i;
+    	if (espazioa.espaziotikKanpo(xBerria, getY())) {
+    		return;
+    	}
 		
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX()+i, getY());//posizio berria atzitu
@@ -36,16 +32,20 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 	public void mugituJokalariaY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		if(!this.yLimiteak(i)) return;
-		
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+    	int yBerria = this.getY() - i;
+    	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
+    		return;
+    	}
+    	
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX(), getY()-i);//posizio berria atzitu
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
 	}
 	
 	@Override
 	public void shoot() {
-		TiroTxikia tiro=new TiroTxikia(getX(), getY() -2);
+		TiroTxikia tiro = new TiroTxikia(getX(), getY() -2);
 		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
 }

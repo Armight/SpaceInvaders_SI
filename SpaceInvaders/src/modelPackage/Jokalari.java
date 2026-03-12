@@ -1,24 +1,23 @@
 package modelPackage;
 
-public abstract class Jokalari extends Itsasontzi {
+public abstract class Jokalari extends Espaziontzi {
 
+	private String kolorea;
 	
-	//eraikitzaile ondo ipini
-	public Jokalari(int pX, int pY, boolean pErakutsi,int pixelKop) {
-		super(pX, pY, pErakutsi,pixelKop);
-		
+	public Jokalari(int pX, int pY,int pixelKop, int pBizitza, String pKolorea) {
+		super(pX, pY, pixelKop);
+		super.bizitza = 1;
+		this.kolorea = pKolorea;
 	}
 	
-	//JOKALARI METODO OROKORRAK:
-	public abstract void shoot();
-		
-	public void sortuJokalaria(int pX, int pY) {
-		this.setPosizio(pX, pY);
-	}
+	//JOKALARI METODO OROKORRAK:		
+	public abstract void sortuJokalaria();
 	
 	public abstract void mugituJokalariaX(int i);
 	
 	public abstract void mugituJokalariaY(int i);
+	
+	public abstract void shoot();
 }
 	
 
