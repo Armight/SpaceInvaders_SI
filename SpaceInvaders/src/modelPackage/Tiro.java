@@ -28,6 +28,8 @@ public abstract class Tiro extends Mugimendu {
     	return kolisionatu;
     }
     
+    
+    
 
     
 }

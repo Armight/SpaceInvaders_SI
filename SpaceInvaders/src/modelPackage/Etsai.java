@@ -13,11 +13,11 @@ public abstract class Etsai extends Itsasontzi {
     
     //MUGITZEKO:
     
-    public void mugituX(int i) {
+    public void mugituX(int i) {//mugitzeko konprobaketak eginda
     	int newX=this.getX()+i;
     	
     	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(newX, getY());
-    	if (kanpo) return; //Kanpora irtengo bada ez egin ezer
+    	
     	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
     	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
     	else if (egoera.equalsIgnoreCase("Jokalaria")) {
@@ -28,7 +28,24 @@ public abstract class Etsai extends Itsasontzi {
     	}
     	else if(!kanpo) {this.mugimenduaGaratuX(i);}
     }
-    
+    public void mugituY() {// mugitu konprobaketak eginda
+		
+    	int newY=this.getY()+1;
+    	
+    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(newY, getY());
+    	
+    	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newY, getY()).getEgoera();
+    	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
+    	else if (egoera.equalsIgnoreCase("Jokalaria")) {
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
+    	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
+    	else if(egoera.equalsIgnoreCase("Tiro")) {
+    		this.bizitzaKendu();
+    	}
+    	else if(!kanpo) {this.mugimenduaGaratuY();}
+		
+		
+	}
     
     public void mugimenduaGaratuX(int i) {
     	//i=-1 ezkerrera mugitu
@@ -40,7 +57,7 @@ public abstract class Etsai extends Itsasontzi {
     	
     }
     
-    public void mugituY() {//etsaia bakarrik beherantz doa
+    public void mugimenduaGaratuY() {//etsaia bakarrik beherantz doa
     	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
     		this.setPosizio(getX(), getY()+1);

@@ -152,6 +152,10 @@ public class EspazioModel {
 		
 	}
 	
+	
+	
+	
+	
 														
 	//BEHARREZKOA???
 	
