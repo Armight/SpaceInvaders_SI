@@ -66,7 +66,7 @@ public class EspazioModel {
 	    //jokalaria instantziatu
 	    jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
 	    
-	    //Jokalaria sortu
+	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortuJokalaria(pXErdia, pYBehean);
 	    this.sortuEtsaiZerrenda();
 	}
@@ -123,6 +123,14 @@ public class EspazioModel {
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 	public void sortuEtsaiZerrenda() {
+		int pX = 50;
+		int pY = 5;
+		Etsai et = new EtsaiTxikia(50,5);
+		et.sortuEtsaia(pX, pY);
+		this.etsaiak.add(et);
+		
+		
+		/*
 		//8 etsaiek har dezaketen posizioen ArrayList-a sortu
 		//(10,5), (20, 5) ... (80,5)
 		ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
@@ -140,7 +148,7 @@ public class EspazioModel {
 			Etsai et = new EtsaiTxikia(pos[0], pos[1]);
 			et.sortuEtsaia(pos[0], pos[1]);
 			this.etsaiak.add(et);
-		}
+		}*/
 		
 	}
 	
@@ -188,14 +196,19 @@ public class EspazioModel {
 		etsaiak.removeAll(ezabatuEtsai);
 	}
 	
-	public boolean etsairikEz() {
-		return this.etsaiak.isEmpty();
+	public void etsairikEz() {
+		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
+		
+		if (this.etsaiak != null && this.etsaiak.isEmpty()) {
+			kudeatzailea.jokoaBukatu(true);	//true itzuliko da jokoa irabazi egin denean
+		}
 	}
 	
 	//UPDATE:
-	public void update() {
+	public void jokoaEguneratu() {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
+		this.etsairikEz();
 		this.mugituEtsaiak();   
 	}
 }

@@ -69,13 +69,14 @@ public class EspazioaView extends JFrame implements Observer {
 		if (arg != null) {
 			
 			//EspazioView eta EspazioModel konektatu eta EspazioView ikusgarri egin
-			if (arg instanceof Boolean) {
-				Boolean b = (Boolean) arg;
-				boolean pantailaratu = b.booleanValue();
-				if (pantailaratu) {
+			if (arg instanceof String) {
+				String agindu = arg.toString();
+				if (agindu.equals("EspazioView erakutsi")) {
 					this.konektatu();
 			        this.requestFocusInWindow();
-					this.setVisible(pantailaratu);
+					this.setVisible(true);
+				} else if (agindu.equals("EspazioView itzali")){
+					this.dispose();
 				}
 			}
 		}

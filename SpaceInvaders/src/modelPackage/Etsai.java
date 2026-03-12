@@ -16,11 +16,12 @@ public abstract class Etsai extends Itsasontzi {
     public void mugituX(int i) {
     	int newX=this.getX()+i;
     	
-    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX()+i, getY());
+    	boolean kanpo=EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(newX, getY());
+    	if (kanpo) return; //Kanpora irtengo bada ez egin ezer
     	String egoera= EspazioModel.getGelaxkaMatrizea().getGelaxka(newX, getY()).getEgoera();
     	if(egoera.equalsIgnoreCase("Etsaia")) {   	}//beste etsai bat badago mugitu nahi den lekuan, ez da mugituko
     	else if (egoera.equalsIgnoreCase("Jokalaria")) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
     	}//etsaiak jokalaria ikutu du, jokoa amaitzen da
     	else if(egoera.equalsIgnoreCase("Tiro")) {
     		this.bizitzaKendu();
@@ -53,11 +54,11 @@ public abstract class Etsai extends Itsasontzi {
         int r = (int)(Math.random() * 3); // 0, 1 edo 2
 
         if (r == 0) {
-            mugituX(-1); // ezkerrera
+           mugituX(-1); // ezkerrera
         } else if (r == 1) {
-            mugituX(1);  // eskumara
+           mugituX(1);  // eskumara
         } else {
-            mugituY();  // behera
+           mugituY();  // behera
         }
     }
    
@@ -84,7 +85,7 @@ public abstract class Etsai extends Itsasontzi {
     
     public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
     	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu();
+    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
     	}
     }
   

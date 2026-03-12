@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import modelPackage.PartidaKudeatzailea;
+import viewPackage.AmaieraPantaila;
 import viewPackage.EspazioaView;
 import viewPackage.HasieraPantaila;
 

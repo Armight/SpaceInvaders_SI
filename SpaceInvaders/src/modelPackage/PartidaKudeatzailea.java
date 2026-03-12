@@ -43,16 +43,32 @@ public class PartidaKudeatzailea extends Observable {
 	
 	private void hasieraItzali() {
 		setChanged();
-		notifyObservers(false);
+		notifyObservers("HasieraPantaila itzali");
 	}
 	
 	private void espazioViewErakutsi() {
 		setChanged();
-		notifyObservers(true);
+		notifyObservers("EspazioView erakutsi");
 	}
 	
-	public void jokoaBukatu() {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
-		
+	private void espazioViewItzali() {
+		setChanged();
+		notifyObservers("EspazioView itzali");
+	}
+	
+	
+	private void amaieraPantailaErakutsi(boolean pIrabazia) {
+		String mezua;
+		if (pIrabazia) mezua = "irabazia";
+		else mezua = "galdua";
+	
+		setChanged();
+		notifyObservers(mezua);
+	}
+	
+	public void jokoaBukatu(boolean pIrabazia) {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
+		this.espazioViewItzali( );
+		this.amaieraPantailaErakutsi(pIrabazia);
 	}
 	
 }

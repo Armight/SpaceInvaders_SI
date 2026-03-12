@@ -37,8 +37,6 @@ public class Jokalari extends Itsasontzi {
 			this.setPosizio(getX()+i, getY());//posizio berria atzitu
 			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
 		}
-			
-		
 	}
 	
 	public void mugituJokalariaY(int i) {

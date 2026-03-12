@@ -71,6 +71,6 @@ public class Controller implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EspazioModel.getGelaxkaMatrizea().update();
+        EspazioModel.getGelaxkaMatrizea().jokoaEguneratu();
     }
 }

@@ -82,7 +82,7 @@ public class HasieraPantaila extends JFrame implements Observer{
     
     private void erakutsiItsasontziHautatua(Color pKolorea) {
     	String mota = this.kolorearenIzena(pKolorea);
-    	hautatutaLabel.setText("Hautatua: " + mota + " - Press <1> to play!");
+    	hautatutaLabel.setText("Hautatua: " + mota + " - Press <ENTER> to play!");
         switch (mota) {
             case "Green": hautatutaLabel.setForeground(Color.GREEN); break;
             case "Blue":  hautatutaLabel.setForeground(Color.BLUE);  break;
@@ -106,12 +106,12 @@ public class HasieraPantaila extends JFrame implements Observer{
    				this.erakutsiItsasontziHautatua((Color)arg);
    				
    			//HasieraPantaila kendu
-   			} else if (arg instanceof Boolean) {
-   				Boolean b = (Boolean) arg;
-   				boolean pantailaratu = b.booleanValue();
-   				if (!pantailaratu) {
+   			} else if (arg instanceof String) {
+   				String agindu = arg.toString();
+   				if (agindu.equals("HasieraPantaila itzali")) {
    					this.dispose();
    				}
+   				
    			}
    		}
    	}
