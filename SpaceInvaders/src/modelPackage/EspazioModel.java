@@ -94,7 +94,6 @@ public class EspazioModel {
 	
 
 //TIROEN METODOAK:
-	
 	public void removeTiro(Tiro pTiro) {
 			this.tiroak.remove(pTiro);
 		}
