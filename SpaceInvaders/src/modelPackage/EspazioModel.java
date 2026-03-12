@@ -61,14 +61,14 @@ public class EspazioModel {
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
 		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
-		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //5
+		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 10; //40
 		
 	    //jokalaria instantziatu
-	    jokalari = new JokalariMorea(pXErdia, pYBehean, true, 4);
+	    jokalari = new JokalariMorea(pXErdia, pYBehean, true);
 	    
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortuJokalaria(pXErdia, pYBehean);
-	    this.sortuEtsaiZerrenda();
+	    //this.sortuEtsaiZerrenda();
 	}
 	
 
@@ -208,7 +208,7 @@ public class EspazioModel {
 	public void jokoaEguneratu() {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
-		this.etsairikEz();
+		//this.etsairikEz();
 		this.mugituEtsaiak();   
 	}
 }

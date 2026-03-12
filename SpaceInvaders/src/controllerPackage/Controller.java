@@ -61,7 +61,7 @@ public class Controller implements KeyListener, ActionListener {
                 jokalari.mugituJokalariaX(1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                jokalari.shootPixel(); 
+                jokalari.shoot(); 
             }
         }
     }
