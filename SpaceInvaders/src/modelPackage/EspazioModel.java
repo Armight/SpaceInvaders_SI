@@ -109,17 +109,16 @@ public class EspazioModel {
 	}
 	
 	
-	
-	
 	public void setJokalari(Jokalari pJokalari) {
 		this.jokalari = pJokalari;
 	}
 	
+
 	
-	
-	
-	
-	//TIROEN ARRAYAREN METODOAK:
+	//JOKALARIAREN METODODAK:
+	public Jokalari getJokalari() {
+		return jokalari;
+	}
 	
 	
 	
@@ -146,7 +145,8 @@ public class EspazioModel {
 		
 	}
 	
-															//BEHARREZKOA???
+														
+	//BEHARREZKOA???
 	
 	
 	private Iterator<Etsai> getEtsaiIterator(){
