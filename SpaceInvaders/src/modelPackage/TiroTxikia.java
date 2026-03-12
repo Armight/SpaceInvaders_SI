@@ -23,8 +23,7 @@ public class TiroTxikia extends Tiro {
     	super.setPosizio(getX(), yBerria);
     	String egoera = espazioa.getGelaxka(getX(), getY()).getEgoera();
     	if (egoera.equals("Etsaia")) {
-    		kolisionatu = true;
-    		System.out.println("tiro kolisioa");
+    		kolisionatu = true; if (kolisionatu) System.out.println(kolisionatu);
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
     		return;
     	} 
@@ -35,7 +34,8 @@ public class TiroTxikia extends Tiro {
     	}
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     	
-    	
+   
     }
+    
      
     }

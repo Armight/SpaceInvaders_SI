@@ -30,27 +30,5 @@ public abstract class Etsai extends Espaziontzi {
     		return true;
     	} else return false;
     }
-  
-    @Override
-    public void bizitzaKendu() {
-    	super.bizitzaKendu();
-    	EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
-    }
-    
-    /*
-    public void beheraHeldu() {//matrizearen beherarte heltzen bada, jokalaria hil behar da
-    	if(EspazioModel.getGelaxkaMatrizea().espaziotikKanpo(getX(), getY()+1)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().jokoaBukatu(false);
-    	}
-    }*/
-  
-    
-    public void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
-    	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-        //EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
-           
-    }
-    
-
 }
 

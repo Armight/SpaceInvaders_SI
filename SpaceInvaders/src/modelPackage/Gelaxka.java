@@ -7,11 +7,6 @@ public class Gelaxka extends Observable{
 	private int posY;
 	private String egoera;
 	
-	
-	private Gelaxka() {
-		
-	}
-	
 	public Gelaxka(int pX, int pY, String pEgoera) {
 		this.posX = pX;
 		this.posY = pY;

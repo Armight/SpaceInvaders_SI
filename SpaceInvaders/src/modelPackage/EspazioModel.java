@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-//PROBA
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
@@ -112,16 +111,7 @@ public class EspazioModel {
 		}
 
 
-//ETSAIEN METODOAK:
-
-	public void removeEtsai(Etsai pEtsai) {
-		this.etsaiak.remove(pEtsai);
-	}
-	
-	public void addEtsai(Etsai pEtsai) {
-		this.etsaiak.add(pEtsai);
-	}
-	
+//ETSAIEN METODOAK:	
 	private void mugituEtsaiak() {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
@@ -129,19 +119,10 @@ public class EspazioModel {
 		}
 	}
 	
-	
-	public void setJokalari(Jokalari pJokalari) {
-		this.jokalari = pJokalari;
-	}
-	
-
-	
 	//JOKALARIAREN METODODAK:
 	public Jokalari getJokalari() {
 		return jokalari;
 	}
-	
-	
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 	public void sortuEtsaiZerrenda() {
@@ -163,7 +144,6 @@ public class EspazioModel {
 			et.sortuEtsaia();
 			this.etsaiak.add(et);
 		}
-		
 	}
 		
 	private Iterator<Tiro> getTiroIterator(){
@@ -191,12 +171,10 @@ public class EspazioModel {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
 				for (Tiro t : ezabatuTiroak) {
 					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {
-						e.bizitzaKendu();
-						ezabatuEtsai.add(e);
-						/*boolean hilDa = e.bizitzaEguneratu();
+						boolean hilDa = e.bizitzaKendu();
 						if (hilDa) {
 							ezabatuEtsai.add(e);
-						}*/
+						}
 					}
 				}
 			}
@@ -209,7 +187,7 @@ public class EspazioModel {
 	//UPDATE:
 	public void jokoaEguneratu() {
 		this.mugituTiroak();
-		//this.kolisioakKonprobatu( );
+		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
 		this.checkJokoa();
 	}
