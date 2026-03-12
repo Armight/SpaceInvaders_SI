@@ -13,7 +13,6 @@ public class Controller implements KeyListener, ActionListener {
     private Timer timer;
 
     private Controller() {
-        // Timer que cada 200ms llama a actionPerformed
         timer = new Timer(200, this);
         timer.start();
     }
@@ -32,7 +31,6 @@ public class Controller implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
 
-        // Teclas de selección de color y inicio
         switch (e.getKeyCode()) {
             case KeyEvent.VK_G:
                 kudeatzailea.setItsasontziKolorea(Color.GREEN);
@@ -48,23 +46,22 @@ public class Controller implements KeyListener, ActionListener {
                 break;
         }
 
-        // Movimiento y disparo (solo si el juego ha comenzado)
         Jokalari jokalari = EspazioModel.getGelaxkaMatrizea().getJokalari();
         if (jokalari != null) {
             if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-                jokalari.mugituJokalariaY(1); // subir (Y disminuye)
+                jokalari.mugituJokalariaY(1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-                jokalari.mugituJokalariaY(-1); // bajar (Y aumenta)
+                jokalari.mugituJokalariaY(-1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-                jokalari.mugituJokalariaX(-1); // izquierda
+                jokalari.mugituJokalariaX(-1);
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-                jokalari.mugituJokalariaX(1); // derecha
+                jokalari.mugituJokalariaX(1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                jokalari.shootPixel(); // disparo básico
+                jokalari.shootPixel(); 
             }
         }
     }
@@ -74,7 +71,6 @@ public class Controller implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Llamado por el Timer cada 200ms: actualiza el modelo (mover enemigos, tiros, etc.)
         EspazioModel.getGelaxkaMatrizea().update();
     }
 }
