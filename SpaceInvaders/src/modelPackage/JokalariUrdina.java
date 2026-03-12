@@ -18,5 +18,4 @@ public class JokalariUrdina extends Jokalari {//1.sprinterako bakarrik, hurrengo
 	
 	
 	
-	
 }

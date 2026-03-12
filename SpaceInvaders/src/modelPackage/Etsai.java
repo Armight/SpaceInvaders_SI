@@ -11,9 +11,6 @@ public abstract class Etsai extends Itsasontzi {
         this.bizitza=pBizitza;
     }
     
-    
-
-    
     //MUGITZEKO:
     
     public void mugituX(int i) {
@@ -42,9 +39,6 @@ public abstract class Etsai extends Itsasontzi {
     	
     }
     
-    
-    
-    
     public void mugituY() {//etsaia bakarrik beherantz doa
     	
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
@@ -52,10 +46,6 @@ public abstract class Etsai extends Itsasontzi {
     		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
     	
     }
-    
-    
-    
-    
     
     //MUGIMENDU SEUDORANDOM-A SORTU
     
@@ -95,9 +85,6 @@ public abstract class Etsai extends Itsasontzi {
     }
   
     
-    
-
-    
     protected void ezabatuEtsaia() {//ALDATU BEHAR DA, ESPAZIO MODEL-EN JARRI
     	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
         EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
@@ -109,6 +96,3 @@ public abstract class Etsai extends Itsasontzi {
     }
 }
 
-    
-    
-    

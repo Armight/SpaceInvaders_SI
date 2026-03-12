@@ -189,9 +189,6 @@ public class EspazioModel {
 		etsaiak.removeAll(ezabatuEtsai);
 	}
 	
-
-	
-	
 	public boolean etsairikEz() {
 		return this.etsaiak.isEmpty();
 	}
@@ -203,5 +200,4 @@ public class EspazioModel {
 		this.mugituEtsaiak();   
 	}
 }
-
 

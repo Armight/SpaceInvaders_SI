@@ -44,6 +44,3 @@ public class GelaxkaView extends JPanel implements Observer{
 	
 }
 
-
-
-

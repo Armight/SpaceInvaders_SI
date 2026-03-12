@@ -50,26 +50,8 @@ public class Jokalari extends Itsasontzi {
 			this.setPosizio(getX(), getY()-i);//posizio berria atzitu
 			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
 				
-		}}
+		}
 	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
+}
 	
 
-		
-
-
-
-
-
-
-
-	
