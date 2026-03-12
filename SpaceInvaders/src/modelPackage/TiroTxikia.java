@@ -14,7 +14,7 @@ public class TiroTxikia extends Tiro {
     	return TiroTxikia.dmg;
     }
     
-    
+    @Override
     public void mugitu() {
     	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
@@ -33,8 +33,7 @@ public class TiroTxikia extends Tiro {
     		return;
     	}
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
-    	
-   
+  
     }
     
      
