@@ -69,6 +69,7 @@ public class EspazioModel {
 	    
 	    //Jokalaria sortu
 	    jokalari.sortuJokalaria(pXErdia, pYBehean);
+	    this.sortuEtsaiZerrenda();
 	}
 	
 
@@ -108,49 +109,19 @@ public class EspazioModel {
 	}
 	
 	
-
-
-
-}
 	
 	
-	/*
 	public void setJokalari(Jokalari pJokalari) {
 		this.jokalari = pJokalari;
 	}
 	
-	public Gelaxka getGelaxka(int pX, int pY) {//posizio horren gelaxka lortu
-		return this.matrizea[pY][pX];
-	}
 	
-	//MATRIZEAREN METODOAK:
-	
-	public int getAltuera() {//y
-		return this.matrizea.length;
-	}
-	
-	public int getZabalera() {//x
-		return this.matrizea[0].length;
-	}
 	
 	
 	
 	//TIROEN ARRAYAREN METODOAK:
 	
-	public void removeTiro(Tiro pTiro) {
-		this.tiroak.remove(pTiro);
-	}
 	
-	public void addTiro(Tiro pTiro) {
-		this.tiroak.add(pTiro);
-	}
-	
-	private void mugituTiroak() {
-		ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
-		for (Tiro t : tiroakCopia) {
-		    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
-		}
-	}
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 	public void sortuEtsaiZerrenda() {
@@ -176,21 +147,7 @@ public class EspazioModel {
 	}
 	
 															//BEHARREZKOA???
-	public void removeEtsai(Etsai pEtsai) {
-		this.etsaiak.remove(pEtsai);
-		pEtsai.bizitzaKendu();
-	}
 	
-	public void addEtsai(Etsai pEtsai) {
-		this.etsaiak.add(pEtsai);
-	}
-	
-	private void mugituEtsaiak() {
-		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
-		for(Etsai e : etsaiakKopia) {
-			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
-		}
-	}
 	
 	private Iterator<Etsai> getEtsaiIterator(){
 		return etsaiak.iterator();
@@ -232,15 +189,7 @@ public class EspazioModel {
 		etsaiak.removeAll(ezabatuEtsai);
 	}
 	
-//	*public boolean kolisioaJokalariEtsai() {
-		//if (jokalari == null || etsaiak.isEmpty()) {
-			//return false;
-		//}
-		//if (jokalari instanceof JokalariMorea) { // lau pixeleko jokalaria
-			//JokalariMorea player = (JokalariMorea) jokalari;
-			//if ()
-		//^}
-//	}
+
 	
 	
 	public boolean etsairikEz() {
@@ -252,6 +201,7 @@ public class EspazioModel {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
-	}*/
+	}
+}
 
 

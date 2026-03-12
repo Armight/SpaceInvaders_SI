@@ -82,12 +82,9 @@ public abstract class Etsai extends Itsasontzi {
     
     
     
-    public void bizitzaKendu() {
+    public int bizitzaKendu() {
     	bizitza = bizitza - 1;
-    	if (this.bizitza == 0) {
-    		this.ezabatuEtsaia();
-    		
-    	} 
+    	return bizitza;
     	
     }
     
@@ -105,6 +102,10 @@ public abstract class Etsai extends Itsasontzi {
     	EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
         EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
            
+    }
+    
+    protected boolean kolisioakKonprobatu (int pX, int pY) {
+    	return false; //ya se hara es para comprobar momentaneamente
     }
 }
 
