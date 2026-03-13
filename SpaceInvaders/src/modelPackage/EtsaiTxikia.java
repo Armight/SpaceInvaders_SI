@@ -23,6 +23,10 @@ public class EtsaiTxikia extends Etsai {
     	if (espazioa.espaziotikKanpo(xBerria, getY())) {
     		return;
     	}
+    	if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equals("Tiro")) {
+    		this.bizitzaKendu();
+    		return;
+    	}
     	
     	String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
     	if (egoera.equalsIgnoreCase("Etsaia")) return;
@@ -39,6 +43,10 @@ public class EtsaiTxikia extends Etsai {
 
     	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
     		espazioa.setJokoaAmaitu();
+    		return;
+    	}
+    	if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equals("Tiro")) {
+    		this.bizitzaKendu();
     		return;
     	}
     	
