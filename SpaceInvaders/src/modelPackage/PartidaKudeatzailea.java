@@ -31,6 +31,12 @@ public class PartidaKudeatzailea extends Observable {
 		return this.itsasontziKolorea;
 	}
 	
+	//metodo hau ESC teklarako da, baina uste dut zuzenean egin ahalko zela System.exit(0) ipini
+	//era honetan kudetzailea erabiltzen dugu, orduan ondo
+	public void irteeraEgin() {
+	    System.exit(0);
+	}
+	
 	public void jokoanHasi() {
 		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
 		this.hasieraItzali();

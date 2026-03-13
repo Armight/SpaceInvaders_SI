@@ -2,8 +2,10 @@ package viewPackage;
 
 import javax.swing.*;
 
+
 import javax.swing.border.EmptyBorder;
 
+import controllerPackage.Controller;
 import modelPackage.PartidaKudeatzailea;
 
 import java.awt.*;
@@ -42,7 +44,7 @@ public class AmaieraPantaila extends JFrame implements Observer {
         mezuaLabel = new JLabel(mezua);
         
 
-        instrukzioakLabel = new JLabel("* Press <ESC> to exit *");
+        instrukzioakLabel = new JLabel("* Pultsatu <ESC> irteteko *");
         instrukzioakLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         instrukzioakLabel.setForeground(Color.WHITE);
         GridBagConstraints gbc2 = new GridBagConstraints();
@@ -57,6 +59,13 @@ public class AmaieraPantaila extends JFrame implements Observer {
         
         setFocusable(true);
         setVisible(false);
+        
+        //KeyListenerra ipini, era honetan ESC teklaa pultsatzean Amaiera Pantailan irtengo da.
+        //Noski hemendik (bistatik) controllerera joango da eta modeloari eskatuko dio zer egin
+        //eta era honetan System.exit(0) egingo du (irteeraEgin() metodoaren bitartez)
+        Controller controller = Controller.getController();
+        this.addKeyListener(controller);
+        
     }
     
     private void setMezua(String pMezua) {

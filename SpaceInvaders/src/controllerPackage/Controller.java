@@ -45,6 +45,10 @@ public class Controller implements KeyListener, ActionListener {
             case KeyEvent.VK_ENTER:
                 kudeatzailea.jokoanHasi();
                 break;
+            //Hau da ESC teklarako (AmaieraPantaila klasean hobeto azalduta T-T)
+            case KeyEvent.VK_ESCAPE:
+                kudeatzailea.irteeraEgin();
+                break;
         }
 
         Jokalari jokalari = EspazioModel.getGelaxkaMatrizea().getJokalari();
