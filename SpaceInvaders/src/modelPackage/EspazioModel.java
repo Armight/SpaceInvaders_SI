@@ -1,7 +1,9 @@
 package modelPackage;
 
 import java.util.ArrayList;
-
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -14,6 +16,7 @@ public class EspazioModel {
 	private Jokalari jokalari;
 	private boolean jokoaMartxan = false;
 	private boolean jokoaAmaitu = false;
+    private Timer timer; // Timer berria EspazioModelerako
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -25,6 +28,18 @@ public class EspazioModel {
 	    }
 	    tiroak = new ArrayList<Tiro>();
 	    etsaiak = new ArrayList<Etsai>();
+	    
+	    //Timerra hemen EspazioModelerako :D
+	    //Kasu honetan mugitzean orain ez da ...(200,this).. orain EspazioModel ez denez ActionListener
+	    //(Controllera bai zen) momentuan sortzen dugu eta egin dugun importekin ez da beharrezkoa egitea
+	    // public class EspazioModel implements ActionListener eta gauza horiek
+	    timer = new Timer(200, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            jokoaEguneratu();
+	        }
+	    });
+	    timer.start();
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {//EMA

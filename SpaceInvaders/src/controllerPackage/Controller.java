@@ -3,19 +3,19 @@ package controllerPackage;
 import java.awt.Color;
 
 import java.awt.event.*;
-import javax.swing.Timer;
 
 import modelPackage.EspazioModel;
 import modelPackage.Jokalari;
 import modelPackage.PartidaKudeatzailea;
 
-public class Controller implements KeyListener, ActionListener {
+public class Controller implements KeyListener {
     private static Controller nC;
-    private Timer timer;
+    //private Timer timer;
 
     private Controller() {
-        timer = new Timer(200, this);
-        timer.start();
+    	//Timer-a espazioModel-ean sartuko dugu ^-^
+        //timer = new Timer(200, this);
+        //timer.start();
     }
 
     public static Controller getController() {
@@ -74,8 +74,10 @@ public class Controller implements KeyListener, ActionListener {
     @Override
     public void keyReleased(KeyEvent e) {}
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
         EspazioModel.getGelaxkaMatrizea().jokoaEguneratu();
-    }
+    } 
+    Kenduta mugituko delako EspazioModel-era
+    */ 
 }
