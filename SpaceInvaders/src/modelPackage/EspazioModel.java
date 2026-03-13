@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
@@ -94,6 +95,7 @@ public class EspazioModel {
 	
 
 //TIROEN METODOAK:
+	
 	public void removeTiro(Tiro pTiro) {
 			this.tiroak.remove(pTiro);
 		}
@@ -143,6 +145,7 @@ public class EspazioModel {
 			et.sortuEtsaia();
 			this.etsaiak.add(et);
 		}
+		
 	}
 		
 	private Iterator<Tiro> getTiroIterator(){
