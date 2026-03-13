@@ -83,7 +83,9 @@ public class EspazioModel {
 	public void setJokoaAmaitu() {
 		jokoaAmaitu = true;
 		//Hemen ipini check jokoa, zeren eta etsaia muga edo limiteera ailegatzen denean setJokoaAmaitu()
-		//metodoa  deitzen dute, era honetan zuzenean egiten dugu
+		//metodoa  deitzen dute, era honetan zuzenean egiten dugu, konkretuki 
+		//mugituJokalariaX() eta mugituJokalariaY() metodoak JokalariMorea klasean eta
+		//EtsaiTxikia klasea mugituEtsaiY() metodoarekin
 		this.checkJokoa();
 	}
 	
