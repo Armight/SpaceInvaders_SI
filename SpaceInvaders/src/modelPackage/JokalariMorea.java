@@ -22,6 +22,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
     	if (espazioa.espaziotikKanpo(xBerria, getY())) {
     		return;
     	}
+    	if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equalsIgnoreCase("Tiro")) return; //jokalariaren tiro bat badago mugitu nahi den gelaxkan, ezingo da mugitu
 		
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX()+i, getY());//posizio berria atzitu
@@ -39,6 +40,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
     	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
     		return;
     	}
+    	if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equalsIgnoreCase("Tiro")) return;
     	
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX(), getY()-i);//posizio berria atzitu
