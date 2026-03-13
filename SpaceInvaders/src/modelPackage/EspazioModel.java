@@ -49,7 +49,7 @@ public class EspazioModel {
 		return nGM;
 	}
 	
-	//MATRIZEAREN METODOAK
+	//*************MATRIZEAREN METODOAK****************************
 	public int getAltuera() {  
 		return this.matrizea.length;  //y
 	}
@@ -109,7 +109,7 @@ public class EspazioModel {
 	}
 	
 
-//TIROEN METODOAK:
+//***********************TIROEN METODOAK:********************************
 	
 	public void removeTiro(Tiro pTiro) {
 			this.tiroak.remove(pTiro);
@@ -125,9 +125,12 @@ public class EspazioModel {
 			    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
 			}
 		}
+	private Iterator<Tiro> getTiroIterator(){
+		return tiroak.iterator();
+	}
 
 
-//ETSAIEN METODOAK:	
+//******************************ETSAIEN METODOAK:	********************************
 	private void mugituEtsaiak() {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
@@ -135,38 +138,48 @@ public class EspazioModel {
 		}
 	}
 	
-	//JOKALARIAREN METODODAK:
+	//ETSAIEN ARRAYAREN METODOAK:
+		public void sortuEtsaiZerrenda() {
+			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
+			//(10,5), (20, 5) ... (80,5)
+			ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
+			int pX= 0;
+			for (int i = 0; i < 8; i++) {
+				pX = pX + 10;
+				etsaiPosizioak.add(new int [] {pX, 5});
+			}
+			//Posizio guztiak nahastu
+			Collections.shuffle(etsaiPosizioak);
+			//4...8 etasien arteko zenbaki random bat sortu
+			int etsaiKop = 4 + (int)(Math.random() * 5);
+			for (int i = 0; i < etsaiKop; i++) {
+				int[] pos = etsaiPosizioak.remove(0);
+				Etsai et = new EtsaiTxikia(pos[0], pos[1]);
+				et.sortuEtsaia();
+				this.etsaiak.add(et);
+			}
+			
+		}
+	
+	
+	
+	//*************************JOKALARIAREN METODODAK:**************************
 	public Jokalari getJokalari() {
 		return jokalari;
 	}
 	
-	//ETSAIEN ARRAYAREN METODOAK:
-	public void sortuEtsaiZerrenda() {
-		//8 etsaiek har dezaketen posizioen ArrayList-a sortu
-		//(10,5), (20, 5) ... (80,5)
-		ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
-		int pX= 0;
-		for (int i = 0; i < 8; i++) {
-			pX = pX + 10;
-			etsaiPosizioak.add(new int [] {pX, 5});
-		}
-		//Posizio guztiak nahastu
-		Collections.shuffle(etsaiPosizioak);
-		//4...8 etasien arteko zenbaki random bat sortu
-		int etsaiKop = 4 + (int)(Math.random() * 5);
-		for (int i = 0; i < etsaiKop; i++) {
-			int[] pos = etsaiPosizioak.remove(0);
-			Etsai et = new EtsaiTxikia(pos[0], pos[1]);
-			et.sortuEtsaia();
-			this.etsaiak.add(et);
-		}
-		
+	public void mugituJokalariaX(int i) {
+		this.jokalari.mugituJokalariaX(i);
+	}
+	public void mugituJokalariaY(int i) {
+		this.jokalari.mugituJokalariaY(i);
+	}
+	public void shoot() {
+		this.jokalari.shoot();
 	}
 		
-	private Iterator<Tiro> getTiroIterator(){
-		return tiroak.iterator();
-	}
 	
+	//**********************************************************
 	public void kolisioakKonprobatu( ) {
 		Iterator<Tiro> itrT = this.getTiroIterator();
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia

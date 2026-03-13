@@ -2,13 +2,14 @@ package viewPackage;
 import java.awt.EventQueue;
 import modelPackage.EspazioModel;
 import modelPackage.PartidaKudeatzailea;
-import controllerPackage.Controller;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;

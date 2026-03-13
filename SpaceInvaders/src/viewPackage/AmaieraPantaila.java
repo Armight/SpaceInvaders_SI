@@ -5,7 +5,6 @@ import javax.swing.*;
 
 import javax.swing.border.EmptyBorder;
 
-import controllerPackage.Controller;
 import modelPackage.PartidaKudeatzailea;
 
 import java.awt.*;

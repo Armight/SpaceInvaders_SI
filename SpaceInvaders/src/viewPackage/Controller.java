@@ -1,4 +1,4 @@
-package controllerPackage;
+package viewPackage;
 
 import java.awt.Color;
 
@@ -50,25 +50,27 @@ public class Controller implements KeyListener {
                 kudeatzailea.irteeraEgin();
                 break;
         }
+        
+        //ALDAKETAK: hemen ezin da egon modeloko objekturik
 
-        Jokalari jokalari = EspazioModel.getGelaxkaMatrizea().getJokalari();
-        if (jokalari != null) {
+        
+        
             if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-                jokalari.mugituJokalariaY(1); 
+                EspazioModel.getGelaxkaMatrizea().mugituJokalariaY(1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-                jokalari.mugituJokalariaY(-1); 
+            	EspazioModel.getGelaxkaMatrizea().mugituJokalariaY(-1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-                jokalari.mugituJokalariaX(-1);
+            	EspazioModel.getGelaxkaMatrizea().mugituJokalariaX(-1);
             }
             if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-                jokalari.mugituJokalariaX(1); 
+            	EspazioModel.getGelaxkaMatrizea().mugituJokalariaX(1); 
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                jokalari.shoot(); 
+            	EspazioModel.getGelaxkaMatrizea().shoot(); 
             }
-        }
+        
     }
 
     @Override
