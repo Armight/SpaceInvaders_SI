@@ -16,7 +16,8 @@ public class EspazioModel {
 	private Jokalari jokalari;
 	private boolean jokoaMartxan = false;
 	private boolean jokoaAmaitu = false;
-    private Timer timer; // Timer berria EspazioModelerako
+	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
+	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -33,13 +34,29 @@ public class EspazioModel {
 	    //Kasu honetan mugitzean orain ez da ...(200,this).. orain EspazioModel ez denez ActionListener
 	    //(Controllera bai zen) momentuan sortzen dugu eta egin dugun importekin ez da beharrezkoa egitea
 	    // public class EspazioModel implements ActionListener eta gauza horiek
-	    timer = new Timer(200, new ActionListener() {
+	    // Etsaiak 200ms-ro mugitu.
+	    timerEtsaiak = new Timer(200, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            jokoaEguneratu();
+	            if (jokoaMartxan) {
+	                mugituEtsaiak();
+	            }
 	        }
 	    });
-	    timer.start();
+
+	    // Tiroak 50ms-ro mugitu, horrela bizitazun gehiago dauka jokoa
+	    timerTiroak = new Timer(50, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            if (jokoaMartxan) {
+	                mugituTiroak();
+	                kolisioakKonprobatu();
+	            }
+	        }
+	    });
+
+	    timerEtsaiak.start();
+	    timerTiroak.start();
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {//EMA
@@ -65,6 +82,9 @@ public class EspazioModel {
 	//JOKOAREN KUDEAKETA
 	public void setJokoaAmaitu() {
 		jokoaAmaitu = true;
+		//Hemen ipini check jokoa, zeren eta etsaia muga edo limiteera ailegatzen denean setJokoaAmaitu()
+		//metodoa  deitzen dute, era honetan zuzenean egiten dugu
+		this.checkJokoa();
 	}
 	
 	public boolean getJokoaAmaitu() {
@@ -210,16 +230,27 @@ public class EspazioModel {
 			}
 		}
 		etsaiak.removeAll(ezabatuEtsai);
+		
+		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
+		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
+		if (etsairikEz()) {
+		    this.checkJokoa();
+		}
 	}
 	
 	
 	
 	//UPDATE:
-	public void jokoaEguneratu() {
+	/*public void jokoaEguneratu() {
 		this.mugituTiroak();
 		this.kolisioakKonprobatu( );
 		this.mugituEtsaiak();   
 		this.checkJokoa();
 	}
+	Metodo hau kendu egin da zeren eta orain ez dugu timer bera erabiltzen, ezberdinak dira, era horretan
+	timer bakoitzean "actionPerformed" metodo bakoitzean egiten dugu hor bakoitzaren zeregina orduan
+	kenduko dugu jokoaEguneratu metodoa.
+	
+	*/
 }
 
