@@ -73,6 +73,7 @@ public class AmaieraPantaila extends JFrame implements Observer {
     
     private void agurraEguneratu(String pMezua) {
 		this.setMezua(pMezua);
+		mezuaLabel.setText(pMezua);  // Hau faltatzen zen, amaiera pantailan ondo egiteko mezua
 		mezuaLabel.setFont(new Font("Bahnschrift", Font.BOLD, 50));
         mezuaLabel.setForeground(mezua.equals("IRABAZI DUZU!") ? Color.GREEN : Color.RED);
         GridBagConstraints gbc1 = new GridBagConstraints();
