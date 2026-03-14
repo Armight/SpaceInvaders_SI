@@ -51,8 +51,13 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 	
 	@Override
 	public void shoot() {
-		TiroTxikia tiro = new TiroTxikia(getX(), getY() -2);
-		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
+		if (this.getY() <= 0) {
+			return;
+		}else {
+			TiroTxikia tiro = new TiroTxikia(getX(), getY() -2);
+			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
+		}
+		
 	}
 }
 

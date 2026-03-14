@@ -4,7 +4,9 @@ public abstract class Tiro extends Mugimendu {
 	protected boolean kolisionatu = false;
 	
     protected Tiro(int pX, int pY,int pPixelKop) {
-        super(pX, pY, pPixelKop);
+        
+        	super(pX, pY, pPixelKop);
+        
     }
     
     public abstract void mugitu();
