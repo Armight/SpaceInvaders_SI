@@ -30,24 +30,24 @@ public class Controller implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
+       
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_G:
-                kudeatzailea.setItsasontziKolorea(Color.GREEN);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.GREEN);
                 break;
             case KeyEvent.VK_B:
-                kudeatzailea.setItsasontziKolorea(Color.BLUE);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.BLUE);
                 break;
             case KeyEvent.VK_R:
-                kudeatzailea.setItsasontziKolorea(Color.RED);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.RED);
                 break;
             case KeyEvent.VK_ENTER:
-                kudeatzailea.jokoanHasi();
+            	PartidaKudeatzailea.getPartidaKudeatzailea().jokoanHasi();
                 break;
             //Hau da ESC teklarako (AmaieraPantaila klasean hobeto azalduta T-T)
             case KeyEvent.VK_ESCAPE:
-                kudeatzailea.irteeraEgin();
+            	PartidaKudeatzailea.getPartidaKudeatzailea().irteeraEgin();
                 break;
         }
         
