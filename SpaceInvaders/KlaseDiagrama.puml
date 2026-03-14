@@ -1,0 +1,250 @@
+@startuml
+
+package controllerPackage {
+
+class Controller {
+  - nC : Controller
+  - timer : Timer
+  --
+  - Controller()
+  + getController() : Controller
+  + keyTyped(e : KeyEvent) : void
+  + keyPressed(e : KeyEvent) : void
+  + keyReleased(e : KeyEvent) : void
+  + actionPerformed(e : ActionEvent) : void
+}
+
+}
+
+package kudeaketaPackage {
+
+class main {
+  + main(args : String[]) : void
+}
+
+}
+
+package modelPackage {
+class EspazioModel {
+  - nGM : EspazioModel
+  - matrizea : Gelaxka[][] 
+  - tiroak : ArrayList<Tiro> 
+  - etsaiak : ArrayList<Etsai> 
+  - jokalari : Jokalari 
+  - jokoaMartxan : boolean 
+  - jokoaAmaitu : boolean 
+  -- 
+  - EspazioModel() 
+  + getGelaxkaMatrizea() : EspazioModel 
+  + getAltuera() : int 
+  + getZabalera() : int 
+  + getGelaxka(pX:int, pY:int) : Gelaxka 
+  + setJokoaAmaitu() : void 
+  + getJokoaAmaitu() : boolean 
+  - checkJokoa() : void 
+  + etsairikEz() : boolean 
+  + espaziotikKanpo(pX:int, pY:int) : boolean 
+  + jokoanHasi() : void 
+  + removeTiro(pTiro:Tiro) : void 
+  + addTiro(pTiro:Tiro) : void
+  - mugituTiroak() : void
+  - mugituEtsaiak() : void
+  + getJokalari() : Jokalari
+  + sortuEtsaiZerrenda() : void 
+  - getTiroIterator() : Iterator<Tiro> 
+  + kolisioakKonprobatu() : void 
+  + jokoaEguneratu() : void 
+ } 
+ 
+ abstract class Espaziontzi {
+  # bizitza : int
+  --
+  # Espaziontzi(pX:int, pY:int, pPixelKop:int)
+  + bizitzaKendu() : boolean
+}
+
+abstract class Etsai {
+  --
+  # Etsai(pX:int, pY:int, pPixelKop:int)
+  + sortuEtsaia() : void
+  + mugituEtsaiX(i:int) : void
+  + mugituEtsaiY() : void
+  + mugituRandom() : void
+  + kolisioakKonprobatu(pX:int, pY:int) : boolean
+}
+
+class EtsaiTxikia {
+  --
+  + EtsaiTxikia(pX:int, pY:int)
+  + sortuEtsaia() : void
+  + mugituEtsaiX(i:int) : void
+  + mugituEtsaiY() : void
+}
+
+class Gelaxka {
+  - posX : int
+  - posY : int
+  - egoera : String
+  --
+  + Gelaxka(pX:int, pY:int, pEgoera:String)
+  + setEgoera(pEgoera:String) : void
+  + getEgoera() : String
+}
+
+abstract class Jokalari {
+  - kolorea : String
+  --
+  # Jokalari(pX:int, pY:int, pixelKop:int, pBizitza:int, pKolorea:String)
+  + sortuJokalaria() : void
+  + mugituJokalariaX(i:int) : void
+  + mugituJokalariaY(i:int) : void
+  + shoot() : void
+}
+
+Jokalari --> Espaziontzi
+
+class JokalariMorea {
+  --
+  + JokalariMorea(pX:int, pY:int)
+  + sortuJokalaria() : void
+  + mugituJokalariaX(i:int) : void
+  + mugituJokalariaY(i:int) : void
+  + shoot() : void
+}
+
+JokalariMorea --> Jokalari
+abstract class Mugimendu {
+  - x : int
+  - y : int
+  - pixelKop : int
+  --
+  # Mugimendu(pX:int, pY:int, pPixelKop:int)
+  + getPixelKop() : int
+  # getX() : int
+  # getY() : int
+  # setPosizio(pX:int, pY:int) : void
+}
+
+class PartidaKudeatzailea {
+  - nPK : PartidaKudeatzailea
+  - itsasontziKolorea : Color
+  --
+  - PartidaKudeatzailea()
+  + getPartidaKudeatzailea() : PartidaKudeatzailea
+  + setItsasontziKolorea(pKolorea:Color) : void
+  + getKolorea() : Color
+  + jokoanHasi() : void
+  + checkJokoa() : void
+  - hasieraItzali() : void
+  - espazioViewErakutsi() : void
+  - espazioViewItzali() : void
+  - amaieraPantailaErakutsi(pIrabazi:boolean) : void
+  - jokoaBukatu(pIrabazi:boolean) : void
+}
+
+PartidaKudeatzailea ..> Observable
+PartidaKudeatzailea ..> Controller
+PartidaKudeatzailea ..> EspazioModel
+
+abstract class Tiro {
+  - kolisionatu : boolean
+  --
+  # Tiro(pX:int, pY:int, pPixelKop:int)
+  + mugitu() : void
+  + removeTiro() : void
+  + espaziotikKanpo(pY:int) : boolean
+  + getKolisionatu() : boolean
+}
+
+Tiro --> Mugimendu
+
+class TiroTxikia {
+  - dmg : int {static}
+  --
+  + TiroTxikia(pX:int, pY:int)
+  + getDMG() : int
+  + mugitu() : void
+}
+
+TiroTxikia --> Tiro
+
+package viewPackage {
+class HasieraPantaila
+class GelaxkaView {
+  - jLabel : JLabel
+  --
+  + GelaxkaView()
+  + GelaxkaView(pJLabel:JLabel)
+  + update(o:Observable, arg:Object) : void
+  + getLabel() : JLabel
+}
+
+GelaxkaView ..> Observer
+GelaxkaView --> JLabel
+GelaxkaView --> JPanel
+class EspazioaView {
+  - controller : Controller
+  - pixelak : GelaxkaView[60][100]
+  --
+  + EspazioaView()
+  - konektatu() : void
+  + update(o:Observable, arg:Object) : void
+}
+
+EspazioaView ..> Observer
+EspazioaView --> PartidaKudeatzailea
+EspazioaView --> Controller
+EspazioaView --> GelaxkaView
+class AmaieraPantaila {
+  - mezua : String
+  - contentPane : JPanel
+  - mezuaLabel : JLabel
+  - instrukzioakLabel : JLabel
+  --
+  + AmaieraPantaila()
+  - setMezua(pMezua:String) : void
+  - agurraEguneratu(pMezua:String) : void
+  + update(o:Observable, arg:Object) : void
+}
+
+AmaieraPantaila ..> Observer
+AmaieraPantaila --> PartidaKudeatzailea
+AmaieraPantaila --> JPanel
+AmaieraPantaila --> JLabel
+}
+
+interface KeyListener
+interface ActionListener
+class Timer
+
+Controller ..> KeyListener
+Controller ..> ActionListener
+Controller --> Timer
+
+Controller ..> EspazioModel
+Controller ..> Jokalari
+Controller ..> PartidaKudeatzailea
+
+main ..> HasieraPantaila
+main ..> EspazioaView
+main ..> AmaieraPantaila
+main ..> PartidaKudeatzailea
+
+EspazioModel --> Gelaxka
+EspazioModel --> Tiro
+EspazioModel --> Etsai
+EspazioModel --> Jokalari
+EspazioModel ..> PartidaKudeatzailea
+EspazioModel --> "many" Tiro
+EspazioModel --> "many" Etsai
+
+Espaziontzi --> Mugimendu
+
+EtsaiTxikia --> Etsai
+
+Etsai --> Espaziontzi
+
+Gelaxka ..> Observable
+
+
+@enduml

@@ -2,13 +2,14 @@ package modelPackage;
 
 public abstract class Tiro extends Mugimendu {
 	protected boolean kolisionatu = false;
-
+	
     protected Tiro(int pX, int pY,int pPixelKop) {
-        super(pX, pY, true, pPixelKop);  // true=visible, 1=pixel bakarra Sprint 1ean
+        
+        	super(pX, pY, pPixelKop);
+        
     }
     
-    //Polimorfismo:
-    public void mugitu() {}
+    public abstract void mugitu();
     
     public void removeTiro() {
     	EspazioModel.getGelaxkaMatrizea().removeTiro(this);
@@ -20,13 +21,12 @@ public abstract class Tiro extends Mugimendu {
     	} else return false;
     }
     
-    public void bizitzaKendu() {
-    	
-    }
-    
     public boolean getKolisionatu( ) {
     	return kolisionatu;
     }
+    
+    
+   
     
 
     
