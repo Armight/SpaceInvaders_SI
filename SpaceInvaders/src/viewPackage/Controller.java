@@ -16,7 +16,7 @@ public class Controller implements KeyListener {
     
 
     private Controller() {
-    	inputTimer = new Timer(50, new ActionListener() {
+    	inputTimer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 prozesatuInputak();
