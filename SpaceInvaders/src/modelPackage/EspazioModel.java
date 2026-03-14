@@ -40,6 +40,7 @@ public class EspazioModel {
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
 	                mugituEtsaiak();
+	                
 	            }
 	        }
 	    });
@@ -160,6 +161,8 @@ public class EspazioModel {
 		}
 	}
 	
+	
+	
 	//ETSAIEN ARRAYAREN METODOAK:
 		public void sortuEtsaiZerrenda() {
 			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
@@ -204,7 +207,6 @@ public class EspazioModel {
 	//**********************************************************
 	public void kolisioakKonprobatu( ) {
 		Iterator<Tiro> itrT = this.getTiroIterator();
-		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
 		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
 		
@@ -219,7 +221,7 @@ public class EspazioModel {
 		}
 		//ETSAIAK KONPROBATU
 		if (!ezabatuTiroak.isEmpty()) {
-			for (Etsai e : etsaiakKopia) {
+			for (Etsai e : etsaiak) {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
 				for (Tiro t : ezabatuTiroak) {
 					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {

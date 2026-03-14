@@ -7,9 +7,9 @@ public abstract class Espaziontzi extends Mugimendu {
 		super(pX, pY, pPixelKop);
 	}
 		
-	public boolean bizitzaKendu() {
+	public boolean bizitzaKendu() { //metodo honek kodeak hainbat egoeratatik deitua izan daiteke, kondizio espezifiko batzuk pasatzen badira metodoa == bada, azkenean -1 balioa hartu dezake eta etsaia ez da inoiz hilko, horregatik <= iointzen dugu
 		bizitza = bizitza - 1;
-		if (bizitza == 0) {
+		if (bizitza <=0) {
 			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
 			return true;
 		} else return false;
