@@ -51,7 +51,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 	
 	@Override
 	public void shoot() {
-		if (this.getY() <= 0) {
+		if (this.getY() <= 2) {
 			return;
 		}else {
 			TiroTxikia tiro = new TiroTxikia(getX(), getY() -2);
