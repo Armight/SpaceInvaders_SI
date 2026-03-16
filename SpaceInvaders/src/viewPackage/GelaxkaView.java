@@ -12,12 +12,8 @@ import javax.swing.JLabel;
 
 public class GelaxkaView extends JPanel implements Observer{
 	private JLabel jLabel;
+	private static final long serialVersionUID = 1L;
 	
-
-	public GelaxkaView(JLabel pJLabel) {
-		JLabel jLabel = pJLabel;
-		
-	}
 	public GelaxkaView() {
 		this.jLabel = new JLabel();
 		this.jLabel.setOpaque(true);       

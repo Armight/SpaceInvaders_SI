@@ -4,7 +4,7 @@ public abstract class Jokalari extends Espaziontzi {
 
 	private String kolorea;
 	
-	public Jokalari(int pX, int pY,int pixelKop, int pBizitza, String pKolorea) {
+	protected Jokalari(int pX, int pY,int pixelKop, int pBizitza, String pKolorea) {
 		super(pX, pY, pixelKop);
 		super.bizitza = 1;
 		this.kolorea = pKolorea;
