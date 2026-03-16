@@ -110,6 +110,7 @@ public class HasieraPantaila extends JFrame implements Observer{
    				String agindu = arg.toString();
    				if (agindu.equals("HasieraPantaila itzali")) {
    					this.dispose();
+   					new EspazioaView();
    				}
    				
    			}

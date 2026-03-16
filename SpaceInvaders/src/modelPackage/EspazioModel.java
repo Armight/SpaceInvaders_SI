@@ -35,7 +35,7 @@ public class EspazioModel {
 	    //(Controllera bai zen) momentuan sortzen dugu eta egin dugun importekin ez da beharrezkoa egitea
 	    // public class EspazioModel implements ActionListener eta gauza horiek
 	    // Etsaiak 200ms-ro mugitu.
-	    timerEtsaiak = new Timer(200, new ActionListener() {
+	    timerEtsaiak = new Timer(213, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
@@ -45,7 +45,7 @@ public class EspazioModel {
 	    });
 
 	    // Tiroak 50ms-ro mugitu, horrela bizitazun gehiago dauka jokoa
-	    timerTiroak = new Timer(50, new ActionListener() {
+	    timerTiroak = new Timer(57, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {

@@ -71,6 +71,7 @@ public class EspazioaView extends JFrame implements Observer {
 					this.setVisible(true);
 				} else if (agindu.equals("EspazioView itzali")){
 					this.dispose();
+					new AmaieraPantaila();
 				}
 			}
 		}
