@@ -1,24 +1,17 @@
 package viewPackage;
-import java.awt.EventQueue;
 import modelPackage.EspazioModel;
 import modelPackage.PartidaKudeatzailea;
-
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import java.awt.GridLayout;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 //Commit prueba2
 public class EspazioaView extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
 	
 	public EspazioaView() {

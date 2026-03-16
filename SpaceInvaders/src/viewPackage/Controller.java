@@ -87,10 +87,6 @@ public class Controller implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {teklakSakatuta.remove(e.getKeyCode());} //pultsatutako teklak ezabatzeko
     	
-    /*@Override
-    public void actionPerformed(ActionEvent e) {
-        EspazioModel.getGelaxkaMatrizea().jokoaEguneratu();
-    } 
-    Kenduta mugituko delako EspazioModel-era
-    */ 
+
+
 }

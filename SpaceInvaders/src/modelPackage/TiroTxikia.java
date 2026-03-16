@@ -9,11 +9,6 @@ public class TiroTxikia extends Tiro {
     }
     
     
-    
-    public int getDMG() {
-    	return TiroTxikia.dmg;
-    }
-    
     @Override
     public void mugitu() {
     	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
@@ -23,7 +18,7 @@ public class TiroTxikia extends Tiro {
     	super.setPosizio(getX(), yBerria);
     	String egoera = espazioa.getGelaxka(getX(), getY()).getEgoera();
     	if (egoera.equals("Etsaia")) {
-    		kolisionatu = true; if (kolisionatu) System.out.println(kolisionatu);
+    		kolisionatu = true; if (kolisionatu)
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
     		return;
     	} 

@@ -40,8 +40,6 @@ public class EspazioModel {
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
 	                mugituEtsaiak();
-	                System.out.println(etsaiak.size());
-	                
 	            }
 	        }
 	    });
@@ -165,7 +163,7 @@ public class EspazioModel {
 	
 	
 	//ETSAIEN ARRAYAREN METODOAK:
-		public void sortuEtsaiZerrenda() {
+		private void sortuEtsaiZerrenda() {
 			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
 			//(10,5), (20, 5) ... (80,5)
 			ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
@@ -206,7 +204,7 @@ public class EspazioModel {
 		
 	
 	//**********************************************************
-	public void kolisioakKonprobatu( ) {
+	private void kolisioakKonprobatu( ) {
 		Iterator<Tiro> itrT = this.getTiroIterator();
 		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
 		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
@@ -243,19 +241,5 @@ public class EspazioModel {
 		}
 	}
 	
-	
-	
-	//UPDATE:
-	/*public void jokoaEguneratu() {
-		this.mugituTiroak();
-		this.kolisioakKonprobatu( );
-		this.mugituEtsaiak();   
-		this.checkJokoa();
-	}
-	Metodo hau kendu egin da zeren eta orain ez dugu timer bera erabiltzen, ezberdinak dira, era horretan
-	timer bakoitzean "actionPerformed" metodo bakoitzean egiten dugu hor bakoitzaren zeregina orduan
-	kenduko dugu jokoaEguneratu metodoa.
-	
-	*/
 }
 
