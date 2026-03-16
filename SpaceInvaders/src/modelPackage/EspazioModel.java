@@ -30,42 +30,6 @@ public class EspazioModel {
 	    tiroak = new ArrayList<Tiro>();
 	    etsaiak = new ArrayList<Etsai>();
 	    
-	    //Timerra hemen EspazioModelerako :D
-	    //Kasu honetan mugitzean orain ez da ...(200,this).. orain EspazioModel ez denez ActionListener
-	    //(Controllera bai zen) momentuan sortzen dugu eta egin dugun importekin ez da beharrezkoa egitea
-	    // public class EspazioModel implements ActionListener eta gauza horiek
-	    // Etsaiak 200ms-ro mugitu.
-	    timerEtsaiak = new Timer(200, new ActionListener() {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            if (jokoaMartxan) {
-	                mugituEtsaiak();
-	                checkJokoa();
-	                System.out.println(etsaiak.size());
-	            }
-	        }
-	    });
-
-	    // Tiroak 50ms-ro mugitu, horrela bizitazun gehiago dauka jokoa
-	    timerTiroak = new Timer(50, new ActionListener() {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            if (jokoaMartxan) {
-	                mugituTiroak();
-	                checkJokoa();
-	                for (Etsai et : etsaiak) {
-	                	for (Tiro t :tiroak) {
-	                		if(et.getX() == t.getX() && et.getY() == t.getY()) {
-	                			System.out.println("tankeatu koordenatuak");
-	                		}
-	                	}
-	                }
-	            }
-	        }
-	    });
-
-	    timerEtsaiak.start();
-	    timerTiroak.start();
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {//EMA
@@ -137,6 +101,36 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortuJokalaria();
 	    this.sortuEtsaiZerrenda();
+	    
+	    //Timerrak eraikitzailearen kanpoan
+	    timerEtsaiak = sortuTimerEtsaiak();
+	    timerTiroak  = sortuTimerTiroak();
+	    timerEtsaiak.start();
+	    timerTiroak.start();
+	}
+	
+	private Timer sortuTimerEtsaiak() {
+	    return new Timer(200, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            if (jokoaMartxan) {
+	                mugituEtsaiak();
+	                checkJokoa();
+	            }
+	        }
+	    });
+	}
+
+	private Timer sortuTimerTiroak() {
+	    return new Timer(50, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            if (jokoaMartxan) {
+	                mugituTiroak();
+	                checkJokoa();
+	            }
+	        }
+	    });
 	}
 	
 
