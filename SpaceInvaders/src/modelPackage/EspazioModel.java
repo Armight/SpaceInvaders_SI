@@ -40,6 +40,7 @@ public class EspazioModel {
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
 	                mugituEtsaiak();
+	                System.out.println(etsaiak.size());
 	            }
 	        }
 	    });
