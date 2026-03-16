@@ -9,7 +9,7 @@ import viewPackage.HasieraPantaila;
 
 public class main {
     public static void main(String[] args) {
-    	HasieraPantaila hasieraPantaila = new HasieraPantaila();
+    	new HasieraPantaila();
     	EventQueue.invokeLater(() -> PartidaKudeatzailea.getPartidaKudeatzailea());
     }
 }
