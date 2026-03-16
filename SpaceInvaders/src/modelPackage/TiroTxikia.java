@@ -19,7 +19,9 @@ public class TiroTxikia extends Tiro {
     	String egoera = espazioa.getGelaxka(getX(), getY()).getEgoera();
     	if (egoera.equals("Etsaia")) {
     		kolisionatu = true; if (kolisionatu) System.out.println(kolisionatu);
+    		espazioa.kolisioakKonprobatu(this.getX(),this.getY());
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
+    		this.removeTiro();
     		return;
     	} 
     	if (super.espaziotikKanpo(getY())) {

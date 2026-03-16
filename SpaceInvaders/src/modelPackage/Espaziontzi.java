@@ -11,6 +11,7 @@ public abstract class Espaziontzi extends Mugimendu {
 		bizitza = bizitza - 1;
 		if (bizitza <=0) {
 			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+			EspazioModel.getGelaxkaMatrizea().ezabatuEtsai((Etsai)this);
 			return true;
 		} else return false;
 	}

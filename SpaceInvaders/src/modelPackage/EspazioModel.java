@@ -35,23 +35,31 @@ public class EspazioModel {
 	    //(Controllera bai zen) momentuan sortzen dugu eta egin dugun importekin ez da beharrezkoa egitea
 	    // public class EspazioModel implements ActionListener eta gauza horiek
 	    // Etsaiak 200ms-ro mugitu.
-	    timerEtsaiak = new Timer(213, new ActionListener() {
+	    timerEtsaiak = new Timer(200, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
 	                mugituEtsaiak();
+	                checkJokoa();
 	                System.out.println(etsaiak.size());
 	            }
 	        }
 	    });
 
 	    // Tiroak 50ms-ro mugitu, horrela bizitazun gehiago dauka jokoa
-	    timerTiroak = new Timer(57, new ActionListener() {
+	    timerTiroak = new Timer(50, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (jokoaMartxan) {
 	                mugituTiroak();
-	                kolisioakKonprobatu();
+	                checkJokoa();
+	                for (Etsai et : etsaiak) {
+	                	for (Tiro t :tiroak) {
+	                		if(et.getX() == t.getX() && et.getY() == t.getY()) {
+	                			System.out.println("tankeatu koordenatuak");
+	                		}
+	                	}
+	                }
 	            }
 	        }
 	    });
@@ -158,9 +166,12 @@ public class EspazioModel {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
 			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
+			
 		}
 	}
-	
+	public void ezabatuEtsai (Etsai e) {
+		etsaiak.remove(e);
+	}
 	
 	
 	//ETSAIEN ARRAYAREN METODOAK:
@@ -205,34 +216,36 @@ public class EspazioModel {
 		
 	
 	//**********************************************************
-	private void kolisioakKonprobatu( ) {
+	public void kolisioakKonprobatu( int pX, int pY) {
 		Iterator<Tiro> itrT = this.getTiroIterator();
+		
 		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
 		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
 		
 		//TIROAK KONPROBATU
-		while (itrT.hasNext()) {
+		/*while (itrT.hasNext()) {
 			Tiro t = itrT.next();
 			if (t.getKolisionatu()) {
 				//tiroa gorde gerorako
 				ezabatuTiroak.add(t);
 				itrT.remove();
 			}
-		}
+		}*/
 		//ETSAIAK KONPROBATU
-		if (!ezabatuTiroak.isEmpty()) {
+		//if (!ezabatuTiroak.isEmpty()) {
 			for (Etsai e : etsaiak) {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
-				for (Tiro t : ezabatuTiroak) {
-					if(e.kolisioakKonprobatu(t.getX(), t.getY())) {
+				//for (Tiro t : ezabatuTiroak) {
+					if(e.kolisioakKonprobatu(pX,pY)) {
 						boolean hilDa = e.bizitzaKendu();
 						if (hilDa) {
-							ezabatuEtsai.add(e);
+							etsaiak.remove(e);
+							break;
 						}
 					}
 				}
-			}
-		}
+			
+		
 		etsaiak.removeAll(ezabatuEtsai);
 		
 		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
