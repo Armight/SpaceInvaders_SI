@@ -9,6 +9,7 @@ import viewPackage.Controller;
 public class PartidaKudeatzailea extends Observable {
 	private static PartidaKudeatzailea nPK;
 	private Color itsasontziKolorea;
+	private int pantaila = 1;
 	
 	private PartidaKudeatzailea() {
 		Controller controller = Controller.getController();
@@ -38,6 +39,7 @@ public class PartidaKudeatzailea extends Observable {
 	}
 	
 	public void jokoanHasi() {
+		if (this.pantaila != 1) {return;}
 		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
 		this.hasieraItzali();
 		
@@ -45,6 +47,7 @@ public class PartidaKudeatzailea extends Observable {
 		this.espazioViewErakutsi();
 		
 		espazioModel.jokoanHasi();
+		pantaila=2;
 	}
 	
 	private void hasieraItzali() {
@@ -84,6 +87,7 @@ public class PartidaKudeatzailea extends Observable {
 	private void jokoaBukatu(boolean pIrabazi) {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
 		this.espazioViewItzali( );
 		this.amaieraPantailaErakutsi(pIrabazi);
+		pantaila=3;
 	}
 	
 }
