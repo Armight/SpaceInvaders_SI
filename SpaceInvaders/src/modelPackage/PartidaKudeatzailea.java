@@ -3,7 +3,7 @@ package modelPackage;
 import java.awt.Color;
 import java.util.Observable;
 
-import viewPackage.Controller;
+
 
 
 public class PartidaKudeatzailea extends Observable {
@@ -12,7 +12,7 @@ public class PartidaKudeatzailea extends Observable {
 	private int pantaila = 1;
 	
 	private PartidaKudeatzailea() {
-		Controller controller = Controller.getController();
+		
 	}
 	
 	public static PartidaKudeatzailea getPartidaKudeatzailea() {
