@@ -216,29 +216,19 @@ public class EspazioModel {
 		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
 		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
 		
-		//TIROAK KONPROBATU
-		/*while (itrT.hasNext()) {
-			Tiro t = itrT.next();
-			if (t.getKolisionatu()) {
-				//tiroa gorde gerorako
-				ezabatuTiroak.add(t);
-				itrT.remove();
-			}
-		}*/
+		
 		//ETSAIAK KONPROBATU
-		//if (!ezabatuTiroak.isEmpty()) {
 			for (Etsai e : etsaiak) {
 				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
-				//for (Tiro t : ezabatuTiroak) {
-					if(e.kolisioakKonprobatu(pX,pY)) {
-						boolean hilDa = e.bizitzaKendu();
-						if (hilDa) {
-							etsaiak.remove(e);
-							break;
-						}
+				if(e.kolisioakKonprobatu(pX,pY)) {
+					boolean hilDa = e.bizitzaKendu();
+					if (hilDa) {
+						etsaiak.remove(e);
+						break;
 					}
 				}
-			
+			}
+		
 		
 		etsaiak.removeAll(ezabatuEtsai);
 		
