@@ -133,6 +133,10 @@ public class EspazioModel {
 	    });
 	}
 	
+	public void geldituTimerrak() {
+	    if (timerEtsaiak != null) timerEtsaiak.stop();
+	    if (timerTiroak != null) timerTiroak.stop();
+	}
 
 //***********************TIROEN METODOAK:********************************
 	

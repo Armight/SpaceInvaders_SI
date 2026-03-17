@@ -87,6 +87,7 @@ public class PartidaKudeatzailea extends Observable {
 	private void jokoaBukatu(boolean pIrabazi) {//TODO, jokoa amaitzeko metodoa da, espaziotik amaiera pantailara joateko
 		if (this.pantaila != 2) {return;}
 		pantaila=3;
+		EspazioModel.getGelaxkaMatrizea().geldituTimerrak();
 		this.espazioViewItzali( );
 		this.amaieraPantailaErakutsi(pIrabazi);
 	}
