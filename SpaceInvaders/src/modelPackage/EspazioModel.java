@@ -203,12 +203,15 @@ public class EspazioModel {
 	}
 	
 	public void mugituJokalariaX(int i) {
+		if (jokalari == null) return;
 		this.jokalari.mugituJokalariaX(i);
 	}
 	public void mugituJokalariaY(int i) {
+		if (jokalari == null) return;
 		this.jokalari.mugituJokalariaY(i);
 	}
 	public void shoot() {
+		if (jokalari == null) return;
 		this.jokalari.shoot();
 	}
 		
