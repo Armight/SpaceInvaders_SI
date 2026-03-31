@@ -80,40 +80,37 @@ public class HasieraPantaila extends JFrame implements Observer{
         this.setVisible(true);
     }
     
-    private void erakutsiItsasontziHautatua(Color pKolorea) {
-    	String mota = this.kolorearenIzena(pKolorea);
-    	hautatutaLabel.setText("Hautatua: " + mota + " - Press <ENTER> to play!");
-        switch (mota) {
-            case "Green": hautatutaLabel.setForeground(Color.GREEN); break;
-            case "Blue":  hautatutaLabel.setForeground(Color.BLUE);  break;
-            case "Red":   hautatutaLabel.setForeground(Color.RED);   break;
+    private void erakutsiItsasontziHautatua(String pKolorea) {
+    	hautatutaLabel.setText("Hautatua: " + pKolorea + " - Press <ENTER> to play!");
+        switch (pKolorea) {
+            case "GREEN": hautatutaLabel.setForeground(Color.GREEN); break;
+            case "BLUE":  hautatutaLabel.setForeground(Color.BLUE);  break;
+            case "RED":   hautatutaLabel.setForeground(Color.RED);   break;
         }
     }
     
-    private String kolorearenIzena(Color pKolorea) {
-    	if (pKolorea.equals(Color.GREEN)) return "Green";
-    	if (pKolorea.equals(Color.BLUE)) return "Blue";
-    	if (pKolorea.equals(Color.RED)) return "Red";
-    	return "Ezezaguna";
-    }
     
     @Override
    	public void update(Observable o, Object arg) {
    		if (arg != null) {
    			
    			//Itsasontziaren kolorea
-   			if (arg instanceof Color) {
-   				this.erakutsiItsasontziHautatua((Color)arg);
-   				
-   			//HasieraPantaila kendu
-   			} else if (arg instanceof String) {
+   			if (arg instanceof String) {
+   				if(arg.equals("GREEN") || arg.equals("RED") || arg.equals("BLUE")) {
+   					this.erakutsiItsasontziHautatua((String)arg);
+   				}
    				String agindu = arg.toString();
    				if (agindu.equals("HasieraPantaila itzali")) {
    					this.dispose();
    					new EspazioaView();
    				}
    				
-   			}
+   				
+   			//HasieraPantaila kendu
+   			} 
+   				
+   				
+   			
    		}
    	}
 }

@@ -41,13 +41,13 @@ public class Controller implements KeyListener {
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_G:
-            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.GREEN);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea("GREEN");
                 break;
             case KeyEvent.VK_B:
-            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.BLUE);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea("BLUE");
                 break;
             case KeyEvent.VK_R:
-            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea(Color.RED);
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea("RED");
                 break;
             case KeyEvent.VK_ENTER:
             	PartidaKudeatzailea.getPartidaKudeatzailea().jokoanHasi();

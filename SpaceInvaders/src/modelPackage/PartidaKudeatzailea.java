@@ -8,7 +8,7 @@ import java.util.Observable;
 
 public class PartidaKudeatzailea extends Observable {
 	private static PartidaKudeatzailea nPK;
-	private Color itsasontziKolorea;
+	private String itsasontziKolorea;
 	private int pantaila = 1;
 	
 	private PartidaKudeatzailea() {
@@ -22,13 +22,13 @@ public class PartidaKudeatzailea extends Observable {
 		return nPK;
 	}
 	
-	public void setItsasontziKolorea(Color pKolorea ) {
+	public void setItsasontziKolorea(String pKolorea ) {
 		this.itsasontziKolorea = pKolorea;
 		setChanged();
 		notifyObservers(pKolorea);
 	}
 	
-	public Color getKolorea() {
+	public String getKolorea() {
 		return this.itsasontziKolorea;
 	}
 	
