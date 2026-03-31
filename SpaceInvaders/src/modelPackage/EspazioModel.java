@@ -14,8 +14,6 @@ public class EspazioModel {
 	private ArrayList<Tiro> tiroak;
 	private ArrayList<Etsai> etsaiak; 
 	private Jokalari jokalari;
-	private boolean jokoaMartxan = false;
-	private boolean jokoaAmaitu = false;
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	
@@ -52,26 +50,9 @@ public class EspazioModel {
 		return this.matrizea[pY][pX];
 	}
 	
-	//JOKOAREN KUDEAKETA
-	public void setJokoaAmaitu() {
-		jokoaAmaitu = true;
-		//Hemen ipini check jokoa, zeren eta etsaia muga edo limiteera ailegatzen denean setJokoaAmaitu()
-		//metodoa  deitzen dute, era honetan zuzenean egiten dugu, konkretuki 
-		//mugituJokalariaX() eta mugituJokalariaY() metodoak JokalariMorea klasean eta
-		//EtsaiTxikia klasea mugituEtsaiY() metodoarekin
-		this.checkJokoa();
-	}
-	
-	public boolean getJokoaAmaitu() {
-		return this.jokoaAmaitu;
-	}
-	
-	private void checkJokoa() {
-		PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
-	}
-	
+	//JOKOAREN KUDEAKETA	
 	public boolean etsairikEz() {
-		if (jokoaMartxan) {
+		if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 			return etsaiak.isEmpty();
 		} else return false;
 	}
@@ -91,7 +72,7 @@ public class EspazioModel {
 	//JOKOA HASTEKO
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
-		this.jokoaMartxan = true;
+		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaMartxan();
 		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
 		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //48
 		
@@ -113,9 +94,9 @@ public class EspazioModel {
 	    return new Timer(200, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            if (jokoaMartxan) {
+	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 	                mugituEtsaiak();
-	                checkJokoa();
+	                PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
@@ -125,9 +106,9 @@ public class EspazioModel {
 	    return new Timer(50, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            if (jokoaMartxan) {
+	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 	                mugituTiroak();
-	                checkJokoa();
+	                PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
@@ -242,7 +223,7 @@ public class EspazioModel {
 		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
 		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
 		if (etsairikEz()) {
-		    this.checkJokoa();
+			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 		}
 	}
 	

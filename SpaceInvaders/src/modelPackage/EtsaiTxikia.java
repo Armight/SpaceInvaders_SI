@@ -42,7 +42,7 @@ public class EtsaiTxikia extends Etsai {
     	int yBerria = this.getY() + 1;
 
     	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
-    		espazioa.setJokoaAmaitu();
+    		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
     		return;
     	}
     	if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equals("Tiro")) {

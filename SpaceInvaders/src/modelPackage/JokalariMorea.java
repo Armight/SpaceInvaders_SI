@@ -27,7 +27,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX()+i, getY());//posizio berria atzitu
 		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
-			espazioa.setJokoaAmaitu();
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 		} else espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri
 	}
 	
@@ -45,7 +45,7 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");//posizio zaharra matrizetik kendu
 		this.setPosizio(getX(), getY()-i);//posizio berria atzitu
 		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
-			espazioa.setJokoaAmaitu();
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 		} else espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");//posizio berria matrizean jarri	
 	}
 	

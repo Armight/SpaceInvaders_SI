@@ -10,6 +10,8 @@ public class PartidaKudeatzailea extends Observable {
 	private static PartidaKudeatzailea nPK;
 	private String itsasontziKolorea;
 	private int pantaila = 1;
+	private boolean jokoaMartxan = false;
+	private boolean jokoaAmaitu = false;
 	
 	private PartidaKudeatzailea() {
 		
@@ -27,6 +29,14 @@ public class PartidaKudeatzailea extends Observable {
 		setChanged();
 		notifyObservers(pKolorea);
 	}
+	
+	public boolean getJokoaMartxan() {return this.jokoaMartxan;}
+	
+	public boolean getJokoaAmaitu() {return this.jokoaAmaitu;}
+	
+	public void setJokoaMartxan() {this.jokoaMartxan=true;}
+	
+	public void setJokoaAmaitu() {this.jokoaAmaitu=true;}
 	
 	public String getKolorea() {
 		return this.itsasontziKolorea;
@@ -77,7 +87,7 @@ public class PartidaKudeatzailea extends Observable {
 	
 	public void checkJokoa() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		if (espazioa.getJokoaAmaitu()) {	//Etsai bat Y limitera ailegatu da edo jokalari bat etsai batekin talka egin du
+		if (getJokoaAmaitu()) {	//Etsai bat Y limitera ailegatu da edo jokalari bat etsai batekin talka egin du
 			this.jokoaBukatu(false);
 		} else if (espazioa.etsairikEz()) {
 			this.jokoaBukatu(true);
