@@ -1,4 +1,4 @@
-package modelPackage;
+/*package modelPackage;
 
 public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoetan ya Gorria, Berdea, Urdina kodetu
 												//tiro bakarra du: pixel bateko tiroa.
@@ -59,5 +59,5 @@ public class JokalariMorea extends Jokalari {//1.sprinterako bakarrik, hurrengoe
 		}
 		
 	}
-}
+}*/
 

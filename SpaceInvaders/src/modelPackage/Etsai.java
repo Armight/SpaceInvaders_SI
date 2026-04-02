@@ -1,6 +1,6 @@
 package modelPackage;
 
-public abstract class Etsai extends Espaziontzi {
+public abstract class Etsai extends Pixel {
 		
     protected Etsai(int pX, int pY, int pPixelKop) {
         super(pX, pY, pPixelKop);

@@ -5,7 +5,7 @@ public class TiroTxikia extends Tiro {
 	private static int dmg=1;
 
     public TiroTxikia(int pX, int pY) {
-        super(pX, pY, 1);
+        super(pX, pY);
     }
     
     
@@ -32,6 +32,34 @@ public class TiroTxikia extends Tiro {
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
   
     }
+
+
+	@Override
+	public boolean bizitzaKendu() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public void mugituX(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mugituY(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void sortu() {
+		// TODO Auto-generated method stub
+		
+	}
     
      
     }

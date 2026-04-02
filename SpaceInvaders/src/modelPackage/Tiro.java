@@ -1,11 +1,11 @@
 package modelPackage;
 
-public abstract class Tiro extends Mugimendu {
+public abstract class Tiro extends Pixel {
 	protected boolean kolisionatu = false;
 	
-    protected Tiro(int pX, int pY,int pPixelKop) {
+    protected Tiro(int pX, int pY) {
         
-        	super(pX, pY, pPixelKop);
+        	super(pX, pY, -1);
         
     }
     

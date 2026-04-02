@@ -5,7 +5,6 @@ public class EtsaiTxikia extends Etsai {
     public EtsaiTxikia(int pX, int pY) {
     	//Etsai txikiaren pixelKop = 1, bizitza = 1, 
         super(pX, pY, 1);
-        super.bizitza = 1;
     }
     
     @Override
@@ -58,5 +57,29 @@ public class EtsaiTxikia extends Etsai {
         	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
     	}
     }
+
+	@Override
+	public boolean bizitzaKendu() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void mugituX(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mugituY(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sortu() {
+		// TODO Auto-generated method stub
+		
+	}
        
 }

@@ -77,10 +77,10 @@ public class EspazioModel {
 		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //48
 		
 	    //jokalaria instantziatu
-	    jokalari = new JokalariMorea(pXErdia, pYBehean);
+	    jokalari = new Jokalari(pXErdia, pYBehean);
 	    
 	    //Jokalaria eta etsaiak sortu
-	    jokalari.sortuJokalaria();
+	    jokalari.sortu();
 	    this.sortuEtsaiZerrenda();
 	    
 	    //Timerrak eraikitzailearen kanpoan
@@ -185,11 +185,11 @@ public class EspazioModel {
 	
 	public void mugituJokalariaX(int i) {
 		if (jokalari == null) return;
-		this.jokalari.mugituJokalariaX(i);
+		this.jokalari.mugituX(i);
 	}
 	public void mugituJokalariaY(int i) {
 		if (jokalari == null) return;
-		this.jokalari.mugituJokalariaY(i);
+		this.jokalari.mugituY(i);
 	}
 	public void shoot() {
 		if (jokalari == null) return;
