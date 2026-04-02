@@ -67,7 +67,7 @@ public class Jokalari extends Pixel {
 		if (this.getY() <= 2) {
 			return;
 		}else {
-			TiroTxikia tiro = new TiroTxikia(getX(), getY() -2);
+			Tiro tiro = new Tiro(getX(), getY() -2);
 			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 		}
 	}

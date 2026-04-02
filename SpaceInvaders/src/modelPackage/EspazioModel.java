@@ -132,7 +132,10 @@ public class EspazioModel {
 	private void mugituTiroak() {
 			ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
 			for (Tiro t : tiroakCopia) {
-			    t.mugitu();//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+				//Herentziaz int parametro bat sartu beharra dago
+				//Tiroa bakarrik gorantz egin dezake, beraz ez da parametroa erabiliko
+				//pantailan dauden tiro guztiak posizio bat aurrera egiteko
+			    t.mugituY(0);
 			}
 		}
 	private Iterator<Tiro> getTiroIterator(){
