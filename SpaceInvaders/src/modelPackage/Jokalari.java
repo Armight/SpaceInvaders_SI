@@ -2,11 +2,11 @@ package modelPackage;
 
 public class Jokalari extends Pixel {
 
-	private String kolorea;
+	protected String kolorea;
 	
 	protected Jokalari(int pX, int pY) {
 		super(pX, pY, 1);
-		this.kolorea = "Morea";
+	
 	}
 	
 	//JOKALARI METODO OROKORRAK:		
@@ -41,6 +41,7 @@ public class Jokalari extends Pixel {
 		}
 	}
 	
+	
 	@Override
 	public void mugituY(int i) {
 		//i=1 denean, gorantz mugitu
@@ -62,6 +63,8 @@ public class Jokalari extends Pixel {
 			espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");	
 		}
 	}
+	
+	public String getKolorea() {return this.kolorea;}
 	
 	public void shoot() {
 		if (this.getY() <= 2) {
