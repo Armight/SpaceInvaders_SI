@@ -18,10 +18,10 @@ public class JokalariFactory {
 		if (pKolorea.equals("GREEN")) {
 			jokalaria = new JokalariBerdea(pX,pY);
 		}
-		if (pKolorea.equals("RED")) {
+		else if (pKolorea.equals("RED")) {
 			jokalaria = new JokalariGorria(pX,pY);
 		}
-		if (pKolorea.equals("BLUE")) {
+		else if (pKolorea.equals("BLUE")) {
 			jokalaria = new JokalariUrdina(pX,pY);
 		}
 		return jokalaria;
