@@ -1,15 +1,23 @@
 package modelPackage;
 
-public class Jokalari extends Pixel {
+public class Jokalari implements Pixel {//Jokalariaren pixela (leaf)
+	private int x, y;
+	private int bizitza;
 
 	private String kolorea;
 	
 	protected Jokalari(int pX, int pY) {
-		super(pX, pY, 1);
+		
 		this.kolorea = "Morea";
 	}
 	
-	//JOKALARI METODO OROKORRAK:		
+	//JOKALARI METODO OROKORRAK:
+	
+	public int getX() {return this.x;}
+	public int getY() {return this.y;}
+	
+	
+	
 	@Override
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");
@@ -76,6 +84,18 @@ public class Jokalari extends Pixel {
 	public boolean bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getBizitza() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
