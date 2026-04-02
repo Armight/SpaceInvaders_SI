@@ -16,13 +16,13 @@ public class JokalariFactory {
 	public Jokalari createJokalaria(String pKolorea, int pX, int pY) {
 		Jokalari jokalaria = null;
 		if (pKolorea.equals("GREEN")) {
-			jokalaria = new Jokalari(pX,pY);
+			jokalaria = new JokalariBerdea(pX,pY);
 		}
 		if (pKolorea.equals("RED")) {
-			jokalaria = new Jokalari(pX,pY);
+			jokalaria = new JokalariGorria(pX,pY);
 		}
 		if (pKolorea.equals("BLUE")) {
-			jokalaria = new Jokalari(pX,pY);
+			jokalaria = new JokalariUrdina(pX,pY);
 		}
 		return jokalaria;
 	}
