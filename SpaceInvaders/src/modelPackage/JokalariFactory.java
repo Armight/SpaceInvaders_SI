@@ -7,6 +7,7 @@ public class JokalariFactory {
 	
 	public static JokalariFactory getJK() {
 		if (nJokalariFactory==null) {
+			
 			nJokalariFactory = new JokalariFactory();
 		}
 		return nJokalariFactory;
