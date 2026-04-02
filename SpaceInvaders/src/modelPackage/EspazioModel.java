@@ -169,8 +169,8 @@ public class EspazioModel {
 			int etsaiKop = 4 + (int)(Math.random() * 5);
 			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
-				Etsai et = new EtsaiTxikia(pos[0], pos[1]);
-				et.sortuEtsaia();
+				Etsai et = new Etsai(pos[0], pos[1]);
+				et.sortu();
 				this.etsaiak.add(et);
 			}
 			

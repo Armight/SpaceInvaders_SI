@@ -20,6 +20,10 @@ public abstract class Pixel {
 		return this.y;
 	}
 	
+	protected int getBizitza() {
+		return this.bizitza;
+	}
+	
 	 protected void setPosizio(int pX, int pY) {
 		 this.x=pX;
 		 this.y=pY;
