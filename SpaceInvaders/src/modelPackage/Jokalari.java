@@ -21,6 +21,7 @@ public class Jokalari extends Pixel {
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		int xBerria = this.getX() + i;
+		
 		if (espazioa.espaziotikKanpo(xBerria, getY())) {
 			return;
 		}
@@ -32,13 +33,11 @@ public class Jokalari extends Pixel {
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		//posizio berria atzitu
 		this.setPosizio(getX()+i, getY());
-		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
-			
-		} else {
-			//posizio berria matrizean jarri
-			espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");
-		}
+		
+		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
+		
+		//posizio berria matrizean jarri
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");
 	}
 	
 	
@@ -54,14 +53,13 @@ public class Jokalari extends Pixel {
 		
 		//posizio zaharra matrizetik kendu
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		
 		//posizio berria atzitu
 		this.setPosizio(getX(), getY()-i);
-		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
-		} else {
-			//posizio berria matrizean jarri
-			espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");	
-		}
+		
+		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
+		
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");	
 	}
 	
 	public String getKolorea() {return this.kolorea;}

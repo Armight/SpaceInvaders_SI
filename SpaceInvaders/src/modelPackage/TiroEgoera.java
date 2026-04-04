@@ -1,8 +1,6 @@
 package modelPackage;
 
 public class TiroEgoera implements Egoera{
-
-	
 	
 	@Override
 	public String getEgoera() {

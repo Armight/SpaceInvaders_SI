@@ -203,7 +203,7 @@ public class EspazioModel {
 	}
 		
 	
-	//**********************************************************
+	//*************************KOLISIOEN METODODAK:**************************
 	public void etsaiKolisioakKonprobatu(int pX, int pY) {
 		Iterator<Etsai> itr = this.getEtsaiIterator(); 
 		
@@ -237,5 +237,17 @@ public class EspazioModel {
 			}
 		}
 	}
+	
+	public void jokalariKolisioakKonprobatu(int pX, int pY) {
+		Iterator<Etsai> itr = this.getEtsaiIterator(); 
+
+		while(itr.hasNext()) {
+			Etsai e = itr.next();
+			if(e.kolisioakKonprobatu(pX,pY)) {
+				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+			}
+		}
+	}
+
 }
 

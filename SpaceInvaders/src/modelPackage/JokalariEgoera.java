@@ -2,8 +2,6 @@ package modelPackage;
 
 public class JokalariEgoera implements Egoera{
 
-	
-	
 	@Override
 	public String getEgoera() {
 		return "Jokalari";
@@ -12,6 +10,5 @@ public class JokalariEgoera implements Egoera{
 	@Override
 	public void setEgoera(Gelaxka pGelaxka) {
 		pGelaxka.egoeraAldatu(new JokalariEgoera());
-		
 	}
 }

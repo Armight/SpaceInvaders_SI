@@ -1,8 +1,6 @@
 package modelPackage;
 
 public class HutsikEgoera implements Egoera {
-
-	
 	
 	@Override
 	public String getEgoera() {
@@ -11,8 +9,7 @@ public class HutsikEgoera implements Egoera {
 
 	@Override
 	public void setEgoera(Gelaxka pGelaxka) {
-		// TODO Auto-generated method stub
-		
+		pGelaxka.egoeraAldatu(new HutsikEgoera());		
 	}
 
 

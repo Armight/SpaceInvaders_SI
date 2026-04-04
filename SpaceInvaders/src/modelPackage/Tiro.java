@@ -24,15 +24,16 @@ public class Tiro extends Pixel {
     		int yBerria = getY() - 1;
     	    		
     		super.setPosizio(getX(), yBerria);
+    		    		
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     		
 			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY());
-    		
+			
     		if (this.espaziotikKanpo(getY())) {
     			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
     			espazioa.removeTiro(this);
     			return;
     		}
-    		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
 	}
     
 

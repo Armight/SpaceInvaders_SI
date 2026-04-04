@@ -26,12 +26,12 @@ public class Etsai extends Pixel {
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
         this.setPosizio(xBerria, getY());
         
-		espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
-
+        String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
+		if (egoera.equalsIgnoreCase("Etsaia")) return;
+        
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
-    	
-		String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
-    		if (egoera.equalsIgnoreCase("Etsaia")) return;
+		
+		espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
 	}
 	
 	@Override
@@ -46,13 +46,13 @@ public class Etsai extends Pixel {
 
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		this.setPosizio(getX(), yBerria);
-    		
-    	espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
-    		
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
-
-   		String egoera = espazioa.getGelaxka(getX(), yBerria).getEgoera();
+  
+		String egoera = espazioa.getGelaxka(getX(), yBerria).getEgoera();
     	if (egoera.equalsIgnoreCase("Etsaia")) return;
+    	
+    	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	
+    	espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
 	}
         
     public void mugituRandom() {
