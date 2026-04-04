@@ -22,7 +22,7 @@ public class EspazioModel {
 		//inizializatzeko zuzenean
 	    for (int i = 0; i < 60; i++) {
 	        for (int j = 0; j < 100; j++) {
-	            matrizea[i][j] = new Gelaxka(i, j, "hutsik");
+	            matrizea[i][j] = new Gelaxka(i, j);
 	        }
 	    }
 	    tiroak = new ArrayList<Tiro>();
