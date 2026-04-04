@@ -1,7 +1,17 @@
 package modelPackage;
 
 public class TiroEgoera implements Egoera{
-	public void egoeraEskatu() {
+
+	@Override
+	public void setEgoera(int pX, int pY) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(pX, pY).egoeraAldatu(new TiroEgoera());
+	}
+	
+	@Override
+	public String getEgoera() {
+		return "Tiro";
 		
 	}
+
 }

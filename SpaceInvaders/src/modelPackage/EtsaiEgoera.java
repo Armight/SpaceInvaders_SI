@@ -1,8 +1,18 @@
 package modelPackage;
 
 public class EtsaiEgoera implements Egoera {
-	public void egoeraEskatu() {
-		
+
+	@Override
+	public void setEgoera(int pX, int pY) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(pX, pY).egoeraAldatu(new EtsaiEgoera());
 	}
+	
+	@Override
+	public String getEgoera() {
+		return "Etsaia";
+	}
+
+
 
 }

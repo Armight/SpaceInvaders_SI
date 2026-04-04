@@ -1,7 +1,19 @@
 package modelPackage;
 
 public class HutsikEgoera implements Egoera {
-	public void egoeraEskatu() {
-		
+
+	@Override
+	public void setEgoera(int pX, int pY) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(pX, pY).egoeraAldatu(new HutsikEgoera());
 	}
+	
+	@Override
+	public String getEgoera() {
+		return "Hutsik";
+	}
+
+
+
+
 }

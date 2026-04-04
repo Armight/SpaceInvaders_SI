@@ -1,8 +1,15 @@
 package modelPackage;
 
 public class JokalariEgoera implements Egoera{
-	public void egoeraEskatu() {
-		
-	}
 
+	@Override
+	public void setEgoera(int pX, int pY) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(pX, pY).egoeraAldatu(new JokalariEgoera());
+	}
+	
+	@Override
+	public String getEgoera() {
+		return "Jokalari";
+	}
 }
