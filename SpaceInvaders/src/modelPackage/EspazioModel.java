@@ -175,7 +175,7 @@ public class EspazioModel {
 			int etsaiKop = 4 + (int)(Math.random() * 5);
 			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
-				Etsai et = new Etsai(pos[0], pos[1]);
+				Etsai et = new Etsai(pos[0], pos[1], i+1);
 				et.sortu();
 				this.etsaiak.add(et);
 			}
@@ -209,7 +209,7 @@ public class EspazioModel {
 		
 		while(itr.hasNext()) {
 			Etsai e = itr.next();
-			if(e.kolisioakKonprobatu(pX,pY)) {
+			if(e.kolisioakKonprobatu(pX,pY, e.getId())) {
 				boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
 					itr.remove();
@@ -224,7 +224,7 @@ public class EspazioModel {
 		}
 	}
 	
-	public void TiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
+	public void tiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
 		Iterator<Tiro> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
@@ -243,11 +243,21 @@ public class EspazioModel {
 
 		while(itr.hasNext()) {
 			Etsai e = itr.next();
-			if(e.kolisioakKonprobatu(pX,pY)) {
+			if(e.kolisioakKonprobatu(pX,pY, e.getId())) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 			}
 		}
 	}
 
+	public boolean etsaiEtsaiKolisioak(int pX, int pY) {
+		Iterator<Etsai> itr = this.getEtsaiIterator();
+		boolean kolisionatu = false;
+		
+		while(itr.hasNext() && !kolisionatu) {
+			Etsai e = itr.next();
+			kolisionatu = e.kolisioakKonprobatu(pX, pY, e.getId());	
+		}
+		return kolisionatu;
+	}
 }
 

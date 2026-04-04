@@ -1,9 +1,12 @@
 package modelPackage;
 
 public class Etsai extends Pixel {
-		
-    public Etsai(int pX, int pY) {
+	
+	int id;
+	
+    public Etsai(int pX, int pY, int pId) {
         super(pX, pY, 1);
+        id = pId;
     }
     
     //ETSAI METODO OROKORRAK:
@@ -23,15 +26,16 @@ public class Etsai extends Pixel {
     			return;
 		}
 		
+		if (espazioa.etsaiEtsaiKolisioak(xBerria, getY())) {
+        	return;
+        }
+		
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-        this.setPosizio(xBerria, getY());
-        
-        String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
-		if (egoera.equalsIgnoreCase("Etsaia")) return;
-        
+		        
+        this.setPosizio(xBerria, getY());       
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
 		
-		espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
+		espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
 	}
 	
 	@Override
@@ -43,16 +47,17 @@ public class Etsai extends Pixel {
     		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
     		return;
     	}
+    	
+    	if (espazioa.etsaiEtsaiKolisioak(getX(), yBerria)) {
+        	return;
+        }
 
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		
 		this.setPosizio(getX(), yBerria);
-  
-		String egoera = espazioa.getGelaxka(getX(), yBerria).getEgoera();
-    	if (egoera.equalsIgnoreCase("Etsaia")) return;
-    	
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
     	
-    	espazioa.TiroKolisioakKonprobatu(getX(), getY(), this);
+    	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
 	}
         
     public void mugituRandom() {
@@ -69,10 +74,16 @@ public class Etsai extends Pixel {
         }
     }
     
-    public boolean kolisioakKonprobatu (int pX, int pY) {
-    		if (getX() == pX && getY() == pY) {
-    			return true;
-    		} else return false;
+    public int getId() {
+    	return this.id;
+    }
+    
+    public boolean kolisioakKonprobatu (int pX, int pY, int pId) {
+    	boolean kolisionatu = false;
+    	if (getX() == pX && getY() == pY) {
+    		if (this.id != pId) kolisionatu = true;
+    	}
+    	return kolisionatu;
     }
 
 	@Override
