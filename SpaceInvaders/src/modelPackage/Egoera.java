@@ -2,7 +2,7 @@ package modelPackage;
 
 public interface Egoera {
 	
-	public void setEgoera(int pX, int pY);
+	public void setEgoera(Gelaxka pGelaxka);
 	
 	public String getEgoera();
 	

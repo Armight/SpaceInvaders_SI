@@ -12,18 +12,26 @@ public class Gelaxka extends Observable{
 		this.posX = pX;
 		this.posY = pY;
 		//this.egoera = pEgoera;
-		this.egoera = new HutsikEgoera(); //!!IZEN ALDAKETA egoeraa --> egoera
+		this.egoera = new HutsikEgoera(); 
 	}
 	
 	
 	public void setEgoera(String pEgoera) {
-		this.egoera.setEgoera(posX, posY); //!!IZEN ALDAKETA egoeraa --> egoera
+		this.egoera.setEgoera(this); 
 		setChanged();
 		this.notifyObservers(pEgoera);
 	}
 	
+	public void setEgoera(Egoera pEgoera) {
+		this.egoera = pEgoera; 
+		setChanged();
+		this.notifyObservers(this.getEgoera());
+	}
+	
+
+	
 	public void egoeraAldatu(Egoera pEgoera) {
-		this.egoera = pEgoera; //!!IZEN ALDAKETA egoeraa --> egoera
+		this.egoera = pEgoera; 
 	}
 	
 	public String getEgoera() {

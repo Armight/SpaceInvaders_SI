@@ -9,7 +9,7 @@ public class Etsai extends Pixel {
     //ETSAI METODO OROKORRAK:
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera(new EtsaiEgoera());
 	}
 	
 	@Override
@@ -30,9 +30,9 @@ public class Etsai extends Pixel {
 		String egoera = espazioa.getGelaxka(xBerria, getY()).getEgoera();
     		if (egoera.equalsIgnoreCase("Etsaia")) return;
     	
-    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+    		espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());
         this.setPosizio(xBerria, getY());
-        espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+        espazioa.getGelaxka(getX(), getY()).setEgoera(new EtsaiEgoera());
 	}
 	
 	@Override
@@ -52,9 +52,9 @@ public class Etsai extends Pixel {
     		String egoera = espazioa.getGelaxka(getX(), yBerria).getEgoera();
     		if (egoera.equalsIgnoreCase("Etsaia")) return;
     		else {
-    			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+    			espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());
     			this.setPosizio(getX(), yBerria);
-    			espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    			espazioa.getGelaxka(getX(), getY()).setEgoera(new EtsaiEgoera());
     		}
 	}
         
@@ -73,9 +73,9 @@ public class Etsai extends Pixel {
     }
     
     public boolean kolisioakKonprobatu (int pX, int pY) {
-    	if (getX() == pX && getY() == pY) {
-    		return true;
-    	} else return false;
+    		if (getX() == pX && getY() == pY) {
+    			return true;
+    		} else return false;
     }
 
 	@Override
@@ -83,8 +83,8 @@ public class Etsai extends Pixel {
 		int bizitza = super.getBizitza();
 		bizitza = bizitza - 1;
 		if (bizitza <=0) {
-			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-			EspazioModel.getGelaxkaMatrizea().ezabatuEtsai((Etsai)this);
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());
+			//EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
 			return true;
 		} else return false;
 	}

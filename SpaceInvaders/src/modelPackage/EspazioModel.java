@@ -151,7 +151,7 @@ public class EspazioModel {
 			
 		}
 	}
-	public void ezabatuEtsai (Etsai e) {
+	public void removeEtsai (Etsai e) {
 		etsaiak.remove(e);
 	}
 	
@@ -202,9 +202,7 @@ public class EspazioModel {
 	
 	//**********************************************************
 	public void kolisioakKonprobatu( int pX, int pY) {
-		Iterator<Tiro> itrT = this.getTiroIterator();
 		
-		ArrayList<Tiro> ezabatuTiroak = new ArrayList<Tiro>();
 		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
 		
 		
@@ -214,14 +212,12 @@ public class EspazioModel {
 				if(e.kolisioakKonprobatu(pX,pY)) {
 					boolean hilDa = e.bizitzaKendu();
 					if (hilDa) {
-						etsaiak.remove(e);
-						break;
+						ezabatuEtsai.add(e);
+						System.out.println(hilDa);
 					}
 				}
 			}
-		
-		
-		etsaiak.removeAll(ezabatuEtsai);
+			etsaiak.removeAll(ezabatuEtsai);
 		
 		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
 		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
