@@ -38,5 +38,8 @@ public class Gelaxka extends Observable{
 		return egoera.getEgoera();
 	}
 	
+	public Egoera getGelaxkaEgoera() {
+		return egoera;
+	}
 
 }

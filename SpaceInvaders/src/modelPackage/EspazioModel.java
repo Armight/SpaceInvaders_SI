@@ -138,11 +138,10 @@ public class EspazioModel {
 			    t.mugituY(0);
 			}
 		}
-	private Iterator<Tiro> getTiroIterator(){
-		return tiroak.iterator();
+	
+	private Iterator<Tiro> getTiroIterator() {
+		return this.tiroak.iterator();
 	}
-
-
 //******************************ETSAIEN METODOAK:	********************************
 	private void mugituEtsaiak() {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
@@ -153,6 +152,10 @@ public class EspazioModel {
 	}
 	public void removeEtsai (Etsai e) {
 		etsaiak.remove(e);
+	}
+	
+	private Iterator<Etsai> getEtsaiIterator() {
+		return etsaiak.iterator();
 	}
 	
 	
@@ -201,23 +204,18 @@ public class EspazioModel {
 		
 	
 	//**********************************************************
-	public void kolisioakKonprobatu( int pX, int pY) {
+	public void etsaiKolisioakKonprobatu(int pX, int pY) {
+		Iterator<Etsai> itr = this.getEtsaiIterator(); 
 		
-		ArrayList<Etsai> ezabatuEtsai = new ArrayList<Etsai>();
-		
-		
-		//ETSAIAK KONPROBATU
-			for (Etsai e : etsaiak) {
-				//Etsai bakoitzeko kolisionatu duten tiro guztiak konprobatu
-				if(e.kolisioakKonprobatu(pX,pY)) {
-					boolean hilDa = e.bizitzaKendu();
-					if (hilDa) {
-						ezabatuEtsai.add(e);
-						System.out.println(hilDa);
-					}
+		while(itr.hasNext()) {
+			Etsai e = itr.next();
+			if(e.kolisioakKonprobatu(pX,pY)) {
+				boolean hilDa = e.bizitzaKendu();
+				if (hilDa) { 
+					itr.remove();
 				}
 			}
-			etsaiak.removeAll(ezabatuEtsai);
+		}
 		
 		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
 		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
@@ -226,5 +224,18 @@ public class EspazioModel {
 		}
 	}
 	
+	public void TiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
+		Iterator<Tiro> itr = this.getTiroIterator(); 
+		
+		while(itr.hasNext()) {
+			Tiro t = itr.next();
+			if(t.kolisioakKonprobatu(pX, pY)) {
+				boolean hilDa = e.bizitzaKendu();
+				if (hilDa) { 
+					etsaiak.remove(e);
+				}
+			}
+		}
+	}
 }
 

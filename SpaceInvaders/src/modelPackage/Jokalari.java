@@ -12,7 +12,7 @@ public class Jokalari extends Pixel {
 	//JOKALARI METODO OROKORRAK:		
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera(new JokalariEgoera());
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class Jokalari extends Pixel {
 		if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equalsIgnoreCase("Tiro")) return; 
 		
 		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		//posizio berria atzitu
 		this.setPosizio(getX()+i, getY());
 		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
@@ -37,7 +37,7 @@ public class Jokalari extends Pixel {
 			
 		} else {
 			//posizio berria matrizean jarri
-			espazioa.getGelaxka(getX(), getY()).setEgoera(new JokalariEgoera());
+			espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");
 		}
 	}
 	
@@ -53,14 +53,14 @@ public class Jokalari extends Pixel {
 		if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equalsIgnoreCase("Tiro")) return;
 		
 		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		//posizio berria atzitu
 		this.setPosizio(getX(), getY()-i);
 		if (espazioa.getGelaxka(getX(), getY()).getEgoera().equals("Etsaia")) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 		} else {
 			//posizio berria matrizean jarri
-			espazioa.getGelaxka(getX(), getY()).setEgoera(new JokalariEgoera());	
+			espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");	
 		}
 	}
 	

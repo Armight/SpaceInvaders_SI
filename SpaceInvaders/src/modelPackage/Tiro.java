@@ -1,7 +1,6 @@
 package modelPackage;
 
 public class Tiro extends Pixel {
-	protected boolean kolisionatu = false;
 	
     protected Tiro(int pX, int pY) {
         	super(pX, pY, 0);
@@ -20,26 +19,20 @@ public class Tiro extends Pixel {
 	@Override
     public void mugituY(int i) {
     		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-    		espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera());  //Oraingo pixela kendu
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
     	
     		int yBerria = getY() - 1;
+    	    		
     		super.setPosizio(getX(), yBerria);
     		
-    		String egoera = espazioa.getGelaxka(getX(), getY()).getEgoera();
-    		if (egoera.equals("Etsaia")) {
-    			kolisionatu = true;
-    			espazioa.kolisioakKonprobatu(this.getX(),this.getY());
-    			espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera()); 
-    			espazioa.removeTiro(this);
-    			return;
-    		}
+			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY());
     		
     		if (this.espaziotikKanpo(getY())) {
-    			espazioa.getGelaxka(getX(), getY()).setEgoera(new HutsikEgoera()); 
+    			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
     			espazioa.removeTiro(this);
     			return;
     		}
-    		espazioa.getGelaxka(getX(), getY()).setEgoera(new TiroEgoera());
+    		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
 	}
     
 
@@ -55,18 +48,9 @@ public class Tiro extends Pixel {
     		} else return false;
     }
     
-    public boolean getKolisionatu( ) {
-    		return kolisionatu;
-    }
-
-
-
-
-
-
-
-
-
-
-    
+    public boolean kolisioakKonprobatu(int pX, int pY) {
+    	if (getX() == pX && getY() == pY) {
+			return true;
+		} else return false;
+    }  
 }
