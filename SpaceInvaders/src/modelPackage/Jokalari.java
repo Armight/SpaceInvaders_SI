@@ -12,7 +12,7 @@ public class Jokalari extends Pixel {
 	//JOKALARI METODO OROKORRAK:		
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari");
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class Jokalari extends Pixel {
 		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
 		//posizio berria matrizean jarri
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
 	
@@ -59,7 +59,7 @@ public class Jokalari extends Pixel {
 		
 		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari");	
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);	
 	}
 	
 	public String getKolorea() {return this.kolorea;}
