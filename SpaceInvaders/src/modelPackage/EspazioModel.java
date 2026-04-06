@@ -146,10 +146,17 @@ public class EspazioModel {
 	private void mugituEtsaiak() {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
-			e.mugituRandom();//pantailan dauden etsai guztiak behera/eskumara/ezkerrera mugitzeko 
-			
+			//1. Hurrengo random posizioak konparatu
+			e.posizioRandom();
 		}
+		for(Etsai e : etsaiakKopia) {
+			//2. etsai guztiak mugitu
+			e.mugituRandom();
+		}
+		
 	}
+	
+	
 	public void removeEtsai (Etsai e) {
 		etsaiak.remove(e);
 	}
@@ -175,7 +182,7 @@ public class EspazioModel {
 			int etsaiKop = 4 + (int)(Math.random() * 5);
 			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
-				Etsai et = new Etsai(pos[0], pos[1]);
+				Etsai et = new Etsai(pos[0], pos[1], i+1);
 				et.sortu();
 				this.etsaiak.add(et);
 			}
@@ -224,7 +231,7 @@ public class EspazioModel {
 		}
 	}
 	
-	public void TiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
+	public void tiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
 		Iterator<Tiro> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
@@ -249,5 +256,15 @@ public class EspazioModel {
 		}
 	}
 
+	public boolean etsaiEtsaiKolisioak(int pX, int pY, int pId) {
+		Iterator<Etsai> itr = this.getEtsaiIterator();
+		boolean kolisionatu = false;
+		
+		while(itr.hasNext() && !kolisionatu) {
+			Etsai e = itr.next();
+			kolisionatu = e.etsaiKolisioak(pX, pY, pId);	
+		}
+		return kolisionatu;
+	}
 }
 
