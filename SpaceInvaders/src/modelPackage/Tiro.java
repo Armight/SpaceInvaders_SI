@@ -27,7 +27,7 @@ public class Tiro extends Pixel {
     		    		
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     		
-			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY());
+			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY(), this);
 			
     		if (this.espaziotikKanpo(getY())) {
     			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
