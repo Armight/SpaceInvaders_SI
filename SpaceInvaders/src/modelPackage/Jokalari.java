@@ -1,11 +1,13 @@
 package modelPackage;
 
-public class Jokalari extends Pixel {
+public class Jokalari implements Pixel {
+	private int x,y;
 
 	protected String kolorea;
 	
 	protected Jokalari(int pX, int pY) {
-		super(pX, pY, 1);
+		this.x=pX;
+		this.y=pY;
 	
 	}
 	
@@ -77,6 +79,30 @@ public class Jokalari extends Pixel {
 	public boolean bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getBizitza() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

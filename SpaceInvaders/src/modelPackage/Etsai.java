@@ -1,12 +1,12 @@
 package modelPackage;
 
-public class Etsai extends Pixel {
-	
+public class Etsai implements Pixel {
+	private int x,y;
 	private int id;
 	private int xBerria, yBerria, random;
 	
     public Etsai(int pX, int pY, int pId) {
-        super(pX, pY, 1);
+        
         id = pId;
 
         xBerria = pX;
@@ -107,13 +107,37 @@ public class Etsai extends Pixel {
 
 	@Override
 	public boolean bizitzaKendu() {
-		int bizitza = super.getBizitza();
+		int bizitza = getBizitza();
 		bizitza = bizitza - 1;
 		if (bizitza <=0) {
 			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
 			//EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
 			return true;
 		} else return false;
+	}
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getBizitza() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

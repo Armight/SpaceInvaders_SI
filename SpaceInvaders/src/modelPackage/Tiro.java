@@ -1,9 +1,11 @@
 package modelPackage;
 
-public class Tiro extends Pixel implements TiroElementua{
+public class Tiro   implements TiroElementua, Pixel{
+	private int x,y;
 	
     protected Tiro(int pX, int pY) {
-        	super(pX, pY, 0);
+        	this.x=pX;
+        	this.y=pY;
     }
     
 	@Override
@@ -23,7 +25,7 @@ public class Tiro extends Pixel implements TiroElementua{
     	
     		int yBerria = getY() - 1;
     	    		
-    		super.setPosizio(getX(), yBerria);
+    		setPosizio(getX(), yBerria);
     		    		
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     		
@@ -54,6 +56,30 @@ public class Tiro extends Pixel implements TiroElementua{
 			return true;
 		} else return false;
     }
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getBizitza() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }

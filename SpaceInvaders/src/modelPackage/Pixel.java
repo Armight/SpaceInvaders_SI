@@ -1,33 +1,16 @@
 package modelPackage;
 
-public abstract class Pixel {
+public interface Pixel {
 
-	private int x, y;
-	private int bizitza;
 	
 	
-	protected Pixel(int pX, int pY, int pBizitza) {
-		this.x = pX;
-		this.y = pY;
-		this.bizitza = pBizitza;
-	}
 		
-	protected int getX() {
-		return this.x;
-	}
+	public int getX();
+	public int getY();
 	
-	protected int getY() {
-		return this.y;
-	}
+	public int getBizitza();
 	
-	protected int getBizitza() {
-		return this.bizitza;
-	}
-	
-	 protected void setPosizio(int pX, int pY) {
-		 this.x=pX;
-		 this.y=pY;
-	 }
+	public void setPosizio(int pX, int pY) ;
 	 
 	 public abstract boolean bizitzaKendu();
 	 
