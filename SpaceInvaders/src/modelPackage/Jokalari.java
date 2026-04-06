@@ -34,13 +34,10 @@ public class Jokalari implements Pixel {
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		int xBerria = this.getX() + i;
-		
-		if (espazioa.espaziotikKanpo(xBerria, getY())) {
-			return;
+		boolean ahalDa= this.mugituAhalX(i);
+		if(ahalDa) {
+			
 		}
-		
-		//jokalariaren tiro bat badago mugitu nahi den gelaxkan, ezingo da mugitu
-		if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equalsIgnoreCase("Tiro")) return; 
 		//TODO MUGIMENDU BERRIA- 4 PIXEL
 		//posizio zaharra matrizetik kendu
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
@@ -134,10 +131,16 @@ public class Jokalari implements Pixel {
 	        	PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 	        
 	        }
-	    
 		}
-		
 		return ahalDa;
+	}
+	
+	private void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		for (Pixel p : pixelak) {
+	        PixelSimple ps = (PixelSimple) p;
+	        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+	    }
 	}
 
 
