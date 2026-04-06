@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
-	private ArrayList<Tiro> tiroak;
+	private ArrayList<TiroElementua> tiroak;
 	private ArrayList<Etsai> etsaiak; 
 	private Jokalari jokalari;
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
@@ -25,7 +25,7 @@ public class EspazioModel {
 	            matrizea[i][j] = new Gelaxka(i, j);
 	        }
 	    }
-	    tiroak = new ArrayList<Tiro>();
+	    tiroak = new ArrayList<TiroElementua>();
 	    etsaiak = new ArrayList<Etsai>();
 	    
 	}
@@ -132,8 +132,8 @@ public class EspazioModel {
 		}
 		
 	private void mugituTiroak() {
-			ArrayList<Tiro> tiroakCopia= new ArrayList<Tiro>(this.tiroak);//gure tiroen arrayaren kopia
-			for (Tiro t : tiroakCopia) {
+			ArrayList<TiroElementua> tiroakCopia= new ArrayList<TiroElementua>(this.tiroak);//gure tiroen arrayaren kopia
+			for (TiroElementua t : tiroakCopia) {
 				//Herentziaz int parametro bat sartu beharra dago
 				//Tiroa bakarrik gorantz egin dezake, beraz ez da parametroa erabiliko
 				//pantailan dauden tiro guztiak posizio bat aurrera egiteko
@@ -141,7 +141,7 @@ public class EspazioModel {
 			}
 		}
 	
-	private Iterator<Tiro> getTiroIterator() {
+	private Iterator<TiroElementua> getTiroIterator() {
 		return this.tiroak.iterator();
 	}
 //******************************ETSAIEN METODOAK:	********************************
@@ -235,10 +235,14 @@ public class EspazioModel {
 	}
 	
 	public void tiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
-		Iterator<Tiro> itr = this.getTiroIterator(); 
+		Iterator<TiroElementua> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
-			Tiro t = itr.next();
+			TiroElementua te = itr.next();
+			
+			if (te instanceof Tiro) {
+				Tiro t = (Tiro) te;
+			
 			if(t.kolisioakKonprobatu(pX, pY)) {
 	 			boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
@@ -246,6 +250,7 @@ public class EspazioModel {
 					itr.remove();
 				}
 			}
+		}
 		}
 	}
 	
