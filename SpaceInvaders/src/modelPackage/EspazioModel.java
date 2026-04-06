@@ -265,7 +265,7 @@ public class EspazioModel {
 		}
 	}
 
-	public boolean etsaiEtsaiKolisioak(int pX, int pY, int pId) {
+	public boolean etsaiEtsaiKolisioak(int pX, int pY, int pId) {//del etsai que queremos comprobar
 		Iterator<Etsai> itr = this.getEtsaiIterator();
 		boolean kolisionatu = false;
 		

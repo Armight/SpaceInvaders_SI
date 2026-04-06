@@ -19,6 +19,8 @@ public interface Pixel {
 	 public abstract void mugituY(int i);
 	 
 	 public abstract void sortu();
+	 
+	 public abstract void ezabatu();
 		
 }
 

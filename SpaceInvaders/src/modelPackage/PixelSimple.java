@@ -55,5 +55,9 @@ public class PixelSimple implements Pixel{
 		// TODO Auto-generated method stub
 		
 	}
+	public void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(this.getX(), this.getY()).setEgoera("Hutsik");
+	}
 
 }

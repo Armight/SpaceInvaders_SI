@@ -181,11 +181,11 @@ public class Jokalari implements Pixel {
 	    }
 	}
 	
-	private void ezabatu() {
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+	public void ezabatu() {
+		
 		for (Pixel p : pixelak) {
-	        PixelSimple ps = (PixelSimple) p;
-	        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+	       p.ezabatu();
+	        
 	    }
 	}
 
