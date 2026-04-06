@@ -149,7 +149,7 @@ public class EspazioModel {
 		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
 		for(Etsai e : etsaiakKopia) {
 			//1. Hurrengo random posizioak konparatu
-			e.posizioRandom();
+			//e.posizioRandom();
 		}
 		for(Etsai e : etsaiakKopia) {
 			//2. etsai guztiak mugitu

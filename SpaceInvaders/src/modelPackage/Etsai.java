@@ -13,6 +13,8 @@ public class Etsai implements Pixel {
     public Etsai(int pX, int pY, int pId) {
         
     	id = pId;
+    	this.x=pX;
+        this.y=pY;
         pixelak = new ArrayList<>();
 
         pixelak.add(new PixelSimple(pX, pY));
@@ -20,8 +22,7 @@ public class Etsai implements Pixel {
         pixelak.add(new PixelSimple(pX - 1, pY));
         pixelak.add(new PixelSimple(pX, pY + 1));
         
-        this.x=pX;
-        this.y=pY;
+        
 
         
 
@@ -45,27 +46,43 @@ public class Etsai implements Pixel {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
 		
-		/*
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		
-		espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);*/
+		espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
+		
+		
+		//ETSAIAK MUGITZEA
+		
+		if (!mugituAhalDaX(i)) { return;} // Ezin bada mugitu ez egin ezer ez.
+		for (Pixel p: pixelak) {
+			PixelSimple ps = (PixelSimple) p;
+			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+			ps.mugituX(i); // i-ren balioaren arabera mugituko da eta baloreak aldatuko ditu
+			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
+			
+		}
+			
+		
+		 
 	}
 	
 	@Override
 	public void mugituY(int i) {
-		/*EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-
-    	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
-    		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
-    		return;
-    	}
-
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-		
-		this.setPosizio(getX(), yBerria);
-
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		for (Pixel p: pixelak) {
+			PixelSimple ps = (PixelSimple) p;
+			if (espazioa.espaziotikKanpo(ps.getX(), ps.getY()+1)) {
+				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+				return;
+			}else {
+				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+				ps.mugituY(i);
+				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
+			}
+		}	
     	
-    	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);*/
+    	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
+		return;
 	}
 	//boolean kolisionatu = espazioa.etsaiEtsaiKolisioak(xBerria, yBerria, id);
 	//if (kolisionatu) return;
@@ -75,7 +92,6 @@ public class Etsai implements Pixel {
     	
         if (random == 0) {// ezkerrera
 
-        	boolean ahalDa=this.mugituAhalDaX(-1);
         	mugituX(-1); 
         } else if (random == 1) {
         		mugituX(1);  // eskumara
