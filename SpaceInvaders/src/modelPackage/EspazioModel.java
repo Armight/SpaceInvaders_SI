@@ -213,7 +213,7 @@ public class EspazioModel {
 		
 	
 	//*************************KOLISIOEN METODODAK:**************************
-	public void etsaiKolisioakKonprobatu(int pX, int pY) {
+	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {
 		Iterator<Etsai> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -222,6 +222,7 @@ public class EspazioModel {
 				boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
 					itr.remove();
+					tiroak.remove(t);
 				}
 			}
 		}
@@ -239,9 +240,10 @@ public class EspazioModel {
 		while(itr.hasNext()) {
 			Tiro t = itr.next();
 			if(t.kolisioakKonprobatu(pX, pY)) {
-				boolean hilDa = e.bizitzaKendu();
+	 			boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
 					etsaiak.remove(e);
+					itr.remove();
 				}
 			}
 		}
