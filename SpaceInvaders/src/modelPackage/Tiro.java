@@ -77,8 +77,8 @@ public class Tiro   implements TiroElementua, Pixel{
 
 	@Override
 	public void setPosizio(int pX, int pY) {
-		// TODO Auto-generated method stub
-		
+		this.x = pX;
+	    this.y = pY;
 	}
 
 	@Override

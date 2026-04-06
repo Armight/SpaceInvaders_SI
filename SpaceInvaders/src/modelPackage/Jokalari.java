@@ -48,6 +48,7 @@ public class Jokalari implements Pixel {
 			this.ezabatu();
 			this.mugituEtaMarraztuX(i);
 		}
+		this.x +=i;
 		
 		
 		
@@ -67,7 +68,7 @@ public class Jokalari implements Pixel {
 			this.ezabatu();
 			this.mugituEtaMarraztuY(i);
 		}
-		
+		this.y -=i;
 	/*	
 		
 		
