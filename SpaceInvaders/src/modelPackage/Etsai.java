@@ -36,7 +36,7 @@ public class Etsai implements Pixel {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 
 	    for (Pixel p : pixelak) {
-	        espazioa.getGelaxka(p.getX(), p.getY()).setEgoera("Etsai");
+	        espazioa.getGelaxka(p.getX(), p.getY()).setEgoera("Etsaia");
 	    }
 	}
 	
