@@ -8,8 +8,10 @@ public class Etsai extends Pixel {
     public Etsai(int pX, int pY, int pId) {
         super(pX, pY, 1);
         id = pId;
+
         xBerria = pX;
         yBerria = pY;
+
     }
     
     //ETSAI METODO OROKORRAK:
@@ -29,8 +31,9 @@ public class Etsai extends Pixel {
 		}
 		
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+
         this.setPosizio(xBerria, getY());
-                
+             
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
 		
 		espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
@@ -46,8 +49,9 @@ public class Etsai extends Pixel {
     	}
 
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		
 		this.setPosizio(getX(), yBerria);
-     	
+
     	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
     	
     	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
@@ -99,7 +103,7 @@ public class Etsai extends Pixel {
     		kolisionatu = true;
     	}
     	return kolisionatu;
-    }
+	}
 
 	@Override
 	public boolean bizitzaKendu() {

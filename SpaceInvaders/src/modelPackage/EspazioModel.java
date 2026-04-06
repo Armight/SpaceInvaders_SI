@@ -77,7 +77,9 @@ public class EspazioModel {
 		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //48
 		
 	    //jokalaria instantziatu
-	    jokalari = new Jokalari(pXErdia, pYBehean);
+	    //jokalari = new Jokalari(pXErdia, pYBehean);
+		String kolorea = PartidaKudeatzailea.getPartidaKudeatzailea().getKolorea();
+		jokalari = JokalariFactory.getJokF().createJokalaria(kolorea, pXErdia, pYBehean);
 	    
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
