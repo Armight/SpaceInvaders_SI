@@ -6,9 +6,9 @@ import java.util.List;
 public class TiroTaldea implements TiroElementua{
 	private List<TiroElementua> tiroKol = new ArrayList<TiroElementua>();
 	
-	public void mugituY() {
+	public void mugituY(int i) {
 		for (TiroElementua tiro : tiroKol) {
-			tiro.mugituY();
+			tiro.mugituY(0);
 		}
 		
 	}

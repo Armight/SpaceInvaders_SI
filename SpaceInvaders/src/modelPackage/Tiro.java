@@ -1,6 +1,6 @@
 package modelPackage;
 
-public class Tiro extends Pixel {
+public class Tiro extends Pixel implements TiroElementua{
 	
     protected Tiro(int pX, int pY) {
         	super(pX, pY, 0);
@@ -53,5 +53,7 @@ public class Tiro extends Pixel {
     	if (getX() == pX && getY() == pY) {
 			return true;
 		} else return false;
-    }  
+    }
+
+	
 }
