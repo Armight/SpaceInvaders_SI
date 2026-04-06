@@ -81,5 +81,11 @@ public class Tiro   implements TiroElementua, Pixel{
 		
 	}
 
+	@Override
+	public void ezabatu() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
