@@ -16,7 +16,7 @@ public class PixelSimple implements Pixel{
 
 	@Override
 	public void mugituY(int i) {
-		this.y=this.y+1;
+		this.y=this.y - i;
 		
 	}
 

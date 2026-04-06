@@ -76,7 +76,7 @@ public class Etsai implements Pixel {
 				return;
 			}else {
 				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
-				ps.mugituY(i);
+				ps.mugituY(-1);
 				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
 			}
 		}	
