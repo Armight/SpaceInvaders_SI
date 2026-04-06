@@ -16,6 +16,8 @@ public class Jokalari implements Pixel {
 		pixelak.add(new PixelSimple(x + 1, y));		//eskumako pixel
 		pixelak.add(new PixelSimple(x - 1, y));		//ezkerreko pixel
 		pixelak.add(new PixelSimple(x, y - 1));		//goiko pixel
+		
+		
 	
 	}
 	private Iterator<Pixel> getItr(){
@@ -36,15 +38,14 @@ public class Jokalari implements Pixel {
 		int xBerria = this.getX() + i;
 		boolean ahalDa= this.mugituAhalX(i);
 		if(ahalDa) {
+			this.ezabatu();
 			
 		}
-		//TODO MUGIMENDU BERRIA- 4 PIXEL
-		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		
 		//posizio berria atzitu
 		this.setPosizio(getX()+i, getY());
 		
-		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
+		//espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
 		//posizio berria matrizean jarri
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
@@ -140,6 +141,15 @@ public class Jokalari implements Pixel {
 		for (Pixel p : pixelak) {
 	        PixelSimple ps = (PixelSimple) p;
 	        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+	    }
+	}
+	
+	private void mugituEtaMarraztuX(int i) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		for (Pixel p : pixelak) {
+	        
+	        p.mugituX(i);
+	        espazioa.getGelaxka(p.getX(), p.getY()).setEgoera("Jokalari_" + this.kolorea);
 	    }
 	}
 
