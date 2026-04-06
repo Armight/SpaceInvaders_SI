@@ -12,6 +12,7 @@ public class Jokalari implements Pixel {
 	protected Jokalari(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
+		this.pixelak= new ArrayList<Pixel>();
 		pixelak.add(new PixelSimple(x, y));			//erdiko pixel
 		pixelak.add(new PixelSimple(x + 1, y));		//eskumako pixel
 		pixelak.add(new PixelSimple(x - 1, y));		//ezkerreko pixel
@@ -27,7 +28,13 @@ public class Jokalari implements Pixel {
 	//JOKALARI METODO OROKORRAK:		
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+		 EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+
+		    for (Pixel p : pixelak) {
+		        PixelSimple ps = (PixelSimple) p;
+		        espazioa.getGelaxka(ps.getX(), ps.getY())
+		            .setEgoera("Jokalari_" + this.kolorea);
+		    }
 	}
 	
 	@Override
@@ -39,16 +46,14 @@ public class Jokalari implements Pixel {
 		boolean ahalDa= this.mugituAhalX(i);
 		if(ahalDa) {
 			this.ezabatu();
-			
+			this.mugituEtaMarraztuX(i);
 		}
 		
-		//posizio berria atzitu
-		this.setPosizio(getX()+i, getY());
+		
 		
 		//espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
-		//posizio berria matrizean jarri
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+		
 	}
 	
 	
@@ -56,7 +61,7 @@ public class Jokalari implements Pixel {
 	public void mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+	/*	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		int yBerria = this.getY() - i;
 		if (espazioa.espaziotikKanpo(getX(), yBerria)) return;
 
@@ -70,7 +75,7 @@ public class Jokalari implements Pixel {
 		
 		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);	
+		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);	*/
 	}
 	
 	public String getKolorea() {return this.kolorea;}
@@ -110,7 +115,8 @@ public class Jokalari implements Pixel {
 
 	@Override
 	public void setPosizio(int pX, int pY) {
-		// TODO Auto-generated method stub
+		this.x=pX;
+		this.y=pY;
 		
 	}
 	
