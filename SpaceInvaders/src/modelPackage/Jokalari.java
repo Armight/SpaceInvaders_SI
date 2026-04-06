@@ -1,13 +1,20 @@
 package modelPackage;
 
+import java.util.ArrayList;
+
 public class Jokalari implements Pixel {
-	private int x,y;
+	private ArrayList<Pixel> pixelak;
+	private int x,y;//pixel zentrala
 
 	protected String kolorea;
 	
 	protected Jokalari(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
+		pixelak.add(new PixelSimple(x, y));			//erdiko pixel
+		pixelak.add(new PixelSimple(x + 1, y));		//eskumako pixel
+		pixelak.add(new PixelSimple(x - 1, y));		//ezkerreko pixel
+		pixelak.add(new PixelSimple(x, y - 1));		//goiko pixel
 	
 	}
 	
@@ -30,7 +37,7 @@ public class Jokalari implements Pixel {
 		
 		//jokalariaren tiro bat badago mugitu nahi den gelaxkan, ezingo da mugitu
 		if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equalsIgnoreCase("Tiro")) return; 
-		
+		//TODO MUGIMENDU BERRIA- 4 PIXEL
 		//posizio zaharra matrizetik kendu
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		//posizio berria atzitu
@@ -102,6 +109,10 @@ public class Jokalari implements Pixel {
 	@Override
 	public void setPosizio(int pX, int pY) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	private void konprobatuX(int x, int y) {
 		
 	}
 
