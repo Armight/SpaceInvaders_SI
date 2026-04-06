@@ -97,14 +97,14 @@ public class Jokalari implements Pixel {
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.x;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.y;
 	}
 
 	@Override
