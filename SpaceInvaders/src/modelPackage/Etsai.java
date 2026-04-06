@@ -42,7 +42,7 @@ public class Etsai implements Pixel {
 	}
 	
 	@Override
-	public void mugituX(int i) {
+	public void mugituX(int i) { // FOR DESBERDINETAN IPINI ERDIKO PIXELA EGUNERATZEAN BERRIRO IKUS AHAL IZATEKO
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
 		
@@ -58,18 +58,22 @@ public class Etsai implements Pixel {
 			PixelSimple ps = (PixelSimple) p;
 			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
 			ps.mugituX(i); // i-ren balioaren arabera mugituko da eta baloreak aldatuko ditu
-			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
-			
+				
 		}
-			
+		this.x += i;
+		for (Pixel p: pixelak) {
+			PixelSimple ps = (PixelSimple) p;
+			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
+			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
+		}
 		
 		 
 	}
 	
 	@Override
-	public void mugituY(int i) {
+	public void mugituY(int i) { // FOR DESBERDINETAN IPINI ERDIKO PIXELA EGUNERATZEAN BERRIRO IKUS AHAL IZATEKO
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		for (Pixel p: pixelak) {
+		for (Pixel p: pixelak) { 
 			PixelSimple ps = (PixelSimple) p;
 			if (espazioa.espaziotikKanpo(ps.getX(), ps.getY()+1)) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
@@ -77,10 +81,14 @@ public class Etsai implements Pixel {
 			}else {
 				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
 				ps.mugituY(-1);
-				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
+				
 			}
-		}	
-    	
+		}
+		this.y += -1;
+		for (Pixel p: pixelak) {
+			PixelSimple ps = (PixelSimple) p;
+			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Etsaia");
+		}
     	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
 		return;
 	}
@@ -188,13 +196,13 @@ public class Etsai implements Pixel {
 	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.x;
 	}
 
 	@Override
 	public int getY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.y;
 	}
 
 	@Override

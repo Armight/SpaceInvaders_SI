@@ -128,7 +128,7 @@ public class Jokalari implements Pixel {
 	        
 	        int xBerria = p.getX() + i;
 
-	        if (espazioa.espaziotikKanpo(xBerria, p.getY())) {ahalDa=false;}
+	        if (espazioa.espaziotikKanpo(xBerria, p.getY())) {ahalDa=false;break;}
 
 	        if (espazioa.getGelaxka(xBerria, p.getY()).getEgoera().equalsIgnoreCase("Tiro")) {ahalDa=false;}
 	        
