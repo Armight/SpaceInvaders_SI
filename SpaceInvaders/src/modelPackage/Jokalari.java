@@ -1,6 +1,7 @@
 package modelPackage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Jokalari implements Pixel {
 	private ArrayList<Pixel> pixelak;
@@ -16,6 +17,9 @@ public class Jokalari implements Pixel {
 		pixelak.add(new PixelSimple(x - 1, y));		//ezkerreko pixel
 		pixelak.add(new PixelSimple(x, y - 1));		//goiko pixel
 	
+	}
+	private Iterator<Pixel> getItr(){
+		return this.pixelak.iterator();
 	}
 	
 	//JOKALARI METODO OROKORRAK:		
@@ -112,8 +116,28 @@ public class Jokalari implements Pixel {
 		
 	}
 	
-	private void konprobatuX(int x, int y) {
+	private boolean mugituAhalX(int i) {
+		boolean ahalDa=true;
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		Iterator<Pixel> itr= this.getItr();
+		while (itr.hasNext()&& ahalDa) {
+	        PixelSimple p=(PixelSimple) itr.next();
+	        
+	        int xBerria = p.getX() + i;
+
+	        if (espazioa.espaziotikKanpo(xBerria, p.getY())) {ahalDa=false;}
+
+	        if (espazioa.getGelaxka(xBerria, p.getY()).getEgoera().equalsIgnoreCase("Tiro")) {ahalDa=false;}
+	        
+	        if (espazioa.getGelaxka(xBerria, p.getY()).getEgoera().equalsIgnoreCase("Etsai")) {
+	        	ahalDa=false;
+	        	PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+	        
+	        }
+	    
+		}
 		
+		return ahalDa;
 	}
 
 
