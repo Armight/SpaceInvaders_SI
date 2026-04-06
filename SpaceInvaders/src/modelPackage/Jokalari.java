@@ -61,17 +61,16 @@ public class Jokalari implements Pixel {
 	public void mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-	/*	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		int yBerria = this.getY() - i;
-		if (espazioa.espaziotikKanpo(getX(), yBerria)) return;
-
-		if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equalsIgnoreCase("Tiro")) return;
 		
-		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		boolean ahalDa= this.mugituAhalDaY(i);
+		if(ahalDa) {
+			this.ezabatu();
+			this.mugituEtaMarraztuY(i);
+		}
 		
-		//posizio berria atzitu
-		this.setPosizio(getX(), getY()-i);
+	/*	
+		
+		
 		
 		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
 		
@@ -142,12 +141,26 @@ public class Jokalari implements Pixel {
 		return ahalDa;
 	}
 	
-	private void ezabatu() {
+	private boolean mugituAhalDaY(int i) {
+		boolean ahalDa=true;
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		for (Pixel p : pixelak) {
-	        PixelSimple ps = (PixelSimple) p;
-	        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
-	    }
+		Iterator<Pixel> itr= this.getItr();
+		while (itr.hasNext()&& ahalDa) {
+	        PixelSimple p=(PixelSimple) itr.next();
+	        
+	        int yBerria = p.getY() - i;
+	        
+	        if (espazioa.espaziotikKanpo(p.getX(),yBerria)) {ahalDa=false;}
+
+	        if (espazioa.getGelaxka(p.getX(), yBerria).getEgoera().equalsIgnoreCase("Tiro")) {ahalDa=false;}
+	        
+	        if (espazioa.getGelaxka(p.getX(), yBerria).getEgoera().equalsIgnoreCase("Etsai")) {
+	        	ahalDa=false;
+	        	PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+	        }
+		}
+		
+		return ahalDa;
 	}
 	
 	private void mugituEtaMarraztuX(int i) {
@@ -156,6 +169,23 @@ public class Jokalari implements Pixel {
 	        
 	        p.mugituX(i);
 	        espazioa.getGelaxka(p.getX(), p.getY()).setEgoera("Jokalari_" + this.kolorea);
+	    }
+	}
+	
+	private void mugituEtaMarraztuY(int i) {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		for (Pixel p : pixelak) {
+	        
+	        p.mugituY(i);
+	        espazioa.getGelaxka(p.getX(), p.getY()).setEgoera("Jokalari_" + this.kolorea);
+	    }
+	}
+	
+	private void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		for (Pixel p : pixelak) {
+	        PixelSimple ps = (PixelSimple) p;
+	        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");
 	    }
 	}
 
