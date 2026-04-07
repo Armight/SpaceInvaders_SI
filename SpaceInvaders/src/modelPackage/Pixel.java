@@ -4,7 +4,7 @@ public interface Pixel {
 
 	
 	
-		
+	
 	public int getX();
 	public int getY();
 	
