@@ -1,23 +1,33 @@
 package modelPackage;
 
-public interface Pixel {
+import java.util.Set;
 
-									//!!!MODIFICAR DE PUBLIC A PRIVATE
-	public abstract void sortu();
+public interface Pixel {
 	
-	public int getX();
+	//*************************METODO OROKORRAK:**************************
+	void sortu();
 	
-	public int getY();
+	int getX();
 	
-	public int getBizitza();
-	
-	public void setPosizio(int pX, int pY);
-	 
-	public abstract boolean bizitzaKendu();
-	 
-	public abstract void mugituX(int i);
-	 
-	public abstract void mugituY(int i);
+	int getY();
 		
+	void setPosizio(int pX, int pY);
+	
+	void mugituX(int i);
+	 
+	void mugituY(int i);
+	
+	void ezabatu();
+	
+	boolean kolisioakKonprobatu(int pX, int pY);
+	
+	//*************************ETSAI METODOAK:**************************
+	default void mugituRandom() {}
+			
+	default public boolean bizitzaKendu() {
+		return false;
+	}
+	
+	default boolean etsaiKolisioak(Set<String> etsaiPos, int pId) {return false;}
 }
 

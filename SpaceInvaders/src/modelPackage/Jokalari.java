@@ -29,23 +29,11 @@ public class Jokalari implements Pixel {
 	}
 	
 	@Override
-	public int getBizitza() {
-		return this.bizitza;
-	}
-	
-	@Override
 	public void setPosizio(int pX, int pY) {
 		this.x = pX;
 		this.y = pY;
+	}
 		
-	}
-	
-	@Override
-	public boolean bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	@Override
 	public void mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
@@ -103,14 +91,17 @@ public class Jokalari implements Pixel {
 		}
 	}
 
-	
+	@Override
+	public void ezabatu() {
+		// TODO Auto-generated method stub
+		
+	}
 
-	
-
-	
-	
-
-
+	@Override
+	public boolean kolisioakKonprobatu(int pX, int pY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
 	

@@ -3,17 +3,15 @@ package modelPackage;
 public class Etsai implements Pixel {
 	
 	private int x, y, bizitza, id;
-	private int xBerria, yBerria, random;
+	private int xBerria, yBerria;
 	
     public Etsai(int pX, int pY, int pId) {
         x = pX;
         y = pY;
-        bizitza = 1;
-        id = pId;
-
         xBerria = pX;
         yBerria = pY;
-
+        id = pId;
+        bizitza = 1;
     }
     
     //ETSAI METODO OROKORRAK:
@@ -32,22 +30,16 @@ public class Etsai implements Pixel {
 	}
 
 	@Override
-	public int getBizitza() {
-		return this.bizitza;
-	}
-
-	@Override
 	public void setPosizio(int pX, int pY) {
 		this.x = pX;
 		this.y = pY;
 	}
-	
+		
 	@Override
 	public boolean bizitzaKendu() {
-		int bizitza = this.getBizitza();
 		bizitza = bizitza - 1;
 		if (bizitza <=0) {
-			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+			this.ezabatu();			
 			return true;
 		} else return false;
 	}
@@ -58,11 +50,7 @@ public class Etsai implements Pixel {
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		
-		if (espazioa.espaziotikKanpo(xBerria, getY())) {
-    			return;
-		}
-		
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+		xBerria = xBerria + i;
 
         this.setPosizio(xBerria, getY());
              
@@ -74,13 +62,13 @@ public class Etsai implements Pixel {
 	@Override
 	public void mugituY(int i) {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		
+		yBerria = yBerria + i;
 
     	if (espazioa.espaziotikKanpo(getX(), yBerria)) {
     		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
     		return;
     	}
-
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
 		
 		this.setPosizio(getX(), yBerria);
 
@@ -88,53 +76,22 @@ public class Etsai implements Pixel {
     	
     	espazioa.tiroKolisioakKonprobatu(getX(), getY(), this);
 	}
-    
-    public void mugituRandom() {
-    	EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-    	boolean kolisionatu = espazioa.etsaiEtsaiKolisioak(xBerria, yBerria, id);
-    	if (kolisionatu) return;
-        
-    	//Herentziaz int parametro bat sartu beharra dago
-		//Etsaien posizioak dagoeneko kalkulatu dira
-    	//beraz ez da parametroa erabiliko
-        if (random == 0) {
-        		mugituX(0); // ezkerrera
-        } else if (random == 1) {
-        		mugituX(0);  // eskumara
-        } else {
-        		mugituY(0);  // behera			
-        }
-    }
 	
-	public void posizioRandom() {
-		random = (int)(Math.random() * 3); //0, 1 edo 2
-		if (random == 0) {
-			xBerria = xBerria - 1;
-		} else if (random == 1) {
-			xBerria = xBerria + 1;
-		} else {
-			yBerria = yBerria + 1;
-		}
-	}
-	
-	public int getId() {
-		return this.id;
-	}
-	
-	public boolean etsaiKolisioak(int pX, int pY, int pId) {
-		boolean kolisionatu = false;
-		if (xBerria == pX && yBerria == pY && id != pId) {
-			kolisionatu = true;
-		}
-		return kolisionatu;
-	}
-	
+
+	@Override
     public boolean kolisioakKonprobatu(int pX, int pY) {
     	boolean kolisionatu = false;
     	if (getX() == pX && getY() == pY) {
     		kolisionatu = true;
     	}
     	return kolisionatu;
+	}
+
+	@Override
+	public void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
+		
 	}
 
 }

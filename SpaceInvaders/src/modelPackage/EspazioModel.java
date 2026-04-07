@@ -1,18 +1,16 @@
 package modelPackage;
 
-import java.util.ArrayList;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
 
 
 public class EspazioModel {
 	private static EspazioModel nGM;
 	private Gelaxka[][] matrizea;
 	private ArrayList<Tiro> tiroak;
-	private ArrayList<Etsai> etsaiak; 
+	private ArrayList<Pixel> etsaiak; 
 	private Jokalari jokalari;
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
@@ -26,7 +24,7 @@ public class EspazioModel {
 	        }
 	    }
 	    tiroak = new ArrayList<Tiro>();
-	    etsaiak = new ArrayList<Etsai>();
+	    etsaiak = new ArrayList<Pixel>();
 	    
 	}
 	
@@ -50,7 +48,7 @@ public class EspazioModel {
 		return this.matrizea[pY][pX];
 	}
 	
-	//JOKOAREN KUDEAKETA	
+	//JOKOAREN KUDEAKETA
 	public boolean etsairikEz() {
 		if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 			return etsaiak.isEmpty();
@@ -83,7 +81,7 @@ public class EspazioModel {
 	    
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
-	    this.sortuEtsaiZerrenda();
+	    this.sortuEtsaiZerrenda();																	
 	    
 	    //Timerrak eraikitzailearen kanpoan
 	    timerEtsaiak = sortuTimerEtsaiak();
@@ -145,13 +143,9 @@ public class EspazioModel {
 		return this.tiroak.iterator();
 	}
 //******************************ETSAIEN METODOAK:	********************************
-	private void mugituEtsaiak() {
-		ArrayList<Etsai> etsaiakKopia= new ArrayList<Etsai>(this.etsaiak);//gure estaien arrayaren kopia
-		for(Etsai e : etsaiakKopia) {
-			//1. Hurrengo random posizioak konparatu
-			e.posizioRandom();
-		}
-		for(Etsai e : etsaiakKopia) {
+	private void mugituEtsaiak() {																
+		ArrayList<Pixel> etsaiakKopia= new ArrayList<Pixel>(this.etsaiak);//gure estaien arrayaren kopia
+		for(Pixel e : etsaiakKopia) {
 			//2. etsai guztiak mugitu
 			e.mugituRandom();
 		}
@@ -159,16 +153,17 @@ public class EspazioModel {
 	}
 	
 	
-	public void removeEtsai (Etsai e) {
+	public void removeEtsai (Pixel e) {
 		etsaiak.remove(e);
 	}
 	
-	private Iterator<Etsai> getEtsaiIterator() {
+	private Iterator<Pixel> getEtsaiIterator() {
 		return etsaiak.iterator();
 	}
 	
 	
 	//ETSAIEN ARRAYAREN METODOAK:
+																	
 		private void sortuEtsaiZerrenda() {
 			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
 			//(10,5), (20, 5) ... (80,5)
@@ -184,7 +179,7 @@ public class EspazioModel {
 			int etsaiKop = 4 + (int)(Math.random() * 5);
 			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
-				Etsai et = new Etsai(pos[0], pos[1], i+1);
+				Pixel et = new EtsaiMultipixel(pos[0], pos[1], i+1);
 				et.sortu();
 				this.etsaiak.add(et);
 			}
@@ -213,11 +208,11 @@ public class EspazioModel {
 		
 	
 	//*************************KOLISIOEN METODODAK:**************************
-	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {
-		Iterator<Etsai> itr = this.getEtsaiIterator(); 
+	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {/*
+		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
-			Etsai e = itr.next();
+			Pixel e = itr.next();
 			if(e.kolisioakKonprobatu(pX,pY)) {
 				boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
@@ -231,11 +226,11 @@ public class EspazioModel {
 		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
 		if (etsairikEz()) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
-		}
+		}*/
 	}
 	
 	public void tiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
-		Iterator<Tiro> itr = this.getTiroIterator(); 
+		/*Iterator<Tiro> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
 			Tiro t = itr.next();
@@ -246,27 +241,27 @@ public class EspazioModel {
 					 itr.remove();
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void jokalariKolisioakKonprobatu(int pX, int pY) {
-		Iterator<Etsai> itr = this.getEtsaiIterator(); 
+		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 
 		while(itr.hasNext()) {
-			Etsai e = itr.next();
+			Pixel e = itr.next();
 			if(e.kolisioakKonprobatu(pX,pY)) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 			}
 		}
 	}
 
-	public boolean etsaiEtsaiKolisioak(int pX, int pY, int pId) {
-		Iterator<Etsai> itr = this.getEtsaiIterator();
+	public boolean etsaiEtsaiKolisioak(Set<String> pEtsaiPos, int pId) {
+		Iterator<Pixel> itr = this.getEtsaiIterator();
 		boolean kolisionatu = false;
 		
 		while(itr.hasNext() && !kolisionatu) {
-			Etsai e = itr.next();
-			kolisionatu = e.etsaiKolisioak(pX, pY, pId);	
+			Pixel e = itr.next();
+			kolisionatu = e.etsaiKolisioak(pEtsaiPos, pId);	
 		}
 		return kolisionatu;
 	}

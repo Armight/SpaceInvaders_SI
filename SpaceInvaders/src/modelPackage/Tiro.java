@@ -25,25 +25,12 @@ public class Tiro implements Pixel {
 		return this.y;
 	}
 
-
-	@Override
-	public int getBizitza() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	@Override
 	public void setPosizio(int pX, int pY) {
 		this.x = pX;
 		this.y = pY;
 	}
-	
-	@Override
-	public boolean bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-    
+		    
     @Override
 	public void mugituX(int i) {
 		// TODO Auto-generated method stub
@@ -65,8 +52,8 @@ public class Tiro implements Pixel {
 			
     		if (this.espaziotikKanpo(getY())) {
     			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
-    			espazioa.removeTiro(this);
-    			return;
+    			this.ezabatu();    			
+				return;
     		}
 	}
     
@@ -81,5 +68,17 @@ public class Tiro implements Pixel {
 			return true;
 		} else return false;
     }
+
+	@Override
+	public void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.removeTiro(this);
+	}
+
+	
+
+	
+
+
 
 }
