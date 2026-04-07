@@ -1,19 +1,53 @@
 package modelPackage;
 
-public class Tiro extends Pixel implements TiroElementua{
+public class Tiro implements Pixel {
+	
+	private int x, y;
 	
     protected Tiro(int pX, int pY) {
-        	super(pX, pY, 0);
+        x = pX;
+        y = pY;
     }
     
-	@Override
+    @Override
 	public void sortu() {
 		// TODO Auto-generated method stub
+		
+	}
+    
+    @Override
+	public int getX() {
+		return this.x;
+	}
+
+	@Override
+	public int getY() {
+		return this.y;
+	}
+
+
+	@Override
+	public int getBizitza() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		this.x = pX;
+		this.y = pY;
 	}
 	
 	@Override
+	public boolean bizitzaKendu() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+    
+    @Override
 	public void mugituX(int i) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override
@@ -23,7 +57,7 @@ public class Tiro extends Pixel implements TiroElementua{
     	
     		int yBerria = getY() - 1;
     	    		
-    		super.setPosizio(getX(), yBerria);
+    		this.setPosizio(getX(), yBerria);
     		    		
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     		
@@ -36,13 +70,6 @@ public class Tiro extends Pixel implements TiroElementua{
     		}
 	}
     
-
-	@Override
-	public boolean bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
     public boolean espaziotikKanpo(int pY) {
     		if (pY < 2) { //Bakarrik gorantz jaurtitzean jarritako muga
     			return true;
@@ -55,5 +82,4 @@ public class Tiro extends Pixel implements TiroElementua{
 		} else return false;
     }
 
-	
 }

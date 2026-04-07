@@ -1,11 +1,14 @@
 package modelPackage;
 
-public class Jokalari extends Pixel {
+public class Jokalari implements Pixel {
 
+	private int x, y, bizitza;
 	protected String kolorea;
 	
 	protected Jokalari(int pX, int pY) {
-		super(pX, pY, 1);
+		x = pX;
+		y = pY;
+		bizitza = 1;
 	
 	}
 	
@@ -13,6 +16,34 @@ public class Jokalari extends Pixel {
 	@Override
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+	}
+	
+	@Override
+	public int getX() {
+		return this.x;
+	}
+
+	@Override
+	public int getY() {
+		return this.y;
+	}
+	
+	@Override
+	public int getBizitza() {
+		return this.bizitza;
+	}
+	
+	@Override
+	public void setPosizio(int pX, int pY) {
+		this.x = pX;
+		this.y = pY;
+		
+	}
+	
+	@Override
+	public boolean bizitzaKendu() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	@Override
@@ -39,7 +70,6 @@ public class Jokalari extends Pixel {
 		//posizio berria matrizean jarri
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
 	}
-	
 	
 	@Override
 	public void mugituY(int i) {
@@ -73,11 +103,12 @@ public class Jokalari extends Pixel {
 		}
 	}
 
-	@Override
-	public boolean bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+
+	
+
+	
+	
 
 
 

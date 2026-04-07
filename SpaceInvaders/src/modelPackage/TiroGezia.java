@@ -1,3 +1,4 @@
+/*
 package modelPackage;
 
 public class TiroGezia extends TiroTaldea {
@@ -8,4 +9,4 @@ public class TiroGezia extends TiroTaldea {
         this.addTiro(new Tiro(pX - 1, pY - 1));
         this.addTiro(new Tiro(pX + 1, pY - 1));
     }
-}
+}*/

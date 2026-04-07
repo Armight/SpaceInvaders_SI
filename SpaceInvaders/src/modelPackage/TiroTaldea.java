@@ -1,3 +1,4 @@
+/*
 package modelPackage;
 
 import java.util.ArrayList;
@@ -16,4 +17,4 @@ public class TiroTaldea implements TiroElementua{
 	public void addTiro(TiroElementua pTiro) {
 		tiroKol.add(pTiro);
 	}
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package modelPackage;
 
 public class TiroErromboa extends TiroTaldea {
@@ -21,4 +22,4 @@ public class TiroErromboa extends TiroTaldea {
 
     	this.addTiro(new Tiro(pX, pY-4));
     }
-}
+}*/

@@ -1,12 +1,14 @@
 package modelPackage;
 
-public class Etsai extends Pixel {
+public class Etsai implements Pixel {
 	
-	private int id;
+	private int x, y, bizitza, id;
 	private int xBerria, yBerria, random;
 	
     public Etsai(int pX, int pY, int pId) {
-        super(pX, pY, 1);
+        x = pX;
+        y = pY;
+        bizitza = 1;
         id = pId;
 
         xBerria = pX;
@@ -15,9 +17,39 @@ public class Etsai extends Pixel {
     }
     
     //ETSAI METODO OROKORRAK:
-	@Override
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+	}
+	
+	@Override
+	public int getX() {
+		return this.x;
+	}
+
+	@Override
+	public int getY() {
+		return this.y;
+	}
+
+	@Override
+	public int getBizitza() {
+		return this.bizitza;
+	}
+
+	@Override
+	public void setPosizio(int pX, int pY) {
+		this.x = pX;
+		this.y = pY;
+	}
+	
+	@Override
+	public boolean bizitzaKendu() {
+		int bizitza = this.getBizitza();
+		bizitza = bizitza - 1;
+		if (bizitza <=0) {
+			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
+			return true;
+		} else return false;
 	}
 	
 	@Override
@@ -85,6 +117,10 @@ public class Etsai extends Pixel {
 		}
 	}
 	
+	public int getId() {
+		return this.id;
+	}
+	
 	public boolean etsaiKolisioak(int pX, int pY, int pId) {
 		boolean kolisionatu = false;
 		if (xBerria == pX && yBerria == pY && id != pId) {
@@ -93,27 +129,12 @@ public class Etsai extends Pixel {
 		return kolisionatu;
 	}
 	
-	public int getId() {
-		return this.id;
-	}
-    
     public boolean kolisioakKonprobatu(int pX, int pY) {
     	boolean kolisionatu = false;
     	if (getX() == pX && getY() == pY) {
     		kolisionatu = true;
     	}
     	return kolisionatu;
-	}
-
-	@Override
-	public boolean bizitzaKendu() {
-		int bizitza = super.getBizitza();
-		bizitza = bizitza - 1;
-		if (bizitza <=0) {
-			EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Hutsik");
-			//EspazioModel.getGelaxkaMatrizea().removeEtsai(this);
-			return true;
-		} else return false;
 	}
 
 }
