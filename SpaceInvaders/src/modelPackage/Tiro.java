@@ -1,6 +1,6 @@
 package modelPackage;
 
-public class Tiro   implements TiroElementua, Pixel{
+public class Tiro   implements Pixel{
 	private int x,y;
 	
     protected Tiro(int pX, int pY) {
