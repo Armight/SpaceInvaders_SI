@@ -12,11 +12,6 @@ public class Jokalari implements Pixel {
 	protected Jokalari(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
-		this.pixelak= new ArrayList<Pixel>();
-		pixelak.add(new PixelSimple(x, y));			//erdiko pixel
-		pixelak.add(new PixelSimple(x + 1, y));		//eskumako pixel
-		pixelak.add(new PixelSimple(x - 1, y));		//ezkerreko pixel
-		pixelak.add(new PixelSimple(x, y - 1));		//goiko pixel
 		
 		
 	
@@ -29,7 +24,7 @@ public class Jokalari implements Pixel {
 	@Override
 	public void sortu() {
 		 EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-
+		 
 		    for (Pixel p : pixelak) {
 		        PixelSimple ps = (PixelSimple) p;
 		        espazioa.getGelaxka(ps.getX(), ps.getY())
@@ -188,6 +183,9 @@ public class Jokalari implements Pixel {
 	       p.ezabatu();
 	        
 	    }
+	}
+	public void setPixelak(ArrayList<Pixel> pPixelak) {
+		this.pixelak = pPixelak;
 	}
 
 
