@@ -123,11 +123,11 @@ public class EspazioModel {
 
 //***********************TIROEN METODOAK:********************************
 	
-	public void removeTiro(Tiro pTiro) {
+	public void removeTiro(Pixel pTiro) {
 			this.tiroak.remove(pTiro);
 		}
 		
-	public void addTiro(Tiro pTiro) {
+	public void addTiro(Pixel pTiro) {
 			this.tiroak.add(pTiro);
 		}
 		
@@ -213,7 +213,7 @@ public class EspazioModel {
 		
 	
 	//*************************KOLISIOEN METODODAK:**************************
-	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {
+	public void etsaiKolisioakKonprobatu(int pX, int pY, Pixel t) {
 		Iterator<Etsai> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -240,10 +240,7 @@ public class EspazioModel {
 		while(itr.hasNext()) {
 			Pixel te = itr.next();
 			
-			if (te instanceof Tiro) {
-				Tiro t = (Tiro) te;
-			
-			if(t.kolisioakKonprobatu(pX, pY)) {
+			if(te.kolisioakKonprobatu(pX, pY)) {
 	 			boolean hilDa = e.bizitzaKendu();
 				if (hilDa) { 
 					etsaiak.remove(e);
@@ -251,8 +248,8 @@ public class EspazioModel {
 				}
 			}
 		}
-		}
 	}
+	
 	
 	public void jokalariKolisioakKonprobatu(int pX, int pY) {
 		Iterator<Etsai> itr = this.getEtsaiIterator(); 

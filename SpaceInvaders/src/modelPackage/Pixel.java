@@ -21,6 +21,8 @@ public interface Pixel {
 	 public abstract void sortu();
 	 
 	 public abstract void ezabatu();
+	 
+	 public abstract boolean kolisioakKonprobatu(int pX, int pY);
 		
 }
 

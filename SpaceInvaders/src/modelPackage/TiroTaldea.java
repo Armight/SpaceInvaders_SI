@@ -56,8 +56,18 @@ public class TiroTaldea implements Pixel{
     }
     
     @Override
-    public void setPosizio(int pX, int pY) {
-    	
+    public void setPosizio(int pX, int pY) {	
+    
+    }
+    
+    @Override
+    public boolean kolisioakKonprobatu(int pX, int pY) {
+        for (Pixel tiro : tiroKol) {
+            if (tiro.kolisioakKonprobatu(pX, pY)) {
+                return true;
+            }
+        }
+        return false;
     }
 	
 	public void addTiro(Pixel pTiro) {
