@@ -55,6 +55,8 @@ public class Controller implements KeyListener {
             //Hau da ESC teklarako (AmaieraPantaila klasean hobeto azalduta T-T)
             case KeyEvent.VK_ESCAPE:
             	PartidaKudeatzailea.getPartidaKudeatzailea().irteeraEgin();
+            case KeyEvent.VK_Q:
+            	EspazioModel.getGelaxkaMatrizea().getJokalari().aldatuTiroa();
             default:
             	teklakSakatuta.add(e.getKeyCode());
         }

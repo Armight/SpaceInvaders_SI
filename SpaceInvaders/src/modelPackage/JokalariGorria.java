@@ -7,6 +7,7 @@ public class JokalariGorria extends Jokalari{
 	public JokalariGorria(int pX, int pY) {
 		super(pX, pY);
 		this.kolorea = "RED";
+		this.tiroPortaera = new TiroBakarraPortaera();
 		this.pixelak= new ArrayList<Pixel>();
 		pixelak.add(new PixelSimple(pX, pY));			//erdiko pixel
 		pixelak.add(new PixelSimple(pX + 1, pY));		//eskumako pixel
@@ -15,5 +16,16 @@ public class JokalariGorria extends Jokalari{
 		super.setPixelak(pixelak);
 	}
 	
+	public void aldatuTiroa() {
+		if (tiroPortaera instanceof TiroBakarraPortaera) {
+			tiroPortaera = new TiroGeziaPortaera();
+		}
+		else if (tiroPortaera instanceof TiroGeziaPortaera){
+			tiroPortaera = new TiroErromboaPortaera();
+		}
+		else {
+			tiroPortaera = new TiroBakarraPortaera();
+		}
+	}
 
 }

@@ -7,6 +7,7 @@ public class JokalariBerdea extends Jokalari{
 	public JokalariBerdea(int pX, int pY) {
 		super(pX, pY);
 		this.kolorea = "GREEN";
+		this.tiroPortaera = new TiroBakarraPortaera();
 		this.pixelak= new ArrayList<Pixel>();
 		pixelak.add(new PixelSimple(pX, pY));	 		//Pixel zentrala		
 		pixelak.add(new PixelSimple(pX, pY + 1));		//Beheko Pixela		
@@ -17,6 +18,15 @@ public class JokalariBerdea extends Jokalari{
 		pixelak.add(new PixelSimple(pX -1, pY + 1));
 		pixelak.add(new PixelSimple(pX + 1, pY + 1));
 		super.setPixelak(pixelak);
+	}
+	
+	public void aldatuTiroa() {
+		if (tiroPortaera instanceof TiroBakarraPortaera) {
+			tiroPortaera = new TiroGeziaPortaera();
+		}
+		else {
+			tiroPortaera = new TiroBakarraPortaera();
+		}
 	}
 	
 }
