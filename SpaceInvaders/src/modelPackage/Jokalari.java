@@ -27,8 +27,7 @@ public class Jokalari implements Pixel {
 		 
 		    for (Pixel p : pixelak) {
 		        PixelSimple ps = (PixelSimple) p;
-		        espazioa.getGelaxka(ps.getX(), ps.getY())
-		            .setEgoera("Jokalari_" + this.kolorea);
+		        espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Jokalari_" + this.kolorea);
 		    }
 	}
 	
@@ -36,14 +35,20 @@ public class Jokalari implements Pixel {
 	public void mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
+		if((getX() <= 3 && i == -1)) {
+			return;
+		}else if(getX() >= 116 && i==1) {
+			return;
+		}
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		int xBerria = this.getX() + i;
 		boolean ahalDa= this.mugituAhalX(i);
 		if(ahalDa) {
 			this.ezabatu();
 			this.mugituEtaMarraztuX(i);
+			this.x +=i;
 		}
-		this.x +=i;
+		
 		
 		
 		
@@ -57,7 +62,9 @@ public class Jokalari implements Pixel {
 	public void mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		
+		if(getY()>= 58 && i == -1 || getY() <= 2 && i == 1) { //MUGAK
+			return;
+		}
 		boolean ahalDa= this.mugituAhalDaY(i);
 		if(ahalDa) {
 			this.ezabatu();
