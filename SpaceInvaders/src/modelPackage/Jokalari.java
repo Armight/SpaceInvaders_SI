@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class Jokalari implements Pixel {
 	private ArrayList<Pixel> pixelak;
 	private int x,y;//pixel zentrala
+	protected TiroPortaera tiroPortaera;
 
 	protected String kolorea;
 	
