@@ -83,6 +83,9 @@ public class Jokalari implements Pixel {
 	
 	public String getKolorea() {return this.kolorea;}
 	
+	@Override
+	public void aldatuTiroa() {}
+	
 	public void shoot() {
 		if (this.getY() <= 2) {
 			return;
