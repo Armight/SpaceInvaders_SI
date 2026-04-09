@@ -1,5 +1,9 @@
 package modelPackage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Jokalari implements Pixel {
 
 	private int x, y, bizitza;
@@ -98,10 +102,67 @@ public class Jokalari implements Pixel {
 	}
 
 	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public HashSet setRandom(int r) {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mugituRandom() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean xLimiteakKonprobatu() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean yLimiteakKonprobatu() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean etsaiKolisioak(Pixel pEtsai) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public boolean kolisioakKonprobatu(int pX, int pY) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public int getXBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int bizitzaKendu() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }
 	

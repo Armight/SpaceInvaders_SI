@@ -143,14 +143,37 @@ public class EspazioModel {
 		return this.tiroak.iterator();
 	}
 //******************************ETSAIEN METODOAK:	********************************
-	private void mugituEtsaiak() {																
+	private void mugituEtsaiak() {		
+		HashMap<Integer, HashSet<String>> posBerriGuztiak = new HashMap<>();
 		ArrayList<Pixel> etsaiakKopia= new ArrayList<Pixel>(this.etsaiak);//gure estaien arrayaren kopia
+		
+		//1. Etsai guztien posizio berriak kalkulatu
+		//HashMap baten gorde giltza = id eta HashSet<String> = posizioa(k) izanda
 		for(Pixel e : etsaiakKopia) {
-			//2. etsai guztiak mugitu
-			e.mugituRandom();
+			int r = (int)(Math.random() * 3); //0, 1 edo 2
+			HashSet<String> pos = e.setRandom(r);
+			posBerriGuztiak.put(e.getId(), pos);
 		}
 		
+		//2. Etsai bakoitzeko konprobatu ea berak egin nahi duen mugimendua beste etsai batek egin nahi badu
+		for (Pixel e : etsaiakKopia) {
+			
+			//Ez dago beste etsairik berak egin nahi duen mugimendua egingo duenik
+			if (!this.etsaiEtsaiKolisioak(e, posBerriGuztiak)) {
+				
+				//mugimenduak x eta y limiteak errespetatzen ditu
+				if (!e.xLimiteakKonprobatu() && !e.yLimiteakKonprobatu()) {
+					e.mugituRandom();
+					
+					//mugimenduak ez du y limitea errespetatzen beraz partida amaitu
+				} else if (e.yLimiteakKonprobatu()) {
+					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+				}
+			//Etsaiak ez du mugimendua osatuko mugimendu berbera osatu nahi duen beste etsai bat dagoenean
+			} else {}
+		}
 	}
+	
 	
 	
 	public void removeEtsai (Pixel e) {
@@ -208,14 +231,14 @@ public class EspazioModel {
 		
 	
 	//*************************KOLISIOEN METODODAK:**************************
-	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {/*
+	public void etsaiKolisioakKonprobatu(int pX, int pY, Tiro t) {
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
 			Pixel e = itr.next();
-			if(e.kolisioakKonprobatu(pX,pY)) {
-				boolean hilDa = e.bizitzaKendu();
-				if (hilDa) { 
+			if(e.kolisioakKonprobatu(pX,pY)) { 
+				int hilDa = e.bizitzaKendu();
+				if (hilDa < 0) { 
 					itr.remove();
 					tiroak.remove(t);
 				}
@@ -226,22 +249,49 @@ public class EspazioModel {
 		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
 		if (etsairikEz()) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
-		}*/
+		}
 	}
 	
-	public void tiroKolisioakKonprobatu(int pX, int pY, Etsai e) {
-		/*Iterator<Tiro> itr = this.getTiroIterator(); 
+	public void tiroKolisioak(Pixel pEtsai) {
+		Iterator<Tiro> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
 			Tiro t = itr.next();
-			if(t.kolisioakKonprobatu(pX, pY)) {
-	 			boolean hilDa = e.bizitzaKendu();
-				if (hilDa) { 
-					etsaiak.remove(e);
+			if(t.etsaiKolisioak(pEtsai)) {
+	 			int hilDa = pEtsai.bizitzaKendu();
+				if (hilDa < 0) { 
+					etsaiak.remove(pEtsai);
 					 itr.remove();
 				}
 			}
-		}*/
+		}
+	}
+	
+	public boolean etsaiEtsaiKolisioak(Pixel e, HashMap<Integer, HashSet<String>> pPosBerriak) {
+		
+		boolean ezMugitu = false;
+		
+		//Oraiongo e etsaiaren posizio guztiak eskuratu
+		HashSet<String> posBerri1 = pPosBerriak.get(e.getId());
+		
+		for (Integer pId : pPosBerriak.keySet()) {
+			
+			//Oraingo e etsaia eta HashMap-ekoa id berdinak badituzte: ez aztertu posizio berriak
+			if (pId == e.getId()) continue;
+			
+			//Zerrendaren pId-a duen etsaiaren posizio guztiak eskuratu
+			HashSet<String> posBerri2 = pPosBerriak.get(pId);
+			
+			//Oraingo e etsaiaren posiziorik pId-a duen etsaiaren posizio zerrendan badago, ezMugitu = True
+			for (String pos : posBerri1) {
+				if (posBerri2.contains(pos)) {
+					ezMugitu = true;
+					break;
+				}
+			}
+			if (ezMugitu) break;
+		}
+		return ezMugitu;		
 	}
 	
 	public void jokalariKolisioakKonprobatu(int pX, int pY) {
@@ -249,21 +299,21 @@ public class EspazioModel {
 
 		while(itr.hasNext()) {
 			Pixel e = itr.next();
-			if(e.kolisioakKonprobatu(pX,pY)) {
+			if (e.kolisioakKonprobatu(pX,pY)) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 			}
 		}
 	}
-
-	public boolean etsaiEtsaiKolisioak(Set<String> pEtsaiPos, int pId) {
-		Iterator<Pixel> itr = this.getEtsaiIterator();
-		boolean kolisionatu = false;
+	
+	
+	//IMPLEMENTAR PARA QUE ETSAI TAMBIEN KOMPRUEBE CUANDO SUCEDE UNA COLISION CON JOKALARI
+	public void jokalariKolisioak(Pixel pEtsai) {
 		
-		while(itr.hasNext() && !kolisionatu) {
-			Pixel e = itr.next();
-			kolisionatu = e.etsaiKolisioak(pEtsaiPos, pId);	
-		}
-		return kolisionatu;
 	}
+
+	
+		
+		
+		
 }
 

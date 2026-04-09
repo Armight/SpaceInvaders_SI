@@ -4,133 +4,148 @@ import java.util.*;
 
 public class EtsaiMultipixel implements Pixel {
 	private ArrayList<Pixel> etsaiKol = new ArrayList<Pixel>();
-	Set<String> posBerriak = new HashSet<>();
-	private int x, y, xBerria, yBerria, id, random;
-	int posizioak[][];
+	int x, y, id, random;
 
 	public EtsaiMultipixel(int pX, int pY, int pId) {
 		x = pX;
 		y = pY;
-		xBerria = pX;
-		yBerria = pY;
 		id = pId;
 		
-		posizioak = new int [][] {{1, 0}, {2, 0}, {-1, 0}, {-2, 0}, {0, 1}, {1, 1}, {-1, 1}, {0, 2}};
-	}
-	
-	@Override
-	public void sortu() {
+		int posizioak [][] = new int [][] {{1, 0}, {2, 0}, {-1, 0}, {-2, 0}, {0, 1}, {1, 1}, {-1, 1}, {0, 2}};
 		for (int[] pos : posizioak) {
 			Etsai e = new Etsai(x + pos[0], y + pos[1], id);
-			e.sortu();
 			etsaiKol.add(e);
 		}
 	}
-
+	
+	//Metodo orokorrak
+	@Override
+	public void sortu() {
+		for (Pixel p : etsaiKol) {
+			p.sortu();
+		}
+	}
+	
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.x;
 	}
-
+	
+	@Override
+	public int getXBerria() {
+		return etsaiKol.get(0).getXBerria();
+	}
+	
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.y;
 	}
-
+	
+	@Override
+	public int getYBerria() {
+		return etsaiKol.get(0).getYBerria();
+	}
+	
+	@Override
+	public int getId() {
+		return this.id;
+	}
+	
+	public ArrayList<Pixel> getEtsaiKol(){
+		return this.etsaiKol;
+	}
+	
 	@Override
 	public void setPosizio(int pX, int pY) {
-		posBerriak.clear();
-		for (int[] pos : posizioak) {
-			String key = (pX + pos[0]) + "," + (pY + pos[1]);
-			posBerriak.add(key);
-		}	
+		this.x = pX;
+		this.y = pY;
 	}
 	
-	public void posizioRandom() {
-		random = (int)(Math.random() * 3); //0, 1 edo 2
-		xBerria = x;
-		yBerria = y;
-		if (random == 0) {
-			xBerria = xBerria - 1;
-		} else if (random == 1) {
-			xBerria = xBerria + 1;
-		} else {
-			yBerria = yBerria + 1;
+	@Override
+	public HashSet<String> setRandom(int r) {
+		HashSet<String> posEguneratua = new HashSet<String>();
+		random = r;
+		for (Pixel p : etsaiKol) {
+			posEguneratua.addAll(p.setRandom(r)); 
 		}
+		return posEguneratua;
 	}
 	
+	@Override
+	public boolean xLimiteakKonprobatu() {
+		for (Pixel p : etsaiKol) {
+			if (p.xLimiteakKonprobatu()) return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean yLimiteakKonprobatu() {
+		for (Pixel p : etsaiKol) {
+			if (p.yLimiteakKonprobatu()) return true;
+		}
+		return false;
+	}
+		
 	@Override
 	public void mugituRandom() {
-		this.posizioRandom();
-		
-		this.setPosizio(xBerria, yBerria);
-		
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-    	boolean kolisionatu = espazioa.etsaiEtsaiKolisioak(this.posBerriak, this.id);
-    	if (kolisionatu) return;
-    	
-    	this.xLimiteakKonprobatu();
-    	   	
-    	this.x = xBerria;
-    	this.y = yBerria;
-    	
-    	this.ezabatu();
-    	        
-        if (random == 0) {
+		ezabatu();
+		if (random == 0) {
+			x = x - 1;
         	mugituX(-1); // ezkerrera
         } else if (random == 1) {
+        	x = x + 1;
         	mugituX(1);  // eskumara
         } else {
-            mugituY(1);  // behera			
+        	y = y + 1;
+        	mugituY(1);  // behera			
         }
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.tiroKolisioak(this);
 	}
 	
-	private void xLimiteakKonprobatu() {
-		
-	}
-
 	@Override
-	public void mugituX(int i) {
-		for (Pixel e : etsaiKol) {
-			e.mugituX(i);
+	public boolean kolisioakKonprobatu(int pX, int pY) {
+		for (Pixel p : etsaiKol) {
+			if (p.kolisioakKonprobatu(pX, pY)) return true;
 		}
-	}
-
-	@Override
-	public void mugituY(int i) {
-		for (Pixel e : etsaiKol) {
-			e.mugituY(i);
-		}
+		return false;
 	}
 	
 	@Override
 	public void ezabatu() {
-		for (Pixel e : etsaiKol) {
-			e.ezabatu();
+		for (Pixel p : etsaiKol) {
+			p.ezabatu();
 		}
-		
-	}
-
-	@Override
-	public boolean kolisioakKonprobatu(int pX, int pY) {
-		for (Pixel e : etsaiKol) {
-			if(e.kolisioakKonprobatu(pX, pY)) {
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	@Override
-	public boolean etsaiKolisioak(Set<String> etsaiPosizioak, int pId) {
-		if (id == pId) return false;
-		for (String pos : posBerriak) {
-			if (etsaiPosizioak.contains(pos)) {
-				return true;
-			}
+	public void mugituX(int i) {
+		for (Pixel p : etsaiKol) {
+			p.mugituX(i);
 		}
+	}
+	
+	@Override
+	public void mugituY(int i) {
+		for (Pixel p : etsaiKol) {
+			p.mugituY(i);
+		}
+	}
+	
+	@Override
+	public int bizitzaKendu() {
+		int hilDa = 0;
+		for (Pixel p : etsaiKol) {
+			hilDa = hilDa + p.bizitzaKendu();
+		}
+		return hilDa;
+	}
+
+	@Override
+	public boolean etsaiKolisioak(Pixel pEtsai) {
+		// TODO Auto-generated method stub
 		return false;
 	}
+	
 }

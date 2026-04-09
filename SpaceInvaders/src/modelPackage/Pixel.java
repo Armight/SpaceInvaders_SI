@@ -1,33 +1,45 @@
 package modelPackage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public interface Pixel {
 	
-	//*************************METODO OROKORRAK:**************************
+	//*************************ETSAIAN ERABILITAKO METODOAK:**************************
 	void sortu();
 	
 	int getX();
 	
+	int getXBerria();
+	
 	int getY();
-		
+	
+	int getYBerria();
+	
+	int getId();
+
 	void setPosizio(int pX, int pY);
 	
+	HashSet<String> setRandom(int r);
+	
+	void mugituRandom();
+	
+	boolean xLimiteakKonprobatu();
+	
+	boolean yLimiteakKonprobatu();
+	
+	boolean kolisioakKonprobatu(int pX, int pY);
+	
+	int bizitzaKendu();
+
 	void mugituX(int i);
 	 
 	void mugituY(int i);
 	
-	void ezabatu();
+	void ezabatu();	
 	
-	boolean kolisioakKonprobatu(int pX, int pY);
-	
-	//*************************ETSAI METODOAK:**************************
-	default void mugituRandom() {}
-			
-	default public boolean bizitzaKendu() {
-		return false;
-	}
-	
-	default boolean etsaiKolisioak(Set<String> etsaiPos, int pId) {return false;}
+	//BAKARRIK TIRO-K ERABILI
+	boolean etsaiKolisioak(Pixel pEtsai);
 }
 
