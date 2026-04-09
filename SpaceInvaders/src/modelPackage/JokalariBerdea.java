@@ -1,9 +1,8 @@
 package modelPackage;
 
-public class JokalariBerdea extends Jokalari{
+public class JokalariBerdea extends JokalariMultipixel{
 	public JokalariBerdea(int pX, int pY) {
-		super(pX, pY);
-		this.kolorea = "GREEN";
+			super(pX, pY, "GREEN");
 	}
-	
 }
+

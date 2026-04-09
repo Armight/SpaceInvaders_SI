@@ -11,7 +11,7 @@ public class EspazioModel {
 	private Gelaxka[][] matrizea;
 	private ArrayList<Tiro> tiroak;
 	private ArrayList<Pixel> etsaiak; 
-	private Jokalari jokalari;
+	private Pixel jokalari;
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	
@@ -77,6 +77,7 @@ public class EspazioModel {
 	    //jokalaria instantziatu
 	    //jokalari = new Jokalari(pXErdia, pYBehean);
 		String kolorea = PartidaKudeatzailea.getPartidaKudeatzailea().getKolorea();
+		
 		jokalari = JokalariFactory.getJokF().createJokalaria(kolorea, pXErdia, pYBehean);
 	    
 	    //Jokalaria eta etsaiak sortu
@@ -212,7 +213,7 @@ public class EspazioModel {
 	
 	
 	//*************************JOKALARIAREN METODODAK:**************************
-	public Jokalari getJokalari() {
+	public Pixel getJokalari() {
 		return jokalari;
 	}
 	
@@ -220,6 +221,8 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		this.jokalari.mugituX(i);
 	}
+	
+	
 	public void mugituJokalariaY(int i) {
 		if (jokalari == null) return;
 		this.jokalari.mugituY(i);

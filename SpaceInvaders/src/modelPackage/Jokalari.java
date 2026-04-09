@@ -1,19 +1,17 @@
 package modelPackage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Jokalari implements Pixel {
 
-	private int x, y, bizitza;
-	protected String kolorea;
+	private int x, y, xBerria, yBerria, bizitza;
+	private String kolorea;
 	
-	protected Jokalari(int pX, int pY) {
+	public Jokalari(int pX, int pY, String pKolorea) {
 		x = pX;
 		y = pY;
+		kolorea = pKolorea;
 		bizitza = 1;
-	
 	}
 	
 	//JOKALARI METODO OROKORRAK:		
@@ -43,7 +41,19 @@ public class Jokalari implements Pixel {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		int xBerria = this.getX() + i;
+		
+		xBerria = this.getX() + i;
+		
+		if (this.xLimiteakKonprobatu()) return;
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if (espazioa.espaziotikKanpo(xBerria, getY())) {
 			return;
@@ -61,6 +71,12 @@ public class Jokalari implements Pixel {
 		
 		//posizio berria matrizean jarri
 		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+	}
+	
+	@Override
+	public boolean xLimiteakKonprobatu() {
+		if (xBerria < 0 || xBerria >= 100) return true;
+		return false;
 	}
 	
 	@Override
@@ -118,12 +134,6 @@ public class Jokalari implements Pixel {
 	public void mugituRandom() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public boolean xLimiteakKonprobatu() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

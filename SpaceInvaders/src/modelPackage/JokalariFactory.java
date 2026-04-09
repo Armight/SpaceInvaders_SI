@@ -13,18 +13,18 @@ public class JokalariFactory {
 		return nJokalariFactory;
 	}
 	
-	public Jokalari createJokalaria(String pKolorea, int pX, int pY) {
-		Jokalari jokalaria = null;
+	public Pixel createJokalaria(String pKolorea, int pX, int pY) {
+				
 		if (pKolorea.equals("GREEN")) {
-			jokalaria = new JokalariBerdea(pX,pY);
+			return new JokalariBerdea(pX,pY);
 		}
 		else if (pKolorea.equals("RED")) {
-			jokalaria = new JokalariGorria(pX,pY);
+			return new JokalariGorria(pX,pY);
 		}
 		else if (pKolorea.equals("BLUE")) {
-			jokalaria = new JokalariUrdina(pX,pY);
+			return new JokalariUrdina(pX,pY);
 		}
-		return jokalaria;
+		return null;
 	}
 	
 }
