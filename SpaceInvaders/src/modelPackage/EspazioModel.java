@@ -210,7 +210,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		this.jokalari.shoot();
 	}
-		
+	
 	
 	//*************************KOLISIOEN METODODAK:**************************
 	public void etsaiKolisioakKonprobatu(int pX, int pY, Pixel t) {

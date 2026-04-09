@@ -102,4 +102,8 @@ public class PartidaKudeatzailea extends Observable {
 		this.amaieraPantailaErakutsi(pIrabazi);
 	}
 	
+	public void aldatuTiroa() {
+		EspazioModel.getGelaxkaMatrizea().getJokalari().aldatuTiroa();
+	}
+	
 }
