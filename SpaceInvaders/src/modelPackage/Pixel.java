@@ -21,7 +21,7 @@ public interface Pixel {
 	
 	void mugituRandom();
 	
-	//i jokalariaren posizio berriak kalkulatzeko erabili
+	//int i jokalariaren posizio berriak kalkulatzeko erabili
 	boolean xLimiteakKonprobatu(int i);
 	
 	boolean yLimiteakKonprobatu(int i);
@@ -36,7 +36,7 @@ public interface Pixel {
 	
 	void ezabatu();	
 	
-	//BAKARRIK TIRO-K INPLEMENTATU
+	//BAKARRIK TIRO ETA JOKALARIAK INPLEMENTATU
 	boolean etsaiKolisioak(Pixel pEtsai);
 	
 	//BAKARRIK JOKALARIAK INPLEMENTATU

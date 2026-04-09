@@ -165,6 +165,8 @@ public class EspazioModel {
 				//mugimenduak x eta y limiteak errespetatzen ditu
 				if (!e.xLimiteakKonprobatu(0) && !e.yLimiteakKonprobatu(0)) {
 					e.mugituRandom();
+					this.tiroKolisioak(e);
+					this.jokalariKolisioak(e);
 					
 					//mugimenduak ez du y limitea errespetatzen beraz partida amaitu
 					//0-rekin ez da ezer konprobatuko, int i bakarrik jokalarietan inplementatu
@@ -317,7 +319,9 @@ public class EspazioModel {
 	
 	//IMPLEMENTAR PARA QUE ETSAI TAMBIEN KOMPRUEBE CUANDO SUCEDE UNA COLISION CON JOKALARI
 	public void jokalariKolisioak(Pixel pEtsai) {
-		
+		if (jokalari.etsaiKolisioak(pEtsai)) {
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+		}
 	}
 
 	

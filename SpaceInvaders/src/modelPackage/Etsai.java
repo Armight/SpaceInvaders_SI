@@ -107,12 +107,14 @@ public class Etsai implements Pixel {
 	
 	@Override
 	public void mugituY(int i) {
+		//i=1 denean, gorantz mugitu
+		//i=-1 denean, beherantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 				
 		y = yBerria;
 
     	espazioa.getGelaxka(x, y).setEgoera("Etsaia");
-	}
+   	}
 	
 	@Override
 	public int bizitzaKendu() {

@@ -84,8 +84,6 @@ public class EtsaiMultipixel implements Pixel {
         	y = y + 1;
         	mugituY(1);  // behera			
         }
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.tiroKolisioak(this);
 	}
 	
 	@Override

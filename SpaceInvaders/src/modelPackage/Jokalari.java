@@ -114,7 +114,17 @@ public class Jokalari implements Pixel {
 
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
-		// TODO Auto-generated method stub
+		if (pEtsai instanceof Etsai) {
+			if (x == pEtsai.getX() && 
+					y == pEtsai.getY()) {
+				return true;
+			}
+		} else if (pEtsai instanceof EtsaiMultipixel) {
+			EtsaiMultipixel pMulti = (EtsaiMultipixel) pEtsai;
+			for (Pixel pMono : pMulti.getEtsaiKol()) {
+				if (this.etsaiKolisioak(pMono)) return true;
+			}
+		}
 		return false;
 	}
 
