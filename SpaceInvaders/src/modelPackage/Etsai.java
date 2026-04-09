@@ -18,7 +18,7 @@ public class Etsai implements Pixel {
     
     //ETSAI METODO OROKORRAK:
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Etsaia");
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera("Etsaia");
 	}
 	
 	@Override
@@ -26,19 +26,10 @@ public class Etsai implements Pixel {
 		return this.x;
 	}
 	
-	@Override
-	public int getXBerria() {
-		return this.xBerria;
-	}
-
+	
 	@Override
 	public int getY() {
 		return this.y;
-	}
-	
-	@Override
-	public int getYBerria() {
-		return this.yBerria;
 	}
 	
 	@Override
@@ -46,11 +37,6 @@ public class Etsai implements Pixel {
 		return this.id;
 	}
 
-	@Override
-	public void setPosizio(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
-	}
 	
 	@Override
 	public HashSet<String> setRandom(int r) {
@@ -71,13 +57,13 @@ public class Etsai implements Pixel {
 	}
 	
 	@Override
-	public boolean xLimiteakKonprobatu() {
+	public boolean xLimiteakKonprobatu(int i) {
 		if (xBerria < 0 || xBerria >= 100) return true;
 		return false;
 	}
 	
 	@Override
-	public boolean yLimiteakKonprobatu() {
+	public boolean yLimiteakKonprobatu(int i) {
 		if (yBerria >= 59) return true;
 		return false;
 	}
@@ -114,18 +100,18 @@ public class Etsai implements Pixel {
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		
-        this.setPosizio(xBerria, getY());
+        x = xBerria;
              
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+		espazioa.getGelaxka(x, y).setEgoera("Etsaia");
 	}
 	
 	@Override
 	public void mugituY(int i) {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 				
-		this.setPosizio(getX(), yBerria);
+		y = yBerria;
 
-    	espazioa.getGelaxka(getX(), getY()).setEgoera("Etsaia");
+    	espazioa.getGelaxka(x, y).setEgoera("Etsaia");
 	}
 	
 	@Override
@@ -133,7 +119,7 @@ public class Etsai implements Pixel {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		bizitza = bizitza - 1;
 		if (bizitza <= 0) {
-	    	espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
+	    	espazioa.getGelaxka(x, y).setEgoera("Hutsik");
 			return -1;
 		} else return 0;
 	}
@@ -142,6 +128,12 @@ public class Etsai implements Pixel {
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

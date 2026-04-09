@@ -23,11 +23,7 @@ public class Tiro implements Pixel {
 		return this.y;
 	}
 
-	@Override
-	public void setPosizio(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
-	}
+
 		    	
 	@Override
     public void mugituY(int i) {
@@ -36,8 +32,8 @@ public class Tiro implements Pixel {
     	
     		int yBerria = getY() - 1;
     	    		
-    		this.setPosizio(getX(), yBerria);
-    		    		
+    		y = yBerria;
+    		
     		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
     		
 			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY(), this);
@@ -111,13 +107,13 @@ public class Tiro implements Pixel {
 	}
 
 	@Override
-	public boolean xLimiteakKonprobatu() {
+	public boolean xLimiteakKonprobatu(int i) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean yLimiteakKonprobatu() {
+	public boolean yLimiteakKonprobatu(int i) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -128,22 +124,18 @@ public class Tiro implements Pixel {
 		return false;
 	}
 
-	@Override
-	public int getXBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int getYBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
 	}
     
 }

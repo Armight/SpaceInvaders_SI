@@ -14,7 +14,8 @@ public class Jokalari implements Pixel {
 		bizitza = 1;
 	}
 	
-	//JOKALARI METODO OROKORRAK:		
+	//JOKALARI METODO OROKORRAK:
+	
 	@Override
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
@@ -29,52 +30,25 @@ public class Jokalari implements Pixel {
 	public int getY() {
 		return this.y;
 	}
-	
-	@Override
-	public void setPosizio(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
-	}
-		
+			
 	@Override
 	public void mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+				
+		x = xBerria;		
+		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
+		//Baina jokalaria ez da hain azkar mugitzen
 		
-		xBerria = this.getX() + i;
+		espazioa.jokalariKolisioakKonprobatu(x, y);
 		
-		if (this.xLimiteakKonprobatu()) return;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if (espazioa.espaziotikKanpo(xBerria, getY())) {
-			return;
-		}
-		
-		//jokalariaren tiro bat badago mugitu nahi den gelaxkan, ezingo da mugitu
-		if (espazioa.getGelaxka(xBerria, getY()).getEgoera().equalsIgnoreCase("Tiro")) return; 
-		
-		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-		//posizio berria atzitu
-		this.setPosizio(getX()+i, getY());
-		
-		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
-		
-		//posizio berria matrizean jarri
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
 	@Override
-	public boolean xLimiteakKonprobatu() {
+	public boolean xLimiteakKonprobatu(int i) {
+		xBerria = x + i;
 		if (xBerria < 0 || xBerria >= 100) return true;
 		return false;
 	}
@@ -84,37 +58,37 @@ public class Jokalari implements Pixel {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		int yBerria = this.getY() - i;
-		if (espazioa.espaziotikKanpo(getX(), yBerria)) return;
-
-		if (espazioa.getGelaxka(getX(), yBerria).getEgoera().equalsIgnoreCase("Tiro")) return;
 		
-		//posizio zaharra matrizetik kendu
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");
-		
-		//posizio berria atzitu
-		this.setPosizio(getX(), getY()-i);
-		
-		espazioa.jokalariKolisioakKonprobatu(getX(), getY());
-		
-		espazioa.getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);	
+		y = yBerria;
+		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
+		//Baina jokalaria ez da hain azkar mugitzen
+				
+		espazioa.jokalariKolisioakKonprobatu(x, y);
+				
+		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
-	public String getKolorea() {return this.kolorea;}
+	@Override
+	public boolean yLimiteakKonprobatu(int i) {
+		yBerria = y - i;
+		if (yBerria < 0 || yBerria >= 60) return true;
+		return false;
+	}
 	
+	@Override
 	public void shoot() {
-		if (this.getY() <= 2) {
+		if (y <= 2) {
 			return;
 		}else {
-			Tiro tiro = new Tiro(getX(), getY() -2);
+			Tiro tiro = new Tiro(x, y - 3);
 			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 		}
 	}
-
+	
 	@Override
 	public void ezabatu() {
-		// TODO Auto-generated method stub
-		
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
 	}
 
 	@Override
@@ -136,11 +110,7 @@ public class Jokalari implements Pixel {
 		
 	}
 
-	@Override
-	public boolean yLimiteakKonprobatu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
@@ -154,17 +124,6 @@ public class Jokalari implements Pixel {
 		return false;
 	}
 
-	@Override
-	public int getXBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int bizitzaKendu() {

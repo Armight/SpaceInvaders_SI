@@ -37,30 +37,42 @@ public class JokalariMultipixel implements Pixel{
 	public int getY() {
 		return this.y;
 	}
-
-	@Override
-	public void setPosizio(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
-	}
 	
 	@Override
 	public void mugituX(int i) {
-		if (this.xLimiteakKonprobatu()) return;
 		for (Pixel j : jokalariKol) {
 			j.mugituX(i);
 		}
 	}
 	
 	@Override
-	public boolean xLimiteakKonprobatu() {
+	public boolean xLimiteakKonprobatu(int i) {
 		for (Pixel j : jokalariKol) {
-			if (j.xLimiteakKonprobatu()) return true;
+			if (j.xLimiteakKonprobatu(i)) return true;
 		}
 		return false;
 	}
 
+	@Override
+	public void mugituY(int i) {
+		for (Pixel j : jokalariKol) {
+			j.mugituY(i);
+		}		
+	}
 	
+	@Override
+	public boolean yLimiteakKonprobatu(int i) {
+		for (Pixel j : jokalariKol) {
+			if (j.yLimiteakKonprobatu(i)) return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void shoot() {
+		Pixel j = jokalariKol.get(0); //Goiko pixela
+		j.shoot();
+	}
 
 	
 
@@ -74,11 +86,7 @@ public class JokalariMultipixel implements Pixel{
 
 	
 
-	@Override
-	public boolean yLimiteakKonprobatu() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean kolisioakKonprobatu(int pX, int pY) {
@@ -94,36 +102,19 @@ public class JokalariMultipixel implements Pixel{
 
 	
 
-	@Override
-	public void mugituY(int i) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void ezabatu() {
-		// TODO Auto-generated method stub
-		
+		for (Pixel j : jokalariKol) {
+			j.ezabatu();
+		}	
 	}
 
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	
-	
-	
-	@Override
-	public int getXBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getYBerria() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 	@Override
@@ -137,4 +128,6 @@ public class JokalariMultipixel implements Pixel{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

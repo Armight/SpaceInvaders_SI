@@ -30,22 +30,12 @@ public class EtsaiMultipixel implements Pixel {
 	public int getX() {
 		return this.x;
 	}
-	
-	@Override
-	public int getXBerria() {
-		return etsaiKol.get(0).getXBerria();
-	}
-	
+		
 	@Override
 	public int getY() {
 		return this.y;
 	}
-	
-	@Override
-	public int getYBerria() {
-		return etsaiKol.get(0).getYBerria();
-	}
-	
+		
 	@Override
 	public int getId() {
 		return this.id;
@@ -54,13 +44,7 @@ public class EtsaiMultipixel implements Pixel {
 	public ArrayList<Pixel> getEtsaiKol(){
 		return this.etsaiKol;
 	}
-	
-	@Override
-	public void setPosizio(int pX, int pY) {
-		this.x = pX;
-		this.y = pY;
-	}
-	
+		
 	@Override
 	public HashSet<String> setRandom(int r) {
 		HashSet<String> posEguneratua = new HashSet<String>();
@@ -72,17 +56,17 @@ public class EtsaiMultipixel implements Pixel {
 	}
 	
 	@Override
-	public boolean xLimiteakKonprobatu() {
+	public boolean xLimiteakKonprobatu(int i) {
 		for (Pixel p : etsaiKol) {
-			if (p.xLimiteakKonprobatu()) return true;
+			if (p.xLimiteakKonprobatu(i)) return true;
 		}
 		return false;
 	}
 	
 	@Override
-	public boolean yLimiteakKonprobatu() {
+	public boolean yLimiteakKonprobatu(int i) {
 		for (Pixel p : etsaiKol) {
-			if (p.yLimiteakKonprobatu()) return true;
+			if (p.yLimiteakKonprobatu(i)) return true;
 		}
 		return false;
 	}
@@ -146,6 +130,12 @@ public class EtsaiMultipixel implements Pixel {
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -10,24 +10,21 @@ public interface Pixel {
 	void sortu();
 	
 	int getX();
-	
-	int getXBerria();
-	
+		
 	int getY();
-	
-	int getYBerria();
 	
 	int getId();
 
-	void setPosizio(int pX, int pY);
+	//void setPosizio(int pX, int pY);
 	
 	HashSet<String> setRandom(int r);
 	
 	void mugituRandom();
 	
-	boolean xLimiteakKonprobatu();
+	//i jokalariaren posizio berriak kalkulatzeko erabili
+	boolean xLimiteakKonprobatu(int i);
 	
-	boolean yLimiteakKonprobatu();
+	boolean yLimiteakKonprobatu(int i);
 	
 	boolean kolisioakKonprobatu(int pX, int pY);
 	
@@ -39,7 +36,11 @@ public interface Pixel {
 	
 	void ezabatu();	
 	
-	//BAKARRIK TIRO-K ERABILI
+	//BAKARRIK TIRO-K INPLEMENTATU
 	boolean etsaiKolisioak(Pixel pEtsai);
+	
+	//BAKARRIK JOKALARIAK INPLEMENTATU
+	void shoot();
+	
 }
 

@@ -163,11 +163,12 @@ public class EspazioModel {
 			if (!this.etsaiEtsaiKolisioak(e, posBerriGuztiak)) {
 				
 				//mugimenduak x eta y limiteak errespetatzen ditu
-				if (!e.xLimiteakKonprobatu() && !e.yLimiteakKonprobatu()) {
+				if (!e.xLimiteakKonprobatu(0) && !e.yLimiteakKonprobatu(0)) {
 					e.mugituRandom();
 					
 					//mugimenduak ez du y limitea errespetatzen beraz partida amaitu
-				} else if (e.yLimiteakKonprobatu()) {
+					//0-rekin ez da ezer konprobatuko, int i bakarrik jokalarietan inplementatu
+				} else if (e.yLimiteakKonprobatu(0)) {
 					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 				}
 			//Etsaiak ez du mugimendua osatuko mugimendu berbera osatu nahi duen beste etsai bat dagoenean
@@ -219,18 +220,22 @@ public class EspazioModel {
 	
 	public void mugituJokalariaX(int i) {
 		if (jokalari == null) return;
-		this.jokalari.mugituX(i);
+		if (jokalari.xLimiteakKonprobatu(i)) return;
+		jokalari.ezabatu();
+		jokalari.mugituX(i);
+		this.jokalariKolisioakKonprobatu(jokalari.getX(), jokalari.getY());
 	}
 	
 	
 	public void mugituJokalariaY(int i) {
 		if (jokalari == null) return;
+		if (jokalari.yLimiteakKonprobatu(i)) return;
+		jokalari.ezabatu();
 		this.jokalari.mugituY(i);
 	}
 	public void shoot() {
 		if (jokalari == null) return;
-		//Komentatuta dago, errorea ematen duelako eta aldatu behar delako
-		//.jokalari.shoot();
+		jokalari.shoot();
 	}
 		
 	
