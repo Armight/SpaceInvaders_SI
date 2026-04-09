@@ -52,28 +52,38 @@ public class TiroGezia implements Pixel {
 	@Override
 	public void mugituY(int i) {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		
+		//outofbounds ez emateko lehenengo tiroak kendu ("hutsik") ipini
 		for (Pixel p: tiroPixelak) {
 			PixelSimple ps = (PixelSimple) p;
-    		
     		espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
-    	
-    		int yBerria = ps.getY() - 1;
-    	    		
+    		int yBerria = ps.getY() - 1;	
     		ps.setPosizio(ps.getX(), yBerria);
-    		    		
-    		espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Tiro"); 
-    		
-			espazioa.etsaiKolisioakKonprobatu(ps.getX(),ps.getY(), ps);
+		}	
+		//konprobatu eta ipini
+		boolean espazioKanpo = false;
+		for (Pixel p : tiroPixelak) {
+			PixelSimple ps = (PixelSimple) p;
 			
-    		if (this.espaziotikKanpo(ps.getY())) {
-    			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik"); 
-    			espazioa.removeTiro(ps);
-    			return;
-    		}
-		}
+			if (espaziotikKanpo(ps.getY())) {
+				espazioKanpo = true;
+			}
+			else {
+				espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Tiro"); 
+				espazioa.etsaiKolisioakKonprobatu(ps.getX(),ps.getY(), this);
+			}
+		}	
 		
+		if (espazioKanpo) {
+			for (Pixel p : tiroPixelak) {
+				PixelSimple ps = (PixelSimple) p;
+				if (!espaziotikKanpo(ps.getY())) {
+					espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik"); 
+				}
+			}
+			espazioa.removeTiro(this);
+		}	
 	}
+	
 	public boolean espaziotikKanpo(int pY) {
 		if (pY < 2) { //Bakarrik gorantz jaurtitzean jarritako muga
 			return true;

@@ -35,11 +35,11 @@ public class Tiro  implements Pixel{
     		    		
     		espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Tiro"); 
     		
-			espazioa.etsaiKolisioakKonprobatu(ps.getX(),ps.getY(), ps);
+			espazioa.etsaiKolisioakKonprobatu(ps.getX(),ps.getY(), this);
 			
     		if (this.espaziotikKanpo(ps.getY())) {
     			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik"); 
-    			espazioa.removeTiro(ps);
+    			espazioa.removeTiro(this);
     			return;
     		}
 		}

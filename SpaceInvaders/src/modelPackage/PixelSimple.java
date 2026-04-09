@@ -49,7 +49,10 @@ public class PixelSimple implements Pixel{
 		return false;
 	}
 
-	
+	@Override
+	public boolean kolisioakKonprobatu(int pX, int pY) {
+		return false;
+	}
 
 	@Override
 	public void sortu() {
