@@ -225,7 +225,6 @@ public class EspazioModel {
 		if (jokalari.xLimiteakKonprobatu(i)) return;
 		jokalari.ezabatu();
 		jokalari.mugituX(i);
-		this.jokalariKolisioakKonprobatu(jokalari.getX(), jokalari.getY());
 	}
 	
 	
@@ -305,19 +304,6 @@ public class EspazioModel {
 		return ezMugitu;		
 	}
 	
-	public void jokalariKolisioakKonprobatu(int pX, int pY) {
-		Iterator<Pixel> itr = this.getEtsaiIterator(); 
-
-		while(itr.hasNext()) {
-			Pixel e = itr.next();
-			if (e.kolisioakKonprobatu(pX,pY)) {
-				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
-			}
-		}
-	}
-	
-	
-	//IMPLEMENTAR PARA QUE ETSAI TAMBIEN KOMPRUEBE CUANDO SUCEDE UNA COLISION CON JOKALARI
 	public void jokalariKolisioak(Pixel pEtsai) {
 		if (jokalari.etsaiKolisioak(pEtsai)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();

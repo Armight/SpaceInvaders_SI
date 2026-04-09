@@ -113,7 +113,9 @@ public class JokalariMultipixel implements Pixel{
 
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
-		// TODO Auto-generated method stub
+		for (Pixel j : jokalariKol) {
+			if (j.etsaiKolisioak(pEtsai)) return true;
+		}
 		return false;
 	}
 	

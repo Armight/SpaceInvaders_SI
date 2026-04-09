@@ -41,8 +41,6 @@ public class Jokalari implements Pixel {
 		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
 		//Baina jokalaria ez da hain azkar mugitzen
 		
-		espazioa.jokalariKolisioakKonprobatu(x, y);
-		
 		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
@@ -62,9 +60,7 @@ public class Jokalari implements Pixel {
 		y = yBerria;
 		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
 		//Baina jokalaria ez da hain azkar mugitzen
-				
-		espazioa.jokalariKolisioakKonprobatu(x, y);
-				
+								
 		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
