@@ -12,6 +12,7 @@ public class EspazioModel {
 	private ArrayList<Tiro> tiroak;
 	private ArrayList<Pixel> etsaiak; 
 	private Pixel jokalari;
+
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	
@@ -25,7 +26,6 @@ public class EspazioModel {
 	    }
 	    tiroak = new ArrayList<Tiro>();
 	    etsaiak = new ArrayList<Pixel>();
-	    
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {//EMA
@@ -229,7 +229,8 @@ public class EspazioModel {
 	}
 	public void shoot() {
 		if (jokalari == null) return;
-		this.jokalari.shoot();
+		//Komentatuta dago, errorea ematen duelako eta aldatu behar delako
+		//.jokalari.shoot();
 	}
 		
 	
