@@ -38,7 +38,8 @@ public class PixelSimple implements Pixel{
 
 	@Override
 	public void setPosizio(int pX, int pY) {
-		// TODO Auto-generated method stub
+		this.x = pX;
+		this.y = pY;
 		
 	}
 

@@ -1,11 +1,13 @@
 package modelPackage;
 
-public class Tiro   implements Pixel{
+import java.util.ArrayList;
+
+public class Tiro  implements Pixel{
 	private int x,y;
-	
+	private ArrayList<Pixel> tiroPixelak;
     protected Tiro(int pX, int pY) {
-        	this.x=pX;
-        	this.y=pY;
+    		this.tiroPixelak= new ArrayList<Pixel>();
+    		tiroPixelak.add(new PixelSimple(pX, pY));
     }
     
 	@Override
@@ -20,22 +22,27 @@ public class Tiro   implements Pixel{
 	
 	@Override
     public void mugituY(int i) {
-    		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-    		espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
-    	
-    		int yBerria = getY() - 1;
-    	    		
-    		setPosizio(getX(), yBerria);
-    		    		
-    		espazioa.getGelaxka(getX(), getY()).setEgoera("Tiro");
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+	
+		for (Pixel p: tiroPixelak) {
+			PixelSimple ps = (PixelSimple) p;
     		
-			espazioa.etsaiKolisioakKonprobatu(this.getX(),this.getY(), this);
+    		espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik");  //Oraingo pixela kendu
+    	
+    		int yBerria = ps.getY() - 1;
+    	    		
+    		ps.setPosizio(ps.getX(), yBerria);
+    		    		
+    		espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Tiro"); 
+    		
+			espazioa.etsaiKolisioakKonprobatu(ps.getX(),ps.getY(), ps);
 			
-    		if (this.espaziotikKanpo(getY())) {
-    			espazioa.getGelaxka(getX(), getY()).setEgoera("Hutsik"); 
-    			espazioa.removeTiro(this);
+    		if (this.espaziotikKanpo(ps.getY())) {
+    			espazioa.getGelaxka(ps.getX(), ps.getY()).setEgoera("Hutsik"); 
+    			espazioa.removeTiro(ps);
     			return;
     		}
+		}
 	}
     
 
