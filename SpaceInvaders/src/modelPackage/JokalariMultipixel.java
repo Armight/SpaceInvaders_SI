@@ -90,7 +90,7 @@ public class JokalariMultipixel implements Pixel{
 		if (y <= 2) {
 			return;
 		}else {
-			Pixel tiro = new Tiro(x, y - 10);
+			Pixel tiro = new TiroGezia(x, y - 3);
 			tiro.sortu();
 			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 		}
