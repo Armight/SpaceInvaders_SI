@@ -154,7 +154,9 @@ public class EspazioModel {
 		//1. Etsai guztien posizio berriak kalkulatu
 		//HashMap baten gorde giltza = id eta HashSet<String> = posizioa(k) izanda
 		for(Pixel e : etsaiakKopia) {
-			e.setRandom(0);
+			//random zenbakia kalkulatu
+			int r = (int)(Math.random() * 3); //0, 1 edo 2
+			e.setRandom(r);
 		}
 		
 		//2. Etsai bakoitzeko konprobatu ea berak egin nahi duen mugimendua beste etsai batek egin nahi badu
@@ -166,7 +168,9 @@ public class EspazioModel {
 				if (e.mugituRandom()) {
 					this.etsaiKolisioak(e);
 					this.etsaiJokalariKolisioak(e);
-				} else { }
+				} else {
+					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+				}
 			}
 		}
 	}
@@ -197,7 +201,7 @@ public class EspazioModel {
 			Collections.shuffle(etsaiPosizioak);
 			//4...8 etasien arteko zenbaki random bat sortu
 			int etsaiKop = 4 + (int)(Math.random() * 5);
-			for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
 				Pixel et = new EtsaiMultipixel(pos[0], pos[1], i+1);
 				et.sortu();
@@ -215,16 +219,19 @@ public class EspazioModel {
 	
 	public void mugituJokalariaX(int i) {
 		if (jokalari == null) return;
+		jokalari.ezabatu();
 		if (!jokalari.mugituX(i)) return;
-		//KONPROBAKETA
+		this.jokalariEtsaiKolisioak(jokalari);
 	}
 	
 	
 	public void mugituJokalariaY(int i) {
 		if (jokalari == null) return;
+		jokalari.ezabatu();
 		if (!jokalari.mugituY(i)) return;
-		//KONPROBAKETA
+		this.jokalariEtsaiKolisioak(jokalari);
 	}
+	
 	public void shoot() {
 		if (jokalari == null) return;
 		jokalari.shoot();

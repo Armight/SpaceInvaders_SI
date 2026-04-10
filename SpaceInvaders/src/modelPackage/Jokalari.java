@@ -31,6 +31,7 @@ public class Jokalari implements Pixel {
 	public boolean mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
+		if (xLimiteakKonprobatu(i)) return false;
 		
 		x = x + i;
 		this.sortu();
@@ -41,7 +42,8 @@ public class Jokalari implements Pixel {
 	public boolean mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-	
+		if (yLimiteakKonprobatu(i)) return false;
+		
 		y = y - i;
 		this.sortu();
 		return true;
@@ -65,6 +67,17 @@ public class Jokalari implements Pixel {
 	public void ezabatu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
+	}
+	
+	@Override
+	public void shoot() {
+		if (y <= 2) {
+			return;
+		}else {
+			Pixel tiro = new TiroGezia(x, y - 3);
+			tiro.sortu();
+			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
+		}
 	}
 	
 	@Override
@@ -129,10 +142,7 @@ public class Jokalari implements Pixel {
 		return 0;
 	}
 	
-	@Override
-	public void shoot() {
-		// TODO Auto-generated method stub
-	}
+
 }
 	
 

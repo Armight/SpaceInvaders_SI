@@ -43,10 +43,7 @@ public class EtsaiMultipixel implements Pixel {
 		
 	@Override
 	public void setRandom(int r) {
-		
-		//random zenbakia kalkulatu
-		random = (int)(Math.random() * 3); //0, 1 edo 2
-		
+		random = r;
 		for (Pixel e : etsaiKol) {
 			//random zenbaki berbera bidali monopixel bakoitzari
 			e.setRandom(random); 
@@ -71,7 +68,7 @@ public class EtsaiMultipixel implements Pixel {
 	@Override
 	public boolean mugituX(int i) {
 		if (xLimiteakKonprobatu(i)) {
-	        return false;
+	        return true;
 	    } else {
 	    	ezabatu();
 		    for (Pixel e : etsaiKol) {
@@ -84,7 +81,6 @@ public class EtsaiMultipixel implements Pixel {
 	@Override
 	public boolean mugituY(int i) {
 		if (yLimiteakKonprobatu(i)) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 			return false;
 		}
 		

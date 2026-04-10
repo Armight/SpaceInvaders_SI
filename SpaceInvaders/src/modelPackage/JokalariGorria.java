@@ -1,6 +1,6 @@
 package modelPackage;
 
-public class JokalariGorria extends JokalariMultipixel{
+public class JokalariGorria extends Jokalari{
 
 	JokalariGorria(int pX, int pY) {
 		super(pX, pY, "RED");

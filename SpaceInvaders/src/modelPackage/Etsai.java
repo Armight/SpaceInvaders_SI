@@ -60,9 +60,25 @@ public class Etsai implements Pixel {
 	}
 	
 	@Override
+	public boolean mugituRandom() {
+		ezabatu();
+		if (random == 0) {
+			x = x - 1;
+        	return mugituX(-1); // ezkerrera
+        } else if (random == 1) {
+        	x = x + 1;
+        	return mugituX(1);  // eskumara
+        } else {
+        	y = y + 1;
+        	return mugituY(1);  // behera			
+        }
+	}
+	
+	@Override
 	public boolean mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
+		if (xLimiteakKonprobatu(i)) return true;
 	    x = xBerria;
 	    this.sortu();
 	    return true;
@@ -73,7 +89,7 @@ public class Etsai implements Pixel {
 	public boolean mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		
+		if (yLimiteakKonprobatu(i)) return false;
 		y = yBerria;
 		this.sortu();
 		return true;
@@ -131,11 +147,7 @@ public class Etsai implements Pixel {
 		} return false;
 	}
 	
-	@Override
-	public boolean mugituRandom() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 	@Override
 	public void shoot() {
 		// TODO Auto-generated method stub
