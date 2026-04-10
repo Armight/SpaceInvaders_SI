@@ -1,9 +1,5 @@
 package modelPackage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 public interface Pixel {
 	
 	//*************************ETSAIAN ERABILITAKO METODOAK:**************************
