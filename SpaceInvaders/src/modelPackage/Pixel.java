@@ -46,5 +46,7 @@ public interface Pixel {
 	//BAKARRIK JOKALARIAK INPLEMENTATU
 	void shoot();
 	
+	public void aldatuTiroa();
+	
 }
 

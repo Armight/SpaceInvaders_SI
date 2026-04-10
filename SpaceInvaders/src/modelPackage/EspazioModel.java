@@ -236,7 +236,6 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		jokalari.shoot();
 	}
-		
 	
 	//*************************KOLISIOEN METODODAK:**************************
 	

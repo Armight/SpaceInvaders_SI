@@ -170,4 +170,5 @@ public class EtsaiMultipixel implements Pixel {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public void aldatuTiroa() {}
 }

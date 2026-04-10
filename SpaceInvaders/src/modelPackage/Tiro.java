@@ -130,4 +130,6 @@ public class Tiro implements Pixel {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void aldatuTiroa() {}
 }

@@ -4,12 +4,15 @@ public class Jokalari implements Pixel {
 
 	private int x, y, bizitza;
 	private String kolorea;
+	protected TiroPortaera tiroPortaera;
+
 	
 	public Jokalari(int pX, int pY, String pKolorea) {
 		x = pX;
 		y = pY;
 		kolorea = pKolorea;
 		bizitza = 1;
+		
 	}
 		
 	@Override
@@ -74,9 +77,7 @@ public class Jokalari implements Pixel {
 		if (y <= 2) {
 			return;
 		}else {
-			Pixel tiro = new TiroGezia(x, y - 3);
-			tiro.sortu();
-			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
+			tiroPortaera.shoot(getX(), getY());
 		}
 	}
 	
@@ -141,6 +142,8 @@ public class Jokalari implements Pixel {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void aldatuTiroa() {}
 	
 
 }

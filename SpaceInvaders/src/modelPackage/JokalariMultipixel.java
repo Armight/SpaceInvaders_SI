@@ -7,6 +7,7 @@ public class JokalariMultipixel implements Pixel{
 	private ArrayList<Pixel> jokalariKol = new ArrayList<Pixel>();
 	private int x, y;
 	private String kolorea;
+	protected TiroPortaera tiroPortaera;
 	
 	JokalariMultipixel(int pX, int pY, String pKolorea) {
 		x = pX;
@@ -158,4 +159,6 @@ public class JokalariMultipixel implements Pixel{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public void aldatuTiroa() {}
 }
