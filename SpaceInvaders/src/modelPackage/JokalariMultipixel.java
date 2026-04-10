@@ -13,8 +13,13 @@ public class JokalariMultipixel implements Pixel{
 		x = pX;
 		y = pY;
 		kolorea = pKolorea;
+		int posizioak [][];
+		if(kolorea.equals("RED")) {
+			posizioak = new int[][] {{0,0},{-2,0},{-1,0},{1,0},{2,0},{-1,-1},{1,-1},{-3,1},{-2,1},{-1,1},{1,1},{2,1},{3,1}} ;
+		}else { //urdina
+			posizioak = new int[][] {{0,0},{-1,0},{1,0},{-1,-1},{1,-1},{-1,1},{0,1},{1,1}};
+		}
 		
-		int posizioak [][] = new int[][] {{0,0}, {1,0}, {-1,0}, {0,-1}};
 		
 		for (int[] pos : posizioak) {
 			Jokalari j = new Jokalari(x + pos[0], y + pos[1], kolorea);
@@ -91,9 +96,7 @@ public class JokalariMultipixel implements Pixel{
 		if (y <= 2) {
 			return;
 		}else {
-			Pixel tiro = new TiroGezia(x, y - 3);
-			tiro.sortu();
-			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
+			tiroPortaera.shoot(getX(), getY());
 		}
 	}
 	
