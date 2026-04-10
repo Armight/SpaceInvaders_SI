@@ -1,73 +1,65 @@
+
 package modelPackage;
 
-public class Tiro implements Pixel {
-	
-	private int x, y;
-	
-    public Tiro(int pX, int pY) {
-        x = pX;
-        y = pY;
-    }
-    
-    @Override
-	public void sortu() {
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(x, y).setEgoera("Tiro");
-	}
-        
-    @Override
-	public int getX() {
-		return this.x;
-	}
+import java.util.ArrayList;
 
-	@Override
-	public int getY() {
-		return this.y;
+public class TiroMultipixel implements Pixel{
+	private ArrayList<Pixel> tiroKol = new ArrayList<Pixel>();
+	
+	protected TiroMultipixel(int pX, int pY) {
 	}
-   	
+	
+	protected void addTiro(Tiro t) {
+		tiroKol.add(t);
+	}
+	
 	@Override
-    public boolean mugituY(int i) {
-			
-    		if (yLimiteakKonprobatu(i)) {
-    			return false;
-    		}
-    		
-    		y = y + i;
-       		sortu();
-       		return true;
-    }
+	public void sortu() {
+		for (Pixel t : tiroKol) {
+			t.sortu();
+		}
+	}
+	
+	@Override
+	public boolean mugituY(int i) {
+		if (yLimiteakKonprobatu(i)) {
+			return false;
+		}
+		
+		for (Pixel t : tiroKol) {
+			t.mugituY(i);
+		}
+		return true;
+	}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		int yBerria = y + i;
-		if (yBerria < 2) {
-			return true;
-		} else return false;
-	}
-
-	@Override
-	public void ezabatu() {
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(x, y).setEgoera("Hutsik");
+		for (Pixel t : tiroKol) {
+			if (t.yLimiteakKonprobatu(i)) return true;
+		}
+		return false;
 	}
 	
 	@Override
-    public boolean kolisioak(Pixel pEtsai) {
-    	return pEtsai.kolisioakKonprobatu(this);
-    }
+	public void ezabatu() {
+		for (Pixel t : tiroKol) {
+			t.ezabatu();
+		}
+	}
+	
+	@Override
+	public boolean kolisioak(Pixel pEtsai) {
+		for (Pixel t : tiroKol) {
+			if (t.kolisioak(pEtsai)) return true;
+		} return false;
+	}
 	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel pEtsai) {
-		if (x == pEtsai.getX() && y == pEtsai.getY()) {
-			return true;
-		} return false;
-	}
-
-    @Override
-	public boolean mugituX(int i) {
+		for (Pixel t : tiroKol) {
+			if (t.kolisioakKonprobatu(pEtsai)) return true;
+		}
 		return false;
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -79,14 +71,12 @@ public class Tiro implements Pixel {
 	@Override
 	public void setRandom(int r) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public boolean mugituRandom() {
-		// TODO Au
-		return false;
-		
+		// TODO Auto-generated method stub
+		return false;		
 	}
 
 	@Override
@@ -99,6 +89,13 @@ public class Tiro implements Pixel {
 	public int bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean mugituX(int i) {
+		return false;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -127,7 +124,21 @@ public class Tiro implements Pixel {
 
 	@Override
 	public int getYBerria() {
+		return 0;
+	}
+	
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 }
+
+
+

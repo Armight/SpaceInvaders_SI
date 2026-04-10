@@ -1,10 +1,8 @@
 package modelPackage;
 
-import java.util.*;
-
 public class Jokalari implements Pixel {
 
-	private int x, y, xBerria, yBerria, bizitza;
+	private int x, y, bizitza;
 	private String kolorea;
 	
 	public Jokalari(int pX, int pY, String pKolorea) {
@@ -13,12 +11,10 @@ public class Jokalari implements Pixel {
 		kolorea = pKolorea;
 		bizitza = 1;
 	}
-	
-	//JOKALARI METODO OROKORRAK:
-	
+		
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(getX(), getY()).setEgoera("Jokalari_" + this.kolorea);
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
 	}
 	
 	@Override
@@ -32,59 +28,55 @@ public class Jokalari implements Pixel {
 	}
 			
 	@Override
-	public void mugituX(int i) {
+	public boolean mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-				
-		x = xBerria;		
-		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
-		//Baina jokalaria ez da hain azkar mugitzen
 		
-		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
+		x = x + i;
+		this.sortu();
+		return true;	
+	}
+	
+	@Override
+	public boolean mugituY(int i) {
+		//i=1 denean, gorantz mugitu
+		//i=-1 denean, beherantz mugitu
+	
+		y = y - i;
+		this.sortu();
+		return true;
 	}
 	
 	@Override
 	public boolean xLimiteakKonprobatu(int i) {
-		xBerria = x + i;
-		if (xBerria < 0 || xBerria >= 100) return true;
+		int xBerria = x + i;
+		if (xBerria < 0 || xBerria > 99) return true;
 		return false;
 	}
-	
-	@Override
-	public void mugituY(int i) {
-		//i=1 denean, gorantz mugitu
-		//i=-1 denean, beherantz mugitu
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		
-		y = yBerria;
-		//Jokalari eta tiroaren arteko kolisioa konprobatu liteke
-		//Baina jokalaria ez da hain azkar mugitzen
-								
-		espazioa.getGelaxka(x, y).setEgoera("Jokalari_" + this.kolorea);
-	}
-	
+
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		yBerria = y - i;
-		if (yBerria < 0 || yBerria >= 60) return true;
+		int yBerria = y - i;
+		if (yBerria < 0 || yBerria > 59) return true;
 		return false;
-	}
-	
-	@Override
-	public void shoot() {
-		if (y <= 2) {
-			return;
-		}else {
-			Tiro tiro = new Tiro(x, y - 3);
-			EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
-		}
 	}
 	
 	@Override
 	public void ezabatu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
+	}
+	
+	@Override
+	public boolean kolisioak(Pixel pEtsai) {
+		return pEtsai.kolisioakKonprobatu(this);
+	}
+
+	@Override
+	public boolean kolisioakKonprobatu(Pixel pEtsai) {
+		if (x == pEtsai.getX() && y == pEtsai.getY()) {
+			return true;
+		} return false;
 	}
 
 	@Override
@@ -94,41 +86,17 @@ public class Jokalari implements Pixel {
 	}
 
 	@Override
-	public HashSet setRandom(int r) {
-		return null;
+	public void setRandom(int r) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mugituRandom() {
+	public boolean mugituRandom() {
 		// TODO Auto-generated method stub
-		
+		return false;		
 	}
 
-	
-
-	@Override
-	public boolean etsaiKolisioak(Pixel pEtsai) {
-		if (pEtsai instanceof Etsai) {
-			if (x == pEtsai.getX() && 
-					y == pEtsai.getY()) {
-				return true;
-			}
-		} else if (pEtsai instanceof EtsaiMultipixel) {
-			EtsaiMultipixel pMulti = (EtsaiMultipixel) pEtsai;
-			for (Pixel pMono : pMulti.getEtsaiKol()) {
-				if (this.etsaiKolisioak(pMono)) return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean kolisioakKonprobatu(int pX, int pY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 	@Override
@@ -137,8 +105,34 @@ public class Jokalari implements Pixel {
 		return 0;
 	}
 
-	
+	@Override
+	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
+	@Override
+	public boolean etsaiKolisioak(Pixel pEtsai) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getXBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+	}
 }
 	
 

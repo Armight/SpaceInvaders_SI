@@ -1,7 +1,5 @@
 package modelPackage;
 
-import java.util.*;
-
 public class Etsai implements Pixel {
 	
 	private int x, y, bizitza, id;
@@ -16,7 +14,6 @@ public class Etsai implements Pixel {
         bizitza = 1;
     }
     
-    //ETSAI METODO OROKORRAK:
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera("Etsaia");
 	}
@@ -26,10 +23,20 @@ public class Etsai implements Pixel {
 		return this.x;
 	}
 	
-	
 	@Override
 	public int getY() {
 		return this.y;
+	}
+	
+	@Override
+	public int getXBerria() {
+		return xBerria;
+		
+	}
+
+	@Override
+	public int getYBerria() {
+		return yBerria;
 	}
 	
 	@Override
@@ -39,53 +46,49 @@ public class Etsai implements Pixel {
 
 	
 	@Override
-	public HashSet<String> setRandom(int r) {
-		HashSet<String> posEguneratua = new HashSet<String>();
+	public void setRandom(int r) {
 		random = r;
 		xBerria = x;
 		yBerria = y;
-		if (r == 0) {
+		if (random == 0) {
         	xBerria = x -1; // ezkerrera
-        } else if (r == 1) {
+        } else if (random == 1) {
         	xBerria = x +1;  // eskumara
         } else {
         	yBerria = y +1;  // behera			
         }
-		String posBerria = xBerria + "," + yBerria;
-		posEguneratua.add(posBerria);
-		return posEguneratua;
+	}
+	
+	@Override
+	public boolean mugituX(int i) {
+		//i=1 denean, eskumarantz mugitu
+		//i=-1 denean, ezkerrerantz mugitu
+	    x = xBerria;
+	    this.sortu();
+	    return true;
+	}
+
+	
+	@Override
+	public boolean mugituY(int i) {
+		//i=1 denean, gorantz mugitu
+		//i=-1 denean, beherantz mugitu
+		
+		y = yBerria;
+		this.sortu();
+		return true;
 	}
 	
 	@Override
 	public boolean xLimiteakKonprobatu(int i) {
-		if (xBerria < 0 || xBerria >= 100) return true;
+		if (xBerria < 0 || xBerria > 99) return true;
 		return false;
 	}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		if (yBerria >= 59) return true;
+		if (yBerria > 59) return true;
 		return false;
-	}
-	
-	@Override
-	public boolean kolisioakKonprobatu(int pX, int pY) {
-		if (x == pX && y == pY) return true;
-		return false;
-	}
-	
-	@Override
-	public void mugituRandom() {
-		ezabatu();
-		if (random == 0) {
-        	mugituX(-1); // ezkerrera
-        } else if (random == 1) {
-        	mugituX(1);  // eskumara
-        } else {
-        	mugituY(1);  // behera			
-        }
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.tiroKolisioak(this);
 	}
 	
 	@Override
@@ -93,28 +96,6 @@ public class Etsai implements Pixel {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
 	}
-	
-	@Override
-	public void mugituX(int i) {
-		//i=1 denean, eskumarantz mugitu
-		//i=-1 denean, ezkerrerantz mugitu
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		
-        x = xBerria;
-             
-		espazioa.getGelaxka(x, y).setEgoera("Etsaia");
-	}
-	
-	@Override
-	public void mugituY(int i) {
-		//i=1 denean, gorantz mugitu
-		//i=-1 denean, beherantz mugitu
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-				
-		y = yBerria;
-
-    	espazioa.getGelaxka(x, y).setEgoera("Etsaia");
-   	}
 	
 	@Override
 	public int bizitzaKendu() {
@@ -127,17 +108,37 @@ public class Etsai implements Pixel {
 	}
 
 	@Override
+	public boolean kolisioak(Pixel pPixel) {
+		return pPixel.kolisioakKonprobatu(this);
+	}
+	
+	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
-		// TODO Auto-generated method stub
-		return false;
+		return pEtsai.etsaiEtsaiKonprobatu(this);
 	}
 
 	@Override
+	public boolean kolisioakKonprobatu(Pixel pPixel) {
+		if (x == pPixel.getX() && y == pPixel.getY()) {
+			return true;
+		} return false;
+	}
+	
+	@Override
+	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
+		if (xBerria == pEtsai.getXBerria() && yBerria == pEtsai.getYBerria()) {
+			return true;
+		} return false;
+	}
+	
+	@Override
+	public boolean mugituRandom() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
 	public void shoot() {
 		// TODO Auto-generated method stub
-		
 	}
-
-
 }
 

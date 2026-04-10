@@ -1,25 +1,19 @@
-/*
+
 package modelPackage;
 
-public class TiroErromboa extends TiroTaldea {
+public class TiroErromboa extends TiroMultipixel {
     public TiroErromboa(int pX, int pY) {
         
-    	this.addTiro(new Tiro(pX, pY));
-
-    	this.addTiro(new Tiro(pX-1, pY-1));
-    	this.addTiro(new Tiro(pX, pY-1));
-    	this.addTiro(new Tiro(pX+1, pY-1));
-
-    	this.addTiro(new Tiro(pX-2, pY-2));
-    	this.addTiro(new Tiro(pX-1, pY-2));
-    	this.addTiro(new Tiro(pX, pY-2));
-    	this.addTiro(new Tiro(pX+1, pY-2));
-    	this.addTiro(new Tiro(pX+2, pY-2));
-
-    	this.addTiro(new Tiro(pX-1, pY-3));
-    	this.addTiro(new Tiro(pX, pY-3));
-    	this.addTiro(new Tiro(pX+1, pY-3));
-
-    	this.addTiro(new Tiro(pX, pY-4));
+    	super(pX, pY);
+    	
+    	int posizioak[][] = new int[][] {{0, 0}, {1, 0}, {2, 0}, {-1, 0}, {-2, 0},
+    		{0, 1}, {1, 1}, {-1, 1}, {0, -1}, {1, -1}, {-1, -1},
+    		{0, -2}, {0, 2}};
+    	
+    	
+    	for (int[] pos : posizioak) {
+    		Tiro t = new Tiro(pX + pos[0], pY + pos[1]);
+    		this.addTiro(t);
+    	}
     }
-}*/
+}

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class EtsaiMultipixel implements Pixel {
 	private ArrayList<Pixel> etsaiKol = new ArrayList<Pixel>();
-	int x, y, id, random;
+	private int x, y, id, random;
 
 	public EtsaiMultipixel(int pX, int pY, int pId) {
 		x = pX;
@@ -21,8 +21,8 @@ public class EtsaiMultipixel implements Pixel {
 	//Metodo orokorrak
 	@Override
 	public void sortu() {
-		for (Pixel p : etsaiKol) {
-			p.sortu();
+		for (Pixel e : etsaiKol) {
+			e.sortu();
 		}
 	}
 	
@@ -40,100 +40,138 @@ public class EtsaiMultipixel implements Pixel {
 	public int getId() {
 		return this.id;
 	}
-	
-	public ArrayList<Pixel> getEtsaiKol(){
-		return this.etsaiKol;
-	}
 		
 	@Override
-	public HashSet<String> setRandom(int r) {
-		HashSet<String> posEguneratua = new HashSet<String>();
-		random = r;
-		for (Pixel p : etsaiKol) {
-			posEguneratua.addAll(p.setRandom(r)); 
+	public void setRandom(int r) {
+		
+		//random zenbakia kalkulatu
+		random = (int)(Math.random() * 3); //0, 1 edo 2
+		
+		for (Pixel e : etsaiKol) {
+			//random zenbaki berbera bidali monopixel bakoitzari
+			e.setRandom(random); 
 		}
-		return posEguneratua;
+	}
+	
+	@Override
+	public boolean mugituRandom() {
+		ezabatu();
+		if (random == 0) {
+			x = x - 1;
+        	return mugituX(-1); // ezkerrera
+        } else if (random == 1) {
+        	x = x + 1;
+        	return mugituX(1);  // eskumara
+        } else {
+        	y = y + 1;
+        	return mugituY(1);  // behera			
+        }
+	}
+	
+	@Override
+	public boolean mugituX(int i) {
+		if (xLimiteakKonprobatu(i)) {
+	        return false;
+	    } else {
+	    	ezabatu();
+		    for (Pixel e : etsaiKol) {
+		        e.mugituX(i);
+		    }
+		    return true;
+	    }
+	}
+	
+	@Override
+	public boolean mugituY(int i) {
+		if (yLimiteakKonprobatu(i)) {
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+			return false;
+		}
+		
+		ezabatu();
+		for (Pixel e : etsaiKol) {
+			e.mugituY(i);
+		}
+		return true;
 	}
 	
 	@Override
 	public boolean xLimiteakKonprobatu(int i) {
-		for (Pixel p : etsaiKol) {
-			if (p.xLimiteakKonprobatu(i)) return true;
+		for (Pixel e : etsaiKol) {
+			if (e.xLimiteakKonprobatu(i)) return true;
 		}
 		return false;
 	}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		for (Pixel p : etsaiKol) {
-			if (p.yLimiteakKonprobatu(i)) return true;
+		for (Pixel e : etsaiKol) {
+			if (e.yLimiteakKonprobatu(i)) return true;
 		}
 		return false;
 	}
 		
 	@Override
-	public void mugituRandom() {
-		ezabatu();
-		if (random == 0) {
-			x = x - 1;
-        	mugituX(-1); // ezkerrera
-        } else if (random == 1) {
-        	x = x + 1;
-        	mugituX(1);  // eskumara
-        } else {
-        	y = y + 1;
-        	mugituY(1);  // behera			
-        }
-	}
-	
-	@Override
-	public boolean kolisioakKonprobatu(int pX, int pY) {
-		for (Pixel p : etsaiKol) {
-			if (p.kolisioakKonprobatu(pX, pY)) return true;
-		}
-		return false;
-	}
-	
-	@Override
 	public void ezabatu() {
-		for (Pixel p : etsaiKol) {
-			p.ezabatu();
-		}
-	}
-	
-	@Override
-	public void mugituX(int i) {
-		for (Pixel p : etsaiKol) {
-			p.mugituX(i);
-		}
-	}
-	
-	@Override
-	public void mugituY(int i) {
-		for (Pixel p : etsaiKol) {
-			p.mugituY(i);
+		for (Pixel e : etsaiKol) {
+			e.ezabatu();
 		}
 	}
 	
 	@Override
 	public int bizitzaKendu() {
 		int hilDa = 0;
-		for (Pixel p : etsaiKol) {
-			hilDa = hilDa + p.bizitzaKendu();
+		for (Pixel e : etsaiKol) {
+			hilDa = hilDa + e.bizitzaKendu();
 		}
 		return hilDa;
 	}
-
+	
+	@Override
+	public boolean kolisioak(Pixel pPixel) {
+		for (Pixel e : etsaiKol) {
+			if (e.kolisioak(pPixel)) return true;
+		} return false;
+	}
+	
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
-		// TODO Auto-generated method stub
+		for (Pixel e : etsaiKol) {
+			if (e.etsaiKolisioak(pEtsai)) return true;
+		} return false;
+	}
+	
+	@Override
+	public boolean kolisioakKonprobatu(Pixel pPixel) {
+		//pPixel Jokalari zein Tiro monopixel izan daiteke
+		for (Pixel e : etsaiKol) {
+			if (e.kolisioakKonprobatu(pPixel)) return true;
+		}
 		return false;
 	}
-
+	
+	@Override
+	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
+		for (Pixel e : etsaiKol) {
+			if (e.etsaiEtsaiKonprobatu(pEtsai)) return true;
+		} return false;
+	}
+	
 	@Override
 	public void shoot() {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public int getXBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
