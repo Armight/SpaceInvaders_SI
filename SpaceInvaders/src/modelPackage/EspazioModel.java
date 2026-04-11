@@ -217,17 +217,17 @@ public class EspazioModel {
 		return jokalari;
 	}
 	
-	public void mugituJokalariaX(int i) {
+	public void mugituJokalariaX(int i) { //Jokalari ezabatu kendu mugituX egiten delako eta horrela bug-a ekiditzen dugu
 		if (jokalari == null) return;
-		jokalari.ezabatu();
+		
 		if (!jokalari.mugituX(i)) return;
 		this.jokalariEtsaiKolisioak(jokalari);
 	}
 	
 	
-	public void mugituJokalariaY(int i) {
+	public void mugituJokalariaY(int i) { //Jokalari ezabatu kendu mugituY egiten delako eta horrela bug-a ekiditzen dugu
 		if (jokalari == null) return;
-		jokalari.ezabatu();
+		
 		if (!jokalari.mugituY(i)) return;
 		this.jokalariEtsaiKolisioak(jokalari);
 	}
