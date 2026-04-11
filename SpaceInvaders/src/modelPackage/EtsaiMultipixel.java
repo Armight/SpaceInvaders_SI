@@ -52,7 +52,7 @@ public class EtsaiMultipixel implements Pixel {
 	
 	@Override
 	public boolean mugituRandom() {
-		ezabatu();
+		     
 		if (random == 0) {
 			x = x - 1;
         	return mugituX(-1); // ezkerrera
