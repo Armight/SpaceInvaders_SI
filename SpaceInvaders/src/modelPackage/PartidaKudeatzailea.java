@@ -50,6 +50,7 @@ public class PartidaKudeatzailea extends Observable {
 	
 	public void jokoanHasi() {
 		if (this.pantaila != 1) {return;}
+		if (this.itsasontziKolorea == null) {return;}
 		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
 		this.hasieraItzali();
 		
