@@ -15,7 +15,7 @@ public class Etsai implements Pixel {
     }
     
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera("Etsaia");
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera(new EtsaiEgoera());
 	}
 	
 	@Override
@@ -110,7 +110,7 @@ public class Etsai implements Pixel {
 	@Override
 	public void ezabatu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(this.x, this.y).setEgoera("Hutsik");
+		espazioa.getGelaxka(this.x, this.y).setEgoera(new HutsikEgoera());
 	}
 	
 	@Override
@@ -118,7 +118,7 @@ public class Etsai implements Pixel {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		bizitza = bizitza - 1;
 		if (bizitza <= 0) {
-	    	espazioa.getGelaxka(x, y).setEgoera("Hutsik");
+	    	espazioa.getGelaxka(x, y).setEgoera(new HutsikEgoera());
 			return -1;
 		} else return 0;
 	}

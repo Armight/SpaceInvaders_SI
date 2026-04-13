@@ -1,10 +1,8 @@
 package modelPackage;
 
 public interface Egoera {
-	
-	public void setEgoera(Gelaxka pGelaxka);
-	
-	public String getEgoera();
-	
+    void setEgoera(Gelaxka g);
+    String getIzena();
+	Egoera getEgoera();
 	
 }

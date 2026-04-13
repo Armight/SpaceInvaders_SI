@@ -39,9 +39,9 @@ public class TiroErromboa extends TiroMultipixel {
 
             if (espazioa.espaziotikKanpo(x, y)) return false;
 
-            String egoera = espazioa.getGelaxka(x, y).getEgoera();
+            String egoera = espazioa.getGelaxka(x, y).getEgoera().getIzena();
 
-            if (!egoera.equalsIgnoreCase("Hutsik")) {
+            if (!egoera.equals("Hutsik")) {
                 return false;
             }
         }

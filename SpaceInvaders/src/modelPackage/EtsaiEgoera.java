@@ -1,15 +1,26 @@
 package modelPackage;
 
 public class EtsaiEgoera implements Egoera {
+	private String izena;
+	
+	public EtsaiEgoera() {
+		this.izena="Etsaia";
+	}
+	@Override
+    public String getIzena() {
+        return this.izena;
+    }
 
 	@Override
-	public void setEgoera(Gelaxka pGelaxka) {
-		pGelaxka.egoeraAldatu(new EtsaiEgoera());
-	}
-	
+    public void setEgoera(Gelaxka g) {
+        g.setEgoera(this);
+    }
+
+
 	@Override
-	public String getEgoera() {
-		return "Etsaia";
+	public Egoera getEgoera() {
+		
+		return this;
 	}
 
 

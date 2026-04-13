@@ -14,17 +14,19 @@ public class Gelaxka extends Observable{
 		this.egoera = new HutsikEgoera(); 
 	}
 		
-	public void setEgoera(String pEgoera) {
-		this.egoera.setEgoera(this); 
-		setChanged();
-		this.notifyObservers(pEgoera);
+	public void setEgoera(Egoera berria) {
+	    this.egoera = berria;
+	    setChanged();
+	    notifyObservers(berria.getIzena());
 	}
 		
 	public void egoeraAldatu(Egoera pEgoera) {
 		this.egoera = pEgoera; 
+		setChanged();
+	    notifyObservers(pEgoera.getIzena());
 	}
 	
-	public String getEgoera() {
+	public Egoera getEgoera() {
 		return egoera.getEgoera();
 	}
 

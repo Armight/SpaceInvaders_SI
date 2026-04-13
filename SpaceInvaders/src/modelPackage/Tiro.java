@@ -12,7 +12,7 @@ public class Tiro implements Pixel {
     @Override
 	public void sortu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(x, y).setEgoera("Tiro");
+		espazioa.getGelaxka(x, y).setEgoera(new TiroEgoera());
 	}
         
     @Override
@@ -51,7 +51,7 @@ public class Tiro implements Pixel {
 	@Override
 	public void ezabatu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(x, y).setEgoera("Hutsik");
+		espazioa.getGelaxka(x, y).setEgoera(new HutsikEgoera());
 	}
 	
 	@Override
