@@ -32,10 +32,13 @@ public class Tiro implements Pixel {
     			return false;
     		}
     		
-    		y = y + i;
+    		y = y -1;
        		sortu();
        		return true;
     }
+	
+	public void mugituYSinple() {this.y=y-1;
+	sortu();}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {

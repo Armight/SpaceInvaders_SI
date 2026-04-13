@@ -239,6 +239,14 @@ public class EspazioModel {
 	
 	//*************************KOLISIOEN METODODAK:**************************
 	
+	public boolean tiroaDago(int pX, int pY) {
+		if(this.matrizea[pY][pX].getEgoera().equals("Tiro")) {return true;}
+		return false;
+	}
+	
+	
+	
+	
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
 	public void tiroKolisioak(Pixel pTiro) {
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 

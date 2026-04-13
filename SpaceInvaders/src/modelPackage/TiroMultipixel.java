@@ -15,9 +15,10 @@ public class TiroMultipixel implements Pixel{
 	
 	@Override
 	public void sortu() {
+		if(!this.konprobatu()) {
 		for (Pixel t : tiroKol) {
 			t.sortu();
-		}
+		}}
 	}
 	
 	@Override
@@ -26,16 +27,35 @@ public class TiroMultipixel implements Pixel{
 			return false;
 		}
 		
-		for (Pixel t : tiroKol) {
-			t.mugituY(i);
+		if(this.konprobatu()) return false;
+		for (Pixel p : tiroKol) {
+			
+			p.mugituY(i);
+			
 		}
 		return true;
 	}
 	
+	private boolean konprobatuTiroaBadago(Pixel p) {
+		if (EspazioModel.getGelaxkaMatrizea().tiroaDago(p.getX(), p.getY()-1)) {return true;}
+		return false;
+	}
+	
+	private boolean konprobatu() {
+		boolean tiroaDago=true;
+		for (Pixel p : tiroKol) {
+			tiroaDago=this.konprobatuTiroaBadago(p);
+		}
+		return tiroaDago;
+				
+	}
+	
+
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
 		for (Pixel t : tiroKol) {
 			if (t.yLimiteakKonprobatu(i)) return true;
+			
 		}
 		return false;
 	}
