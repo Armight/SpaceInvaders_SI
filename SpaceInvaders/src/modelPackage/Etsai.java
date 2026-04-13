@@ -79,6 +79,7 @@ public class Etsai implements Pixel {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
 		if (xLimiteakKonprobatu(i)) return true;
+		if(EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) return true;
 	    x = xBerria;
 	    this.sortu();
 	    return true;
@@ -90,6 +91,7 @@ public class Etsai implements Pixel {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
 		if (yLimiteakKonprobatu(i)) return false;
+		if(EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) return true;
 		y = yBerria;
 		this.sortu();
 		return true;
