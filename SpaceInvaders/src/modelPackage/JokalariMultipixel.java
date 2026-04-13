@@ -20,7 +20,7 @@ public class JokalariMultipixel implements Pixel{
 			posizioak = new int[][] {{0,0},{-1,0},{1,0},{-1,-1},{1,-1},{-1,1},{0,1},{1,1}};
 		}
 		else  {//berdea
-			posizioak = new int[][] {{0,0},{-1,0},{1,0},{0,1}};
+			posizioak = new int[][] {{0,0},{-1,0},{1,0},{0,-1}};
 		}
 		
 		
