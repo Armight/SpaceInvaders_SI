@@ -17,7 +17,7 @@ public class Jokalari implements Pixel {
 		
 	@Override
 	public void sortu() {
-		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera(new JokalariEgoera());
+		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera(new JokalariEgoera(this.kolorea));
 	}
 	
 	@Override

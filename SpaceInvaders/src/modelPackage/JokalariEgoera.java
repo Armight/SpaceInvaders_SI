@@ -2,13 +2,15 @@ package modelPackage;
 
 public class JokalariEgoera implements Egoera{
 	private String izena;
+	private String kolorea;
 	
-	public JokalariEgoera() {
+	public JokalariEgoera(String pKolorea) {
 		this.izena="Jokalari";
+		this.kolorea=pKolorea;
 	}
 	@Override
     public String getIzena() {
-        return this.izena;
+        return this.izena +"_"+ kolorea;
     }
 	
 	@Override
