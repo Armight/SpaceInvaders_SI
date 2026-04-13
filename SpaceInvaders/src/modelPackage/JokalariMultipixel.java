@@ -16,8 +16,11 @@ public class JokalariMultipixel implements Pixel{
 		int posizioak [][];
 		if(kolorea.equals("RED")) {
 			posizioak = new int[][] {{0,0},{-2,0},{-1,0},{1,0},{2,0},{-1,-1},{1,-1},{-3,1},{-2,1},{-1,1},{1,1},{2,1},{3,1}} ;
-		}else { //urdina
+		}else if (kolorea.equals("BLUE")){ //urdina
 			posizioak = new int[][] {{0,0},{-1,0},{1,0},{-1,-1},{1,-1},{-1,1},{0,1},{1,1}};
+		}
+		else  {//berdea
+			posizioak = new int[][] {{0,0},{-1,0},{1,0},{1,1}};
 		}
 		
 		
