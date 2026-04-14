@@ -24,30 +24,8 @@ public class TiroErromboa extends TiroMultipixel {
     	}
     }
     
-    public static boolean puedeCrear(int pX, int pY) {
-        EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-
-        int[][] posizioak = new int[][] {
-            {0, 0}, {0, -1}, {1, -1}, {-1, -1},
-            {0, -2}, {1, -2}, {-1, -2}, {-2, -2}, {2, -2},
-            {0, -3}, {1, -3}, {-1, -3}, {0, -4}
-        };
-
-        for (int[] pos : posizioak) {
-            int x = pX + pos[0];
-            int y = pY + pos[1];
-
-            if (espazioa.espaziotikKanpo(x, y)) return false;
-
-            String egoera = espazioa.getGelaxka(x, y).getEgoera().getIzena();
-
-            if (!egoera.equals("Hutsik")) {
-                return false;
-            }
-        }
-
-        return true;
-    }
+   
+    
     
     
     
