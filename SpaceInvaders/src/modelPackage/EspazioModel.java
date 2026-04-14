@@ -67,6 +67,7 @@ public class EspazioModel {
 		 return kanpoan;
 	 }
 	
+	//proba
 	//JOKOA HASTEKO
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
