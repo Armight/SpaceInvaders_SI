@@ -19,12 +19,6 @@ public class Gelaxka extends Observable{
 	    setChanged();
 	    notifyObservers(berria.getIzena());
 	}
-		
-	public void egoeraAldatu(Egoera pEgoera) {
-		this.egoera = pEgoera; 
-		setChanged();
-	    notifyObservers(pEgoera.getIzena());
-	}
 	
 	public Egoera getEgoera() {
 		return egoera.getEgoera();
