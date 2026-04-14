@@ -61,7 +61,7 @@ public class Etsai implements Pixel {
 	
 	@Override
 	public boolean mugituRandom() {
-		ezabatu();
+		
 		if (random == 0) {
 			x = x - 1;
         	return mugituX(-1); // ezkerrera
@@ -78,11 +78,15 @@ public class Etsai implements Pixel {
 	public boolean mugituX(int i) {
 		//i=1 denean, eskumarantz mugitu
 		//i=-1 denean, ezkerrerantz mugitu
-		if (xLimiteakKonprobatu(i)) return true;
-		if(EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) return true;
+		
+		if (xLimiteakKonprobatu(i) && EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) {
+			return true;
+		}
+		
 	    x = xBerria;
+	    ezabatu();
 	    this.sortu();
-	    return true;
+	    return false;
 	}
 
 	
@@ -90,9 +94,12 @@ public class Etsai implements Pixel {
 	public boolean mugituY(int i) {
 		//i=1 denean, gorantz mugitu
 		//i=-1 denean, beherantz mugitu
-		if (yLimiteakKonprobatu(i)) return false;
-		if(EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) return true;
+		if (!yLimiteakKonprobatu(i) && EspazioModel.getGelaxkaMatrizea().etsaiEtsaiKolisioak(this)) {
+			return false;
+		}
+		
 		y = yBerria;
+		ezabatu();
 		this.sortu();
 		return true;
 	}
@@ -144,7 +151,7 @@ public class Etsai implements Pixel {
 	
 	@Override
 	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
-		if (xBerria == pEtsai.getXBerria() && yBerria == pEtsai.getYBerria()) {
+		if ((xBerria == pEtsai.getXBerria() && yBerria == pEtsai.getYBerria()) || (xBerria == pEtsai.getX() && yBerria == pEtsai.getY())) {
 			return true;
 		} return false;
 	}

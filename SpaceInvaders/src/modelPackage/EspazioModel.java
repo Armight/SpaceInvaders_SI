@@ -200,7 +200,7 @@ public class EspazioModel {
 			//Posizio guztiak nahastu
 			Collections.shuffle(etsaiPosizioak);
 			//4...8 etasien arteko zenbaki random bat sortu
-			int etsaiKop = 4 + (int)(Math.random() * 5);
+			int etsaiKop = 8;
 			for (int i = 0; i < etsaiKop; i++) {
 				int[] pos = etsaiPosizioak.remove(0);
 				Pixel et = new EtsaiMultipixel(pos[0], pos[1], i+1);
