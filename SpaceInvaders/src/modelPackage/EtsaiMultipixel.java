@@ -66,16 +66,12 @@ public class EtsaiMultipixel implements Pixel {
 	
 	@Override
 	public boolean mugituX(int i) {
-		if (xLimiteakKonprobatu(i)) {
-	        return true;
-	    } else {
-	    	ezabatu();
-		    for (Pixel e : etsaiKol) {
-		        e.mugituX(i);
-		    }
-		    return true;
-	    }
+	    if (xLimiteakKonprobatu(i)) return true;
+	    ezabatu();
+	    forEachPixel(p -> p.mugituX(i));
+	    return true;
 	}
+    
 	
 	@Override
 	public boolean mugituY(int i) {
