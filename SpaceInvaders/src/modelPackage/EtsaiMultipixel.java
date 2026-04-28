@@ -1,6 +1,7 @@
 package modelPackage;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class EtsaiMultipixel implements Pixel {
 	private ArrayList<Pixel> etsaiKol = new ArrayList<Pixel>();
@@ -21,9 +22,7 @@ public class EtsaiMultipixel implements Pixel {
 	//Metodo orokorrak
 	@Override
 	public void sortu() {
-		for (Pixel e : etsaiKol) {
-			e.sortu();
-		}
+		forEachPixel(Pixel::sortu);
 	}
 	
 	@Override
@@ -175,6 +174,14 @@ public class EtsaiMultipixel implements Pixel {
 	public void aldatuTiroa() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+//////////////////////////////////JAVA8////////////////////////////////////////////////
+	
+	
+	//Behaviour parametrization:
+	private void forEachPixel(Consumer<Pixel> action) {
+		etsaiKol.forEach(action);
 	}
 	
 }

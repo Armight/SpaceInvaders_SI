@@ -1,5 +1,7 @@
 package modelPackage;
 
+import java.util.function.Consumer;
+
 public class Etsai implements Pixel {
 	
 	private int x, y, bizitza, id;
@@ -162,5 +164,11 @@ public class Etsai implements Pixel {
 		// TODO Auto-generated method stub
 	}
 	public void aldatuTiroa() {}
+	
+	
+	
+
+	
+	
 }
 
