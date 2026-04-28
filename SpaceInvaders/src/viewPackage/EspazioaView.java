@@ -1,4 +1,8 @@
 package viewPackage;
+import javax.swing.*;
+
+import java.awt.*;
+
 import modelPackage.EspazioModel;
 import modelPackage.PartidaKudeatzailea;
 import java.util.Observable;
@@ -7,7 +11,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import java.awt.GridLayout;
-import java.awt.Color;
+import java.awt.GridBagLayout;
 //Commit prueba2
 public class EspazioaView extends JFrame implements Observer {
 	
@@ -15,7 +19,18 @@ public class EspazioaView extends JFrame implements Observer {
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
 	
 	public EspazioaView() {
-		getContentPane().setBackground(Color.BLACK);
+		//getContentPane().setBackground(Color.BLACK);
+		JPanel background = new JPanel() {
+			private Image backImage = new ImageIcon(getClass().getResource("/resources/space.gif")).getImage();
+			 @Override
+		        protected void paintComponent(Graphics g) {
+		            super.paintComponent(g);
+		            g.drawImage(backImage, 0, 0, getWidth(), getHeight(), this);
+		        }
+		};
+		background.setLayout(new GridBagLayout());
+        setContentPane(background);
+		
 		
 		//Leihoaren ertzak eta dekorazioak kendu
 		setUndecorated(true);
