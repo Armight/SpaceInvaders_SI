@@ -118,19 +118,15 @@ public class EtsaiMultipixel implements Pixel {
 		return hilDa;
 	}
 	
-	@Override
-	public boolean kolisioak(Pixel pPixel) {
-		for (Pixel e : etsaiKol) {
-			if (e.kolisioak(pPixel)) return true;
-		} return false;
-	}
 	
+
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		for (Pixel e : etsaiKol) {
 			if (e.etsaiKolisioak(pEtsai)) return true;
 		} return false;
 	}
+	
 	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel pPixel) {
@@ -173,11 +169,20 @@ public class EtsaiMultipixel implements Pixel {
 	}
 	
 //////////////////////////////////JAVA8////////////////////////////////////////////////
-	
+	//java8 gehitzeagatik egindako aldaketak hemen:
 	
 	//Behaviour parametrization:
+	
 	private void forEachPixel(Consumer<Pixel> action) {
 		etsaiKol.forEach(action);
+	}
+	
+	
+	
+	//Stream
+	@Override
+	public boolean kolisioak(Pixel pPixel) {
+	    return etsaiKol.stream().anyMatch(e -> e.kolisioak(pPixel));
 	}
 	
 }
