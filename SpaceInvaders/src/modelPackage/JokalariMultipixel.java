@@ -32,9 +32,10 @@ public class JokalariMultipixel implements Pixel{
 		
 	@Override
 	public void sortu() {
-		for (Pixel j : jokalariKol) {
-			j.sortu();
-		}
+		jokalariKol.stream().forEach(j -> j.sortu());
+		//for (Pixel j : jokalariKol) {
+			//j.sortu();
+		//}
 	}
 
 	@Override
@@ -53,9 +54,10 @@ public class JokalariMultipixel implements Pixel{
 		
 		this.ezabatu();
 		x = x + i;
-		for (Pixel j : jokalariKol) {
-			j.mugituX(i);
-		}
+		jokalariKol.stream().forEach(j -> j.mugituX(i));
+		//for (Pixel j : jokalariKol) {
+			//j.mugituX(i);
+		//}
 		return true;
 	}
 	
@@ -65,33 +67,41 @@ public class JokalariMultipixel implements Pixel{
 
 		this.ezabatu();
 		y = y - i;
-		for (Pixel j : jokalariKol) {
-			j.mugituY(i);
-		}
+		jokalariKol.stream().forEach(j -> j.mugituY(i));
+		//for (Pixel j : jokalariKol) {
+			//j.mugituY(i);
+		//}
 		return true;
 	}
 	
 	@Override
 	public boolean xLimiteakKonprobatu(int i) {
-		for (Pixel j : jokalariKol) {
-			if (j.xLimiteakKonprobatu(i)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = jokalariKol.stream().anyMatch(t -> t.xLimiteakKonprobatu(i));
+		return konprobatu;
+		//for (Pixel j : jokalariKol) {
+			//if (j.xLimiteakKonprobatu(i)) return true;
+		//}
+		//return false;
 	}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		for (Pixel j : jokalariKol) {
-			if (j.yLimiteakKonprobatu(i)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = jokalariKol.stream().anyMatch(j -> j.yLimiteakKonprobatu(i));
+		return konprobatu;
+		//for (Pixel j : jokalariKol) {
+			//if (j.yLimiteakKonprobatu(i)) return true;
+		//}
+		//return false;
 	}
 	
 	@Override
 	public void ezabatu() {
-		for (Pixel j : jokalariKol) {
-			j.ezabatu();
-		}	
+		jokalariKol.stream().forEach(j -> j.ezabatu());
+		//for (Pixel j : jokalariKol) {
+			//j.ezabatu();
+		//}	
 	}
 	
 	@Override
@@ -105,18 +115,24 @@ public class JokalariMultipixel implements Pixel{
 	
 	@Override
 	public boolean kolisioak(Pixel pEtsai) {
-		for (Pixel j : jokalariKol) {
-			if (j.kolisioak(pEtsai)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = jokalariKol.stream().anyMatch(j -> j.kolisioak(pEtsai));
+		return konprobatu;
+		//for (Pixel j : jokalariKol) {
+			//if (j.kolisioak(pEtsai)) return true;
+		//}
+		//return false;
 	}
 	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel pEtsai) {
-		for (Pixel j : jokalariKol) {
-			if (j.kolisioakKonprobatu(pEtsai)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = jokalariKol.stream().anyMatch(j -> j.kolisioakKonprobatu(pEtsai));
+		return konprobatu;
+		//for (Pixel j : jokalariKol) {
+			//if (j.kolisioakKonprobatu(pEtsai)) return true;
+		//}
+		//return false;
 	}
 
 	@Override

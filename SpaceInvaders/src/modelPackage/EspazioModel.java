@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class EspazioModel {
@@ -133,7 +134,7 @@ public class EspazioModel {
 		
 	private void mugituTiroak() {
 			ArrayList<Pixel> tiroakCopia= new ArrayList<Pixel>(this.tiroak);//gure tiroen arrayaren kopia
-			for (Pixel t : tiroakCopia) {
+			/*for (Pixel t : tiroakCopia) {
 				
 				//Tiroa yLimitera ailegatu bada ezin izan da sortu
 				//Beraz ezabatu egin da
@@ -142,7 +143,13 @@ public class EspazioModel {
 					tiroak.remove(t);;
 				}
 			    this.tiroKolisioak(t);
-			}
+			}*/
+			this.tiroak =  tiroakCopia.stream()
+					.peek(t -> t.ezabatu())
+					.filter(t -> ((Pixel) t)
+					.mugituY(-1) == true)
+					.collect(Collectors.toCollection(ArrayList::new));
+			new ArrayList<>(this.tiroak).forEach(t -> this.tiroKolisioak(t));
 		}
 	
 	private Iterator<Pixel> getTiroIterator() {
