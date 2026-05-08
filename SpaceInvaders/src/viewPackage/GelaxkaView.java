@@ -35,7 +35,7 @@ public class GelaxkaView extends JPanel implements Observer{
 		} else if (arg.equals("Tiro")) {
 			this.jLabel.setBackground(Color.yellow);
 		} else if (arg.equals("FinalBoss")) {
-			this.jLabel.setBackground(Color.green);
+			this.jLabel.setBackground(new Color(255, 0, 144));
 		}
 	}
 	

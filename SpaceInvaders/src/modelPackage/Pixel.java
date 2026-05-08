@@ -19,7 +19,7 @@ public interface Pixel {
 	
 	void setRandom(int r);
 	
-	boolean mugituRandom();
+	boolean mugitu();
 	
 	//int i jokalariaren posizio berriak kalkulatzeko erabili
 	boolean xLimiteakKonprobatu(int i);

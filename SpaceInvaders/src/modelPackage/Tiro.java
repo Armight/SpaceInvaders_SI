@@ -86,7 +86,7 @@ public class Tiro implements Pixel {
 	}
 
 	@Override
-	public boolean mugituRandom() {
+	public boolean mugitu() {
 		// TODO Au
 		return false;
 		

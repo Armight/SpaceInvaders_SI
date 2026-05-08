@@ -94,7 +94,7 @@ public class TiroMultipixel implements Pixel{
 	}
 
 	@Override
-	public boolean mugituRandom() {
+	public boolean mugitu() {
 		// TODO Auto-generated method stub
 		return false;		
 	}

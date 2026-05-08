@@ -51,7 +51,7 @@ public class EtsaiMultipixel implements Pixel {
 	}
 	
 	@Override
-	public boolean mugituRandom() {
+	public boolean mugitu() {
 		     
 		if (random == 0) {
 			x = x - 1;

@@ -12,7 +12,9 @@ public class EspazioModel {
 	private ArrayList<Pixel> tiroak;
 	private ArrayList<Pixel> etsaiak; 
 	private Pixel jokalari;
-
+////////////////////////////////////////////////////////////////////////////////////////
+	private Pixel finalBoss;
+////////////////////////////////////////////////////////////////////////////////////////
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	
@@ -83,7 +85,12 @@ public class EspazioModel {
 	    
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
-	    this.sortuEtsaiZerrenda();																	
+////////////////////////////////////////////////////////////////////////////////////////
+	    finalBoss = new FinalBossMultipixel(50, 30);
+	    finalBoss.sortu();
+	    //this.sortuEtsaiZerrenda();
+////////////////////////////////////////////////////////////////////////////////////////
+
 	    
 	    //Timerrak eraikitzailearen kanpoan
 	    timerEtsaiak = sortuTimerEtsaiak();
@@ -91,14 +98,16 @@ public class EspazioModel {
 	    timerEtsaiak.start();
 	    timerTiroak.start();
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////
+
 	private Timer sortuTimerEtsaiak() {
 	    return new Timer(200, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-	                mugituEtsaiak();
-	                PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+	                finalBoss.mugitu();
+	            	//mugituEtsaiak();
+	                //PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
@@ -110,18 +119,20 @@ public class EspazioModel {
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 	                mugituTiroak();
-	                PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+	                //PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
 	}
+////////////////////////////////////////////////////////////////////////////////////////
+
 	
 	public void geldituTimerrak() {
 	    if (timerEtsaiak != null) timerEtsaiak.stop();
 	    if (timerTiroak != null) timerTiroak.stop();
 	}
 
-//***********************TIROEN METODOAK:********************************
+	//***********************TIROEN METODOAK:********************************
 	
 	public void removeTiro(Tiro pTiro) {
 			this.tiroak.remove(pTiro);
@@ -148,8 +159,10 @@ public class EspazioModel {
 	private Iterator<Pixel> getTiroIterator() {
 		return this.tiroak.iterator();
 	}
-//******************************ETSAIEN METODOAK:	********************************
+////////////////////////////////////////////////////////////////////////////////////////
+	//******************************ETSAIEN METODOAK:	********************************
 	private void mugituEtsaiak() {		
+		/*
 		ArrayList<Pixel> etsaiakKopia= new ArrayList<Pixel>(this.etsaiak);//gure estaien arrayaren kopia
 		
 		//1. Etsai guztien posizio berriak kalkulatu
@@ -174,8 +187,10 @@ public class EspazioModel {
 				}
 			}
 		}
+		*/
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////
+
 	
 	
 	public void removeEtsai (Pixel e) {
@@ -248,9 +263,11 @@ public class EspazioModel {
 	
 	
 	
-	
+////////////////////////////////////////////////////////////////////////////////////////
+
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
 	public void tiroKolisioak(Pixel pTiro) {
+		/*
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -263,6 +280,7 @@ public class EspazioModel {
 					tiroak.remove(pTiro);
 				}
 			}
+			
 		}
 		
 		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
@@ -270,10 +288,12 @@ public class EspazioModel {
 		if (etsairikEz()) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 		}
+		*/
 	}
 	
 	//Etsaiak metodo hau deitu etsaiaren eta tiro guztien arteko kolisioak konprobatzeko
 	public void etsaiKolisioak(Pixel pEtsai) {
+		/*
 		Iterator<Pixel> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
@@ -287,10 +307,13 @@ public class EspazioModel {
 				}
 			}
 		}
+		*/
 	}
 	
 	//ETSAI-ETSAI KOLISIOAK ERREBISATU BEHAR DIRA
 	public boolean etsaiEtsaiKolisioak(Pixel pEtsai) {
+		return false;
+		/*
 		boolean ezMugitu = false;
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
@@ -303,16 +326,20 @@ public class EspazioModel {
 				break;
 			}
 		}
-		return ezMugitu;		
+		return ezMugitu;	
+		*/	
 	}
 	
 	public void etsaiJokalariKolisioak(Pixel pEtsai) {
+	/*
 		if (jokalari.kolisioak(pEtsai)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 		}
+		*/
 	}
 	
 	public void jokalariEtsaiKolisioak(Pixel pJokalari) {
+		/*
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -321,6 +348,27 @@ public class EspazioModel {
 				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();	
 			}
 		}
-	}		
+	}
+	*/
+////////////////////////////////////////////////////////////////////////////////////////
+}
+	
+	
+	
+	
+	
+	
+public int[][] getJokalariarenKoordenatuak() {
+	int koordenatuak [][]= new int[][] {{jokalari.getX(), jokalari.getY()}};
+	return koordenatuak;
+}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 

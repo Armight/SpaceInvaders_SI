@@ -16,14 +16,12 @@ public class FinalBoss implements Pixel {
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.x;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.y;
 	}
 
 	@Override
@@ -51,20 +49,16 @@ public class FinalBoss implements Pixel {
 	}
 
 	@Override
-	public boolean mugituRandom() {
+	public boolean mugitu() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public boolean xLimiteakKonprobatu(int i) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		// TODO Auto-generated method stub
+		if (y + i > 59 || y + i < 0) return true;
 		return false;
 	}
 
@@ -94,20 +88,30 @@ public class FinalBoss implements Pixel {
 
 	@Override
 	public boolean mugituX(int i) {
-		// TODO Auto-generated method stub
+		x = x + i;
+		ezabatu();
+		this.sortu();
+		return false;
+	}
+	
+	@Override
+	public boolean xLimiteakKonprobatu(int i) {
+		if (x + i < 0 || x + i > 99) return true;
 		return false;
 	}
 
 	@Override
 	public boolean mugituY(int i) {
-		// TODO Auto-generated method stub
+		y = y + i;
+		ezabatu();
+		this.sortu();
 		return false;
 	}
 
 	@Override
 	public void ezabatu() {
-		// TODO Auto-generated method stub
-		
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(this.x, this.y).setEgoera(new HutsikEgoera());		
 	}
 
 	@Override
