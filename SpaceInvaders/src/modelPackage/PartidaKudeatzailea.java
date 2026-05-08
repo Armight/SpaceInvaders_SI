@@ -9,6 +9,7 @@ import java.util.Observable;
 public class PartidaKudeatzailea extends Observable {
 	private static PartidaKudeatzailea nPK;
 	private String itsasontziKolorea;
+	private String maila;
 	private int pantaila = 1;
 	private boolean jokoaMartxan = false;
 	private boolean jokoaAmaitu = false;
@@ -28,6 +29,16 @@ public class PartidaKudeatzailea extends Observable {
 		this.itsasontziKolorea = pKolorea;
 		setChanged();
 		notifyObservers(pKolorea);
+	}
+	
+	public void setMaila(String pMaila) {
+		this.maila = pMaila;
+		setChanged();
+		notifyObservers(pMaila);
+	}
+	
+	public String getMaila() {
+		return this.maila;
 	}
 	
 	public boolean getJokoaMartxan() {return this.jokoaMartxan;}

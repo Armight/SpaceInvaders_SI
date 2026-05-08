@@ -13,8 +13,10 @@ public class HasieraPantaila extends JFrame implements Observer{
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JLabel tituloLabel;
-    private JLabel instrukzioakLabel;
+    private JLabel instrukzioak1Label;
+    private JLabel instrukzioak2Label;
     private JLabel hautatutaLabel;
+    private JLabel zailtasunLabel;
 
     public HasieraPantaila() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,17 +50,17 @@ public class HasieraPantaila extends JFrame implements Observer{
         contentPane.add(tituloLabel, gbc1);
 
         //Ontziaren aukeraketa instrukzioak
-        instrukzioakLabel = new JLabel("* Press <G> Green  <B> Blue  <R> Red to play *");
-        instrukzioakLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        instrukzioakLabel.setForeground(Color.WHITE);
+        instrukzioak1Label = new JLabel("* Press <G> Green  <B> Blue  <R> Red to choose spaceship *");
+        instrukzioak1Label.setFont(new Font("Arial", Font.PLAIN, 16));
+        instrukzioak1Label.setForeground(Color.WHITE);
         GridBagConstraints gbc2 = new GridBagConstraints();
         gbc2.gridx = 0;
         gbc2.gridy = 1;
         gbc2.insets = new Insets(10, 10, 10, 10);
-        contentPane.add(instrukzioakLabel, gbc2);
+        contentPane.add(instrukzioak1Label, gbc2);
 
         //Ontzi aukeratua
-        hautatutaLabel = new JLabel("Hautatu itsasontzia...");
+        hautatutaLabel = new JLabel("Hautatu espaziontzia...");
         hautatutaLabel.setFont(new Font("Arial", Font.ITALIC, 14));
         hautatutaLabel.setForeground(Color.ORANGE);
         GridBagConstraints gbc3 = new GridBagConstraints();
@@ -66,6 +68,26 @@ public class HasieraPantaila extends JFrame implements Observer{
         gbc3.gridy = 2;
         gbc3.insets = new Insets(10, 10, 10, 10);
         contentPane.add(hautatutaLabel, gbc3);
+        
+        //Zailtasun aukeraketa instrukzioak
+        instrukzioak2Label = new JLabel("* Press <A> Aise  <E> Ezinezkoa to choose difficulty level *");
+        instrukzioak2Label.setFont(new Font("Arial", Font.PLAIN, 16));
+        instrukzioak2Label.setForeground(Color.WHITE);
+        GridBagConstraints gbc4 = new GridBagConstraints();
+        gbc4.gridx = 0;
+        gbc4.gridy = 3;
+        gbc4.insets = new Insets(10, 10, 10, 10);
+        contentPane.add(instrukzioak2Label, gbc4);
+        
+        //Zailtasun maila aukeratu
+        zailtasunLabel = new JLabel("Zailtasun maila aukeratu...");
+        zailtasunLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+        zailtasunLabel.setForeground(Color.ORANGE);
+        GridBagConstraints gbc5 = new GridBagConstraints();
+        gbc5.gridx = 0;
+        gbc5.gridy = 4;
+        gbc5.insets = new Insets(10, 10, 10, 10);
+        contentPane.add(zailtasunLabel, gbc5);
         
         //Observer gehitu
         PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
@@ -81,14 +103,23 @@ public class HasieraPantaila extends JFrame implements Observer{
     }
     
     private void erakutsiItsasontziHautatua(String pKolorea) {
-    	hautatutaLabel.setText("Hautatua: " + pKolorea + " - Press <ENTER> to play!");
+    	String espaziontzi = "ANTONIO";
+    	hautatutaLabel.setText("Hautatua: " + pKolorea);
         switch (pKolorea) {
             case "GREEN": hautatutaLabel.setForeground(Color.GREEN); break;
             case "BLUE":  hautatutaLabel.setForeground(Color.BLUE);  break;
-            case "RED":   hautatutaLabel.setForeground(Color.RED);   break;
+            case "RED":   hautatutaLabel.setForeground(Color.RED); espaziontzi = "PACO";  break;
         }
+    	hautatutaLabel.setText("Hautatua: " + espaziontzi);
     }
     
+    private void erakutsiMailaHautatua(String pMaila) {
+    	zailtasunLabel.setText("Hautatua: " + pMaila + " - Press <ENTER> to play!");
+    	switch (pMaila) {
+    	case "AISE": zailtasunLabel.setForeground(new Color(0, 255, 255)); break;
+    	case "EZINEZKOA": zailtasunLabel.setForeground(new Color(255, 0, 144)); break;
+    	}
+    }
     
     @Override
    	public void update(Observable o, Object arg) {
@@ -98,6 +129,8 @@ public class HasieraPantaila extends JFrame implements Observer{
    			if (arg instanceof String) {
    				if(arg.equals("GREEN") || arg.equals("RED") || arg.equals("BLUE")) {
    					this.erakutsiItsasontziHautatua((String)arg);
+   				} else if (arg.equals("AISE") || arg.equals("EZINEZKOA")) {
+   					this.erakutsiMailaHautatua((String)arg);
    				}
    				String agindu = arg.toString();
    				if (agindu.equals("HasieraPantaila itzali")) {

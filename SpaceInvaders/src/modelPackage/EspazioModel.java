@@ -69,28 +69,32 @@ public class EspazioModel {
 		 return kanpoan;
 	 }
 	
-	//proba
+	
 	//JOKOA HASTEKO
 	public void jokoanHasi() {
 		//Jokalariaren koordenatuak lortu
-		PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaMartxan();
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
+		pk.setJokoaMartxan();
 		int pXErdia = EspazioModel.getGelaxkaMatrizea().getZabalera() / 2; //50
 		int pYBehean = EspazioModel.getGelaxkaMatrizea().getAltuera() - 2; //48
 		
 	    //jokalaria instantziatu
 	    //jokalari = new Jokalari(pXErdia, pYBehean);
-		String kolorea = PartidaKudeatzailea.getPartidaKudeatzailea().getKolorea();
+		String kolorea = pk.getKolorea();
 		
 		jokalari = JokalariFactory.getJokF().createJokalaria(kolorea, pXErdia, pYBehean);
 	    
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
-////////////////////////////////////////////////////////////////////////////////////////
-	    finalBoss = new FinalBossMultipixel(50, 30);
-	    finalBoss.sortu();
-	    //this.sortuEtsaiZerrenda();
-////////////////////////////////////////////////////////////////////////////////////////
-
+	    
+	    String maila = pk.getMaila();
+	    
+	    if (maila.equals("AISE")) {
+	    	this.sortuEtsaiZerrenda();
+	    } else {
+		    finalBoss = new FinalBossMultipixel(50, 30);
+		    finalBoss.sortu();
+	    }
 	    
 	    //Timerrak eraikitzailearen kanpoan
 	    timerEtsaiak = sortuTimerEtsaiak();
@@ -105,6 +109,7 @@ public class EspazioModel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
+	            	
 	                finalBoss.mugitu();
 	            	//mugituEtsaiak();
 	                //PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();

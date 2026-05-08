@@ -6,6 +6,7 @@ public class FinalBossMultipixel implements Pixel {
 	private ArrayList<Pixel> finalBossKol = new ArrayList<Pixel>();
 	private int x, y;
 	private Pixel ezkerP, eskuinP, beheP, goiP;
+	private TiroPortaera tiroPortaera = new TiroBakarraPortaera();
 	
 	public FinalBossMultipixel(int pX, int pY) {
 		x = pX;
@@ -27,12 +28,10 @@ public class FinalBossMultipixel implements Pixel {
 				eskuinP = fb;
 			} else if (fb.getX() == x - 5 && fb.getY() == y) {
 				ezkerP = fb;
-			} else if (fb.getX() == x + 1 && fb.getY() == y + 3) {
-				beheP = fb;
-			} else if (fb.getX() == x + 3 && fb.getY() == y - 4) {
-				goiP = fb;
 			}
 		}
+		goiP = new FinalBoss(x, y - 4);
+		beheP = new FinalBoss(x, y + 3);
 	}
 	
 	@Override
@@ -52,31 +51,7 @@ public class FinalBossMultipixel implements Pixel {
 	public int getY() {
 		return this.y;
 	}
-
-	@Override
-	public int getXBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getYBerria() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setRandom(int r) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public boolean mugitu() {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
@@ -141,7 +116,61 @@ public class FinalBossMultipixel implements Pixel {
 		if (goiP.yLimiteakKonprobatu(i)|| beheP.yLimiteakKonprobatu(i)) return true;
 		return false;
 	}
+	
+	@Override
+	public void ezabatu() {
+		for (Pixel fb : finalBossKol) {
+			fb.ezabatu();
+		}
+	}
+	
+	@Override
+	public void shoot() {
+		if (y <= 2) {
+			return;
+		}else {
+			if (tiroPortaera instanceof TiroBakarraPortaera) {
+				tiroPortaera = new TiroGeziaPortaera();
+			}
+			else if (tiroPortaera instanceof TiroGeziaPortaera){
+				tiroPortaera = new TiroErromboaPortaera();
+			}
+			else {
+				tiroPortaera = new TiroBakarraPortaera();
+			}
+			//tiroaren shoot osatu, hori monopixelen??
+		}
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public int getXBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
+	@Override
+	public int getYBerria() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setRandom(int r) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel p) {
 		// TODO Auto-generated method stub
@@ -166,24 +195,10 @@ public class FinalBossMultipixel implements Pixel {
 		return 0;
 	}
 
-
-	@Override
-	public void ezabatu() {
-		for (Pixel fb : finalBossKol) {
-			fb.ezabatu();
-		}
-	}
-
 	@Override
 	public boolean kolisioak(Pixel p) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void shoot() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

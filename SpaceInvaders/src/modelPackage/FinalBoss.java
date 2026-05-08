@@ -13,7 +13,7 @@ public class FinalBoss implements Pixel {
 	public void sortu() {
 		EspazioModel.getGelaxkaMatrizea().getGelaxka(x, y).setEgoera(new FinalBossEgoera());
 	}
-
+	
 	@Override
 	public int getX() {
 		return this.x;
@@ -23,7 +23,45 @@ public class FinalBoss implements Pixel {
 	public int getY() {
 		return this.y;
 	}
+	
+	@Override
+	public boolean mugituX(int i) {
+		x = x + i;
+		ezabatu();
+		this.sortu();
+		return false;
+	}
+	
+	@Override
+	public boolean xLimiteakKonprobatu(int i) {
+		if (x + i < 0 || x + i > 99) return true;
+		return false;
+	}
+	
+	@Override
+	public boolean mugituY(int i) {
+		y = y + i;
+		ezabatu();
+		this.sortu();
+		return false;
+	}
+	
+	@Override
+	public boolean yLimiteakKonprobatu(int i) {
+		if (y + i > 59 || y + i < 0) return true;
+		return false;
+	}
 
+	@Override
+	public void ezabatu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		espazioa.getGelaxka(this.x, this.y).setEgoera(new HutsikEgoera());		
+	}
+	
+	
+	
+	
+	
 	@Override
 	public int getXBerria() {
 		// TODO Auto-generated method stub
@@ -56,11 +94,7 @@ public class FinalBoss implements Pixel {
 
 
 
-	@Override
-	public boolean yLimiteakKonprobatu(int i) {
-		if (y + i > 59 || y + i < 0) return true;
-		return false;
-	}
+	
 
 	@Override
 	public boolean kolisioakKonprobatu(Pixel p) {
@@ -86,33 +120,9 @@ public class FinalBoss implements Pixel {
 		return 0;
 	}
 
-	@Override
-	public boolean mugituX(int i) {
-		x = x + i;
-		ezabatu();
-		this.sortu();
-		return false;
-	}
 	
-	@Override
-	public boolean xLimiteakKonprobatu(int i) {
-		if (x + i < 0 || x + i > 99) return true;
-		return false;
-	}
 
-	@Override
-	public boolean mugituY(int i) {
-		y = y + i;
-		ezabatu();
-		this.sortu();
-		return false;
-	}
-
-	@Override
-	public void ezabatu() {
-		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
-		espazioa.getGelaxka(this.x, this.y).setEgoera(new HutsikEgoera());		
-	}
+	
 
 	@Override
 	public boolean kolisioak(Pixel p) {
