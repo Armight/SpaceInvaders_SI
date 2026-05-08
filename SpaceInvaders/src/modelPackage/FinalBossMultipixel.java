@@ -28,10 +28,12 @@ public class FinalBossMultipixel implements Pixel {
 				eskuinP = fb;
 			} else if (fb.getX() == x - 5 && fb.getY() == y) {
 				ezkerP = fb;
+			} else if (fb.getX() == x + 1 && fb.getY() == y + 3) {
+				beheP = fb;
+			} else if (fb.getX() == x + 3 && fb.getY() == y - 4) {
+				goiP = fb;
 			}
 		}
-		goiP = new FinalBoss(x, y - 4);
-		beheP = new FinalBoss(x, y + 3);
 	}
 	
 	@Override
