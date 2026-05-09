@@ -93,7 +93,7 @@ public class EspazioModel {
 	    jokalari.sortu();
 	    
 	    
-	    if (pk.getMaila().equals("AISE")) {
+	    if (pk.getMaila().equals("CHILL")) {
 	    	this.sortuEtsaiZerrenda();
 	    } else {
 		    finalBoss = new FinalBossMultipixel(50, 30);
@@ -116,12 +116,12 @@ public class EspazioModel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-	            	if (pk.getMaila().equals("AISE")) {
+	            	if (pk.getMaila().equals("CHILL")) {
 	            		mugituEtsaiak();
-	            		PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            	} else {
-		                finalBoss.mugitu();
+	            		mugituFinalBoss();
 	            	}
+            		PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
@@ -176,7 +176,7 @@ public class EspazioModel {
 				.filter(t -> ((Pixel) t)
 				.mugituY(-1) == true)
 				.collect(Collectors.toCollection(ArrayList::new));
-		if (pk.getMaila().equals("AISE")) {
+		if (pk.getMaila().equals("CHILL")) {
 			new ArrayList<>(this.tiroak).forEach(t -> this.tiroKolisioak(t));
 		}
 	}
@@ -253,8 +253,10 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituX(i)) return;
-		if (pk.getMaila().equals("AISE")) {
+		if (pk.getMaila().equals("CHILL")) {
 			this.jokalariEtsaiKolisioak(jokalari);
+		} else {
+			this.jokalariFinalBossKolisioak(jokalari);
 		}
 	}
 	
@@ -264,8 +266,10 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituY(i)) return;
-		if (pk.getMaila().equals("AISE")) {
+		if (pk.getMaila().equals("CHILL")) {
 			this.jokalariEtsaiKolisioak(jokalari);
+		} else {
+			this.jokalariFinalBossKolisioak(jokalari);
 		}
 	}
 	
@@ -396,10 +400,31 @@ public class EspazioModel {
 
 	//*************************FINALBOSS METODODAK:**************************
 
-public int[][] getJokalariarenKoordenatuak() {
-	int koordenatuak [][]= new int[][] {{jokalari.getX(), jokalari.getY()}};
-	return koordenatuak;
-}
+	public int[][] getJokalariarenKoordenatuak() {
+		int koordenatuak [][]= new int[][] {{jokalari.getX(), jokalari.getY()}};
+		return koordenatuak;
+	}
+	
+	public void mugituFinalBoss() {
+		if (finalBoss == null) return;
+        finalBoss.mugitu();
+        finalBossJokalariKolisioak(finalBoss);
+        
+	}
+	
+	public void jokalariFinalBossKolisioak(Pixel pJokalari) {
+		if (finalBoss == null) return;
+		if (finalBoss.kolisioak(pJokalari)) {
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+		}
+	}
+	
+	public void finalBossJokalariKolisioak(Pixel pFinalBoss) {
+		if (finalBoss == null) return;
+		if (jokalari.kolisioak(pFinalBoss)) {
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+		}
+	}
 		
 
 

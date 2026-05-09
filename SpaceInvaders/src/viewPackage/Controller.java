@@ -49,8 +49,8 @@ public class Controller implements KeyListener {
             case KeyEvent.VK_R:
             	PartidaKudeatzailea.getPartidaKudeatzailea().setItsasontziKolorea("RED");
                 break;
-            case KeyEvent.VK_A:
-            	PartidaKudeatzailea.getPartidaKudeatzailea().setMaila("AISE");
+            case KeyEvent.VK_C:
+            	PartidaKudeatzailea.getPartidaKudeatzailea().setMaila("CHILL");
                 break;
             case KeyEvent.VK_E:
             	PartidaKudeatzailea.getPartidaKudeatzailea().setMaila("EZINEZKOA");

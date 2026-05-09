@@ -70,7 +70,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         contentPane.add(hautatutaLabel, gbc3);
         
         //Zailtasun aukeraketa instrukzioak
-        instrukzioak2Label = new JLabel("* Press <A> Aise  <E> Ezinezkoa to choose difficulty level *");
+        instrukzioak2Label = new JLabel("* Press <C> CHILL  <E> EZINEZKOA to choose difficulty level *");
         instrukzioak2Label.setFont(new Font("Arial", Font.PLAIN, 16));
         instrukzioak2Label.setForeground(Color.WHITE);
         GridBagConstraints gbc4 = new GridBagConstraints();
@@ -116,7 +116,7 @@ public class HasieraPantaila extends JFrame implements Observer{
     private void erakutsiMailaHautatua(String pMaila) {
     	zailtasunLabel.setText("Hautatua: " + pMaila + " - Press <ENTER> to play!");
     	switch (pMaila) {
-    	case "AISE": zailtasunLabel.setForeground(new Color(0, 255, 255)); break;
+    	case "CHILL": zailtasunLabel.setForeground(new Color(0, 255, 255)); break;
     	case "EZINEZKOA": zailtasunLabel.setForeground(new Color(255, 0, 144)); break;
     	}
     }

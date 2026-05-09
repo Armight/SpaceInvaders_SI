@@ -58,6 +58,18 @@ public class FinalBoss implements Pixel {
 		espazioa.getGelaxka(this.x, this.y).setEgoera(new HutsikEgoera());		
 	}
 	
+	@Override
+	public boolean kolisioak(Pixel pPixel) {
+		return pPixel.kolisioakKonprobatu(this);
+	}
+	
+	@Override
+	public boolean kolisioakKonprobatu(Pixel pPixel) {
+		if (x == pPixel.getX() && y == pPixel.getY()) {
+			return true;
+		} return false;
+	}
+	
 	
 	
 	
@@ -92,16 +104,6 @@ public class FinalBoss implements Pixel {
 		return false;
 	}
 
-
-
-	
-
-	@Override
-	public boolean kolisioakKonprobatu(Pixel p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
 		// TODO Auto-generated method stub
@@ -118,16 +120,6 @@ public class FinalBoss implements Pixel {
 	public int bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	
-
-	
-
-	@Override
-	public boolean kolisioak(Pixel p) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

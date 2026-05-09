@@ -144,6 +144,19 @@ public class FinalBossMultipixel implements Pixel {
 		}
 	}
 	
+	@Override
+	public boolean kolisioak(Pixel pPixel) {
+		boolean konprobatu;
+		konprobatu = finalBossKol.stream().anyMatch(fb -> fb.kolisioak(pPixel));
+		return konprobatu;
+	}
+	
+	@Override
+	public boolean kolisioakKonprobatu(Pixel pPixel) {
+		boolean konprobatu;
+		konprobatu = finalBossKol.stream().anyMatch(fb -> fb.kolisioakKonprobatu(pPixel));
+		return konprobatu;
+	}
 	
 	
 	
@@ -173,11 +186,7 @@ public class FinalBossMultipixel implements Pixel {
 		
 	}
 	
-	@Override
-	public boolean kolisioakKonprobatu(Pixel p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
@@ -195,12 +204,6 @@ public class FinalBossMultipixel implements Pixel {
 	public int bizitzaKendu() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public boolean kolisioak(Pixel p) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

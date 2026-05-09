@@ -32,6 +32,7 @@ public class PartidaKudeatzailea extends Observable {
 	}
 	
 	public void setMaila(String pMaila) {
+		if (this.pantaila != 1) {return;}
 		this.maila = pMaila;
 		setChanged();
 		notifyObservers(pMaila);
@@ -62,6 +63,7 @@ public class PartidaKudeatzailea extends Observable {
 	public void jokoanHasi() {
 		if (this.pantaila != 1) {return;}
 		if (this.itsasontziKolorea == null) {return;}
+		if (this.maila == null) {return;}
 		EspazioModel espazioModel = EspazioModel.getGelaxkaMatrizea();
 		this.hasieraItzali();
 		
@@ -101,8 +103,10 @@ public class PartidaKudeatzailea extends Observable {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		if (getJokoaAmaitu()) {	//Etsai bat Y limitera ailegatu da edo jokalari bat etsai batekin talka egin du
 			this.jokoaBukatu(false);
-		} else if (espazioa.etsairikEz()) {
-			this.jokoaBukatu(true);
+		} else if (maila.equals("CHILL")) {
+			if (espazioa.etsairikEz()) {
+				this.jokoaBukatu(true);
+			}
 		}
 	}
 	
