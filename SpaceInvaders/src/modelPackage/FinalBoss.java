@@ -2,11 +2,12 @@ package modelPackage;
 
 public class FinalBoss implements Pixel {
 	
-	private int x, y;
+	private int x, y, bizitza;
 	
 	public FinalBoss(int pX, int pY) {
 		x = pX;
 		y = pY;
+		bizitza = 3;
 	}
 
 	@Override
@@ -69,6 +70,16 @@ public class FinalBoss implements Pixel {
 			return true;
 		} return false;
 	}
+
+	@Override
+	public int bizitzaKendu() {
+		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
+		bizitza = bizitza - 1;
+		if (bizitza <= 0) {
+	    	espazioa.getGelaxka(x, y).setEgoera(new HutsikEgoera());
+			return -1;
+		} else return 0;
+	}
 	
 	
 	
@@ -114,12 +125,6 @@ public class FinalBoss implements Pixel {
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public int bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

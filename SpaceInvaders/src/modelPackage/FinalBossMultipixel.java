@@ -158,6 +158,14 @@ public class FinalBossMultipixel implements Pixel {
 		return konprobatu;
 	}
 	
+	@Override
+	public int bizitzaKendu() {
+		int hilDa = 0;
+		for (Pixel fb : finalBossKol) {
+			hilDa = hilDa + fb.bizitzaKendu();
+		}
+		return hilDa;
+	}
 	
 	
 	
@@ -198,12 +206,6 @@ public class FinalBossMultipixel implements Pixel {
 	public boolean etsaiKolisioak(Pixel pEtsai) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public int bizitzaKendu() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
