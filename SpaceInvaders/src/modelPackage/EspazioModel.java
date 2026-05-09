@@ -89,9 +89,8 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
 	    
-	    String maila = pk.getMaila();
 	    
-	    if (maila.equals("AISE")) {
+	    if (pk.getMaila().equals("AISE")) {
 	    	this.sortuEtsaiZerrenda();
 	    } else {
 		    finalBoss = new FinalBossMultipixel(50, 30);
@@ -107,14 +106,17 @@ public class EspazioModel {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 	private Timer sortuTimerEtsaiak() {
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 	    return new Timer(200, new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-	            	
-	                finalBoss.mugitu();
-	            	//mugituEtsaiak();
-	                //PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+	            	if (pk.getMaila().equals("AISE")) {
+	            		mugituEtsaiak();
+	            		PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+	            	} else {
+		                finalBoss.mugitu();
+	            	}
 	            }
 	        }
 	    });
@@ -150,34 +152,24 @@ public class EspazioModel {
 		}
 		
 	private void mugituTiroak() {
-			ArrayList<Pixel> tiroakCopia= new ArrayList<Pixel>(this.tiroak);//gure tiroen arrayaren kopia
-			/*for (Pixel t : tiroakCopia) {
-				
-				//Tiroa yLimitera ailegatu bada ezin izan da sortu
-				//Beraz ezabatu egin da
-				t.ezabatu();
-				if (!t.mugituY(-1)) {
-					tiroak.remove(t);;
-				}
-			    this.tiroKolisioak(t);
-			}*/
-			this.tiroak =  tiroakCopia.stream()
-					.peek(t -> t.ezabatu())
-					.filter(t -> ((Pixel) t)
-					.mugituY(-1) == true)
-					.collect(Collectors.toCollection(ArrayList::new));
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
+		ArrayList<Pixel> tiroakCopia= new ArrayList<Pixel>(this.tiroak);//gure tiroen arrayaren kopia
+		this.tiroak =  tiroakCopia.stream()
+				.peek(t -> t.ezabatu())
+				.filter(t -> ((Pixel) t)
+				.mugituY(-1) == true)
+				.collect(Collectors.toCollection(ArrayList::new));
+		if (pk.getMaila().equals("AISE")) {
 			new ArrayList<>(this.tiroak).forEach(t -> this.tiroKolisioak(t));
 		}
+	}
 	
 	private Iterator<Pixel> getTiroIterator() {
 		return this.tiroak.iterator();
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////
-
 //******************************ETSAIEN METODOAK:	********************************
 	private void mugituEtsaiak() {
-		/*
 	    // 1. Listaren kopia
 	    List<Pixel> etsaiakKopia = new ArrayList<>(etsaiak);
 
@@ -190,7 +182,7 @@ public class EspazioModel {
 	        .filter(e -> !etsaiEtsaiKolisioak(e))
 	        // Etsai bakoitza mugitu+konprobatu JAVA8 forEach
 	        .forEach(e -> {
-	            if (e.mugituRandom()) {
+	            if (e.mugitu()) {
 	                
 	                etsaiKolisioak(e);
 	                etsaiJokalariKolisioak(e);
@@ -198,12 +190,7 @@ public class EspazioModel {
 	                PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 	            }
 	        });
-			*/
 	}
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-	
 	
 	public void removeEtsai (Pixel e) {
 		etsaiak.remove(e);
@@ -239,26 +226,30 @@ public class EspazioModel {
 			
 		}
 	
-	
-	
 	//*************************JOKALARIAREN METODODAK:**************************
 	public Pixel getJokalari() {
 		return jokalari;
 	}
 	
 	public void mugituJokalariaX(int i) { //Jokalari ezabatu kendu mugituX egiten delako eta horrela bug-a ekiditzen dugu
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituX(i)) return;
-		this.jokalariEtsaiKolisioak(jokalari);
+		if (pk.getMaila().equals("AISE")) {
+			this.jokalariEtsaiKolisioak(jokalari);
+		}
 	}
 	
 	
 	public void mugituJokalariaY(int i) { //Jokalari ezabatu kendu mugituY egiten delako eta horrela bug-a ekiditzen dugu
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituY(i)) return;
-		this.jokalariEtsaiKolisioak(jokalari);
+		if (pk.getMaila().equals("AISE")) {
+			this.jokalariEtsaiKolisioak(jokalari);
+		}
 	}
 	
 	public void shoot() {
@@ -272,14 +263,9 @@ public class EspazioModel {
 		if(this.matrizea[pY][pX].getEgoera().equals("Tiro")) {return true;}
 		return false;
 	}
-	
-	
-	
-////////////////////////////////////////////////////////////////////////////////////////
 
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
 	public void tiroKolisioak(Pixel pTiro) {
-		/*
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -300,12 +286,10 @@ public class EspazioModel {
 		if (etsairikEz()) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 		}
-		*/
 	}
 	
 	//Etsaiak metodo hau deitu etsaiaren eta tiro guztien arteko kolisioak konprobatzeko
 	public void etsaiKolisioak(Pixel pEtsai) {
-		/*
 		Iterator<Pixel> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
@@ -319,13 +303,10 @@ public class EspazioModel {
 				}
 			}
 		}
-		*/
 	}
 	
 	//ETSAI-ETSAI KOLISIOAK ERREBISATU BEHAR DIRA
 	public boolean etsaiEtsaiKolisioak(Pixel pEtsai) {
-		return false;
-		/*
 		boolean ezMugitu = false;
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
@@ -339,19 +320,15 @@ public class EspazioModel {
 			}
 		}
 		return ezMugitu;	
-		*/	
 	}
 	
 	public void etsaiJokalariKolisioak(Pixel pEtsai) {
-	/*
 		if (jokalari.kolisioak(pEtsai)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
 		}
-		*/
 	}
 	
 	public void jokalariEtsaiKolisioak(Pixel pJokalari) {
-		/*
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -361,13 +338,9 @@ public class EspazioModel {
 			}
 		}
 	}
-	*/
-////////////////////////////////////////////////////////////////////////////////////////
-}
-	
-	
 
-	
+	//*************************FINALBOSS METODODAK:**************************
+
 public int[][] getJokalariarenKoordenatuak() {
 	int koordenatuak [][]= new int[][] {{jokalari.getX(), jokalari.getY()}};
 	return koordenatuak;
@@ -375,7 +348,7 @@ public int[][] getJokalariarenKoordenatuak() {
 		
 
 
-//////////////////JAVA 8/////////////////////////////
+//*************************JAVA 8 METODOAK:**************************
 
 	private void forEachEtsaiDo(Consumer<Pixel> action) {
 	    new ArrayList<>(etsaiak).forEach(action);
