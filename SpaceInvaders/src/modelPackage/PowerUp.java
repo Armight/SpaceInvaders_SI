@@ -30,7 +30,7 @@ public class PowerUp implements Pixel{
 	
 	@Override
 	public boolean kolisioak(Pixel pJokalaria) {
-		return pJokalaria.kolisioakKonprobatu(pJokalaria);
+		return pJokalaria.kolisioakKonprobatu(this);
 	}
 	
 	@Override

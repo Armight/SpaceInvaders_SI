@@ -278,8 +278,8 @@ public class EspazioModel {
 		ArrayList<Pixel> powerUpakKopia = new ArrayList<>(pwrUp);
 
 	    for (Pixel pu : powerUpakKopia) {
-	        pu.ezabatu();              // mugituTiro metodoaren antzera implementatuta
-	        boolean mugitu = pu.mugituY(-1);  // 1 da eta ez -1 tiroen kontrako noranzkoan doazelako
+	        pu.ezabatu();// mugituTiro metodoaren antzera implementatuta
+	        boolean mugitu = pu.mugituY(1);  // 1 da eta ez -1 tiroen kontrako noranzkoan doazelako
 
 	        if (!mugitu) {
 	            // Limitera ailegatzean
