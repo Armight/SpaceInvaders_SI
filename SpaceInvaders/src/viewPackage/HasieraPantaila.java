@@ -25,7 +25,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         setResizable(false);
 
         contentPane = new JPanel() {
-            private Image bgImage = new ImageIcon(getClass().getResource("/resources/fondoaHasPant.jpg")).getImage();
+            private Image bgImage = new ImageIcon(getClass().getResource("/resources/tetelestai.png")).getImage();
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -43,7 +43,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         tituloLabel.setForeground(Color.GREEN);
         GridBagConstraints gbc1 = new GridBagConstraints();
         gbc1.gridx = 0;
-        gbc1.gridy = 0;
+        gbc1.gridy = 1;
         gbc1.insets = new Insets(10, 10, 10, 10);
         contentPane.add(tituloLabel, gbc1);
 
@@ -53,7 +53,7 @@ public class HasieraPantaila extends JFrame implements Observer{
         instrukzioakLabel.setForeground(Color.WHITE);
         GridBagConstraints gbc2 = new GridBagConstraints();
         gbc2.gridx = 0;
-        gbc2.gridy = 1;
+        gbc2.gridy = 0;
         gbc2.insets = new Insets(10, 10, 10, 10);
         contentPane.add(instrukzioakLabel, gbc2);
 
