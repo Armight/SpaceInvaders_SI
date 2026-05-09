@@ -23,7 +23,7 @@ public class PowerUp implements Pixel{
 			return false;
 		}
 		
-		y = y -1;
+		y = y + 1;
    		sortu();
    		return true;
 	}
