@@ -22,7 +22,9 @@ public class GelaxkaView extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (arg.equals("Etsaia")) {
+		if (arg.equals("PowerUp")){
+			this.jLabel.setBackground(Color.WHITE);
+		}else if (arg.equals("Etsaia")) {
 			this.jLabel.setBackground(Color.pink);
 		} else if (arg.equals("Jokalari_RED")) {
 			this.jLabel.setBackground(Color.red);

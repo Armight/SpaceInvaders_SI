@@ -12,10 +12,12 @@ public class EspazioModel {
 	private Gelaxka[][] matrizea;
 	private ArrayList<Pixel> tiroak;
 	private ArrayList<Pixel> etsaiak; 
+	private ArrayList<Pixel> pwrUp;
 	private Pixel jokalari;
 
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
+	private Timer timerPwrUp;
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -27,6 +29,7 @@ public class EspazioModel {
 	    }
 	    tiroak = new ArrayList<Pixel>();
 	    etsaiak = new ArrayList<Pixel>();
+	    pwrUp = new ArrayList<Pixel>();
 	}
 	
 	public static EspazioModel getGelaxkaMatrizea() {//EMA
@@ -89,6 +92,7 @@ public class EspazioModel {
 	    //Timerrak eraikitzailearen kanpoan
 	    timerEtsaiak = sortuTimerEtsaiak();
 	    timerTiroak  = sortuTimerTiroak();
+	    timerPwrUp = sortuTimerPwrUp();
 	    timerEtsaiak.start();
 	    timerTiroak.start();
 	}
@@ -117,9 +121,21 @@ public class EspazioModel {
 	    });
 	}
 	
+	private Timer sortuTimerPwrUp() {
+	    return new Timer(400, new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
+	                mugituPowerUpak();
+	            }
+	        }
+	    });
+	}
+	
 	public void geldituTimerrak() {
 	    if (timerEtsaiak != null) timerEtsaiak.stop();
 	    if (timerTiroak != null) timerTiroak.stop();
+	    if (timerPwrUp != null) timerPwrUp.stop();
 	}
 
 //***********************TIROEN METODOAK:********************************
@@ -246,6 +262,42 @@ public class EspazioModel {
 		jokalari.shoot();
 	}
 	
+	//*************************POWER UP-aren METODODAK:**************************
+	
+	public void sortuPwrUp(int pX, int pY) {
+	    // %35 probabilitatea powerup bat sortzeko gure kasuan 
+	    if (Math.random() < 0.35) {
+	        PowerUp pu = new PowerUp(pX, pY);
+	        pu.sortu();
+	        pwrUp.add(pu);
+	    }
+	}
+	
+	private void mugituPowerUpak() {
+		ArrayList<Pixel> powerUpakKopia = new ArrayList<>(pwrUp);
+
+	    for (Pixel pu : powerUpakKopia) {
+	        pu.ezabatu();              // mugituTiro metodoaren antzera implementatuta
+	        boolean mugitu = pu.mugituY(1);  // 1 da eta ez -1 tiroen kontrako noranzkoan doazelako
+
+	        if (!mugitu) {
+	            // Limitera ailegatzean
+	            pwrUp.remove(pu);
+	        }
+	    }
+
+	    // Jokalariarekin kolisioak konprobatu
+	    new ArrayList<>(pwrUp).forEach(pu -> pwrUpJokalariKolisioa(pu));
+	}
+	
+	private void pwrUpJokalariKolisioa(Pixel pPowerUp) {
+	    if (jokalari != null && jokalari.kolisioak(pPowerUp)) {
+	        ((PowerUp) pPowerUp).aplikatu();   // munizio guztia kargatu
+	        pPowerUp.ezabatu();
+	        pwrUp.remove(pPowerUp);
+	    }
+	}
+	
 	//*************************KOLISIOEN METODODAK:**************************
 	
 	public boolean tiroaDago(int pX, int pY) {
@@ -268,6 +320,7 @@ public class EspazioModel {
 					itr.remove();
 					pTiro.ezabatu();
 					tiroak.remove(pTiro);
+					this.sortuPwrUp(e.getX(), e.getY()); //etsaia hil den tokian sortu powerUp-a
 				}
 			}
 		}
@@ -291,6 +344,7 @@ public class EspazioModel {
 					etsaiak.remove(pEtsai);
 					t.ezabatu();
 					itr.remove();
+					this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
 				}
 			}
 		}

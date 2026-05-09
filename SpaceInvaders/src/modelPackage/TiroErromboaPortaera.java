@@ -5,4 +5,8 @@ public class TiroErromboaPortaera implements TiroPortaera{
 		TiroErromboa tiro = new TiroErromboa(pX, pY-2);
 		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
+	
+	public int getMunizio() {
+		return MunizioKudeatzailea.getMunizioKudeatzailea().getErromboaMunizio();
+	}
 }

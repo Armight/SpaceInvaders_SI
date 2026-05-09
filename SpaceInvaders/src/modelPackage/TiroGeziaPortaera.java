@@ -5,5 +5,9 @@ public class TiroGeziaPortaera implements TiroPortaera{
 		TiroGezia tiro = new TiroGezia(pX, pY-2);
 		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
+	
+	public int getMunizio() {
+		return MunizioKudeatzailea.getMunizioKudeatzailea().getGeziaMunizio();
+	}
 
 }
