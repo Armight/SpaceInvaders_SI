@@ -95,6 +95,7 @@ public class EspazioModel {
 	    timerPwrUp = sortuTimerPwrUp();
 	    timerEtsaiak.start();
 	    timerTiroak.start();
+	    timerPwrUp.start();
 	}
 	
 	private Timer sortuTimerEtsaiak() {
@@ -278,7 +279,7 @@ public class EspazioModel {
 
 	    for (Pixel pu : powerUpakKopia) {
 	        pu.ezabatu();              // mugituTiro metodoaren antzera implementatuta
-	        boolean mugitu = pu.mugituY(1);  // 1 da eta ez -1 tiroen kontrako noranzkoan doazelako
+	        boolean mugitu = pu.mugituY(-1);  // 1 da eta ez -1 tiroen kontrako noranzkoan doazelako
 
 	        if (!mugitu) {
 	            // Limitera ailegatzean
