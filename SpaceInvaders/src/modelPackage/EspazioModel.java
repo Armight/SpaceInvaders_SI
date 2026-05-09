@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 
@@ -173,33 +174,30 @@ public class EspazioModel {
 		return this.tiroak.iterator();
 	}
 //******************************ETSAIEN METODOAK:	********************************
-	private void mugituEtsaiak() {		
-		ArrayList<Pixel> etsaiakKopia= new ArrayList<Pixel>(this.etsaiak);//gure estaien arrayaren kopia
-		
-		//1. Etsai guztien posizio berriak kalkulatu
-		//HashMap baten gorde giltza = id eta HashSet<String> = posizioa(k) izanda
-		for(Pixel e : etsaiakKopia) {
-			//random zenbakia kalkulatu
-			int r = (int)(Math.random() * 3); //0, 1 edo 2
-			e.setRandom(r);
-		}
-		
-		//2. Etsai bakoitzeko konprobatu ea berak egin nahi duen mugimendua beste etsai batek egin nahi badu
-		for (Pixel e : etsaiakKopia) {
-			
-			//Ez dago beste etsairik berak egin nahi duen mugimendua egingo duenik
-			if (!this.etsaiEtsaiKolisioak(e)) {
-				
-				if (e.mugituRandom()) {
-					this.etsaiKolisioak(e);
-					this.etsaiJokalariKolisioak(e);
-				} else {
-					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
-				}
-			}
-		}
+	private void mugituEtsaiak() {
+
+	    // 1. Listaren kopia
+	    List<Pixel> etsaiakKopia = new ArrayList<>(etsaiak);
+
+	    // 2. Etsai bakoitzari randoma esleitu JAVA8 lambda + forEach
+	    etsaiakKopia.forEach(e -> e.setRandom((int)(Math.random() * 3)));
+
+	    // 3. Mugimendua JAVA8 Streams
+	    etsaiakKopia.stream()
+	        // Filtratu etsaiak ez dutenak beste etsai batzukin kolisionatuko JAVA8 filter
+	        .filter(e -> !etsaiEtsaiKolisioak(e))
+	        // Etsai bakoitza mugitu+konprobatu JAVA8 forEach
+	        .forEach(e -> {
+	            if (e.mugituRandom()) {
+	                
+	                etsaiKolisioak(e);
+	                etsaiJokalariKolisioak(e);
+	            } else {
+	                PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+	            }
+	        });
 	}
-	
+
 	
 	
 	public void removeEtsai (Pixel e) {
@@ -384,5 +382,23 @@ public class EspazioModel {
 			}
 		}
 	}		
+
+
+//////////////////JAVA 8/////////////////////////////
+
+	private void forEachEtsaiDo(Consumer<Pixel> action) {
+	    new ArrayList<>(etsaiak).forEach(action);
+	}
+
+
+
+
+
+
+
+
+
+
+
 }
 
