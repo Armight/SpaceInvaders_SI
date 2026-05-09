@@ -69,7 +69,7 @@ public class PowerUp implements Pixel{
     @Override public int getId() {return -1;}
     
     @Override public void setRandom(int r) {}
-    @Override public boolean mugituRandom()                  { return false; }
+    @Override public boolean mugitu()                  { return false; }
     
     @Override public boolean xLimiteakKonprobatu(int i)      { return false; }
     @Override public boolean mugituX(int i)                  { return false; }
