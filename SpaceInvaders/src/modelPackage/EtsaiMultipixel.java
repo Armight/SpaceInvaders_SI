@@ -15,15 +15,16 @@ public class EtsaiMultipixel implements Pixel {
 		for (int[] pos : posizioak) {
 			Etsai e = new Etsai(x + pos[0], y + pos[1], id);
 			etsaiKol.add(e);
-		}
+		} 
 	}
 	
 	//Metodo orokorrak
 	@Override
 	public void sortu() {
-		for (Pixel e : etsaiKol) {
-			e.sortu();
-		}
+		etsaiKol.stream().forEach(e -> e.sortu());
+		//for (Pixel e : etsaiKol) {
+			//e.sortu();
+		//}
 	}
 	
 	@Override
@@ -44,10 +45,11 @@ public class EtsaiMultipixel implements Pixel {
 	@Override
 	public void setRandom(int r) {
 		random = r;
-		for (Pixel e : etsaiKol) {
+		etsaiKol.stream().forEach(e -> e.setRandom(random));
+		//for (Pixel e : etsaiKol) {
 			//random zenbaki berbera bidali monopixel bakoitzari
-			e.setRandom(random); 
-		}
+			//e.setRandom(random); 
+		//}
 	}
 	
 	@Override
@@ -71,9 +73,10 @@ public class EtsaiMultipixel implements Pixel {
 	        return true;
 	    } else {
 	    	ezabatu();
-		    for (Pixel e : etsaiKol) {
-		        e.mugituX(i);
-		    }
+	    	etsaiKol.stream().forEach(e -> e.mugituX(i));
+		    //for (Pixel e : etsaiKol) {
+		        //e.mugituX(i);
+		    //}
 		    return true;
 	    }
 	}
@@ -85,33 +88,41 @@ public class EtsaiMultipixel implements Pixel {
 		}
 		
 		ezabatu();
-		for (Pixel e : etsaiKol) {
-			e.mugituY(i);
-		}
+		etsaiKol.stream().forEach(e -> e.mugituY(i));
+		//for (Pixel e : etsaiKol) {
+			//e.mugituY(i);
+		//}
 		return true;
 	}
 	
 	@Override
 	public boolean xLimiteakKonprobatu(int i) {
-		for (Pixel e : etsaiKol) {
-			if (e.xLimiteakKonprobatu(i)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(e-> e.xLimiteakKonprobatu(i));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.xLimiteakKonprobatu(i)) return true;
+		//}
+		//return false;
 	}
 	
 	@Override
 	public boolean yLimiteakKonprobatu(int i) {
-		for (Pixel e : etsaiKol) {
-			if (e.yLimiteakKonprobatu(i)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(j -> j.yLimiteakKonprobatu(i));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.yLimiteakKonprobatu(i)) return true;
+		//}
+		//return false;
 	}
 		
 	@Override
 	public void ezabatu() {
-		for (Pixel e : etsaiKol) {
-			e.ezabatu();
-		}
+		etsaiKol.stream().forEach(e -> e.ezabatu());
+		//for (Pixel e : etsaiKol) {
+			//e.ezabatu();
+		//}
 	}
 	
 	@Override
@@ -125,32 +136,44 @@ public class EtsaiMultipixel implements Pixel {
 	
 	@Override
 	public boolean kolisioak(Pixel pPixel) {
-		for (Pixel e : etsaiKol) {
-			if (e.kolisioak(pPixel)) return true;
-		} return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(e -> e.kolisioak(pPixel));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.kolisioak(pPixel)) return true;
+		//} return false;
 	}
 	
 	@Override
 	public boolean etsaiKolisioak(Pixel pEtsai) {
-		for (Pixel e : etsaiKol) {
-			if (e.etsaiKolisioak(pEtsai)) return true;
-		} return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(e -> e.etsaiKolisioak(pEtsai));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.etsaiKolisioak(pEtsai)) return true;
+		//} return false;
 	}
 	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel pPixel) {
 		//pPixel Jokalari zein Tiro monopixel izan daiteke
-		for (Pixel e : etsaiKol) {
-			if (e.kolisioakKonprobatu(pPixel)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(e -> e.kolisioakKonprobatu(pPixel));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.kolisioakKonprobatu(pPixel)) return true;
+		//}
+		//return false;
 	}
 	
 	@Override
 	public boolean etsaiEtsaiKonprobatu(Pixel pEtsai) {
-		for (Pixel e : etsaiKol) {
-			if (e.etsaiEtsaiKonprobatu(pEtsai)) return true;
-		} return false;
+		boolean konprobatu;
+		konprobatu = etsaiKol.stream().anyMatch(e -> e.etsaiEtsaiKonprobatu(pEtsai));
+		return konprobatu;
+		//for (Pixel e : etsaiKol) {
+			//if (e.etsaiEtsaiKonprobatu(pEtsai)) return true;
+		//} return false;
 	}
 	
 	@Override

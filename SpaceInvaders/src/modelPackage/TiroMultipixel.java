@@ -16,9 +16,14 @@ public class TiroMultipixel implements Pixel{
 	@Override
 	public void sortu() {
 		if(!this.konprobatu()) {
-		for (Pixel t : tiroKol) {
-			t.sortu();
-		}}
+			//for (Pixel t : tiroKol) {
+				//t.sortu();
+			
+		
+			//}
+			tiroKol.stream().forEach(t -> t.sortu());
+		}
+		
 	}
 	
 	@Override
@@ -28,11 +33,12 @@ public class TiroMultipixel implements Pixel{
 		}
 		
 		if(this.konprobatu()) return false;
-		for (Pixel p : tiroKol) {
+		//for (Pixel p : tiroKol) {
 			
-			p.mugituY(i);
+			//p.mugituY(i);
 			
-		}
+		//}
+		tiroKol.stream().forEach(p -> p.mugituY(i));
 		return true;
 	}
 	
@@ -52,34 +58,43 @@ public class TiroMultipixel implements Pixel{
 	
 
 	@Override
-	public boolean yLimiteakKonprobatu(int i) {
-		for (Pixel t : tiroKol) {
-			if (t.yLimiteakKonprobatu(i)) return true;
+	public boolean yLimiteakKonprobatu(int i) { //anymatch
+		boolean konprobatu;
+		konprobatu = tiroKol.stream().anyMatch(t -> t.yLimiteakKonprobatu(i));
+		return konprobatu;
+		//for (Pixel t : tiroKol) {
+			//if (t.yLimiteakKonprobatu(i)) return true;
 			
-		}
-		return false;
+		//}
 	}
 	
 	@Override
 	public void ezabatu() {
-		for (Pixel t : tiroKol) {
-			t.ezabatu();
-		}
+		//for (Pixel t : tiroKol) {
+			//t.ezabatu();
+		//}
+		tiroKol.stream().forEach(t -> t.ezabatu());
 	}
 	
 	@Override
-	public boolean kolisioak(Pixel pEtsai) {
-		for (Pixel t : tiroKol) {
-			if (t.kolisioak(pEtsai)) return true;
-		} return false;
+	public boolean kolisioak(Pixel pEtsai) { //anymatch
+		boolean konprobatu;
+		konprobatu = tiroKol.stream().anyMatch(t -> t.kolisioak(pEtsai));
+		return konprobatu;
+		//for (Pixel t : tiroKol) {
+			//if (t.kolisioak(pEtsai)) return true;
+		//} return false;
 	}
 	
 	@Override
 	public boolean kolisioakKonprobatu(Pixel pEtsai) {
-		for (Pixel t : tiroKol) {
-			if (t.kolisioakKonprobatu(pEtsai)) return true;
-		}
-		return false;
+		boolean konprobatu;
+		konprobatu = tiroKol.stream().anyMatch(t -> t.kolisioak(pEtsai));
+		return konprobatu;
+		//for (Pixel t : tiroKol) {
+			//if (t.kolisioakKonprobatu(pEtsai)) return true;
+		//}
+		//return false;
 	}
 
 	@Override
