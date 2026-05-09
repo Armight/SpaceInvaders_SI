@@ -7,7 +7,7 @@ public class FinalBoss implements Pixel {
 	public FinalBoss(int pX, int pY) {
 		x = pX;
 		y = pY;
-		bizitza = 3;
+		bizitza = 10;
 	}
 
 	@Override

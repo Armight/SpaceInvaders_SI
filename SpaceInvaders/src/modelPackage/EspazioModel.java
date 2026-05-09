@@ -92,12 +92,24 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
 	    
-	    
+    	int[] kontagailua = {0};
 	    if (pk.getMaila().equals("CHILL")) {
-	    	this.sortuEtsaiZerrenda();
+	    	this.sortuEtsaiZerrenda(5);
 	    } else {
-		    finalBoss = new FinalBossMultipixel(50, 30);
-		    finalBoss.sortu();
+	    	finalBoss = new FinalBossMultipixel(50, 10);
+	    	sortuEtsaiZerrenda(10);
+	    	Timer t = new Timer(3 * 1000, e -> {
+	    		
+	    		sortuEtsaiZerrenda(5);
+	    		
+	    		
+	    	});
+	    		
+	    	t.setRepeats(false);
+	    	t.start();
+	    	if (etsairikEz()) {
+			    finalBoss.sortu();	
+	    	}
 	    }
 	    
 	    //Timerrak eraikitzailearen kanpoan
@@ -116,7 +128,7 @@ public class EspazioModel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-	            	if (pk.getMaila().equals("CHILL")) {
+	            	if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 	            		mugituEtsaiak();
 	            	} else {
 	            		mugituFinalBoss();
@@ -169,16 +181,13 @@ public class EspazioModel {
 		}
 		
 	private void mugituTiroak() {
-		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		ArrayList<Pixel> tiroakCopia= new ArrayList<Pixel>(this.tiroak);//gure tiroen arrayaren kopia
 		this.tiroak =  tiroakCopia.stream()
 				.peek(t -> t.ezabatu())
 				.filter(t -> ((Pixel) t)
 				.mugituY(-1) == true)
 				.collect(Collectors.toCollection(ArrayList::new));
-		if (pk.getMaila().equals("CHILL")) {
 			new ArrayList<>(this.tiroak).forEach(t -> this.tiroKolisioak(t));
-		}
 	}
 	
 	private Iterator<Pixel> getTiroIterator() {
@@ -220,14 +229,14 @@ public class EspazioModel {
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 																	
-		private void sortuEtsaiZerrenda() {
+		private void sortuEtsaiZerrenda(int pY) {
 			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
 			//(10,5), (20, 5) ... (80,5)
 			ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
 			int pX= 0;
 			for (int i = 0; i < 8; i++) {
 				pX = pX + 10;
-				etsaiPosizioak.add(new int [] {pX, 5});
+				etsaiPosizioak.add(new int [] {pX, pY});
 			}
 			//Posizio guztiak nahastu
 			Collections.shuffle(etsaiPosizioak);
@@ -253,7 +262,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituX(i)) return;
-		if (pk.getMaila().equals("CHILL")) {
+		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
 			this.jokalariFinalBossKolisioak(jokalari);
@@ -266,7 +275,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituY(i)) return;
-		if (pk.getMaila().equals("CHILL")) {
+		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
 			this.jokalariFinalBossKolisioak(jokalari);
@@ -323,42 +332,62 @@ public class EspazioModel {
 
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
 	public void tiroKolisioak(Pixel pTiro) {
-		Iterator<Pixel> itr = this.getEtsaiIterator(); 
-		
-		while(itr.hasNext()) {
-			Pixel e = itr.next();
-			if(e.kolisioak(pTiro)) { 
-				int hilDa = e.bizitzaKendu();
-				if (hilDa < 0) { 
-					itr.remove();
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
+		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+			Iterator<Pixel> itr = this.getEtsaiIterator(); 
+			
+			while(itr.hasNext()) {
+				Pixel e = itr.next();
+				if(e.kolisioak(pTiro)) {
 					pTiro.ezabatu();
 					tiroak.remove(pTiro);
-					this.sortuPwrUp(e.getX(), e.getY()); //etsaia hil den tokian sortu powerUp-a
+					int hilDa = e.bizitzaKendu();
+					if (hilDa < 0) { 
+						itr.remove();
+						this.sortuPwrUp(e.getX(), e.getY()); //etsaia hil den tokian sortu powerUp-a
+					}
 				}
+				
 			}
 			
+			//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
+			//Hau checkJokoa metodoa erabiltzeko era zuzenean da
+			if (pk.getMaila().equals("CHILL") && etsairikEz()) {
+				PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
+			}
+		} else {
+			if (finalBoss.kolisioak(pTiro)) {
+				pTiro.ezabatu();
+				tiroak.remove(pTiro);
+				int hilDa = finalBoss.bizitzaKendu();
+				if (hilDa < 0) {
+					finalBoss.ezabatu();
+					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+				}
+			}
 		}
 		
-		//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
-		//Hau checkJokoa metodoa erabiltzeko era zuzenean da
-		if (etsairikEz()) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
-		}
 	}
 	
 	//Etsaiak metodo hau deitu etsaiaren eta tiro guztien arteko kolisioak konprobatzeko
 	public void etsaiKolisioak(Pixel pEtsai) {
+		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		Iterator<Pixel> itr = this.getTiroIterator(); 
 		
 		while(itr.hasNext()) {
 			Pixel t = itr.next();
 			if(t.kolisioak(pEtsai)) {
+				t.ezabatu();
+				itr.remove();
 	 			int hilDa = pEtsai.bizitzaKendu();
 				if (hilDa < 0) { 
-					etsaiak.remove(pEtsai);
-					t.ezabatu();
-					itr.remove();
-					this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
+					if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+						etsaiak.remove(pEtsai);
+						this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
+					} else {
+						finalBoss.ezabatu();
+						PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+					}
 				}
 			}
 		}
@@ -409,7 +438,7 @@ public class EspazioModel {
 		if (finalBoss == null) return;
         finalBoss.mugitu();
         finalBossJokalariKolisioak(finalBoss);
-        
+        etsaiKolisioak(finalBoss);
 	}
 	
 	public void jokalariFinalBossKolisioak(Pixel pJokalari) {

@@ -166,9 +166,7 @@ public class FinalBossMultipixel implements Pixel {
 		}
 		return hilDa;
 	}
-	
-	
-	
+
 	
 	@Override
 	public int getXBerria() {

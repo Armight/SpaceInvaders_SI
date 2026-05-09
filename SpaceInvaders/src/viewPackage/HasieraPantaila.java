@@ -129,7 +129,7 @@ public class HasieraPantaila extends JFrame implements Observer{
    			if (arg instanceof String) {
    				if(arg.equals("GREEN") || arg.equals("RED") || arg.equals("BLUE")) {
    					this.erakutsiItsasontziHautatua((String)arg);
-   				} else if (arg.equals("AISE") || arg.equals("EZINEZKOA")) {
+   				} else if (arg.equals("CHILL") || arg.equals("EZINEZKOA")) {
    					this.erakutsiMailaHautatua((String)arg);
    				}
    				String agindu = arg.toString();
