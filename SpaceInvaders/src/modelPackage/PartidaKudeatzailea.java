@@ -107,7 +107,7 @@ public class PartidaKudeatzailea extends Observable {
 		EspazioModel espazioa = EspazioModel.getGelaxkaMatrizea();
 		if (getJokoaAmaitu()) {	//Etsai bat Y limitera ailegatu da edo jokalari bat etsai batekin talka egin du
 			this.jokoaBukatu(false);
-		} else if (maila.equals("CHILL")) {
+		} else if (maila.equals("PRAKTIKA")) {
 			if (espazioa.etsairikEz()) {
 				this.jokoaBukatu(true);
 			}

@@ -99,7 +99,7 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
 	    
-	    if (pk.getMaila().equals("CHILL")) {
+	    if (pk.getMaila().equals("PRAKTIKA")) {
 	    	this.sortuEtsaiZerrenda(5);
 	    } else {
 	    	finalBossAktibo = true;
@@ -143,7 +143,7 @@ public class EspazioModel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-	            	if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+	            	if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 	            		mugituEtsaiak();
 	            	} else {
 	            		mugituFinalBoss();
@@ -289,7 +289,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituX(i)) return;
-		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
 			this.jokalariFinalBossKolisioak(jokalari);
@@ -302,7 +302,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituY(i)) return;
-		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
 			this.jokalariFinalBossKolisioak(jokalari);
@@ -363,7 +363,7 @@ public class EspazioModel {
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
 	public void tiroKolisioak(Pixel pTiro) {
 		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
-		if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			Iterator<Pixel> itr = this.getEtsaiIterator(); 
 			
 			while(itr.hasNext()) {
@@ -387,7 +387,7 @@ public class EspazioModel {
 			
 			//bukaerako baldintza konprobatzeko da hau etsaiak ez badaude eta jokoaMartxan badago
 			//Hau checkJokoa metodoa erabiltzeko era zuzenean da
-			if (pk.getMaila().equals("CHILL") && etsairikEz()) {
+			if (pk.getMaila().equals("PRAKTIKA") && etsairikEz()) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 			}
 		} else {
@@ -426,7 +426,7 @@ public class EspazioModel {
 				itr.remove();
 	 			int hilDa = pEtsai.bizitzaKendu();
 				if (hilDa < 0) { 
-					if (pk.getMaila().equals("CHILL") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
+					if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 						etsaiak.remove(pEtsai);
 						this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
 					} else {
