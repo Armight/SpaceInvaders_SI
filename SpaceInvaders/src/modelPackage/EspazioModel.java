@@ -302,6 +302,9 @@ public class EspazioModel {
 	
 	public void sortuPwrUp(int pX, int pY) {
 	    // %35 probabilitatea powerup bat sortzeko gure kasuan 
+		if (pX < 0 || pX > 99 || pY < 0 || pY > 59) {
+	        return;
+	    }
 	    if (Math.random() < 0.35) {
 	        PowerUp pu = new PowerUp(pX, pY);
 	        pu.sortu();
