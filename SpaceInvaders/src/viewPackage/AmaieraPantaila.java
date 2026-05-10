@@ -28,7 +28,7 @@ public class AmaieraPantaila extends JFrame implements Observer {
         setResizable(false);
 
         contentPane = new JPanel() {
-            private Image bgImage = new ImageIcon(getClass().getResource("/resources/fondoaAmaPant.jpg")).getImage();
+            private Image bgImage = new ImageIcon(getClass().getResource("/resources/amaierafinala.png")).getImage();
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
