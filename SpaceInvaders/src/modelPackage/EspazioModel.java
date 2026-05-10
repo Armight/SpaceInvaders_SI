@@ -22,6 +22,8 @@ public class EspazioModel {
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	private Timer timerPwrUp;
 	
+	private int score;
+	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
 		//inizializatzeko zuzenean
@@ -160,6 +162,7 @@ public class EspazioModel {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 	                mugituPowerUpak();
 	            }
+	            
 	        }
 	    });
 	}
@@ -184,8 +187,16 @@ public class EspazioModel {
 		ArrayList<Pixel> tiroakCopia= new ArrayList<Pixel>(this.tiroak);//gure tiroen arrayaren kopia
 		this.tiroak =  tiroakCopia.stream()
 				.peek(t -> t.ezabatu())
-				.filter(t -> ((Pixel) t)
-				.mugituY(-1) == true)
+				.filter(t -> {
+		            boolean mugituDa = ((Pixel) t).mugituY(-1);
+		            if (!mugituDa) {
+		                if (t instanceof TiroInfo) {
+		                    score += ((TiroInfo) t).getPKenketa();
+		                    PartidaKudeatzailea.getPartidaKudeatzailea().eguneratuPuntuazioa(score);
+		                }
+		            }
+		            return mugituDa;
+		        })
 				.collect(Collectors.toCollection(ArrayList::new));
 			new ArrayList<>(this.tiroak).forEach(t -> this.tiroKolisioak(t));
 	}
@@ -339,6 +350,11 @@ public class EspazioModel {
 			while(itr.hasNext()) {
 				Pixel e = itr.next();
 				if(e.kolisioak(pTiro)) {
+					if (pTiro instanceof TiroInfo) {
+						TiroInfo ti = (TiroInfo) pTiro;
+						score += ti.getPGehiketa();
+						PartidaKudeatzailea.getPartidaKudeatzailea().eguneratuPuntuazioa(score);
+					}
 					pTiro.ezabatu();
 					tiroak.remove(pTiro);
 					int hilDa = e.bizitzaKendu();
@@ -357,12 +373,16 @@ public class EspazioModel {
 			}
 		} else {
 			if (finalBoss.kolisioak(pTiro)) {
+				if (pTiro instanceof TiroInfo) {
+					TiroInfo ti = (TiroInfo) pTiro;
+					score += ti.getPGehiketa()*2;
+				}
 				pTiro.ezabatu();
 				tiroak.remove(pTiro);
 				int hilDa = finalBoss.bizitzaKendu();
 				if (hilDa < 0) {
 					finalBoss.ezabatu();
-					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaituIrabazi();
 				}
 			}
 		}
@@ -377,6 +397,11 @@ public class EspazioModel {
 		while(itr.hasNext()) {
 			Pixel t = itr.next();
 			if(t.kolisioak(pEtsai)) {
+				if (t instanceof TiroInfo) {
+					TiroInfo ti = (TiroInfo) t;
+					score += ti.getPGehiketa();
+					PartidaKudeatzailea.getPartidaKudeatzailea().eguneratuPuntuazioa(score);
+				}
 				t.ezabatu();
 				itr.remove();
 	 			int hilDa = pEtsai.bizitzaKendu();

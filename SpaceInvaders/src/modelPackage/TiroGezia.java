@@ -1,7 +1,7 @@
 
 package modelPackage;
 
-public class TiroGezia extends TiroMultipixel {
+public class TiroGezia extends TiroMultipixel implements TiroInfo {
     
 	public TiroGezia(int pX, int pY) {
 		
@@ -14,4 +14,17 @@ public class TiroGezia extends TiroMultipixel {
 			this.addTiro(t);
 		}
     }
+
+
+	@Override
+	public int getPGehiketa() {
+		// TODO Auto-generated method stub
+		return 30;
+	}
+
+	@Override
+	public int getPKenketa() {
+		// TODO Auto-generated method stub
+		return -20;
+	}
 }

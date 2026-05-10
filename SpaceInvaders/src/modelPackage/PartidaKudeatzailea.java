@@ -13,6 +13,7 @@ public class PartidaKudeatzailea extends Observable {
 	private int pantaila = 1;
 	private boolean jokoaMartxan = false;
 	private boolean jokoaAmaitu = false;
+	private boolean jokoaAmaituIrabazi = false;
 	
 	private PartidaKudeatzailea() {
 		
@@ -37,6 +38,11 @@ public class PartidaKudeatzailea extends Observable {
 		setChanged();
 		notifyObservers(pMaila);
 	}
+	public void eguneratuPuntuazioa(int puntuazioa) {
+		setChanged();
+		if (puntuazioa < 0) {puntuazioa = 0;}
+	    notifyObservers(puntuazioa);
+	}
 	
 	public String getMaila() {
 		return this.maila;
@@ -46,9 +52,12 @@ public class PartidaKudeatzailea extends Observable {
 	
 	public boolean getJokoaAmaitu() {return this.jokoaAmaitu;}
 	
+	public boolean getJokoaAmaituIrabazi() {return this.jokoaAmaituIrabazi;}
 	public void setJokoaMartxan() {this.jokoaMartxan=true;}
 	
 	public void setJokoaAmaitu() {this.jokoaAmaitu=true;}
+	
+	public void setJokoaAmaituIrabazi() {this.jokoaAmaituIrabazi=true;}
 	
 	public String getKolorea() {
 		return this.itsasontziKolorea;
@@ -107,6 +116,8 @@ public class PartidaKudeatzailea extends Observable {
 			if (espazioa.etsairikEz()) {
 				this.jokoaBukatu(true);
 			}
+		}else if (getJokoaAmaituIrabazi()) {
+			this.jokoaBukatu(true);
 		}
 	}
 	

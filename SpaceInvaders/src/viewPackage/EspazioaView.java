@@ -1,18 +1,24 @@
 package viewPackage;
 import modelPackage.EspazioModel;
+
 import modelPackage.PartidaKudeatzailea;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.GridLayout;
 import java.awt.Color;
+
+import javax.swing.JLayeredPane;
+import java.awt.Font;
 //Commit prueba2
 public class EspazioaView extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	private GelaxkaView[][] pixelak = new GelaxkaView[60][100];
+	private JLabel scoreLabel;
 	
 	public EspazioaView() {
 		getContentPane().setBackground(Color.BLACK);
@@ -35,7 +41,17 @@ public class EspazioaView extends JFrame implements Observer {
 				this.pixelak[i][j] = gelaxka;
 				getContentPane().add(gelaxka.getLabel());
 			}
+			
 		}
+		// Crear label de score
+		scoreLabel = new JLabel("Score: 0");
+		scoreLabel.setForeground(Color.WHITE);
+		scoreLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		scoreLabel.setBounds(10, 10, 400, 30); // Goi ezkerrean ipini
+
+		// Kapaka egiteko, espazioa beheko kapa izango da eta labela goitik ipiniko dugu
+		JLayeredPane layeredPane = getLayeredPane();
+		layeredPane.add(scoreLabel, JLayeredPane.PALETTE_LAYER);
 		
 		//Observer gehitu
 		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
@@ -73,6 +89,9 @@ public class EspazioaView extends JFrame implements Observer {
 					this.dispose();
 					new AmaieraPantaila();
 				}
+			}
+			if (arg instanceof Integer) {
+				scoreLabel.setText("Score: " + arg);
 			}
 		}
 	}

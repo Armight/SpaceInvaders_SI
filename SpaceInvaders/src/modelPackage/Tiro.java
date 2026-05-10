@@ -1,6 +1,6 @@
 package modelPackage;
 
-public class Tiro implements Pixel {
+public class Tiro implements Pixel, TiroInfo{
 	
 	private int x, y;
 	
@@ -87,7 +87,7 @@ public class Tiro implements Pixel {
 
 	@Override
 	public boolean mugitu() {
-		// TODO Au
+		// TODO 
 		return false;
 		
 	}
@@ -135,4 +135,17 @@ public class Tiro implements Pixel {
 	}
 	
 	public void aldatuTiroa() {}
+
+
+	@Override
+	public int getPGehiketa() {
+		// TODO Auto-generated method stub
+		return 50;
+	}
+
+	@Override
+	public int getPKenketa() {
+		// TODO Auto-generated method stub
+		return -10;
+	}
 }

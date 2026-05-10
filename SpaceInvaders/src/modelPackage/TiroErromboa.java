@@ -1,7 +1,7 @@
 
 package modelPackage;
 
-public class TiroErromboa extends TiroMultipixel {
+public class TiroErromboa extends TiroMultipixel implements TiroInfo {
 	int[] goikoa= {0,4};
     public TiroErromboa(int pX, int pY) {
         
@@ -23,6 +23,17 @@ public class TiroErromboa extends TiroMultipixel {
     	
     	}
     }
+
+	@Override
+	public int getPGehiketa() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
+	@Override
+	public int getPKenketa() {
+		// TODO Auto-generated method stub
+		return -30;
+	}
     
    
     

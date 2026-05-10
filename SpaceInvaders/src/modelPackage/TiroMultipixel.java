@@ -4,6 +4,7 @@ package modelPackage;
 import java.util.ArrayList;
 
 public class TiroMultipixel implements Pixel{
+	private boolean kolisioa;
 	private ArrayList<Pixel> tiroKol = new ArrayList<Pixel>();
 	
 	protected TiroMultipixel(int pX, int pY) {
