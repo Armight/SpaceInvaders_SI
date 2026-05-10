@@ -25,7 +25,7 @@ public class GelaxkaView extends JPanel implements Observer{
 		if (arg.equals("PowerUp")){
 			this.jLabel.setBackground(Color.WHITE);
 		}else if (arg.equals("Etsaia")) {
-			this.jLabel.setBackground(Color.pink);
+			this.jLabel.setBackground(new Color(255, 92, 0));
 		} else if (arg.equals("Jokalari_RED")) {
 			this.jLabel.setBackground(Color.red);
 		} else if (arg.equals("Jokalari_GREEN")) {
@@ -35,7 +35,7 @@ public class GelaxkaView extends JPanel implements Observer{
 		} else if (arg.equals("Hutsik")) {
 			this.jLabel.setBackground(Color.black);
 		} else if (arg.equals("Tiro")) {
-			this.jLabel.setBackground(Color.yellow);
+			this.jLabel.setBackground(new Color(0, 249, 255));
 		} else if (arg.equals("FinalBoss")) {
 			this.jLabel.setBackground(new Color(255, 0, 144));
 		}

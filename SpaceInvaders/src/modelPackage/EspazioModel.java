@@ -15,9 +15,8 @@ public class EspazioModel {
 	private ArrayList<Pixel> etsaiak; 
 	private ArrayList<Pixel> pwrUp;
 	private Pixel jokalari;
-////////////////////////////////////////////////////////////////////////////////////////
 	private Pixel finalBoss;
-////////////////////////////////////////////////////////////////////////////////////////
+	private boolean finalBossAktibo = false;
 	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
 	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
 	private Timer timerPwrUp;
@@ -64,6 +63,12 @@ public class EspazioModel {
 		} else return false;
 	}
 	
+	public boolean finalBosikEz() {
+		if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
+			return !finalBossAktibo; //Aktibo ez dagoenean ez dago finalBosik, beraz metodoak true itzuli
+		}        return false;
+	}
+	
 	public boolean espaziotikKanpo(int pX, int pY) {
 		 boolean kanpoan = false;
 		 
@@ -94,20 +99,28 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
 	    
-    	int[] kontagailua = {0};
 	    if (pk.getMaila().equals("CHILL")) {
 	    	this.sortuEtsaiZerrenda(5);
 	    } else {
+	    	finalBossAktibo = true;
 	    	finalBoss = new FinalBossMultipixel(50, 10);
-	    	sortuEtsaiZerrenda(10);
+	    	
+	    	int[] kont = {0};
+	    	int[] pY = {15};
+	    	sortuEtsaiZerrenda(pY[0]);
 	    	Timer t = new Timer(3 * 1000, e -> {
 	    		
-	    		sortuEtsaiZerrenda(5);
+	    		kont[0]++;
+	    		pY[0] = pY[0] -5;
+	    		
+	    		sortuEtsaiZerrenda(pY[0]);
+	    		
+	    		if (kont[0] == 2) {
+	    			((Timer)e.getSource()).stop();
+	    		}
 	    		
 	    		
 	    	});
-	    		
-	    	t.setRepeats(false);
 	    	t.start();
 	    	if (etsairikEz()) {
 			    finalBoss.sortu();	
@@ -227,7 +240,7 @@ public class EspazioModel {
 	                etsaiKolisioak(e);
 	                etsaiJokalariKolisioak(e);
 	            } else {
-	                PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+	                PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 	            }
 	        });
 	}
@@ -388,7 +401,8 @@ public class EspazioModel {
 				int hilDa = finalBoss.bizitzaKendu();
 				if (hilDa < 0) {
 					finalBoss.ezabatu();
-					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaituIrabazi();
+					finalBossAktibo = false;
+					PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(false);
 				}
 			}
 		}
@@ -417,7 +431,8 @@ public class EspazioModel {
 						this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
 					} else {
 						finalBoss.ezabatu();
-						PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+						finalBossAktibo = false;
+						PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(false);
 					}
 				}
 			}
@@ -443,7 +458,7 @@ public class EspazioModel {
 	
 	public void etsaiJokalariKolisioak(Pixel pEtsai) {
 		if (jokalari.kolisioak(pEtsai)) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 		}
 	}
 	
@@ -453,7 +468,7 @@ public class EspazioModel {
 		while(itr.hasNext()) {
 			Pixel e = itr.next();
 			if(e.kolisioak(pJokalari)) {
-				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();	
+				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);	
 			}
 		}
 	}
@@ -475,14 +490,14 @@ public class EspazioModel {
 	public void jokalariFinalBossKolisioak(Pixel pJokalari) {
 		if (finalBoss == null) return;
 		if (finalBoss.kolisioak(pJokalari)) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 		}
 	}
 	
 	public void finalBossJokalariKolisioak(Pixel pFinalBoss) {
 		if (finalBoss == null) return;
 		if (jokalari.kolisioak(pFinalBoss)) {
-			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu();
+			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 		}
 	}
 		
