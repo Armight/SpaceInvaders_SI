@@ -40,7 +40,6 @@ public class PartidaKudeatzailea extends Observable {
 	}
 	public void eguneratuPuntuazioa(int puntuazioa) {
 		setChanged();
-		if (puntuazioa < 0) {puntuazioa = 0;}
 	    notifyObservers(puntuazioa);
 	}
 	

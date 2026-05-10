@@ -192,6 +192,9 @@ public class EspazioModel {
 		            if (!mugituDa) {
 		                if (t instanceof TiroInfo) {
 		                    score += ((TiroInfo) t).getPKenketa();
+		                    if (score<0) {
+		                    	score = 0;
+		                    }
 		                    PartidaKudeatzailea.getPartidaKudeatzailea().eguneratuPuntuazioa(score);
 		                }
 		            }
