@@ -13,11 +13,6 @@ public class FinalBossEgoera implements Egoera{
 	}
 	
 	@Override
-	public void setEgoera(Gelaxka g) {
-		g.setEgoera(this);
-	}
-	
-	@Override
 	public Egoera getEgoera() {
 		return this;
 	}

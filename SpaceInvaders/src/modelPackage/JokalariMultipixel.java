@@ -9,27 +9,16 @@ public class JokalariMultipixel implements Pixel{
 	private String kolorea;
 	protected TiroPortaera tiroPortaera;
 	
-	JokalariMultipixel(int pX, int pY, String pKolorea) {
+	protected JokalariMultipixel(int pX, int pY, String pKolorea) {
 		x = pX;
 		y = pY;
 		kolorea = pKolorea;
-		int posizioak [][];
-		if(kolorea.equals("RED")) {
-			posizioak = new int[][] {{0,0},{-2,0},{-1,0},{1,0},{2,0},{-1,-1},{1,-1},{-3,1},{-2,1},{-1,1},{1,1},{2,1},{3,1}} ;
-		}else if (kolorea.equals("BLUE")){ //urdina
-			posizioak = new int[][] {{0,0},{-1,0},{1,0},{-1,-1},{1,-1},{-1,1},{0,1},{1,1}};
-		}
-		else  {//berdea
-			posizioak = new int[][] {{0,0},{-1,0},{1,0},{0,-1}};
-		}
+	}
 		
-		
-		for (int[] pos : posizioak) {
-			Jokalari j = new Jokalari(x + pos[0], y + pos[1], kolorea);
-			jokalariKol.add(j);
-			}
-		}
-		
+	protected void addJokalari(Jokalari pJokalari) {
+		jokalariKol.add(pJokalari);
+	}
+	
 	@Override
 	public void sortu() {
 		jokalariKol.stream().forEach(j -> j.sortu());

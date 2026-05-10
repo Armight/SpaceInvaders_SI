@@ -16,12 +16,14 @@ public class EspazioModel {
 	private ArrayList<Pixel> pwrUp;
 	private Pixel jokalari;
 	private Pixel finalBoss;
-	private boolean finalBossAktibo = false;
-	private Timer timerEtsaiak;	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
-	private Timer timerTiroak; //Timer bat tiroentzako, ezberdina 50ms-koa izango dena
-	private Timer timerPwrUp;
-	
+	//PartidaKudeatzailetik partida amaitzeko beharrezkoa, EZINEZKOA mailan egonez gero
+	private boolean finalBossAktibo = false;  
 	private int score;
+	//Timer bat etsaientzako kasu honetan 200ms-koa izango dena
+	private Timer timerEtsaiak;
+	//Timer bat tiroentzako, ezberdina 50ms-koa izango dena
+	private Timer timerTiroak; 				
+	private Timer timerPwrUp;
 	
 	private EspazioModel() {
 		matrizea = new Gelaxka[60][100];
@@ -65,7 +67,8 @@ public class EspazioModel {
 	
 	public boolean finalBosikEz() {
 		if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
-			return !finalBossAktibo; //Aktibo ez dagoenean ez dago finalBosik, beraz metodoak true itzuli
+			//FinaBoss aktibo EZ dagoenean metodoak "true" itzuliko du
+			return !finalBossAktibo;
 		}        return false;
 	}
 	
@@ -99,29 +102,42 @@ public class EspazioModel {
 	    //Jokalaria eta etsaiak sortu
 	    jokalari.sortu();
 	    
+	    //PRAKTIKA mailan egonda, bakarrik etsaien zerrenda bakarra sortu
 	    if (pk.getMaila().equals("PRAKTIKA")) {
 	    	this.sortuEtsaiZerrenda(5);
+	    	
+	    //EZINEZKOA mailan
 	    } else {
+	    	//FinalBoss aktibatu eta instantziatu
 	    	finalBossAktibo = true;
 	    	finalBoss = new FinalBossMultipixel(50, 10);
 	    	
+	    	//Timer-aren barruko kontagailua
 	    	int[] kont = {0};
+	    	//Timer-aren barruko etsaiZerrendaren Y posizioa
 	    	int[] pY = {15};
+	    	//Lehenengo etsai zerrendaren sorrera
 	    	sortuEtsaiZerrenda(pY[0]);
+	    	
 	    	Timer t = new Timer(3 * 1000, e -> {
 	    		
+	    		//Kontagailua eta posizioa eguneratu
 	    		kont[0]++;
 	    		pY[0] = pY[0] -5;
 	    		
+	    		//Bigarren eta hirugarren etsaien zerrenda, y = 10, y = 5 posizioetan
 	    		sortuEtsaiZerrenda(pY[0]);
 	    		
+	    		//Timerra birritan aktibatu ostean, gelditu
 	    		if (kont[0] == 2) {
 	    			((Timer)e.getSource()).stop();
 	    		}
-	    		
-	    		
 	    	});
+	    	
+	    	//Timerra hasi
 	    	t.start();
+	    	
+	    	//Etsai normalen 3 zerrenda sortu ostean jokalariak etsai guztiak hil baditu FinalBoss sortu
 	    	if (etsairikEz()) {
 			    finalBoss.sortu();	
 	    	}
@@ -143,6 +159,7 @@ public class EspazioModel {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
+	            	
 	            	if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 	            		mugituEtsaiak();
 	            	} else {
@@ -160,13 +177,10 @@ public class EspazioModel {
 	        public void actionPerformed(ActionEvent e) {
 	            if (PartidaKudeatzailea.getPartidaKudeatzailea().getJokoaMartxan()) {
 	                mugituTiroak();
-	                //PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 	            }
 	        }
 	    });
 	}
-////////////////////////////////////////////////////////////////////////////////////////
-
 	
 	private Timer sortuTimerPwrUp() {
 	    return new Timer(400, new ActionListener() {
@@ -289,6 +303,8 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituX(i)) return;
+		
+		//Jokalariaren kolisioak mailaren eta momentuaren araberakoak dira
 		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
@@ -302,6 +318,7 @@ public class EspazioModel {
 		if (jokalari == null) return;
 		
 		if (!jokalari.mugituY(i)) return;
+		
 		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			this.jokalariEtsaiKolisioak(jokalari);
 		} else {
@@ -390,12 +407,15 @@ public class EspazioModel {
 			if (pk.getMaila().equals("PRAKTIKA") && etsairikEz()) {
 				PartidaKudeatzailea.getPartidaKudeatzailea().checkJokoa();
 			}
+			
+		//Kolisioa FinalBoss-arekin konprobatu behar da
 		} else {
 			if (finalBoss.kolisioak(pTiro)) {
 				if (pTiro instanceof TiroInfo) {
 					TiroInfo ti = (TiroInfo) pTiro;
 					score += ti.getPGehiketa()*2;
 				}
+				//Kolisioa gertatu da
 				pTiro.ezabatu();
 				tiroak.remove(pTiro);
 				int hilDa = finalBoss.bizitzaKendu();
@@ -429,6 +449,8 @@ public class EspazioModel {
 					if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 						etsaiak.remove(pEtsai);
 						this.sortuPwrUp(pEtsai.getX(), pEtsai.getY());
+						
+					//Kolisioa finalBoss-arekin gertatu da
 					} else {
 						finalBoss.ezabatu();
 						finalBossAktibo = false;
@@ -439,7 +461,6 @@ public class EspazioModel {
 		}
 	}
 	
-	//ETSAI-ETSAI KOLISIOAK ERREBISATU BEHAR DIRA
 	public boolean etsaiEtsaiKolisioak(Pixel pEtsai) {
 		boolean ezMugitu = false;
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
@@ -474,7 +495,7 @@ public class EspazioModel {
 	}
 
 	//*************************FINALBOSS METODODAK:**************************
-
+	//FinalBoss-ak jokalariaren atzetik egiteko jokalariaren koordenatuak behar ditu
 	public int[][] getJokalariarenKoordenatuak() {
 		int koordenatuak [][]= new int[][] {{jokalari.getX(), jokalari.getY()}};
 		return koordenatuak;
@@ -484,9 +505,12 @@ public class EspazioModel {
 		if (finalBoss == null) return;
         finalBoss.mugitu();
         finalBossJokalariKolisioak(finalBoss);
+        
+        //Tiro eta FinalBoss-aren arteko kolisioak begiratzeko
         etsaiKolisioak(finalBoss);
 	}
 	
+	//Jokalariak finalBoss-arekin dituen kolisioak aztertzeko
 	public void jokalariFinalBossKolisioak(Pixel pJokalari) {
 		if (finalBoss == null) return;
 		if (finalBoss.kolisioak(pJokalari)) {
@@ -494,19 +518,12 @@ public class EspazioModel {
 		}
 	}
 	
+	//FinalBoss-ak jokalariarekin dituen kolisioak frogatzeko
 	public void finalBossJokalariKolisioak(Pixel pFinalBoss) {
 		if (finalBoss == null) return;
 		if (jokalari.kolisioak(pFinalBoss)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 		}
-	}
-		
-
-
-//*************************JAVA 8 METODOAK:**************************
-
-	private void forEachEtsaiDo(Consumer<Pixel> action) {
-	    new ArrayList<>(etsaiak).forEach(action);
 	}
 }
 

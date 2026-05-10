@@ -9,13 +9,7 @@ public class TiroEgoera implements Egoera{
 	@Override
     public String getIzena() {
         return this.izena;
-    }
-	@Override
-    public void setEgoera(Gelaxka g) {
-        g.setEgoera(this);
-    }
-
-   
+    }  
 
 	@Override
 	public Egoera getEgoera() {

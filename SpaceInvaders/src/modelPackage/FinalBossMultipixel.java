@@ -38,9 +38,7 @@ public class FinalBossMultipixel implements Pixel {
 	
 	@Override
 	public void sortu() {
-		for (Pixel fb : finalBossKol) {
-			fb.sortu();
-		}
+		finalBossKol.stream().forEach(fb -> fb.sortu());
 		
 	}
 	
@@ -88,9 +86,7 @@ public class FinalBossMultipixel implements Pixel {
 	public boolean mugituX(int i) {
 		x = x + i;
 		ezabatu();
-		for (Pixel fb : finalBossKol) {
-			fb.mugituX(i);
-		}
+		finalBossKol.stream().forEach(fb -> fb.mugituX(i));
 		
 		return false;
 	}
@@ -106,9 +102,7 @@ public class FinalBossMultipixel implements Pixel {
 	public boolean mugituY(int i) {
 		y = y + i;
 		ezabatu();
-		for (Pixel fb : finalBossKol) {
-			fb.mugituY(i);
-		}
+		finalBossKol.stream().forEach(fb -> fb.mugituY(i));
 		
 		return false;
 	}
@@ -121,27 +115,7 @@ public class FinalBossMultipixel implements Pixel {
 	
 	@Override
 	public void ezabatu() {
-		for (Pixel fb : finalBossKol) {
-			fb.ezabatu();
-		}
-	}
-	
-	@Override
-	public void shoot() {
-		if (y <= 2) {
-			return;
-		}else {
-			if (tiroPortaera instanceof TiroBakarraPortaera) {
-				tiroPortaera = new TiroGeziaPortaera();
-			}
-			else if (tiroPortaera instanceof TiroGeziaPortaera){
-				tiroPortaera = new TiroErromboaPortaera();
-			}
-			else {
-				tiroPortaera = new TiroBakarraPortaera();
-			}
-			//tiroaren shoot osatu, hori monopixelen??
-		}
+		finalBossKol.stream().forEach(fb -> fb.ezabatu());
 	}
 	
 	@Override
@@ -160,11 +134,14 @@ public class FinalBossMultipixel implements Pixel {
 	
 	@Override
 	public int bizitzaKendu() {
-		int hilDa = 0;
-		for (Pixel fb : finalBossKol) {
-			hilDa = hilDa + fb.bizitzaKendu();
-		}
+		int hilDa;
+		hilDa = finalBossKol.stream().mapToInt(fb -> fb.bizitzaKendu()).sum();
 		return hilDa;
+	}
+	
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
 	}
 
 	

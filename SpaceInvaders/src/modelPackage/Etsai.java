@@ -161,6 +161,11 @@ public class Etsai implements Pixel {
 	public void shoot() {
 		// TODO Auto-generated method stub
 	}
-	public void aldatuTiroa() {}
+
+	@Override
+	public void aldatuTiroa() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

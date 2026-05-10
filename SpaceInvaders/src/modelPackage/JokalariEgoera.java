@@ -8,21 +8,14 @@ public class JokalariEgoera implements Egoera{
 		this.izena="Jokalari";
 		this.kolorea=pKolorea;
 	}
+	
 	@Override
     public String getIzena() {
         return this.izena +"_"+ kolorea;
     }
-	
-	@Override
-    public void setEgoera(Gelaxka g) {
-        g.setEgoera(this);
-    }
 
-    
-
-	@Override
+   	@Override
 	public Egoera getEgoera() {
-		
 		return this;
 	}
 }

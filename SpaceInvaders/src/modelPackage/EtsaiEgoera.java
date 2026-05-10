@@ -11,15 +11,9 @@ public class EtsaiEgoera implements Egoera {
         return this.izena;
     }
 
-	@Override
-    public void setEgoera(Gelaxka g) {
-        g.setEgoera(this);
-    }
-
 
 	@Override
 	public Egoera getEgoera() {
-		
 		return this;
 	}
 
