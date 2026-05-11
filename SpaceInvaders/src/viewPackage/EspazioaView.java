@@ -53,7 +53,7 @@ public class EspazioaView extends JFrame implements Observer {
 		JLayeredPane layeredPane = getLayeredPane();
 		layeredPane.add(scoreLabel, JLayeredPane.PALETTE_LAYER);
 		
-		//Observer gehitu
+		//Observer gehitua
 		PartidaKudeatzailea kudeatzailea = PartidaKudeatzailea.getPartidaKudeatzailea();
 		kudeatzailea.addObserver(this);
 		

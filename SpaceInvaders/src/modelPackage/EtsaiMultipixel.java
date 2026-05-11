@@ -22,9 +22,7 @@ public class EtsaiMultipixel implements Pixel {
 	@Override
 	public void sortu() {
 		etsaiKol.stream().forEach(e -> e.sortu());
-		//for (Pixel e : etsaiKol) {
-			//e.sortu();
-		//}
+		
 	}
 	
 	@Override
@@ -46,10 +44,7 @@ public class EtsaiMultipixel implements Pixel {
 	public void setRandom(int r) {
 		random = r;
 		etsaiKol.stream().forEach(e -> e.setRandom(random));
-		//for (Pixel e : etsaiKol) {
-			//random zenbaki berbera bidali monopixel bakoitzari
-			//e.setRandom(random); 
-		//}
+		
 	}
 	
 	@Override
@@ -74,9 +69,7 @@ public class EtsaiMultipixel implements Pixel {
 	    } else {
 	    	ezabatu();
 	    	etsaiKol.stream().forEach(e -> e.mugituX(i));
-		    //for (Pixel e : etsaiKol) {
-		        //e.mugituX(i);
-		    //}
+		    
 		    return true;
 	    }
 	}
@@ -89,9 +82,7 @@ public class EtsaiMultipixel implements Pixel {
 		
 		ezabatu();
 		etsaiKol.stream().forEach(e -> e.mugituY(i));
-		//for (Pixel e : etsaiKol) {
-			//e.mugituY(i);
-		//}
+		
 		return true;
 	}
 	
@@ -100,10 +91,7 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(e-> e.xLimiteakKonprobatu(i));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.xLimiteakKonprobatu(i)) return true;
-		//}
-		//return false;
+		
 	}
 	
 	@Override
@@ -111,18 +99,13 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(j -> j.yLimiteakKonprobatu(i));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.yLimiteakKonprobatu(i)) return true;
-		//}
-		//return false;
+		
 	}
 		
 	@Override
 	public void ezabatu() {
 		etsaiKol.stream().forEach(e -> e.ezabatu());
-		//for (Pixel e : etsaiKol) {
-			//e.ezabatu();
-		//}
+	
 	}
 	
 	@Override
@@ -139,9 +122,7 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(e -> e.kolisioak(pPixel));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.kolisioak(pPixel)) return true;
-		//} return false;
+		
 	}
 	
 	@Override
@@ -149,9 +130,7 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(e -> e.etsaiKolisioak(pEtsai));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.etsaiKolisioak(pEtsai)) return true;
-		//} return false;
+		
 	}
 	
 	@Override
@@ -160,10 +139,7 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(e -> e.kolisioakKonprobatu(pPixel));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.kolisioakKonprobatu(pPixel)) return true;
-		//}
-		//return false;
+		
 	}
 	
 	@Override
@@ -171,9 +147,7 @@ public class EtsaiMultipixel implements Pixel {
 		boolean konprobatu;
 		konprobatu = etsaiKol.stream().anyMatch(e -> e.etsaiEtsaiKonprobatu(pEtsai));
 		return konprobatu;
-		//for (Pixel e : etsaiKol) {
-			//if (e.etsaiEtsaiKonprobatu(pEtsai)) return true;
-		//} return false;
+		
 	}
 	
 	@Override
