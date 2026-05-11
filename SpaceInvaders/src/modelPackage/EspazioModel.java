@@ -446,9 +446,9 @@ public class EspazioModel {
 	public boolean etsaiEtsaiKolisioak(Pixel pEtsai) {
 
 	    return etsaiak.stream()
-	        // Ignorar al propio enemigo (mismo ID)
+	        // etsai hori bada, ez kexkatu
 	        .filter(e -> e.getId() != pEtsai.getId())
-	        // Si algún enemigo colisiona → true
+	        // estaibat beste batekin kolisionatu...true
 	        .anyMatch(e -> e.etsaiKolisioak(pEtsai));
 	}
          
@@ -461,15 +461,16 @@ public class EspazioModel {
 	}
 	
 	private void jokalariEtsaiKolisioak(Pixel pJokalari) {
-		Iterator<Pixel> itr = this.getEtsaiIterator(); 
-		
-		while(itr.hasNext()) {
-			Pixel e = itr.next();
-			if(e.kolisioak(pJokalari)) {
-				PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);	
-			}
-		}
+
+	    // etsairen batek jokalariarekin talka, jokoa amaitu
+	    boolean kolisio = etsaiak.stream()
+	        .anyMatch(e -> e.kolisioak(pJokalari));
+
+	    if (kolisio) {
+	        PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
+	    }
 	}
+
 
 	//*************************FINALBOSS METODODAK:**************************
 	//FinalBoss-ak jokalariaren atzetik egiteko jokalariaren koordenatuak behar ditu
