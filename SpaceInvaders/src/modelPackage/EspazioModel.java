@@ -444,20 +444,15 @@ public class EspazioModel {
 	}
 	
 	public boolean etsaiEtsaiKolisioak(Pixel pEtsai) {
-		boolean ezMugitu = false;
-		Iterator<Pixel> itr = this.getEtsaiIterator(); 
-		
-		while(itr.hasNext()) {
-			Pixel e = itr.next();
-			if (pEtsai.getId() == e.getId()) continue;
-			
-			if(e.etsaiKolisioak(pEtsai)) {
-				ezMugitu = true;
-				break;
-			}
-		}
-		return ezMugitu;	
+
+	    return etsaiak.stream()
+	        // Ignorar al propio enemigo (mismo ID)
+	        .filter(e -> e.getId() != pEtsai.getId())
+	        // Si algún enemigo colisiona → true
+	        .anyMatch(e -> e.etsaiKolisioak(pEtsai));
 	}
+         
+
 	
 	private void etsaiJokalariKolisioak(Pixel pEtsai) {
 		if (jokalari.kolisioak(pEtsai)) {
