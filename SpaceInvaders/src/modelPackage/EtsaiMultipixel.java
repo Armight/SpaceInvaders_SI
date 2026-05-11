@@ -110,11 +110,7 @@ public class EtsaiMultipixel implements Pixel {
 	
 	@Override
 	public int bizitzaKendu() {
-		int hilDa = 0;
-		for (Pixel e : etsaiKol) {
-			hilDa = hilDa + e.bizitzaKendu();
-		}
-		return hilDa;
+		 return etsaiKol.stream().mapToInt(e -> e.bizitzaKendu()).sum();
 	}
 	
 	@Override

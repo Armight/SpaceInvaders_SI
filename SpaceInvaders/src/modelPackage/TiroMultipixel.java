@@ -41,12 +41,7 @@ public class TiroMultipixel implements Pixel{
 	}
 	
 	private boolean konprobatu() {
-		boolean tiroaDago=true;
-		for (Pixel p : tiroKol) {
-			tiroaDago=this.konprobatuTiroaBadago(p);
-		}
-		return tiroaDago;
-				
+		return tiroKol.stream().allMatch(p -> this.konprobatuTiroaBadago(p));
 	}
 	
 
