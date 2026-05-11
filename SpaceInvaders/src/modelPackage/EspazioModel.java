@@ -250,28 +250,30 @@ public class EspazioModel {
 	
 	//ETSAIEN ARRAYAREN METODOAK:
 																	
-		private void sortuEtsaiZerrenda(int pY) {
-			//8 etsaiek har dezaketen posizioen ArrayList-a sortu
-			//(10,5), (20, 5) ... (80,5)
-			ArrayList<int[]> etsaiPosizioak = new ArrayList<int []>();
-			int pX= 0;
-			for (int i = 0; i < 8; i++) {
-				pX = pX + 10;
-				etsaiPosizioak.add(new int [] {pX, pY});
-			}
-			//Posizio guztiak nahastu
-			Collections.shuffle(etsaiPosizioak);
-			//4...8 etasien arteko zenbaki random bat sortu
-			//int etsaiKop = 8;
-			int etsaiKop = 4 + (int)(Math.random() * 5); 
-			for (int i = 0; i < etsaiKop; i++) {
-				int[] pos = etsaiPosizioak.remove(0);
-				Pixel et = new EtsaiMultipixel(pos[0], pos[1], i+1);
-				et.sortu();
-				this.etsaiak.add(et);
-			}
-			
-		}
+	private void sortuEtsaiZerrenda(int pY) {
+
+	    // 1. Posizioak  (10, pY), (20, pY)... (80, pY) Streams erabiliz
+	    List<int[]> etsaiPosizioak = 
+	        java.util.stream.IntStream.rangeClosed(1, 8)
+	            .mapToObj(i -> new int[]{i * 10, pY})
+	            .collect(java.util.stream.Collectors.toList());
+
+	    // 2. Posizioak
+	    java.util.Collections.shuffle(etsaiPosizioak);
+
+	    // 3.  4 - 8 etsai kop
+	    int etsaiKop = 4 + (int)(Math.random() * 5);
+
+	    // 4.Estaiak sortu Stream erabiliz
+	    java.util.stream.IntStream.range(0, etsaiKop)
+	        .mapToObj(i -> {
+	            int[] pos = etsaiPosizioak.remove(0);
+	            return new EtsaiMultipixel(pos[0], pos[1], i + 1);
+	        })
+	        .peek(Pixel::sortu) // sortu() estai bakoitzeko
+	        .forEach(etsaiak::add); // zerrendara gehitu
+	}
+		
 	
 	//*************************JOKALARIAREN METODODAK:**************************
 	public Pixel getJokalari() {
