@@ -2,7 +2,7 @@ package modelPackage;
 
 public class Jokalari implements Pixel {
 
-	private int x, y, bizitza;
+	private int x, y;
 	private String kolorea;
 	protected TiroPortaera tiroPortaera;
 
@@ -10,9 +10,7 @@ public class Jokalari implements Pixel {
 	public Jokalari(int pX, int pY, String pKolorea) {
 		x = pX;
 		y = pY;
-		kolorea = pKolorea;
-		bizitza = 1;
-		
+		kolorea = pKolorea;		
 	}
 		
 	@Override

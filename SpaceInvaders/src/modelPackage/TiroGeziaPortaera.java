@@ -7,8 +7,9 @@ public class TiroGeziaPortaera implements TiroPortaera{
 		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
 	
+	/*
 	public int getMunizio() { //ez da erabiltzen oraindik
 		return MunizioKudeatzailea.getMunizioKudeatzailea().getGeziaMunizio();
-	}
+	}*/
 
 }

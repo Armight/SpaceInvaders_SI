@@ -7,7 +7,8 @@ public class TiroErromboaPortaera implements TiroPortaera{
 		EspazioModel.getGelaxkaMatrizea().addTiro(tiro);
 	}
 	
+	/*
 	public int getMunizio() {  //ez da erabiltzen oraindik
 		return MunizioKudeatzailea.getMunizioKudeatzailea().getErromboaMunizio();
-	}
+	}*/
 }

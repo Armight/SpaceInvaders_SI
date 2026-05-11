@@ -72,18 +72,6 @@ public class EspazioModel {
 		}        return false;
 	}
 	
-	public boolean espaziotikKanpo(int pX, int pY) {
-		 boolean kanpoan = false;
-		 
-		 if (pX < 0 || pX >= this.getZabalera()) {
-			 kanpoan = true;
-		 }
-		 if (pY < 0 || pY >= this.getAltuera()) {
-			 kanpoan = true;
-		 }
-		 return kanpoan;
-	 }
-	
 	
 	//JOKOA HASTEKO
 	public void jokoanHasi() {
@@ -202,10 +190,6 @@ public class EspazioModel {
 
 	//***********************TIROEN METODOAK:********************************
 	
-	public void removeTiro(Tiro pTiro) {
-			this.tiroak.remove(pTiro);
-		}
-		
 	public void addTiro(Pixel pTiro) {
 			this.tiroak.add(pTiro);
 		}
@@ -257,10 +241,6 @@ public class EspazioModel {
 	                PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 	            }
 	        });
-	}
-	
-	public void removeEtsai (Pixel e) {
-		etsaiak.remove(e);
 	}
 	
 	private Iterator<Pixel> getEtsaiIterator() {
@@ -378,7 +358,7 @@ public class EspazioModel {
 	}
 
 	//Tiroak metodo hau deitu tiroaren eta etsai guztien arteko kolisioak konprobatzeko
-	public void tiroKolisioak(Pixel pTiro) {
+	private void tiroKolisioak(Pixel pTiro) {
 		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		if (pk.getMaila().equals("PRAKTIKA") || pk.getMaila().equals("EZINEZKOA") && !etsairikEz()) {
 			Iterator<Pixel> itr = this.getEtsaiIterator(); 
@@ -430,7 +410,7 @@ public class EspazioModel {
 	}
 	
 	//Etsaiak metodo hau deitu etsaiaren eta tiro guztien arteko kolisioak konprobatzeko
-	public void etsaiKolisioak(Pixel pEtsai) {
+	private void etsaiKolisioak(Pixel pEtsai) {
 		PartidaKudeatzailea pk = PartidaKudeatzailea.getPartidaKudeatzailea();
 		Iterator<Pixel> itr = this.getTiroIterator(); 
 		
@@ -477,13 +457,13 @@ public class EspazioModel {
 		return ezMugitu;	
 	}
 	
-	public void etsaiJokalariKolisioak(Pixel pEtsai) {
+	private void etsaiJokalariKolisioak(Pixel pEtsai) {
 		if (jokalari.kolisioak(pEtsai)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
 		}
 	}
 	
-	public void jokalariEtsaiKolisioak(Pixel pJokalari) {
+	private void jokalariEtsaiKolisioak(Pixel pJokalari) {
 		Iterator<Pixel> itr = this.getEtsaiIterator(); 
 		
 		while(itr.hasNext()) {
@@ -501,7 +481,7 @@ public class EspazioModel {
 		return koordenatuak;
 	}
 	
-	public void mugituFinalBoss() {
+	private void mugituFinalBoss() {
 		if (finalBoss == null) return;
         finalBoss.mugitu();
         finalBossJokalariKolisioak(finalBoss);
@@ -511,7 +491,7 @@ public class EspazioModel {
 	}
 	
 	//Jokalariak finalBoss-arekin dituen kolisioak aztertzeko
-	public void jokalariFinalBossKolisioak(Pixel pJokalari) {
+	private void jokalariFinalBossKolisioak(Pixel pJokalari) {
 		if (finalBoss == null) return;
 		if (finalBoss.kolisioak(pJokalari)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);
@@ -519,7 +499,7 @@ public class EspazioModel {
 	}
 	
 	//FinalBoss-ak jokalariarekin dituen kolisioak frogatzeko
-	public void finalBossJokalariKolisioak(Pixel pFinalBoss) {
+	private void finalBossJokalariKolisioak(Pixel pFinalBoss) {
 		if (finalBoss == null) return;
 		if (jokalari.kolisioak(pFinalBoss)) {
 			PartidaKudeatzailea.getPartidaKudeatzailea().setJokoaAmaitu(true);

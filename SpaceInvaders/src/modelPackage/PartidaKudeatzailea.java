@@ -1,6 +1,5 @@
 package modelPackage;
 
-import java.awt.Color;
 import java.util.Observable;
 
 

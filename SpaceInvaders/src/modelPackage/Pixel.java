@@ -14,14 +14,11 @@ public interface Pixel {
 	int getYBerria();
 	
 	int getId();
-
-	//void setPosizio(int pX, int pY);
 	
 	void setRandom(int r);
 	
 	boolean mugitu();
 	
-	//int i jokalariaren posizio berriak kalkulatzeko erabili
 	boolean xLimiteakKonprobatu(int i);
 	
 	boolean yLimiteakKonprobatu(int i);
@@ -40,10 +37,8 @@ public interface Pixel {
 	
 	void ezabatu();	
 	
-	//BAKARRIK TIRO ETA JOKALARIAK INPLEMENTATU
 	boolean kolisioak(Pixel p);
 	
-	//BAKARRIK JOKALARIAK INPLEMENTATU
 	void shoot();
 	
 	public void aldatuTiroa();

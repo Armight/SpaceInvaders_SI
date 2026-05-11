@@ -6,7 +6,6 @@ public class FinalBossMultipixel implements Pixel {
 	private ArrayList<Pixel> finalBossKol = new ArrayList<Pixel>();
 	private int x, y;
 	private Pixel ezkerP, eskuinP, beheP, goiP;
-	private TiroPortaera tiroPortaera = new TiroBakarraPortaera();
 	
 	public FinalBossMultipixel(int pX, int pY) {
 		x = pX;

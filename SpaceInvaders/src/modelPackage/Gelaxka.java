@@ -3,14 +3,14 @@ package modelPackage;
 import java.util.Observable;
 
 public class Gelaxka extends Observable{
-	private int posX;
-	private int posY;
+	private int x;
+	private int y;
 	private Egoera egoera;
 	
 	
 	public Gelaxka(int pX, int pY) {
-		this.posX = pX;
-		this.posY = pY;
+		this.x = pX;
+		this.y = pY;
 		this.egoera = new HutsikEgoera(); 
 	}
 		

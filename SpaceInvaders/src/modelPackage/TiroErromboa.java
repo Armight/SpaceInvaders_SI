@@ -2,7 +2,6 @@
 package modelPackage;
 
 public class TiroErromboa extends TiroMultipixel implements TiroInfo {
-	int[] goikoa= {0,4};
     public TiroErromboa(int pX, int pY) {
         
     	super(pX, pY);

@@ -9,7 +9,6 @@ public class HutsikEgoera implements Egoera {
 
 	@Override
 	public Egoera getEgoera() {
-		
 		return this;
 	}
 }

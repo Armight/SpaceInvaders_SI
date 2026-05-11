@@ -37,7 +37,6 @@ public class Controller implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_G:
@@ -66,13 +65,8 @@ public class Controller implements KeyListener {
             	PartidaKudeatzailea.getPartidaKudeatzailea().irteeraEgin();
             default:
             	teklakSakatuta.add(e.getKeyCode());
-        }
-        
-        //ALDAKETAK: hemen ezin da egon modeloko objekturik
-
-        
-        
-}
+        }      
+    }
         
     
     private void prozesatuInputak() {
